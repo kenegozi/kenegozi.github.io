@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Re-blog"
+comments: true
+tags: [blog-engine,asp-net-mvc]
+---
+
+
+My blog has moved to AppHarbor, and while doing that I also changed the engine for a completely custom thing (running on custom-y stuff like WebOnDiet and NTemplate), to a wee bit more conventional codebase based on MVC3 and Razor, with lots of nuget packages replacing custom code that I wrote myself.
+
+The packages file now contains AntiXSS, AttributeRouting, Castle.Core (for my good pal DictionaryAdapterFactory), elmah, MarkdownSharp, mongocsharpdriver, XmlRpcMvc and XmlRpcMvc.MetaWeblog (awesome!)
+
+BTW, expect a post on using the DictionaryAdapterFactory to make handling Controller=>View data transport truly awesome.
+
+What's missing here? IoC !
+
+yeah I did not bother with that now. I have my tiny 15LOC thing and this blog does not need anything of this sort.
+
+
+
+Some things might still break. Files I used to host for downloading would probably won't work now. I will fix that soon I hope, time permitting.
+
+
+
+note to self – reshuffle the tags here on the blog. I need to re-tag may entries. Maybe I'll let site visitors suggest tags?
+

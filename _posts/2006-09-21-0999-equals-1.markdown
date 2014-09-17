@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "0.999... equals 1"
+comments: true
+tags: [miscellanea]
+---
+
+
+Here's something for your mind to chew on for the weekend:
+
+[http://en.wikipedia.org/wiki/Proof_that_0.999..._equals_1](http://en.wikipedia.org/wiki/Proof_that_0.999..._equals_1)
+
+in other words:
+output 'true' if 0.999.Equals(1)
+btw, does this means that Boo == Bp?
+

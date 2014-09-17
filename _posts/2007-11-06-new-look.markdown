@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "New Look"
+comments: true
+tags: [personal,blog-engine]
+---
+
+
+sneak peek (for those who read this through a feed reader):
+
+![Sneak peek](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NewLook_BE1B/e5c08435-d66b-41e9-937a-05dcdb514d24.png)
+
+cool huh?
+

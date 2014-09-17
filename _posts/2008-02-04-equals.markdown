@@ -1,0 +1,42 @@
+---
+layout: post
+title:  "Equals != =="
+comments: true
+tags: [c-sharp]
+---
+
+
+Yep, I've made yet another noob mistake.
+
+
+
+I needed to compare two enum values, on a method that was accepting objects.
+
+
+
+```
+public string Whatever(object currentOption, object selectedOption){ return currentOption == selectedOption ? "class='active' " : string.Empty;}
+```
+
+
+
+Didn't work.
+
+
+
+
+
+However, 
+
+```
+public string Whatever(object currentOption, object selectedOption){ return currentOption.Equals(selectedOption) ? "class='active' " : string.Empty;}
+```
+
+Did work.
+
+so, it appear that == isn't polymorphic so it did the object.Equals method which apparently looks for reference equality, rather than the enum Equals.
+
+
+
+And that has been yet another future-reference-post ...
+

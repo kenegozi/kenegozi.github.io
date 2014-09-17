@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Quoted"
+comments: true
+tags: [tools,personal]
+---
+
+
+I've just found out that my I'm being *[quoted in a book](http://books.google.com/books?id=7cUIRtXwFlQC&amp;pg=PT58&amp;lpg=PT58&amp;dq=Ken+Egozi&amp;source=bl&amp;ots=_llGnA4p9i&amp;sig=U9VHuOb_PN_GebUzitWmCeFSG9s&amp;hl=en#v=onepage&amp;q=Ken%20Egozi&amp;f=false) !
+
+&#160;
+
+the book is [Testing ASP.NET Web Applications (Wrox Programmer to Programmer)](http://www.amazon.com/gp/product/0470496649?ie=UTF8&amp;tag=kenegoziswebl-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0470496649)![](http://www.assoc-amazon.com/e/ir?t=kenegoziswebl-20&amp;l=as2&amp;o=1&amp;a=0470496649) from [Ben Hall](http://blog.benhall.me.uk/), a great guy I know from the first UK ALT.NET conf, and [another guy](http://www.mcwherter.net/blog/), who happens to blog quite rarely, but I do like his 
+
+[So You Think You're A Web Developer](http://www.mcwherter.net/wordpress/?cat=14) series. Plus anyone investing time in Web apps testing is a worthy man, not to mention a guy that invests time in educating people into testing their web apps. 
+
+&#160;
+
+&#160;
+
+* Actually, it's not anything smart that I've been saying, but rather [my simple IoC implementation](http://kenegozi.com/Blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx), which I originally created for a tiny project that couldn't have had *any 3rd party dependency (including Windsor), and is now being used as a manner of teaching what an IoC is and how it can help you.&#160; neat, and thx for the credit.
+

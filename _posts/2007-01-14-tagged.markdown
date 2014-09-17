@@ -1,0 +1,34 @@
+---
+layout: post
+title:  "Tagged"
+comments: true
+tags: [personal]
+---
+
+
+So, I've been [tagged](http://www.ayende.com/Blog/2007/01/03/TheTagGotMeHelp.aspx). 
+
+
+Actually, it was more than a week ago. Since I am not much of a writer, it takes me a lot of effort to write non-technical stuff. I've worked on a "5 things" post on notepad, and mistakenly closed it without saving. It took me while to recover (myself, not the file) and gather the courage to redo this post.   
+
+So, with no further ado, here are 5 thing you didn't know about me, nor will you probably remember tomorrow.   
+
+1. I grew up in a religious family. I even learn a few months in a Yeshiva. I used to like (and was quite good) the studies of "Talmud" and "Halacha" (the basis for Jewish laws) since those involve strict logic methods, and much resembles the way you prove mathematical theorems.   
+
+2. Before I was programming professionally, I was in the IDF. I attended the IAF flight course for a while, then went through combat training in the infantry forces until my knees almost fell apart, and I found myself doingpaperwork. Later on I moved to the Logistics force, andbecame expert in Warehouse Management, and small scale HR management.   
+
+3.Before I was in the army, I was a musician. I own a great acoustic guitar (by Takamine), two sound modules (Korg and Roland), an electric guitar (Washburn), two Multi-Effect modules for guitar (Boss and Zoom), a synth (Ensoniq), two dedicated sound-cards (hoontech/Yamaha and an old SBLive Premium), Shure mics. I ran a full featured MIDI recording studio, and produced playbacks for people who wanted demos for the radio. I have also did musical direction for song contests, of the religious youth movement "Bnei Akiva". But I cannot read notes.   
+4. When I grew up I was afraid of animals. Of any kind. Even kittens. Now I live with three ex-stray cats and they sleep with me. Actually, they fight and I try to sleep ... I'll flickr some photos of them sometime. One of them play "fetch" like a dog. When I throw one of his toys, he runs to it, take it in his mouth, and bring it to me to throw again. The second is a beautiful cat who acts like a lady, and the third is blind from birth, but rules the house easily.
+
+5. I have been coding since I was 5. really. My father have bought me a ZX-80 and a bunch of BASIC books, and I went CAREZY about it. I remember that when I was about 7 I coded a simple Space Invaders mock and invited two of my classmates to play with me. however, then I came to learn the importance of QA, since the game was very buggy and the friends went to play hide-and-seek while I tried to debug my spaghetti ...
+
+
+
+So those were 60 minutes, about Ken Egozi. The movie feature is due this summer (kenegozimovie.com ...)
+
+
+
+[Eli Golovinsky](http://blog.tuzig.com/author/gooli/), [Dror Engel](http://www.drorengel.com/blog), [Yosi Taguri](http://blogs.msdn.com/yosit/), [Hamilton Verissimo de Oliveira](http://hammett.castleproject.org/), [Omer van Kloeten](http://blogs.microsoft.co.il/blogs/omer/default.aspx), [Roy Daya](http://roydaya.blogspot.com/)
+
+Hey people - you have been tagged !
+

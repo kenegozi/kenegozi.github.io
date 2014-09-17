@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "LOLCODE"
+comments: true
+tags: [miscellanea]
+---
+
+
+A rather different programming language
+
+[http://lolcode.com/](http://lolcode.com/)
+
+
+
+Funny.
+
+
+
+(from codeproject's lounge)
+

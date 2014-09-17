@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "I'm Burned"
+comments: true
+tags: [tools]
+---
+
+
+Main reason - I want to reduce traffic to my blog (I do have a gazziliona million few hundredssubscribers, just like you, my dear reader.).
+
+Plus, [since feed-burner has gone Google-d, they give the PRO services for free](http://blogs.feedburner.com/feedburner/archives/2007/07/freeburner_for_everyone.php), so I'd be able to enjoy the stats - which means I'd be able to know exactly how many people are reading me, and then can arrange the kenegozi-readers-party (thought about the [Madison Square Garden](http://www.thegarden.com/), but I guess my living room will do just fine).
+
+
+
+So, please update your favorite reader to point to [http://feeds.feedburner.com/kenegozi](http://feeds.feedburner.com/kenegozi).
+

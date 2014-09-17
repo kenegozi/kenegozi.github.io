@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "NANT 0.85 rc3 and .NET 2.0"
+comments: true
+tags: [tools,castle,monorail]
+---
+
+
+I needed to manually Castle today, for the first time.
+
+The need is for Castle.MonoRail.TestSupport.BaseControllerTest only, so I do not really care about all the rest.
+
+
+
+Opened "How to build.txt" 
+
+I know that the builds in the CI server are failing due to some filing tests on DP2, so I add "-D:common.run-tests=false".
+
+no brainer.
+
+I am also targeting .net2 only, so I add "-t:net-2.0"
+
+baboom. This fails.
+
+The nant exe is telling me that I can only build to .net 1.1, or .net compact framework 1.0.
+
+So I went to nant's config file, and found out to my surprise, that the frameworks that are present there are:
+
+.net 1.1,
+
+.net compact framework 1.0
+
+.net 2.0 BETA 1
+
+hmmm.
+
+So I've edited the config, changed the existing .net 2.0 config name to .net2.0Beta1,
+
+copy&amp;pasted the .net node to another one, now switching version number from 
+
+sdkdirectory="${path::combine(sdkInstallRoot, 'bin')}" frameworkdirectory="${path::combine(installRoot, 'v2.0.40607')}" frameworkassemblydirectory="${path::combine(installRoot, 'v2.0.40607')}"clrversion="2.0.40607"
+
+to
+
+
+sdkdirectory="${path::combine(sdkInstallRoot, 'bin')}" frameworkdirectory="${path::combine(installRoot, 'v2.0.50727')}" frameworkassemblydirectory="${path::combine(installRoot, 'v2.0.50727')}"clrversion="2.0.50727"  
+
+  
+
+voila. Now the build is starting.  
+However, the Castle.Components.Validator.Tests dll refuse to build. I'll disable it, too.
+
+
+
+UPDATE:
+
+I'm an idiot. Did not notice that NAnt has gone far beyond rc3 a long time ago ...
+
