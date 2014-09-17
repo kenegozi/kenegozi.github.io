@@ -390,16 +390,26 @@ a:hover,a:focus {
   text-shadow: 1px 1px 0px #111;
 }
 #about .my-face {
-  width: 100px;
   float: left;
-  padding-right: 13px;
-  padding-bottom: 5px;
+  background: url('/assets/img/ken-100.jpg') no-repeat;
+  width: 100px;
+  height: 100px;
+  margin-right: 8px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  box-shadow: 2px 2px 8px #222;
+  -webkit-box-shadow: 2px 2px 8px #222;
+  -moz-box-shadow: 2px 2px 8px #222;
+}
+#about .my-face img {
+  opacity: 0;
+  filter: alpha(opacity=0);
 }
 .blog-post {
   padding-bottom: 25px;
 }
 #content {
-  background-image: url('/assets/img/eye-in-the-sky-1920.jpg');
   background-image: url('/assets/img/snow-1920.jpg');
   background-size: cover;
   background-attachment: fixed !important;
