@@ -1,0 +1,174 @@
+---
+canonical: /
+---
+{% include _layout_doctype.html %}
+ 
+{% contentfor head_extra_style %}
+<style>
+
+</style>
+{% endcontentfor %}
+
+{% include _layout_head.html %}
+
+
+
+
+<body id="top" class="fullscreen-image-background">
+
+{% include navbar.html %}
+
+	<!-- HERO UNIT -->
+	<section id="hero-unit" class="hero-unit">
+		<div class="hero-content text-right">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 text-left">
+					</div>
+					<div class="col-lg-7 pull-right">
+						<div id="slidecaption" class="slide-caption">
+							<div class="hero-text">
+								<h1 class="hero-heading">Hi, <span class="name">I'm Ken Egozi</span></h1>
+								<h4>a fault tolerant, highly available software junkie</h4>
+								<div data-looper="go" data-interval="3000" class="looper xfade slide down">
+									<div class="looper-inner">
+										<div class="item animatedx"><p>team leader</p></div>
+										<div class="item animatedx"><p>web developer</p></div>
+										<div class="item animatedx"><p>software architect</p></div>
+										<div class="item animatedx"><p>DIY enthusiast</p></div>
+										<div class="item animatedx"><p>family guy</p></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="hero-buttons">
+							<a href="#about" id="btn-about" class="btn btn-info btn-lg"><i class="fa fa-arrow-circle-o-down"></i> READ MORE</a>
+							<a href="#contact" id="btn-contact" class="btn btn-primary btn-lg"><i class="fa fa-phone-square"></i> GET IN TOUCH</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END HERO UNIT -->
+	
+	<!-- MAIN CONTENT -->
+	<div id="main-content" class="main-content">
+		
+		<!-- ABOUT -->
+		<section id="about" class="about animate-one">
+			<div class="container">
+				<div class="section-heading">
+					<h2><i class="fa fa-question-circle"></i>&nbsp;about</h2>
+					<hr />
+				</div>
+				<div class="section-content">
+					<p class="about-one">
+						<img src="/assets/img/ken.jpg" class="my-face" />
+						Leader of development teams on various project types, from Intranet logistics-oriented systems, through distributed back-end systems for large public websites, to rapidly evolving web 2.0 start-ups.</p>
+					<p class="about-two">I have been helping businesses from multiple disciplines to maximize their business potential through analysis of current and future needs, and implementing low-maintenance solutions fitting their exact needs.</p>
+					<p>During my career I have been involved with Open Source projects that are aimed at providing solid and developer friendly frameworks, and took active part in software development communities and user groups as organizer and speaker.</p>					
+			  <p>
+				I have been an active contributor to many open source projects, such as
+				<a href="http://aspnetwebstack.codeplex.com/">ASP.NET MVC and WebAPI</a>, 
+				<a href="https://github.com/mongodb/mongo-csharp-driver">MongoDB</a>, 
+				<a href="http://www.castleproject.org/">Castle Project</a>, and
+				<a href="https://github.com/projectkudu/kudu">Project Kudu</a>.
+			  </p>
+			  <p>
+				In my career I have had the opportunity to work with many companies, and learn about a varity of business domains, such as
+				<a href="http://www.musicglue.com/">the music industry</a>, 
+				<a href="http://www.shopyourway.com/">e-commerce</a>, 
+				<a href="http://www.sqlink.com/">human resources</a>, 
+				logistics, 
+				health, 
+				finance, 
+				<a href="http://www.hawkaviation.com/">avionics</a>, 
+				<a href="http://www.gogobot.com/">travel</a>,
+				<a href="http://azure.microsoft.com/en-us/services/web-sites/">cloud infrastructures</a>, 
+				<a href="">mobile backends</a>, 
+				<a href="http://www.skype.com/">communication services</a>, and even  
+				<a href="http://windward.eu/">maritime intelligence</a>.
+			  </p>
+			  <p>
+				In the recent years I have been working for Microsoft, on myriad of projects, such as
+					<a href="http://azure.microsoft.com/en-us/develop/mobile/">Azure Mobile Services</a>, 
+					<a href="http://msdn.microsoft.com/en-us/library/dn584397(v=vs.110).aspx">.NET Native</a>, 
+					<a href="http://www.asp.net/">ASP.NET</a>,
+					<a href="http://www.skype.com">Skype</a>, and
+					<a href="http://office.microsoft.com/">Office 365</a>.
+					
+			  </p>
+			  <p>I love learning new things, and hope that my career will continue to serve me with new, interesting domains to explore.</p>
+			</div>
+		</div>
+	</section>
+
+
+		<!-- SERVICES -->
+		<section id="blog" class="darker services" >
+			<div class="container">
+				<div class="section-heading">
+					<h2><i class="fa fa-pencil-square"></i>&nbsp;posts</h2>
+					<p>I like to write about things that I care about. When it comes to code and technology, you can find some of my writings here, or <a href="/archive">browse through</a></p>
+					<hr />
+				</div>
+				<div class="section-content">
+					<div class="row">
+					{% for post in site.posts reverse limit: 6| %}
+					{% if post.layout == 'post' %}
+						<div class="col-md-6">
+							<div class="blog-post">
+								<span class="icon-checkmark2 post-icon"></span>
+								<div class="post-text">
+									<h3>{{ post.title }}</h3>
+									<p class="small">{{ post.date | date: "%b %-d, %Y"}}</p>
+									<p>{{ post.content | strip_html | truncatewords 18 }}</p>
+									<a href="{{ post.url }}" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END SERVICES -->
+
+		<!-- FULL-WIDTH PARALLAX -->
+		<section id="contact" class="full-width-parallax parallax">
+			<div class="container social-network">
+				<div class="section-heading">
+					<h2><i class="fa fa-phone-square"></i>&nbsp;contact</h2>
+					<p>find me elsewhere on the web</p>
+					<hr />
+				</div>
+				<div class="section-content">
+					<ul class="list-inline social-icon">
+						<li class="wow rollIn" data-wow-delay='0.3s'><a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+						<li class="wow rollIn" data-wow-delay='0.3s'><a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+						<li class="wow rollIn" data-wow-delay='0.3s'><a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
+						<li class="wow rollIn" data-wow-delay='0.3s'><a href="#" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container twitter stream">
+				<div class="twitter-icon">
+					<i class="fa fa-twitter"></i>
+				</div>
+				<div id="tweet"></div>
+			</div>
+		</div>
+		</section>
+	</div>
+	<!-- END MAIN CONTENT -->
+
+{% include _layout_footer.html %}
+
+{% contentfor end_of_body_scripts %}
+<script>
+
+</script>
+{% endcontentfor %}
+{% include _layout_end_of_body.html %}

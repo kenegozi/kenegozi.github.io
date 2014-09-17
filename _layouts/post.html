@@ -1,0 +1,16 @@
+﻿{% include _layout_doctype.html %}
+{% contentfor head_extra_style %}
+<style>
+    .navbar {
+        color: #333;
+    }
+</style>
+{% endcontentfor %}
+{% include _layout_head.html %}
+<body id="top" class="fullscreen-image-background">
+{% include navbar.html %}
+    <section class="container content">
+    <h1>{{ page.title }}</h1>
+    {{ content }}
+    </section>
+{% include _layout_footer.html %}

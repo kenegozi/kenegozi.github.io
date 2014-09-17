@@ -1,0 +1,9 @@
+{% if post.url %}
+  {% assign path = post.path %}
+{% else %}
+  {% assign path = page.path %}
+{% endif %}
+
+{% if path %}
+<a href="{{ site.github_repo_url }}/edit/master/{{ path }}">edit</a>
+{% endif %}

@@ -1,0 +1,10 @@
+url: http://kenegozi.com
+exclude: [ "LICENSE", "Gemfile", "Gemfile.lock" ]
+timezone: US/Pacific
+permalink: /blog/:year/:month/:day/:title
+github_repo_url: https://github.com/kenegozi/kenegozi.github.io
+title: 'Ken Egozi | Web builder'
+author: 'Ken Egozi'
+email: mail@kenegozi.com
+assets:
+#  js_compressor:  uglifier
