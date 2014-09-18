@@ -5,20 +5,18 @@ comments: true
 tags: [c-sharp]
 ---
 
-Show me your date
+## Show me your date
 When sending DateTimes as string across the wire, it is quite useful to use ISO 8601 date formatting. For one, it holds all required info (including timezone offset specified), it is easy to infer the Kind of the DateTime (UTC, Local or Unspecified), it is widely and commonly used across most (if not all) platforms, and if omitting milliseconds, is lexicographically ordered, which makes it useful for indexed storage as well (for example on the filesystem, or as keys in a string based Key Value stores such as Azure Table Storage)
 
 During the many times I had to deal with serialization implementations, while working on one of the many web frameworks I've been involved with, or with serialization libraries, I keep getting back to be needing to remember what I did last time, so this post is to serve as a future reminder to self on how I want it to be done.
 
 ## Serializing a DateTime to a string:
-
-```
-string Serialize(DateTime value) {    const string ISO8601Format = "o"; // this is a terrific little gem!    return value.ToString(ISO8601Format);}
-```
+<pre><code>string Serialize(DateTime value) {
+    const string ISO8601Format = "o"; // this is a terrific little gem!
+    return value.ToString(ISO8601Format);
+}</code></pre>
 
 Did you notice the “o” format specifier? This is a much better than typing "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK", which I've been doing until recently.
-
-## 
 
 For lexicographically ordered version, we would only go so far to the seconds, and be sure to force the input datetime kind to UTC (otherwise order is difficult to maintain…):
 
