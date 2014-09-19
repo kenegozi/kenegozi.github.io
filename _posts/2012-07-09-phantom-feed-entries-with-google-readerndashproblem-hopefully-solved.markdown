@@ -16,11 +16,11 @@ I first suspected that the Updated or Created timestamp fields might be wrong, b
 
 I did however find the problem.
 
-My feed is in ATOM 1.0 format, and each entry has an <id> field.
+My feed is in ATOM 1.0 format, and each entry has an &lt;id&gt; field.
 
 The id I am putting there is the permalink to the post, and here comes the interesting part – I was taking the domain part of the permalink from the current request's url. I was doing that because I was, how to put it, short sighted.
 
-Anyway as soon as the blog engine moved from my own, fully controlled VM hosted somewhere, to more dynamic environments (AppHarbor at first, now Azure WebRole), behind request routers, load balancers and such, the request that actually got to the blog engine had its domain name changed, and apparently not in a 100% consistent way. The custom cname that was used was changing every now and then (every few or more weeks) and then Google Reader would pick up the changed <id> and even though the title, timestamps and content of the posts remained, the changed <id> made it believe it is a new post.
+Anyway as soon as the blog engine moved from my own, fully controlled VM hosted somewhere, to more dynamic environments (AppHarbor at first, now Azure WebRole), behind request routers, load balancers and such, the request that actually got to the blog engine had its domain name changed, and apparently not in a 100% consistent way. The custom cname that was used was changing every now and then (every few or more weeks) and then Google Reader would pick up the changed &lt;id&gt; and even though the title, timestamps and content of the posts remained, the changed &lt;id&gt; made it believe it is a new post.
 
 I now hardcoded the domain part, and all is (hopefully) well.
 
