@@ -1,23 +1,11 @@
 ---
 canonical: /
+special_body_class: fullscreen-image-background
+layout: site
+permalink: '/index.html'
 ---
-{% include _layout_doctype.html %}
- 
 {% contentfor head_extra_style %}
-<style>
-
-</style>
 {% endcontentfor %}
-
-{% include _layout_head.html %}
-
-
-
-
-<body id="top" class="fullscreen-image-background">
-
-{% include navbar.html %}
-
 	<!-- HERO UNIT -->
 	<section id="hero-unit" class="hero-unit">
 		<div class="hero-content text-right">
@@ -112,23 +100,17 @@ canonical: /
 			<div class="container">
 				<div class="section-heading">
 					<h2><i class="fa fa-pencil-square"></i>&nbsp;posts</h2>
-					<p>I like to write about things that I care about. When it comes to code and technology, you can find some of my writings here, or <a href="/archive">browse through</a></p>
+					<p>I like to write about things that I care about. When it comes to code and technology, you can find some of my writings here, <a href="/archive">browse through</a> and
+					<a href="http://feeds2.feedburner.com/kenegozi">subscribe</a>.
+					</p>
 					<hr />
 				</div>
 				<div class="section-content">
 					<div class="row">
-					{% for post in site.posts reverse limit: 6| %}
+					{% for post in site.posts reverse limit: 6 %}
 					{% if post.layout == 'post' %}
 						<div class="col-md-6">
-							<div class="blog-post">
-								<span class="icon-checkmark2 post-icon"></span>
-								<div class="post-text">
-									<h3>{{ post.title }}</h3>
-									<p class="small">{{ post.date | date: "%b %-d, %Y"}}</p>
-									<p>{{ post.content | strip_html | truncatewords 18 }}</p>
-									<a href="{{ post.url }}" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
+							{% include post_excerpt.html post=post %}
 						</div>
 					{% endif %}
 					{% endfor %}
@@ -165,12 +147,3 @@ canonical: /
 		</section>
 	</div>
 	<!-- END MAIN CONTENT -->
-
-{% include _layout_footer.html %}
-
-{% contentfor end_of_body_scripts %}
-<script>
-
-</script>
-{% endcontentfor %}
-{% include _layout_end_of_body.html %}

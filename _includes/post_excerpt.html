@@ -1,0 +1,9 @@
+							<div class="blog-post">
+								<span class="icon-checkmark2 post-icon"></span>
+								<div class="post-text">
+									<h3>{{ include.post.title }}</h3>
+									<p class="small">{{ include.post.date | date: "%b %-d, %Y"}}</p>
+									<p>{{ include.post.content | markdownify | strip_html | truncatewords 18 }}</p>
+									<a href="{{ include.post.url }}" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>

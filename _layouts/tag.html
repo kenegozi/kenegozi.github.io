@@ -1,0 +1,15 @@
+---
+layout: site
+---
+<section class="container content tags">
+  <h1 class="post_title">{{page.title}}</h1>
+  {% include post_sidebar.html %}
+  {% for post in site.posts %}
+  {% for tag in post.tags %}
+  {% if tag == page.tag %}
+  {% include post.html standalone=false post=post posttitle='h2' %}
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+</section>
+

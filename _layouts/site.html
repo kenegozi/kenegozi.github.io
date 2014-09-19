@@ -1,0 +1,12 @@
+---
+---
+{% include _layout_doctype.html %}
+{% include _layout_head.html %}
+{% contentfor special_body_class %}{% contentblock special_body_class %} {{page.special_body_class}}{% endcontentfor %}
+<body id="top" class="{% contentblock special_body_class %}">
+{% include navbar.html %}
+{{ content }}
+{% include _layout_footer.html %}
+{% contentfor end_of_body_scripts %}
+{% endcontentfor %}
+{% include _layout_end_of_body.html %}

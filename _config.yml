@@ -8,3 +8,4 @@ author: 'Ken Egozi'
 email: mail@kenegozi.com
 assets:
 #  js_compressor:  uglifier
+tag_dir: '/blog/tag'
