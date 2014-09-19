@@ -262,11 +262,11 @@
 
 <p>I did however find the problem.</p>
 
-<p>My feed is in ATOM 1.0 format, and each entry has an <id> field.</id></p>
+<p>My feed is in ATOM 1.0 format, and each entry has an &lt;id&gt; field.</p>
 
 <p>The id I am putting there is the permalink to the post, and here comes the interesting part – I was taking the domain part of the permalink from the current request’s url. I was doing that because I was, how to put it, short sighted.</p>
 
-<p>Anyway as soon as the blog engine moved from my own, fully controlled VM hosted somewhere, to more dynamic environments (AppHarbor at first, now Azure WebRole), behind request routers, load balancers and such, the request that actually got to the blog engine had its domain name changed, and apparently not in a 100% consistent way. The custom cname that was used was changing every now and then (every few or more weeks) and then Google Reader would pick up the changed <id> and even though the title, timestamps and content of the posts remained, the changed <id> made it believe it is a new post.</id></id></p>
+<p>Anyway as soon as the blog engine moved from my own, fully controlled VM hosted somewhere, to more dynamic environments (AppHarbor at first, now Azure WebRole), behind request routers, load balancers and such, the request that actually got to the blog engine had its domain name changed, and apparently not in a 100% consistent way. The custom cname that was used was changing every now and then (every few or more weeks) and then Google Reader would pick up the changed &lt;id&gt; and even though the title, timestamps and content of the posts remained, the changed &lt;id&gt; made it believe it is a new post.</p>
 
 <p>I now hardcoded the domain part, and all is (hopefully) well.</p>
 
@@ -448,11 +448,11 @@
     
      <p>I have recently change the blog engine, and as part of that move, the permalinks for posts changed a bit (removed the .aspx suffix, and also got rid of the www. prefix)</p>
 
-<p>So, the atom feed now lists a different <id> tag for each entry (post). </id></p>
+<p>So, the atom feed now lists a different &lt;id&gt; tag for each entry (post). </p>
 
 <p>Google Reader cache data on posts based on the id tag, therefore subscribers to my blog who are using Google Reader will probably see 20 new messages.</p>
 
-<p>The real glitch though is a bug in Google Reader. As far as reader is concerned, the <updated> and <created> tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.</created></updated></p>
+<p>The real glitch though is a bug in Google Reader. As far as reader is concerned, the &lt;updated&gt; and &lt;created&gt; tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.</p>
 
 <p>So, I can understand why all my last 20 entries re-appear with the same date.</p>
 
@@ -1867,7 +1867,7 @@
     
      <p>sneak peek (for those who read this through a feed reader):</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NewLook_BE1B/e5c08435-d66b-41e9-937a-05dcdb514d24.png" alt="Sneak peek" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/newlook_be1b/e5c08435-d66b-41e9-937a-05dcdb514d24.png" alt="Sneak peek" /></p>
 
 <p>cool huh?</p>
 
@@ -2336,7 +2336,7 @@
 
 <p>The code shown was from going-ddd branch.</p>
 
-<p>bad name btw, as the model is too simple for DDD, and I also violate it from time to time … (Repository<comment> ...)</comment></p>
+<p>bad name btw, as the model is too simple for DDD, and I also violate it from time to time … (Repository&lt;Comment&gt; …)</p>
 
 
     </section>

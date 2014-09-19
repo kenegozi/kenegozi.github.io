@@ -471,7 +471,7 @@
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Youarenotacmdwindow_1108B/2159e518-493a-4759-bbd1-1d0192e2f414.png" alt="i_am_not_cmd" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/youarenotacmdwindow_1108b/2159e518-493a-4759-bbd1-1d0192e2f414.png" alt="i_am_not_cmd" /></p>
 
 
     </section>
@@ -810,17 +810,17 @@ customErrors section is set to off, as it used to work in IIS6 just fine</p>
 What I missed out
 IIS7 introduced the httpErrors section (under system.webServer of course), which is used to tell it what to do with custom errors.</p>
 
-<p>The sub-key I was looking for was <errormode> with the value set to Detailed.</errormode></p>
+<p>The sub-key I was looking for was &lt;errorMode&gt; with the value set to Detailed.</p>
 
 <p>So, adding</p>
 
-<p>```</p>
-<system.webserver>
+<p><code>
+&amp;lt;system.webserver&amp;gt;
    ...
-   &lt;httperrors errormode=&quot;Detailed&quot; /&gt;
+   &amp;lt;httperrors errormode=&amp;quot;Detailed&amp;quot; /&amp;gt;
    ...
-</system.webserver>
-<p>```</p>
+&amp;lt;/system.webserver&amp;gt;
+</code></p>
 
 <p>made my problem go away.
 Also notice that
@@ -945,7 +945,7 @@ you might need to allow setting that value in your web.config, by going to c:\Wi
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Windowslivewtfskeeponcoming_D5F8/5f08e34f-f6fa-4437-aa19-c370e87dc13f.png" alt="Live photo share wtf" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/windowslivewtfskeeponcoming_d5f8/5f08e34f-f6fa-4437-aa19-c370e87dc13f.png" alt="Live photo share wtf" /></p>
 
 <p> </p>
 
@@ -1001,7 +1001,7 @@ you might need to allow setting that value in your web.config, by going to c:\Wi
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Evilswodniw_1071A/4bbb39cc-ea52-4a7f-9aa8-e4695d9206c9.png" alt="LTR_RTL_WTF" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/evilswodniw_1071a/4bbb39cc-ea52-4a7f-9aa8-e4695d9206c9.png" alt="LTR_RTL_WTF" /></p>
 
 
     </section>
@@ -1452,7 +1452,7 @@ you might need to allow setting that value in your web.config, by going to c:\Wi
     
      <p>I’ve revisited my <a href="http://kenegozi.com/Blog/2007/01/24/my-first-codeproject-article-is-up.aspx">google-ajax-enabled search page</a> (at <a href="http://kenegozi.com">kenegozi.com</a>) </p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/Newdesigntomysearchpage_AFB1/homepage_thumb.png" alt="homepage" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/newdesigntomysearchpage_afb1/homepage_thumb.png" alt="homepage" /></p>
 
 <p>It can still look better of course, but it is much better than the former one.</p>
 
@@ -1599,12 +1599,12 @@ you might need to allow setting that value in your web.config, by going to c:\Wi
 
 <p>I also had to learn some Assembler as the ZX’s BASIC was pretty much limited.  </p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/HowDidIGetStartedInSoftwareDevelopment_DBEC/zx_spectrum_thumb.jpg" alt="zx_spectrum" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/howdidigetstartedinsoftwaredevelopment_dbec/zx_spectrum_thumb.jpg" alt="zx_spectrum" /></p>
 
 <p>What was your first programming language?
 BASIC, as noted above</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/HowDidIGetStartedInSoftwareDevelopment_DBEC/BASIC_thumb.png" alt="BASIC" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/howdidigetstartedinsoftwaredevelopment_dbec/basic_thumb.png" alt="BASIC" /></p>
 
 <p>What was the first real program you wrote?
 A simple yet effective word processing application, written in Turbo Pascal 5.5. I was about 16 then.</p>
@@ -1613,7 +1613,7 @@ A simple yet effective word processing application, written in Turbo Pascal 5.5.
 
 <p>At 18 I wrote another program in Pascal, aimed at keeping track of membership payments for a local <a href="http://en.wikipedia.org/wiki/Bnei_Akiva">Bnei-Akiva</a> Branch. I learned the hard way that building a DB engine by hand without any theoretical background, and without ever hearing about terms like “SQL”, “Relations”, “Transaction” and the like, is not a simple thing to do. By the time this application had enough features I have already left to recruit to the IDF, so it never got into production.</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/HowDidIGetStartedInSoftwareDevelopment_DBEC/turbo_pascal_thumb.png" alt="turbo_pascal" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/howdidigetstartedinsoftwaredevelopment_dbec/turbo_pascal_thumb.png" alt="turbo_pascal" /></p>
 
 <p>Then there was a gap of a few years during which I didn’t program until I was 24, and I needed to write my third and forth applications. They were in ACCESS, VBA and VB, written as part of my jobs in the army as a logistics officer. I needed a better inventory manager than the old MAGIC based that my unit had, and a better solution for keeping track of vacations utilisation of the staff. </p>
 
@@ -2183,7 +2183,7 @@ So as far for the notorious Vote of No Confidence in EF, I never have joined it 
     
      <p>This is a piece of screenshot that you probably hopefully won’t see on sites I’m involved with:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/JavascriptWTF_EF96/4048d970-fcde-411d-98df-11561f32e89b.png" alt="document.write WTF" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/javascriptwtf_ef96/4048d970-fcde-411d-98df-11561f32e89b.png" alt="document.write WTF" /></p>
 
 
     </section>
@@ -2210,7 +2210,7 @@ So as far for the notorious Vote of No Confidence in EF, I never have joined it 
         
     </div>
     
-     <p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/DailyErrorWTF_AEB3/5dbeda0d-7be3-4f02-9641-21e6dbf7c2d9.png" alt="Error - The current browser is either too old or too modern" /></p>
+     <p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/dailyerrorwtf_aeb3/5dbeda0d-7be3-4f02-9641-21e6dbf7c2d9.png" alt="Error - The current browser is either too old or too modern" /></p>
 
 <p>All I wanted was to find a decent hotel in Barcelona, with the aid of my buddy Firefox</p>
 
@@ -2931,12 +2931,12 @@ So as far for the notorious Vote of No Confidence in EF, I never have joined it 
 
 <p>In case you’d ask, I’m using the latest public version, which is not a Beta anymore (I think): </p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/ACallforImprovementsonWindowsLiveWriter_833E/016f30f5-6d4e-4735-9fb8-8123968f12b7.png" alt="WLW version" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/acallforimprovementsonwindowslivewriter_833e/016f30f5-6d4e-4735-9fb8-8123968f12b7.png" alt="WLW version" /></p>
 
 <p>I’ve also just recommended WLW for a new blogger.</p>
 
 <p>however, there are still some annoying things here, that I might’ve liked fixed.
-- XHTML output. I said something about it, then <a href="http://jcheng.wordpress.com">Joe Cheng </a>from the WLW team commented:<img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/ACallforImprovementsonWindowsLiveWriter_833E/c45a2b7b-3841-4db2-a8a4-f97a84a3cd86.png" alt="WLW xhtml quote" />However, I’d like to show you a bit from this very post :<img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/ACallforImprovementsonWindowsLiveWriter_833E/87775714-6a3d-4897-880b-e2a1a18c33d2.png" alt="WLW Not closing tags" />Now you believe me?I believe this is a fairly simple thing to fix, as those two (img and br) are simple tags, so no need to handle nesting tags, etc. 
+- XHTML output. I said something about it, then <a href="http://jcheng.wordpress.com">Joe Cheng </a>from the WLW team commented:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/acallforimprovementsonwindowslivewriter_833e/c45a2b7b-3841-4db2-a8a4-f97a84a3cd86.png" alt="WLW xhtml quote" />However, I’d like to show you a bit from this very post :<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/acallforimprovementsonwindowslivewriter_833e/87775714-6a3d-4897-880b-e2a1a18c33d2.png" alt="WLW Not closing tags" />Now you believe me?I believe this is a fairly simple thing to fix, as those two (img and br) are simple tags, so no need to handle nesting tags, etc. 
 - Search and Replace (Ctrl+H).Come on, even Notepad.exe has it.</p>
 
 <p>How I wish it was an Open Source product …</p>
@@ -3288,7 +3288,7 @@ So as far for the notorious Vote of No Confidence in EF, I never have joined it 
     
      <p>Needless to say that I did not like that message at all:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/MustIinstallthenewversion_1242C/c419eb4b-2729-4311-a756-3290cae8e798.png" alt="Must install new version" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/mustiinstallthenewversion_1242c/c419eb4b-2729-4311-a756-3290cae8e798.png" alt="Must install new version" /></p>
 
 <p>I liked the old UI better. Why can’t I continue use it, and just skip the new stuff?</p>
 
@@ -3324,11 +3324,11 @@ So as far for the notorious Vote of No Confidence in EF, I never have joined it 
 
 <p>Just so you’d understand how muse-ful can Ireland be:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Itwasacraic_1219C/86fa9a1e-eea3-40f6-bba6-4a4e3716608a.png" alt="Waterfall at Wicklow" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/itwasacraic_1219c/86fa9a1e-eea3-40f6-bba6-4a4e3716608a.png" alt="Waterfall at Wicklow" /></p>
 
 <p>and:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Itwasacraic_1219C/d5524fe3-ad52-43d6-a889-7c0178b68712.png" alt="View from Valetia Island" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/itwasacraic_1219c/d5524fe3-ad52-43d6-a889-7c0178b68712.png" alt="View from Valetia Island" /></p>
 
 <p>(All pictures were taken on a Canon S3 IS Camera - a perfect thing for a photo-newbie like me)</p>
 
@@ -3429,7 +3429,7 @@ Number of words typed: 145Test duration: 3 minSpeed: 48.6 words/min. (243 keystr
 
 <p>A year of improvement and becoming better at being who you are, and what you do.</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/HappyNewYearEveryone_B86F/658b5b47-af89-43d3-8444-d07c189ec12e.jpg" alt="Happy New Year" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/happynewyeareveryone_b86f/658b5b47-af89-43d3-8444-d07c189ec12e.jpg" alt="Happy New Year" /></p>
 
 <p>And thank’s to Idan Gross (<a href="http://www.IDANGROSS.COM">WWW.IDANGROSS.COM</a>) for the lovely picture.</p>
 
@@ -3816,7 +3816,7 @@ Number of words typed: 145Test duration: 3 minSpeed: 48.6 words/min. (243 keystr
 
 <p>So I’m bound to use live.com for now. Not too bad it is, however a bit slower than google.com, and way slower than my own google-driven kenegozi.com</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Iamusinglive.comfromthewrongreason_2B94/a7db81f2-3eca-4368-91c7-75e73b19e67e.png" alt="image" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/iamusinglive.comfromthewrongreason_2b94/a7db81f2-3eca-4368-91c7-75e73b19e67e.png" alt="image" /></p>
 
 <p>I hope gmail will be back soon.</p>
 
@@ -3932,7 +3932,7 @@ Number of words typed: 145Test duration: 3 minSpeed: 48.6 words/min. (243 keystr
 
 <p>Happened to me last week,I think while trying to log into hotmail.</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Yellowerrorpageonamicrosoftsite_E1AD/9b6cb1b9-d0c0-4370-a4cf-3e9f29e8f3d9.gif" alt="" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/yellowerrorpageonamicrosoftsite_e1ad/9b6cb1b9-d0c0-4370-a4cf-3e9f29e8f3d9.gif" alt="" /></p>
 
 
     </section>
@@ -4158,7 +4158,7 @@ Number of words typed: 145Test duration: 3 minSpeed: 48.6 words/min. (243 keystr
 
 <p>The first thing I have noticed is the slick design and cool UI features. It just looks good.</p>
 
-<p>So I went on for the search. Typing the exact address “1052 Budapest, Váci utca 20, Hungary” (note the explicit inclusion of the words “Budapest” and “Hungary”), sent me here:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/GoogleMapsvs.MicrosoftLiveMaps_10CC/a492e56c-b059-4a7a-a97e-9a16588cc093.jpg" alt="" /> focusing on the funny part:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/GoogleMapsvs.MicrosoftLiveMaps_10CC/50884f6c-8337-4749-b8d6-57cd6f0e939c.jpg" alt="" /></p>
+<p>So I went on for the search. Typing the exact address “1052 Budapest, Váci utca 20, Hungary” (note the explicit inclusion of the words “Budapest” and “Hungary”), sent me here:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/googlemapsvs.microsoftlivemaps_10cc/a492e56c-b059-4a7a-a97e-9a16588cc093.jpg" alt="" /> focusing on the funny part:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/googlemapsvs.microsoftlivemaps_10cc/50884f6c-8337-4749-b8d6-57cd6f0e939c.jpg" alt="" /></p>
 
 <p>Hmm. not so promising.</p>
 
@@ -4166,7 +4166,7 @@ Number of words typed: 145Test duration: 3 minSpeed: 48.6 words/min. (243 keystr
 
 <p>The same old boring/ugly/simple google-y look.</p>
 
-<p>Now, typing the same query in the input box gave me:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/GoogleMapsvs.MicrosoftLiveMaps_10CC/e48764cd-063f-4573-8aef-66132ae89f44.jpg" alt="" />focusing on the place itself:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/GoogleMapsvs.MicrosoftLiveMaps_10CC/cfcf0291-5c5c-4bdf-82cf-dfb58f53c6c9.jpg" alt="" />Ta Dam.</p>
+<p>Now, typing the same query in the input box gave me:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/googlemapsvs.microsoftlivemaps_10cc/e48764cd-063f-4573-8aef-66132ae89f44.jpg" alt="" />focusing on the place itself:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/googlemapsvs.microsoftlivemaps_10cc/cfcf0291-5c5c-4bdf-82cf-dfb58f53c6c9.jpg" alt="" />Ta Dam.</p>
 
 <p>I then tried it with different typos. The “Did you mean” thing worked like a charm.</p>
 
@@ -4176,7 +4176,7 @@ Number of words typed: 145Test duration: 3 minSpeed: 48.6 words/min. (243 keystr
 
 <p>btw, the shopping mall turned out to be VERY close:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/GoogleMapsvs.MicrosoftLiveMaps_10CC/83f4ef09-325c-4d93-bfc3-485f0e521ade.jpg" alt="" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/googlemapsvs.microsoftlivemaps_10cc/83f4ef09-325c-4d93-bfc3-485f0e521ade.jpg" alt="" /></p>
 
 <p>I’ll be joining her next Friday for the weekend. Anyone for the good thing to see/do on Budapest? (I’m going for the less toured and more exciting things)</p>
 
@@ -4563,7 +4563,7 @@ WHERE(1=0OR ( Name= 'Ken Egozi' )OR ( Name= 'Egozi Ken' )OR ( Name= 'Ken Egozi' 
 
 <p>Well, this is a screenshot taken today by my colleague, Moran Benisty (aka the localhost blogger):</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/NullableObjectMustHaveaValue_D0B8/NullableObjectMustHaveAValue%5B10%5D.gif" alt="Nullable object must have a value" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nullableobjectmusthaveavalue_d0b8/nullableobjectmusthaveavalue%5b10%5d.gif" alt="Nullable object must have a value" /></p>
 
 
     </section>
@@ -5014,7 +5014,7 @@ WHERE(1=0OR ( Name= 'Ken Egozi' )OR ( Name= 'Egozi Ken' )OR ( Name= 'Ken Egozi' 
 <p>The solution:</p>
 
 <p>Edit the CommentViewBox.ascx file (on the blog’s root):1. Fixing the “add comment” area width - note the new width value (highlighted):
-&lt;TABLEclass=”commentViewTableStyle”  id=”commentViewTable”  cellSpacing=”1”  cellPadding=”1” border=”0”  runat=”server”  width=”70%”&gt;2. Adding a class to the comment area’s div - the new stuff is highlighted: &lt;div runat="server" id="commentViewContent" class="commentViewContent"&gt;</p>
+&lt;TABLEclass=”commentViewTableStyle”  id=”commentViewTable”  cellSpacing=”1”  cellPadding=”1” border=”0”  runat=”server”  width=”70%”&gt;2. Adding a class to the comment area’s div - the new stuff is highlighted: &lt;div runat=”server” id=”commentViewContent” class=”commentViewContent”&gt;</p>
 
 <p>Edit the style.css file from the theme’s folder, and add the following text:
 /* Fix by ken egozi - comments view didn’t fit in the content area <em>//</em> needs a fix in CommentsViewBox.ascx too, for the “add comment” section */.commentViewContent {width: 70%;}Now it should be fine.  </p>
@@ -5091,7 +5091,7 @@ class Test { void JustASimple(string test) { to = test; ThePlugin(); } }
 <p>Trying some aspx stuff:</p>
 
 <p><code>
-   1:  &lt;asp:TextBox runat="Server"&gt;&lt;/asp:TextBox&gt;
+   1:  &amp;lt;asp:TextBox runat="Server"&amp;gt;&amp;lt;/asp:TextBox&amp;gt;
 </code></p>
 
 <p>less cool, but still works.</p>
@@ -5100,7 +5100,7 @@ class Test { void JustASimple(string test) { to = test; ThePlugin(); } }
 
 <p>Now I’ll add an image and test the upload ability:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/UsingWindowsLiveWriterforthefirsttime_BFBD/KenEgozi_Small_thumb3.jpg" alt="Ken Egozi - That's me !" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/usingwindowslivewriterforthefirsttime_bfbd/kenegozi_small_thumb3.jpg" alt="Ken Egozi - That's me !" /></p>
 
 <p>Like a charm, and note the nice drop shadow.</p>
 
@@ -5554,7 +5554,7 @@ btw, does this means that Boo == Bp?</p>
     
      <p>I’ve just been hacked !! I feel sooo important … </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/hacked.PNG" alt="Gosh, my site is hacked" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/hacked.png" alt="Gosh, my site is hacked" /></p>
 
 
     </section>
@@ -5664,7 +5664,7 @@ btw, does this means that Boo == Bp?</p>
 
 <p>And if you do not believe me (I find it hard to. Not generally of course, since I’m a decent reliable person most of the time, but the matter of the little googled I’ve surprisingly gained), attached here is a snapshot:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/first%20at%20google%20-%20pdb.PNG" alt="" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/first%20at%20google%20-%20pdb.png" alt="" /></p>
 
 
     </section>

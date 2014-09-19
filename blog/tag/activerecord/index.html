@@ -611,10 +611,10 @@ public class SqlLogFilter : IViewFilter
 				.Split(new[] {&amp;quot;NHibernate:&amp;quot;}, StringSplitOptions.RemoveEmptyEntries)
 				.Select(q =&gt; q.Trim());
 			log = queries
-				.Select(q =&gt; &amp;quot;&lt;pre&gt;&amp;quot; + q + &amp;quot;&lt;/pre&gt;&amp;quot;)
+				.Select(q =&gt; &amp;quot;&amp;lt;pre&amp;gt;&amp;quot; + q + &amp;quot;&amp;lt;/pre&amp;gt;&amp;quot;)
 				.Aggregate(&amp;quot;&amp;quot;, (q1, q2) =&gt; q1 + q2);
 			var count = queries.Count();
-			log = &amp;quot;&lt;p&gt;Queries: &amp;quot; + count + &amp;quot;&lt;/p&gt;&amp;quot; + log;
+			log = &amp;quot;&amp;lt;p&amp;gt;Queries: &amp;quot; + count + &amp;quot;&amp;lt;/p&amp;gt;&amp;quot; + log;
 		}
 		return input.Replace(SQL_LOG_PLACEHOLDER, log);
 	}
@@ -1297,9 +1297,9 @@ public class SqlLogFilter : IViewFilter
 
 <p>```</p>
 
-<p>DetachedCriteria spec = DetachedCriteria.For<whadever>() ...; &lt;= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    ...; &lt;= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    ...; &lt;= setup the pagingICollection<whadever> stuff = whadeverRepository.FindAll(pagedCriteria);
+<p>DetachedCriteria spec = DetachedCriteria.For&lt;Whadever&gt;() …; &lt;= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    …; &lt;= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    …; &lt;= setup the pagingICollection&lt;Whadever&gt; stuff = whadeverRepository.FindAll(pagedCriteria);
 int total = whadeverRepository.Count(countCriteria);
-```</whadever></whadever></p>
+```</p>
 
 
     </section>
@@ -1365,9 +1365,9 @@ int total = whadeverRepository.Count(countCriteria);
 
 <p>…</p>
 
-<p>public ICollection<post> FindInArchive(int year, int month) { </post></p>
+<p>public ICollection&lt;Post&gt; FindInArchive(int year, int month) { </p>
 
-<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List<post>(); }</post></p>
+<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List&lt;Post&gt;(); }</p>
 
 <p>…</p>
 
@@ -1868,7 +1868,7 @@ int total = whadeverRepository.Count(countCriteria);
 
 <p>I tried Linq for SQL (on a VS C# 2008 Express Beta2). No designer. Hand coded the entity, and have used the attributes for mapping.</p>
 
-<p>First problem encountered: in order to make a column lazy, I need to change the underlying type to Link<myoriginaltype>, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.</myoriginaltype></p>
+<p>First problem encountered: in order to make a column lazy, I need to change the underlying type to Link&lt;MyOriginalType&gt;, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.</p>
 
 <p>Couldn’t yet find a way to actually lazy load that property once the instance has already been loaded.</p>
 
@@ -1948,7 +1948,7 @@ using System;using Castle.ActiveRecord;using Castle.ActiveRecord.Framework;using
 <p>and now you can do stuff like:</p>
 
 <p><code>
-using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&lt;Category&gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
+using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&amp;lt;Category&amp;gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
 </code></p>
 
 <p>Assuming Category has [ActiveRecord] mapping.</p>
@@ -2527,7 +2527,7 @@ using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContex
 <p>Why? If we have a type Entity, that looks a bit like that:</p>
 
 <p><code>
-class Entity{ ... [HasMany ...] public IList&lt;Item&gt; Items ... [HasMany ...] public IList&lt;AnotherItem&gt; AnotherItems ... ...}
+class Entity{ ... [HasMany ...] public IList&amp;lt;Item&amp;gt; Items ... [HasMany ...] public IList&amp;lt;AnotherItem&amp;gt; AnotherItems ... ...}
 </code></p>
 
 <p>An eager fetch will do:</p>
@@ -3074,7 +3074,7 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 
 <p>And here’s my story.</p>
 
-<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/NHibernateCouldnotfindconstructorforinse_A7E6/Post-Comment-Stupid_erd_thumb%5B2%5D.gif" alt="" /></p>
+<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nhibernatecouldnotfindconstructorforinse_a7e6/post-comment-stupid_erd_thumb%5b2%5d.gif" alt="" /></p>
 
 <p>So I want to show the posts with the longest comments measured by the comment’s length. Stupid, huh? but it’s a demo only (I cannot expose the actual ERD). Let’s say I want the top 5.</p>
 
@@ -3131,11 +3131,11 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 </code></p>
 
 <p><code>
-   3:      SimpleQuery&lt;PostProjection&gt; q =
+   3:      SimpleQuery&amp;lt;PostProjection&amp;gt; q =
 </code></p>
 
 <p><code>
-   4:  new SimpleQuery&lt;PostProjection&gt;(typeof(Post), @"
+   4:  new SimpleQuery&amp;lt;PostProjection&amp;gt;(typeof(Post), @"
 </code></p>
 
 <p><code>
@@ -3612,7 +3612,7 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 </code></p>
 
 <p><code>
-   3:  return Execute&lt;Post&gt;("from Post p where p.Author = ?", authorName);
+   3:  return Execute&amp;lt;Post&amp;gt;("from Post p where p.Author = ?", authorName);
 </code></p>
 
 <p><code>
@@ -3622,7 +3622,7 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 <p>Here is the magic:</p>
 
 <p><code>
-   1:  publicstatic T[] Execute&lt;T&gt;(string hql, paramsobject[] parameters)
+   1:  publicstatic T[] Execute&amp;lt;T&amp;gt;(string hql, paramsobject[] parameters)
 </code></p>
 
 <p><code>
@@ -3646,7 +3646,7 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 </code></p>
 
 <p><code>
-   7:  for (int position = 0; position &lt; queryParams.Length; ++position)
+   7:  for (int position = 0; position &amp;lt; queryParams.Length; ++position)
 </code></p>
 
 <p><code>
@@ -3682,7 +3682,7 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 <p>My options are:</p>
 
 <p><code>
-   1:  Execute&lt;T&gt;(string hql, 
+   1:  Execute&lt;T&amp;gt;(string hql, 
 </code></p>
 
 <p><code>
@@ -3700,13 +3700,13 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 <p>Or:</p>
 
 <p><code>
-   1:  Execute&lt;T&gt;(string hql, IParameter[] parameters)
+   1:  Execute&amp;lt;T&amp;gt;(string hql, IParameter[] parameters)
 </code></p>
 
 <p>where IParameter definition is something like:</p>
 
 <p><code>
-   1:  publicinterface IParameter&lt;T&gt;
+   1:  publicinterface IParameter&amp;lt;T&amp;gt;
 </code></p>
 
 <p><code>
@@ -3773,11 +3773,11 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 
 <p>Consider this genius ERD:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/ProjectingtononActiveRecordclassesusingA_C76B/Post_Comment_Genius_ERD_thumb3.gif" alt="" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/projectingtononactiverecordclassesusinga_c76b/post_comment_genius_erd_thumb3.gif" alt="" /></p>
 
 <p>A sample projection could be a kind of a view:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/ProjectingtononActiveRecordclassesusingA_C76B/CommentView_Genius_ERD_thumb1.gif" alt="" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/projectingtononactiverecordclassesusinga_c76b/commentview_genius_erd_thumb1.gif" alt="" /></p>
 
 <p>The SQL is (surprise!)</p>
 
@@ -3809,7 +3809,7 @@ and now the ArrayList contains CommentView objects.</p>
 <p><code>
    1:  [Import(typeof(CommentView), "CommentView")]
    2:  [ActiveRecord("Comments")]
-   3:  publicclass Comment : ActiveRecordBase&lt;Comment&gt; { /* blah blah */ }
+   3:  publicclass Comment : ActiveRecordBase&amp;lt;Comment&amp;gt; { /* blah blah */ }
 </code></p>
 
 <p>Now ActiveRecord (assuming Comment class was initialized using ActiveRecordStarter) knows that CommentView refers to a projection of the Comment ActiveRecord, using the class CommentView.</p>
@@ -3838,7 +3838,7 @@ and now the ArrayList contains CommentView objects.</p>
 
 <p><code>
    1:  [Projects(typeof(CommentProjectionOrWhatever))] 
-   2:  publicclass Comment : ActiveRecordBase&lt;Comment&gt; { /* blah blah*/ }
+   2:  publicclass Comment : ActiveRecordBase&amp;lt;Comment&amp;gt; { /* blah blah*/ }
 </code></p>
 
 <p>or even better yet: </p>
@@ -3944,20 +3944,20 @@ and now the ArrayList contains CommentView objects.</p>
 
 <p>Let’s look at the Type Hierarchy example, that can be found here.</p>
 
-<p>It shows an implementation of a class diagram that look a little bit like this:<img src="http://kenegozi.com/blog/uploaded/Company_Entity_Person_Class_Diagram.GIF" alt="Class Diagram" /></p>
+<p>It shows an implementation of a class diagram that look a little bit like this:<img src="http://kenegozi.com/blog/uploaded/company_entity_person_class_diagram.gif" alt="Class Diagram" /></p>
 
 <p>Let’s look at the code :
 [ActiveRecord(“entity”), JoinedBase]publicclassEntity : ActiveRecordBase{privateint _id;[PrimaryKey]publicint Id{get { return id; }set { id = value; }}}[ActiveRecord(“entitycompany”)]publicclassCompanyEntity : Entity{privateint comp_id;[JoinedKey(“comp_id”)]publicint CompId{get { return comp_id; }set { comp_id = value; }}}[ActiveRecord(“entityperson”)]publicclassPersonEntity : Entity{privateint person_id;[JoinedKey(“person_id”)]publicint PersonId{get { return person_id; }set { person_id = value; }}}
-But look what happens. since the Id property on entity is public and inherited to the subclasses, you get something like this:<img src="http://kenegozi.com/blog/uploaded/IdOrPersonId.GIF" alt="Should I use .Id or .PersonId?" /></p>
+But look what happens. since the Id property on entity is public and inherited to the subclasses, you get something like this:<img src="http://kenegozi.com/blog/uploaded/idorpersonid.gif" alt="Should I use .Id or .PersonId?" /></p>
 
 <p>So there is a duplicate field here !!!. and it’s not only a getter-setter thingie. It also have different private members.</p>
 
 <p>My solution for this is to virtualize the base Id, and protectedize (hehe) the _id member, like this:</p>
 
 <p>[ActiveRecord(“entity”), JoinedBase]publicclassEntity : ActiveRecordBase{protectedint _id;[PrimaryKey]publicvirtualint Id{get { return id; }set { id = value; }}}[ActiveRecord(“entitycompany”)]publicclassCompanyEntity : Entity{[JoinedKey(“comp_id”)]publicoverrideint Id{get { return _id; }set { _id = value; }}}[ActiveRecord(“entityperson”)]publicclassPersonEntity : Entity{[JoinedKey(“person_id”)]publicoverrideint Id{get { return _id; }set { _id = value; }}}
-Now it makes more sence:<img src="http://kenegozi.com/blog/uploaded/NowOnlyId.GIF" alt="I should use .Id" /></p>
+Now it makes more sence:<img src="http://kenegozi.com/blog/uploaded/nowonlyid.gif" alt="I should use .Id" /></p>
 
-<p>And before you hit me with a big stick - I do know of ActiveRecordBase<t> . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich</t></p>
+<p>And before you hit me with a big stick - I do know of ActiveRecordBase&lt;T&gt; . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich</p>
 
 
     </section>

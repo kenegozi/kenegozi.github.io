@@ -484,7 +484,7 @@
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/dot.164bitwouldnotintegratewithVisualStu_11BEC/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png" alt="image" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/dot.164bitwouldnotintegratewithvisualstu_11bec/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png" alt="image" /></p>
 
 <p> </p>
 
@@ -675,7 +675,7 @@
     
      <p>weird:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/VSWTFtwofontsinthetexteditor_A46B/ad285863-13a6-4a7a-a980-f1f3ae75f10c.png" alt="VS_wtf_two_fonts" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/vswtftwofontsinthetexteditor_a46b/ad285863-13a6-4a7a-a980-f1f3ae75f10c.png" alt="VS_wtf_two_fonts" /></p>
 
 
     </section>
@@ -2006,7 +2006,7 @@
 
 <p>you diff your *proj file against a previous version and find this entry:</p>
 
-<service include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+<p>&lt;Service Include=”{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}” /&gt;</p>
 
 <p><strong>Why is it happening</strong>?</p>
 
@@ -2566,7 +2566,7 @@
 
 <p>Is the long awaited JS IDE will be VS2008?</p>
 
-<p>Now it’s a matter of adding ///<summery> tags to [prototype.js](http://www.prototypejs.org/) and maybe people would really stop being afraid of developing javascript code.</summery></p>
+<p>Now it’s a matter of adding ///&lt;summery&gt; tags to <a href="http://www.prototypejs.org/">prototype.js</a> and maybe people would really stop being afraid of developing javascript code.</p>
 
 <p>Now that’s a good reason to switch to VS2008, combined with the fact than you <a href="http://kenegozi.com/Blog/2007/06/20/visual-studio-2008-will-target-multiple-net-runtimes.aspx">can hold to your current .NET distribution</a>.</p>
 
@@ -3277,25 +3277,25 @@
 <p>The views MUST have the following structure: a. Page header - Must be present for intellisense to work:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;
 </code></p>
 
 <p>b. Directives - Not mandatory:</p>
 
 <p><code>
-   1:  &lt;%@ Import Namespace="System.Text"%&gt;   2:  &lt;%@ Import Namespace="System.Drawing"%&gt;
+   1:  &amp;lt;%@ Import Namespace="System.Text"%&amp;gt;   2:  &amp;lt;%@ Import Namespace="System.Drawing"%&amp;gt;
 </code></p>
 
 <p>c. Properties decleration - Currently it’s mandatory. If you have no properties you mast have an empty block:</p>
 
 <p><code>
-   1:  &lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&gt;
+   1:  &amp;lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&amp;gt;
 </code></p>
 
 <p>or just</p>
 
 <p><code>
-   1:  &lt;%   2:  %&gt;
+   1:  &amp;lt;%   2:  %&amp;gt;
 </code></p>
 
 <p>d. View body</p>
@@ -3303,7 +3303,7 @@
 <p>In a layout view you place the inner view using the ViewContents property, like this:</p>
 
 <p><code>
-   1:  blah   2:  blah   3:  &lt;%=ViewContents%&gt;   4:  blah   5:  blah
+   1:  blah   2:  blah   3:  &amp;lt;%=ViewContents%&amp;gt;   4:  blah   5:  blah
 </code></p>
 
 
@@ -3381,7 +3381,7 @@ So what is AspView?</p>
 <p>A little demo view:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;   2:  &lt;%   3:  string[] strings;   4:  %&gt;   5:     6:     7:  hello from index&lt;br /&gt;   8:  This are the strings:&lt;br /&gt;   9:  &lt;%foreach (string s in strings) { %&gt;  10:  &lt;%=s %&gt;&lt;br /&gt;  11:  &lt;%  } %&gt;  12:    13:  &lt;br /&gt;  14:  End of normal view  15:  &lt;br /&gt;  16:  &lt;% OutputSubView("Home/SubViewSample"); %&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;   2:  &amp;lt;%   3:  string[] strings;   4:  %&amp;gt;   5:     6:     7:  hello from index&amp;lt;br /&amp;gt;   8:  This are the strings:&amp;lt;br /&amp;gt;   9:  &amp;lt;%foreach (string s in strings) { %&amp;gt;  10:  &amp;lt;%=s %&amp;gt;&amp;lt;br /&amp;gt;  11:  &amp;lt;%  } %&amp;gt;  12:    13:  &amp;lt;br /&amp;gt;  14:  End of normal view  15:  &amp;lt;br /&amp;gt;  16:  &amp;lt;% OutputSubView("Home/SubViewSample"); %&amp;gt;
 </code></p>
 
 
@@ -3539,7 +3539,7 @@ So what is AspView?</p>
 <p>SOLUTION:Add a proper xmlns to the html tag.My layouts start with this:</p>
 
 <p><code>
-   1:  &lt;?brail 
+   1:  &amp;lt;?brail 
 </code></p>
 
 <p><code>
@@ -3551,7 +3551,7 @@ So what is AspView?</p>
 </code></p>
 
 <p><code>
-   4:      output '&gt;'
+   4:      output '&amp;gt;'
 </code></p>
 
 <p><code>
@@ -3559,16 +3559,16 @@ So what is AspView?</p>
 </code></p>
 
 <p><code>
-   6:  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+   6:  &amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&amp;gt;
 </code></p>
 
 <p><code>
-   7:  &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="he-il" lang="he" &gt;
+   7:  &amp;lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="he-il" lang="he" &amp;gt;
 </code></p>
 
 <p>This applies to brail, but can of course be used on any other view engine, with the needed adjustments.</p>
 
-<p>Lines 1-5 is needed due to a bug(?) in some versions of brail. brail used to recognize a script by ‘<? ?>’, ‘<?brail ?>’ and ‘&lt;% %&gt;’ signs. therefore, using a <?xml ?> declaration caused the boo compiler to say that he knows nothing about ‘xml’. I think that Ayende has solved the problem now, by allowing only ‘<?brail ?>’, but I think it’s not yet on the main trunk, so I still use the listed method.</p>
+<p>Lines 1-5 is needed due to a bug(?) in some versions of brail. brail used to recognize a script by ‘&lt;? ?&gt;’, ‘&lt;?brail ?&gt;’ and ‘&lt;% %&gt;’ signs. therefore, using a &lt;?xml ?&gt; declaration caused the boo compiler to say that he knows nothing about ‘xml’. I think that Ayende has solved the problem now, by allowing only ‘&lt;?brail ?&gt;’, but I think it’s not yet on the main trunk, so I still use the listed method.</p>
 
 <p>Line 6 is the DOCTYPE, I use XHTML 1.0 transitional.</p>
 

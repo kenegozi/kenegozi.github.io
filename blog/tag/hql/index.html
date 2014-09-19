@@ -1248,9 +1248,9 @@
 
 <p>…</p>
 
-<p>public ICollection<post> FindInArchive(int year, int month) { </post></p>
+<p>public ICollection&lt;Post&gt; FindInArchive(int year, int month) { </p>
 
-<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List<post>(); }</post></p>
+<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List&lt;Post&gt;(); }</p>
 
 <p>…</p>
 
@@ -2539,7 +2539,7 @@
 
 <p>And here’s my story.</p>
 
-<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/NHibernateCouldnotfindconstructorforinse_A7E6/Post-Comment-Stupid_erd_thumb%5B2%5D.gif" alt="" /></p>
+<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nhibernatecouldnotfindconstructorforinse_a7e6/post-comment-stupid_erd_thumb%5b2%5d.gif" alt="" /></p>
 
 <p>So I want to show the posts with the longest comments measured by the comment’s length. Stupid, huh? but it’s a demo only (I cannot expose the actual ERD). Let’s say I want the top 5.</p>
 
@@ -2596,11 +2596,11 @@
 </code></p>
 
 <p><code>
-   3:      SimpleQuery&lt;PostProjection&gt; q =
+   3:      SimpleQuery&amp;lt;PostProjection&amp;gt; q =
 </code></p>
 
 <p><code>
-   4:  new SimpleQuery&lt;PostProjection&gt;(typeof(Post), @"
+   4:  new SimpleQuery&amp;lt;PostProjection&amp;gt;(typeof(Post), @"
 </code></p>
 
 <p><code>

@@ -1738,7 +1738,7 @@ SELECT [Message].[Id], [Message].[ParentId], [Message].[Content]FROM [dbo].[Foru
 <p>Need parameters?</p>
 
 <p><code>
-Parameter&lt;int&gt; blogId = new Parameter&lt;int&gt;("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
+Parameter&amp;lt;int&amp;gt; blogId = new Parameter&amp;lt;int&amp;gt;("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
 </code></p>
 
 <p>would echo</p>
@@ -2375,7 +2375,7 @@ ORDER BY [Schema], [Table], [Column], [Type]
     
      <p>Using SQL Server Management Studio (be it the ‘full’ version or the express one), you can sometime encounter the error:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/SQLServer2005CannotcreateDatabaseDiagram_123DC/c20f45d1-6118-4b12-845d-1a78e619c256.png" alt="Database has no valid owner" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/sqlserver2005cannotcreatedatabasediagram_123dc/c20f45d1-6118-4b12-845d-1a78e619c256.png" alt="Database has no valid owner" /></p>
 
 <p>in words:</p>
 

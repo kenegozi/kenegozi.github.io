@@ -322,7 +322,7 @@
     
      <p>Finally.</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/TeamCity5.1Git_EC2C/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png" alt="green" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/teamcity5.1git_ec2c/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png" alt="green" /></p>
 
 <p> </p>
 
@@ -683,20 +683,20 @@ service.Stubs().Get.AssertWasCalled(x=&gt;x.DoThat(theString);
 </ul>
 
 <p>```
-public class AutoStubber<t> where T : class
+public class AutoStubber&lt;T&gt; where T : class
 {
 	static readonly Type TypeofT;
 	static readonly ConstructorInfo Constructor;
 	static readonly Type[] ParameterTypes;
-	static readonly Dictionary&lt;object, AutoStubber<t>&gt; Instances = new Dictionary&lt;object, AutoStubber<t>&gt;();
+	static readonly Dictionary&lt;object, AutoStubber&lt;T&gt;&gt; Instances = new Dictionary&lt;object, AutoStubber&lt;T&gt;&gt;();
 	static AutoStubber()
 	{
 		TypeofT = typeof(T);
 		Constructor = TypeofT.GetConstructors().OrderByDescending(ci =&gt; ci.GetParameters().Length).First();
 		ParameterTypes = Constructor.GetParameters().Select(pi =&gt; pi.ParameterType).ToArray();
-	}</t></t></t></p>
+	}</p>
 
-<pre><code>public static AutoStubber&lt;T&gt; GetStubberFor(T obj)
+<pre><code>public static AutoStubber&amp;lt;T&amp;gt; GetStubberFor(T obj)
 {
 	return Instances[obj];
 }
@@ -710,11 +710,11 @@ public T Create()
 	return Instance;
 }
 
-readonly Dictionary&lt;Type, object&gt; _dependencies = new Dictionary&lt;Type, object&gt;();
+readonly Dictionary&amp;lt;Type, object&amp;gt; _dependencies = new Dictionary&amp;lt;Type, object&amp;gt;();
 private T Instance { get; set; }
 public AutoStubber()
 {
-	var parameters = new List&lt;object&gt;(ParameterTypes.Length);
+	var parameters = new List&amp;lt;object&amp;gt;(ParameterTypes.Length);
 	foreach (var parameterType in ParameterTypes)
 	{
 		var parameter = MockRepository.GenerateStub(parameterType);
@@ -724,14 +724,14 @@ public AutoStubber()
 	Instance = (T)Constructor.Invoke(parameters.ToArray());
 	Instances[Instance] = this;
 }
-public TDependency Get&lt;TDependency&gt;()
+public TDependency Get&amp;lt;TDependency&amp;gt;()
 {
 	return (TDependency)_dependencies[typeof(TDependency)];
 } } public static class AutoStubberExtensions {
-public static AutoStubber&lt;T&gt; Stubs&lt;T&gt;(this T obj)
+public static AutoStubber&amp;lt;T&amp;gt; Stubs&amp;lt;T&amp;gt;(this T obj)
 	where T : class
 {
-	return AutoStubber&lt;T&gt;.GetStubberFor(obj);
+	return AutoStubber&amp;lt;T&amp;gt;.GetStubberFor(obj);
 } } ```
 </code></pre>
 

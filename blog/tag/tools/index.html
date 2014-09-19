@@ -694,11 +694,11 @@ ls C:\inetpub\logs\LogFiles\W3SVC1 | cat | select-string "e.js" | measure
     
      <p>I have recently change the blog engine, and as part of that move, the permalinks for posts changed a bit (removed the .aspx suffix, and also got rid of the www. prefix)</p>
 
-<p>So, the atom feed now lists a different <id> tag for each entry (post). </id></p>
+<p>So, the atom feed now lists a different &lt;id&gt; tag for each entry (post). </p>
 
 <p>Google Reader cache data on posts based on the id tag, therefore subscribers to my blog who are using Google Reader will probably see 20 new messages.</p>
 
-<p>The real glitch though is a bug in Google Reader. As far as reader is concerned, the <updated> and <created> tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.</created></updated></p>
+<p>The real glitch though is a bug in Google Reader. As far as reader is concerned, the &lt;updated&gt; and &lt;created&gt; tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.</p>
 
 <p>So, I can understand why all my last 20 entries re-appear with the same date.</p>
 
@@ -784,14 +784,14 @@ ls C:\inetpub\logs\LogFiles\W3SVC1 | cat | select-string "e.js" | measure
 
 <p>```</p>
 
-<h3>Services</h3>
+<p>&lt;h3&gt;Services&lt;/h3&gt;</p>
 
 <p>&lt;% for (var ix=0; ix &lt; view.services.length; ++i) { %&gt;</p>
 
 <p>&lt;% var service = view.services[ix]; %&gt;</p>
 
-<p> &lt;%=service.name %&gt; </p>
-<p>&lt;% } %&gt;	</p>
+<p>&lt;p&gt; &lt;%=service.name %&gt; &lt;/p&gt;
+&lt;% } %&gt;	</p>
 
 <p>```</p>
 
@@ -1002,7 +1002,7 @@ ls C:\inetpub\logs\LogFiles\W3SVC1 | cat | select-string "e.js" | measure
     
      <p>Finally.</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/TeamCity5.1Git_EC2C/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png" alt="green" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/teamcity5.1git_ec2c/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png" alt="green" /></p>
 
 <p> </p>
 
@@ -1245,7 +1245,7 @@ only to find that I have a broken test. Since when I created the initial website
 <p> </p>
 
 <p><code>
-var url = '&lt;%=viewData.returnUrl%&gt;';
+var url = '&amp;lt;%=viewData.returnUrl%&amp;gt;';
 </code></p>
 
 <p>or</p>
@@ -1428,7 +1428,7 @@ var returnUrl = ''\x27\x3balert\x28\x27xss\x27\x29\x3b\x27'';
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/dot.164bitwouldnotintegratewithVisualStu_11BEC/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png" alt="image" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/dot.164bitwouldnotintegratewithvisualstu_11bec/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png" alt="image" /></p>
 
 <p> </p>
 
@@ -1850,20 +1850,20 @@ service.Stubs().Get.AssertWasCalled(x=&gt;x.DoThat(theString);
 </ul>
 
 <p>```
-public class AutoStubber<t> where T : class
+public class AutoStubber&lt;T&gt; where T : class
 {
 	static readonly Type TypeofT;
 	static readonly ConstructorInfo Constructor;
 	static readonly Type[] ParameterTypes;
-	static readonly Dictionary&lt;object, AutoStubber<t>&gt; Instances = new Dictionary&lt;object, AutoStubber<t>&gt;();
+	static readonly Dictionary&lt;object, AutoStubber&lt;T&gt;&gt; Instances = new Dictionary&lt;object, AutoStubber&lt;T&gt;&gt;();
 	static AutoStubber()
 	{
 		TypeofT = typeof(T);
 		Constructor = TypeofT.GetConstructors().OrderByDescending(ci =&gt; ci.GetParameters().Length).First();
 		ParameterTypes = Constructor.GetParameters().Select(pi =&gt; pi.ParameterType).ToArray();
-	}</t></t></t></p>
+	}</p>
 
-<pre><code>public static AutoStubber&lt;T&gt; GetStubberFor(T obj)
+<pre><code>public static AutoStubber&amp;lt;T&amp;gt; GetStubberFor(T obj)
 {
 	return Instances[obj];
 }
@@ -1877,11 +1877,11 @@ public T Create()
 	return Instance;
 }
 
-readonly Dictionary&lt;Type, object&gt; _dependencies = new Dictionary&lt;Type, object&gt;();
+readonly Dictionary&amp;lt;Type, object&amp;gt; _dependencies = new Dictionary&amp;lt;Type, object&amp;gt;();
 private T Instance { get; set; }
 public AutoStubber()
 {
-	var parameters = new List&lt;object&gt;(ParameterTypes.Length);
+	var parameters = new List&amp;lt;object&amp;gt;(ParameterTypes.Length);
 	foreach (var parameterType in ParameterTypes)
 	{
 		var parameter = MockRepository.GenerateStub(parameterType);
@@ -1891,14 +1891,14 @@ public AutoStubber()
 	Instance = (T)Constructor.Invoke(parameters.ToArray());
 	Instances[Instance] = this;
 }
-public TDependency Get&lt;TDependency&gt;()
+public TDependency Get&amp;lt;TDependency&amp;gt;()
 {
 	return (TDependency)_dependencies[typeof(TDependency)];
 } } public static class AutoStubberExtensions {
-public static AutoStubber&lt;T&gt; Stubs&lt;T&gt;(this T obj)
+public static AutoStubber&amp;lt;T&amp;gt; Stubs&amp;lt;T&amp;gt;(this T obj)
 	where T : class
 {
-	return AutoStubber&lt;T&gt;.GetStubberFor(obj);
+	return AutoStubber&amp;lt;T&amp;gt;.GetStubberFor(obj);
 } } ```
 </code></pre>
 
@@ -2030,7 +2030,7 @@ namespace My.Application
 
 <p> </p>
 
-<p>The naive approach would be to ask the container for an ILogger, however if you’d try this, you’ll discover that Container.Resolve<ilogger>() will not fit your needs. So what will you do?</ilogger></p>
+<p>The naive approach would be to ask the container for an ILogger, however if you’d try this, you’ll discover that Container.Resolve&lt;ILogger&gt;() will not fit your needs. So what will you do?</p>
 
 <p> </p>
 
@@ -2266,7 +2266,7 @@ I pasted the image into the good ol’ Paint.exe, then copied from there, and �
         
     </div>
     
-     <p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/chromeaddressboxwtf_EC34/7a7faa2c-0b99-46fb-b8cf-95ccaf8a08d8.png" alt="chrome address box wtf" />  </p>
+     <p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/chromeaddressboxwtf_ec34/7a7faa2c-0b99-46fb-b8cf-95ccaf8a08d8.png" alt="chrome address box wtf" />  </p>
 
 <p> </p>
 
@@ -2950,7 +2950,7 @@ container.Kernel.AddFacility("factory.support", facility);
 - Register your factories in the facility:</p>
 
 <p><code>
-facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "ObtainFromFramework");
+facility.AddFactory&amp;lt;ISomeContext, SomeContextFactory&amp;gt;("some.context", "ObtainFromFramework");
 </code></p>
 
 <p>If you mix 2 and 3, it would break.</p>
@@ -3279,9 +3279,8 @@ facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "Obt
     
      <p>I’ve been asked about it several times lately, so I’ll just put here an oldie that I’ve been using for a few years now untouched:</p>
 
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 <p>{% highlight c# %}
-   1:  // MIT license   2:  // Copyright 2005-2008 Ken Egozi   3:  //    4:  // Permission is hereby granted, free of charge, to any person obtaining a copy   5:  // of this software and associated documentation files (the “Software”), to deal   6:  // in the Software without restriction, including without limitation the rights   7:  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell   8:  // copies of the Software, and to permit persons to whom the Software is   9:  // furnished to do so, subject to the following conditions:  10:  //   11:  // The above copyright notice and this permission notice shall be included in  12:  // all copies or substantial portions of the Software.  13:  //   14:  // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  15:  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  16:  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  17:  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  18:  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  19:  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  20:  // THE SOFTWARE.  21:    22:  using System;  23:  using System.Collections.Generic;  24:  using System.Text;  25:  using System.Security.Cryptography;  26:  using System.Collections;  27:    28:  namespace KenEgozi.CryptographicServices  29:  {  30:  publicstaticclass Hashing  31:      {  32:  privatestatic Hashtable hashAlgorithms = Hashtable.Synchronized(new Hashtable());  33:    34:  /// &lt;summary&gt;  35:  /// Hashing a given string with SHA2.  36:  /// &lt;/summary&gt;  37:  /// <param name="data" />Data to hash&lt;/param&gt;  38:  /// <returns>Hashed data</returns>  39:  publicstaticstring HashData(string data)  40:          {  41:  return HashData(data, HashType.SHA256);  42:          }  43:    44:  /// &lt;summary&gt;  45:  /// Hashing a given string with any of the supported hash algorithms.  46:  /// &lt;/summary&gt;  47:  /// <param name="data" />Data to hash&lt;/param&gt;  48:  /// <param name="hashType" />Hashing algorithm to use&lt;/param&gt;  49:  /// <returns>Hashed data</returns>  50:  publicstaticstring HashData(string data, HashType hashType)  51:          {  52:              HashAlgorithm hash = GetHash(hashType);  53:  byte[] bytes = (new UnicodeEncoding()).GetBytes(data);  54:  byte[] hashed = hash.ComputeHash(bytes);  55:              StringBuilder sb = new StringBuilder(64);  56:  foreach (byte b in hashed)  57:                  sb.AppendFormat(“{0:x2}”, b);  58:  return sb.ToString();  59:          }  60:    61:  privatestatic HashAlgorithm GetHash(HashType hashType)  62:          {  63:  if (!hashAlgorithms.ContainsKey(hashType))  64:                  hashAlgorithms.Add(hashType, CreateaHashAlgorithm(hashType));  65:  return hashAlgorithms[hashType] as HashAlgorithm;  66:          }  67:    68:  privatestatic HashAlgorithm CreateaHashAlgorithm(HashType hashType)  69:          {  70:  switch (hashType)  71:              {  72:  case HashType.MD5:  73:  returnnew MD5CryptoServiceProvider();  74:  case HashType.SHA1:  75:  returnnew SHA1Managed();  76:  case HashType.SHA256:  77:  returnnew SHA256Managed();  78:  case HashType.SHA384:  79:  returnnew SHA384Managed();  80:  case HashType.SHA512:  81:  returnnew SHA512Managed();  82:  default:  83:  thrownew NotImplementedException();  84:              }  85:          }  86:      }  87:    88:  publicenum HashType  89:      {  90:          MD5,  91:          SHA1,  92:          SHA256,  93:          SHA384,  94:          SHA512  95:      }  96:  }{% endhighlight %}</p>
+   1:  // MIT license   2:  // Copyright 2005-2008 Ken Egozi   3:  //    4:  // Permission is hereby granted, free of charge, to any person obtaining a copy   5:  // of this software and associated documentation files (the “Software”), to deal   6:  // in the Software without restriction, including without limitation the rights   7:  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell   8:  // copies of the Software, and to permit persons to whom the Software is   9:  // furnished to do so, subject to the following conditions:  10:  //   11:  // The above copyright notice and this permission notice shall be included in  12:  // all copies or substantial portions of the Software.  13:  //   14:  // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  15:  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  16:  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  17:  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  18:  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  19:  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  20:  // THE SOFTWARE.  21:    22:  using System;  23:  using System.Collections.Generic;  24:  using System.Text;  25:  using System.Security.Cryptography;  26:  using System.Collections;  27:    28:  namespace KenEgozi.CryptographicServices  29:  {  30:  publicstaticclass Hashing  31:      {  32:  privatestatic Hashtable hashAlgorithms = Hashtable.Synchronized(new Hashtable());  33:    34:  /// &lt;summary&gt;  35:  /// Hashing a given string with SHA2.  36:  /// &lt;/summary&gt;  37:  /// &lt;param name=”data”&gt;Data to hash&lt;/param&gt;  38:  /// &lt;returns&gt;Hashed data&lt;/returns&gt;  39:  publicstaticstring HashData(string data)  40:          {  41:  return HashData(data, HashType.SHA256);  42:          }  43:    44:  /// &lt;summary&gt;  45:  /// Hashing a given string with any of the supported hash algorithms.  46:  /// &lt;/summary&gt;  47:  /// &lt;param name=”data”&gt;Data to hash&lt;/param&gt;  48:  /// &lt;param name=”hashType”&gt;Hashing algorithm to use&lt;/param&gt;  49:  /// &lt;returns&gt;Hashed data&lt;/returns&gt;  50:  publicstaticstring HashData(string data, HashType hashType)  51:          {  52:              HashAlgorithm hash = GetHash(hashType);  53:  byte[] bytes = (new UnicodeEncoding()).GetBytes(data);  54:  byte[] hashed = hash.ComputeHash(bytes);  55:              StringBuilder sb = new StringBuilder(64);  56:  foreach (byte b in hashed)  57:                  sb.AppendFormat(“{0:x2}”, b);  58:  return sb.ToString();  59:          }  60:    61:  privatestatic HashAlgorithm GetHash(HashType hashType)  62:          {  63:  if (!hashAlgorithms.ContainsKey(hashType))  64:                  hashAlgorithms.Add(hashType, CreateaHashAlgorithm(hashType));  65:  return hashAlgorithms[hashType] as HashAlgorithm;  66:          }  67:    68:  privatestatic HashAlgorithm CreateaHashAlgorithm(HashType hashType)  69:          {  70:  switch (hashType)  71:              {  72:  case HashType.MD5:  73:  returnnew MD5CryptoServiceProvider();  74:  case HashType.SHA1:  75:  returnnew SHA1Managed();  76:  case HashType.SHA256:  77:  returnnew SHA256Managed();  78:  case HashType.SHA384:  79:  returnnew SHA384Managed();  80:  case HashType.SHA512:  81:  returnnew SHA512Managed();  82:  default:  83:  thrownew NotImplementedException();  84:              }  85:          }  86:      }  87:    88:  publicenum HashType  89:      {  90:          MD5,  91:          SHA1,  92:          SHA256,  93:          SHA384,  94:          SHA512  95:      }  96:  }{% endhighlight %}</p>
 
 <p>Not beautiful, however useful.</p>
 
@@ -3370,7 +3369,7 @@ facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "Obt
 - It looks nicer.
 - It still eats up all of my poor machine’s memory</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TheFoxIsHungry_103C0/2f49a476-1521-4d49-aace-53b135b8fe8f.png" alt="The fox is hungry" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/thefoxishungry_103c0/2f49a476-1521-4d49-aace-53b135b8fe8f.png" alt="The fox is hungry" /></p>
 
 
     </section>
@@ -3399,7 +3398,7 @@ facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "Obt
     
      <p>I really don’t need to add anything, right?</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/DownloadFirefox3_C7F8/791adbf0-bdee-45a0-a706-93b1fe5b49cd.png" alt="download-button-primary" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/downloadfirefox3_c7f8/791adbf0-bdee-45a0-a706-93b1fe5b49cd.png" alt="download-button-primary" /></p>
 
 <p>Installed it myself today. Appear to be a bit faster, and to eat up less memory.</p>
 
@@ -3555,8 +3554,7 @@ facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "Obt
 
 <p>```</p>
 
-<configsections> <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" /></configsections>
-<log4net> <appender name="rollingFile" type="log4net.Appender.RollingFileAppender,log4net"> <param name="File" value="log.txt" /> <param name="AppendToFile" value="true" /> <param name="DatePattern" value="yyyy.MM.dd" /> <layout type="log4net.Layout.PatternLayout,log4net"> <conversionpattern value="%d %p %m%n" /> </layout> </appender> <logger name="NHibernate.SQL"> <level value="ALL" />    <appender-ref ref="rollingFile" />  </logger></log4net>
+<p>&lt;configSections&gt; &lt;section name=”log4net” type=”log4net.Config.Log4NetConfigurationSectionHandler,log4net” /&gt;&lt;/configSections&gt;&lt;log4net&gt; &lt;appender name=”rollingFile” type=”log4net.Appender.RollingFileAppender,log4net” &gt; &lt;param name=”File” value=”log.txt” /&gt; &lt;param name=”AppendToFile” value=”true” /&gt; &lt;param name=”DatePattern” value=”yyyy.MM.dd” /&gt; &lt;layout type=”log4net.Layout.PatternLayout,log4net”&gt; &lt;conversionPattern value=”%d %p %m%n” /&gt; &lt;/layout&gt; &lt;/appender&gt; &lt;logger name=”NHibernate.SQL”&gt; &lt;level value=”ALL” /&gt;    &lt;appender-ref ref=”rollingFile” /&gt;  &lt;/logger&gt;&lt;/log4net&gt;</p>
 
 <p>```</p>
 
@@ -3835,7 +3833,7 @@ SELECT [Message].[Id], [Message].[ParentId], [Message].[Content]FROM [dbo].[Foru
 <p>Need parameters?</p>
 
 <p><code>
-Parameter&lt;int&gt; blogId = new Parameter&lt;int&gt;("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
+Parameter&amp;lt;int&amp;gt; blogId = new Parameter&amp;lt;int&amp;gt;("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
 </code></p>
 
 <p>would echo</p>
@@ -4181,7 +4179,7 @@ D:\MyTools\StaticMapGenerator /site:D:\Dev\MySite
 <p>No I can do stuff like:</p>
 
 <p><code>
-&lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&gt;"&gt; &lt;/script&gt;&lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&gt;" /&gt;&lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&gt;
+&amp;lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&amp;gt;"&gt; &amp;lt;/script&amp;gt;&amp;lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&amp;gt;" /&gt;&amp;lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&amp;gt;
 </code></p>
 
 <p>How cool is that?</p>
@@ -4242,7 +4240,7 @@ D:\MyTools\StaticMapGenerator /site:D:\Dev\MySite
 <p>so I’ve quickly hacked together a configurable DI resolver (a.k.a. IoC container) in 15 Minutes and 33 Lines Of Code. Call me a sloppy-coder, call me whadever-ya-like. It just works.</p>
 
 <p><code>
-static class IoC {  static readonly IDictionary&lt;Type, Type&gt; types = new Dictionary&lt;Type, Type&gt;();   public static void Register&lt;TContract, TImplementation&gt;()  { types[typeof(TContract)] = typeof(TImplementation);  }  public static T Resolve&lt;T&gt;()  { return (T)Resolve(typeof(T)); }  public static object Resolve(Type contract) { Type implementation = types[contract];  ConstructorInfo constructor = implementation.GetConstructors()[0];  ParameterInfo[] constructorParameters = constructor.GetParameters();   if (constructorParameters.Length == 0) return Activator.CreateInstance(implementation);  List&lt;object&gt; parameters = new List&lt;object&gt;(constructorParameters.Length);   foreach (ParameterInfo parameterInfo in constructorParameters)  parameters.Add(Resolve(parameterInfo.ParameterType));  return constructor.Invoke(parameters.ToArray()); }}
+static class IoC {  static readonly IDictionary&amp;lt;Type, Type&amp;gt; types = new Dictionary&amp;lt;Type, Type&amp;gt;();   public static void Register&amp;lt;TContract, TImplementation&amp;gt;()  { types[typeof(TContract)] = typeof(TImplementation);  }  public static T Resolve&amp;lt;T&amp;gt;()  { return (T)Resolve(typeof(T)); }  public static object Resolve(Type contract) { Type implementation = types[contract];  ConstructorInfo constructor = implementation.GetConstructors()[0];  ParameterInfo[] constructorParameters = constructor.GetParameters();   if (constructorParameters.Length == 0) return Activator.CreateInstance(implementation);  List&amp;lt;object&amp;gt; parameters = new List&amp;lt;object&amp;gt;(constructorParameters.Length);   foreach (ParameterInfo parameterInfo in constructorParameters)  parameters.Add(Resolve(parameterInfo.ParameterType));  return constructor.Invoke(parameters.ToArray()); }}
 </code></p>
 
 <p>Ok, I’ve cheated. You’d need using statements too, but you can see that I was generous enough with newlines …</p>
@@ -4258,7 +4256,7 @@ public interface IFileSystemAdapter { }public class FileSystemAdapter : IFileSys
 <p>You can do that:</p>
 
 <p><code>
-IoC.Register&lt;IFileSystemAdapter, FileSystemAdapter&gt;();IoC.Register&lt;IBuildDirectoryStructureService, BuildDirectoryStructureService&gt;(); IBuildDirectoryStructureService service = IoC.Resolve&lt;IBuildDirectoryStructureService&gt;();
+IoC.Register&amp;lt;IFileSystemAdapter, FileSystemAdapter&amp;gt;();IoC.Register&amp;lt;IBuildDirectoryStructureService, BuildDirectoryStructureService&amp;gt;(); IBuildDirectoryStructureService service = IoC.Resolve&amp;lt;IBuildDirectoryStructureService&amp;gt;();
 </code>
 You need not worry about supplying the BuildDirectoryStructureService with an implementation for the service it depends on, but only to register an implementation for that service.</p>
 
@@ -4308,7 +4306,7 @@ public class GoogleAnalyticsComponent : ViewComponent{
 <p>Accompanied by the AnalyticsCode view template:</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %&gt;&lt;script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt; _uacct = "MY_URCHIN_CODE"; urchinTracker();&lt;/script&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %&amp;gt;&amp;lt;script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script type="text/javascript"&amp;gt; _uacct = "MY_URCHIN_CODE"; urchinTracker();&amp;lt;/script&amp;gt;
 </code></p>
 
 <p>, that can easily be extensible to set the urchin code with a parameter.</p>
@@ -4905,7 +4903,7 @@ public class GoogleAnalyticsComponent : ViewComponent{
 
 <p>I’ve kept IE6 on my box for so long only to be able to test what I write. Even though I use Firefox for day-to-day browsing, I still need IE for some crappy israeli sites that would just not work on non IE (and by not work - I mean that you get an alert box saying:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/IE7tothemassestheendofIE6compatibilityis_BB5D/04f348e7-4909-48a7-8e7a-66a2ee4f68ad.png" alt="This site is IE only" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/ie7tothemassestheendofie6compatibilityis_bb5d/04f348e7-4909-48a7-8e7a-66a2ee4f68ad.png" alt="This site is IE only" /></p>
 
 <p>For people who knows not Hebrew:</p>
 
@@ -5246,7 +5244,7 @@ a. Go to the trunk folder on your filesystem, right-click-&gt;tortoise-&gt;merge
 
 <p>screenshot:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/6113704f-cbba-43b4-a328-05f9cd744045.png" alt="branch to trunk" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/6113704f-cbba-43b4-a328-05f9cd744045.png" alt="branch to trunk" /></p>
 
 <p>now you havea merged trunk on your workstation. Make sure that everything compiles and that tests are green, and commit.
 Merging from the trunk to a branch
@@ -5254,17 +5252,17 @@ a) Go to your branch’s folder, right-click-&gt;tortoise-&gt;merge;</p>
 
 <p>Now, you want the changes between the last trunk revision that you have on your branch, to the newest revision of the trunk. To find out that last trunk revision that you have on your branch, go to your branch’s folder, right-click-&gt;tortoise-&gt;show-log, and look for it. If you are a good reader you’d easily find it since you have mentioned the revision numbers of your merges in the commit remarks, as you are kindly recommended)A screenshot from the branch’s log:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/63ee9bb6-0636-4d57-b664-2abb3e06a1d9.png" alt="Branch log" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/63ee9bb6-0636-4d57-b664-2abb3e06a1d9.png" alt="Branch log" /></p>
 
 <p>I need to check if I have merged my branch to the trunk on a later point. I’ll do that using the Trunk’s log (trunk folder, right-click-&gt;tortoise-&gt;show-log):</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/6c5edd77-055d-441e-987c-4d8c884c8bc7.png" alt="Trunk Log" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/6c5edd77-055d-441e-987c-4d8c884c8bc7.png" alt="Trunk Log" /></p>
 
 <p>Indeed. It seams that my branch is in sync with the trunk at revision 918</p>
 
 <p>b) Now you fill From: your trunk, revision “last revision you have”To: your trunk, revision “new, wantedstate” (usually HEAD).in my example, the last trunk version I have merged into my branch is 902, so that’s the screenshot:</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/9bc12b6f-764a-4284-878a-54b5e8754c6b.png" alt="trunk to branch" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/9bc12b6f-764a-4284-878a-54b5e8754c6b.png" alt="trunk to branch" /></p>
 
 <p>I know, terminology sucks again. You probably thing “from trunk to trunk? Is he crazy?” well, again, you want to get the changes that was made TO THE TRUNK, and apply them to your branch. Remembering that this is actually a patch that will get applied make anything clear again.</p>
 
@@ -5473,7 +5471,7 @@ Repository.Blog.FindOne(Where.Blog.Id == blogId)
 
 <p>Is the long awaited JS IDE will be VS2008?</p>
 
-<p>Now it’s a matter of adding ///<summery> tags to [prototype.js](http://www.prototypejs.org/) and maybe people would really stop being afraid of developing javascript code.</summery></p>
+<p>Now it’s a matter of adding ///&lt;summery&gt; tags to <a href="http://www.prototypejs.org/">prototype.js</a> and maybe people would really stop being afraid of developing javascript code.</p>
 
 <p>Now that’s a good reason to switch to VS2008, combined with the fact than you <a href="http://kenegozi.com/Blog/2007/06/20/visual-studio-2008-will-target-multiple-net-runtimes.aspx">can hold to your current .NET distribution</a>.</p>
 
@@ -5574,8 +5572,8 @@ Repository.Blog.FindOne(Where.Blog.Id == blogId)
 <p>example:</p>
 
 <p><code>
-&lt;%
- int? someInt = default(int);%&gt;
+&amp;lt;%
+ int? someInt = default(int);%&amp;gt;
 </code></p>
 
 <p><code>
@@ -5583,7 +5581,7 @@ some markup
 </code></p>
 
 <p><code>
-&lt;% if (someInt == default(int)) DoSomething();%&gt;
+&amp;lt;% if (someInt == default(int)) DoSomething();%&amp;gt;
 </code></p>
 
 <p>it happened because of the way GetParameter worked </p>
@@ -6024,7 +6022,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
 <p>You enable the feature by adding the next attribure to the aspview config section in web.config:</p>
 
 <p><code>
-&lt;aspview .... autoRecompilation="true" ... &gt; ...&lt;/aspview&gt;
+&amp;lt;aspview .... autoRecompilation="true" ... &amp;gt; ...&amp;lt;/aspview&amp;gt;
 </code></p>
 
 <p>Breaking change:</p>
@@ -6032,7 +6030,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
 <p>If you happen to reference an assembly from the GAC (using the aspview configuration in the web.config) you need to add a hint for the engine, like this:</p>
 
 <p><code>
-&lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&gt;
+&amp;lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&amp;gt;
 </code></p>
 
 <p>Known issues:</p>
@@ -6046,7 +6044,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
   </li>
 </ol>
 
-<p>Download from <a href="http://kenegozi.com/blog/uploaded/AspView_0_7_178.zip">here</a>.</p>
+<p>Download from <a href="http://kenegozi.com/blog/uploaded/aspview_0_7_178.zip">here</a>.</p>
 
 <p>Sources are <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">here</a>.</p>
 
@@ -6733,7 +6731,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
     <p>Install watir:A.By opening cmd.exe and typing “gem install watir” (will install the latest available gem version, which is a kind of a “live update” and “live download” feature of ruby, OrB. By installing <a href="http://kenegozi.com/blog/uploaded/watir-1.4.1.exe">watir-1.4.1.exe (792.19 KB)</a>, OrC. By downloading from here</p>
   </li>
   <li>
-    <p>Install <a href="http://kenegozi.com/blog/uploaded/WatirRecorder_Setup_Lite.msi">WatirRecorder++</a></p>
+    <p>Install <a href="http://kenegozi.com/blog/uploaded/watirrecorder_setup_lite.msi">WatirRecorder++</a></p>
   </li>
 </ol>
 

@@ -1109,7 +1109,7 @@ private static XmlDocument LoadXml(string url)
 } } ```
 </code></pre>
 
-<p>I’d have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func<t>, then have a separate XmlService use KeyLevelCacheService internally.</t></p>
+<p>I’d have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func&lt;T&gt;, then have a separate XmlService use KeyLevelCacheService internally.</p>
 
 
     </section>
@@ -1301,7 +1301,6 @@ private static XmlDocument LoadXml(string url)
 
 <p>But as the action parameters binder is very smart, and easily extensible, it’s even nicer to just bind the posted data to a HttpPostedFile, using a FileBinder:</p>
 
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 <p>{% highlight c# %}
    1:  [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]   2:  publicclass FileBinderAttribute: Attribute, <strong>IParameterBinder</strong>   3:  {   4:  publicint CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)   5:      {   6:  var key = parameterInfo.Name;   7:  return context.Request.Files[key] != null ? 10 : 0;   8:      }   9:    10:  publicobject Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)  11:      {  12:  var key = parameterInfo.Name;  13:  return context.Request.Files[key] as HttpPostedFile;  14:      }  15:  }{% endhighlight %}</p>
 
@@ -1894,7 +1893,7 @@ D:\MyTools\StaticMapGenerator /site:D:\Dev\MySite
 <p>No I can do stuff like:</p>
 
 <p><code>
-&lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&gt;"&gt; &lt;/script&gt;&lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&gt;" /&gt;&lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&gt;
+&amp;lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&amp;gt;"&gt; &amp;lt;/script&amp;gt;&amp;lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&amp;gt;" /&gt;&amp;lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&amp;gt;
 </code></p>
 
 <p>How cool is that?</p>
@@ -2297,7 +2296,7 @@ D:\MyTools\StaticMapGenerator /site:D:\Dev\MySite
 <p>First we would create a base class for our controllers, with a TypedPropertyBag and TypedFlash properties:</p>
 
 <p><code>
-public abstract class Controller&lt;IView&gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
+public abstract class Controller&amp;lt;IView&amp;gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&amp;lt;IView&amp;gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&amp;lt;IView&amp;gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
 </code></p>
 
 <p>tip:</p>
@@ -2313,24 +2312,24 @@ public interface IStupidView{ Guid Id { get; set; }    string Name { get; set; }
 <p>controller:</p>
 
 <p><code>
-public class StupidController : Controller&lt;IStupidView&gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
+public class StupidController : Controller&amp;lt;IStupidView&amp;gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
 </code></p>
 
 <p>view (Index.aspx):</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;&lt;p&gt;&lt;%=view.Message %&gt;&lt;/p&gt;&lt;form action="DoStuff.rails"&gt;Name: &lt;input type="text" name="name" value="&lt;%= view.Name %&gt;" /&gt; &lt;br /&gt;password: &lt;input type="password" name="password" /&gt; &lt;br /&gt;&lt;input type="submit" /&gt;&lt;/form&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&amp;gt;" %&gt;&amp;lt;%%&amp;gt;&amp;lt;p&amp;gt;&amp;lt;%=view.Message %&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;form action="DoStuff.rails"&amp;gt;Name: &amp;lt;input type="text" name="name" value="&lt;%= view.Name %&amp;gt;" /&gt; &amp;lt;br /&amp;gt;password: &amp;lt;input type="password" name="password" /&amp;gt; &amp;lt;br /&amp;gt;&amp;lt;input type="submit" /&amp;gt;&amp;lt;/form&amp;gt;
 </code></p>
 
 <p>view (DoStuff.aspx):</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;The data was: &lt;br /&gt;Id: &lt;%= view.Id %&gt;, Name: &lt;%= view.Name %&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&amp;gt;" %&gt;&amp;lt;%%&amp;gt;The data was: &amp;lt;br /&amp;gt;Id: &amp;lt;%= view.Id %&amp;gt;, Name: &amp;lt;%= view.Name %&amp;gt;
 </code></p>
 
 <p>Look at the intellisense (and at my ultra-cool black color scheme):</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TypedViewPropertiesinMonoRailandAspView_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/typedviewpropertiesinmonorailandaspview_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
 
 <p>Things to notice:</p>
 
@@ -2341,7 +2340,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 <p>view (Index.aspx):</p>
 
 <p><code>
-&lt;aspview ... &gt;... &lt;reference assembly="AspViewTestSite.dll"/&gt;...&lt;/aspview&gt;
+&amp;lt;aspview ... &amp;gt;... &amp;lt;reference assembly="AspViewTestSite.dll"/&amp;gt;...&amp;lt;/aspview&amp;gt;
 </code></p>
 
 <ol>
@@ -2349,7 +2348,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 </ol>
 
 <p><code>
-...&lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&gt;(Properties); %&gt;...blah blah &lt;%=view.UsefulProperty %&gt;...
+...&amp;lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&amp;gt;(Properties); %&gt;...blah blah &amp;lt;%=view.UsefulProperty %&amp;gt;...
 </code></p>
 
 <p>Ok, cut the crap. where can I get it?</p>
@@ -2431,7 +2430,7 @@ public interface ISession{    string Username { get; set; }    Preferences Prefe
 <p>And use it like that:</p>
 
 <p><code>
-...    ISession TypedSession = new DictionaryAdapterFactory().GetAdapter&lt;ISession&gt;(Session);...    if (TypedSession.Preferences.Color == Color.Red)        helloLabel.Text = "Hello " + TypedSession.Username;...
+...    ISession TypedSession = new DictionaryAdapterFactory().GetAdapter&amp;lt;ISession&amp;gt;(Session);...    if (TypedSession.Preferences.Color == Color.Red)        helloLabel.Text = "Hello " + TypedSession.Username;...
 </code></p>
 
 <p>You probably want to put the creation of the TypedSession in a base class.</p>
@@ -2903,7 +2902,7 @@ public class SomePage : System.Web.UI.Page{    protected void Page_Load(object s
 
 <p>What should it do?</p>
 
-<p>I want to have a webpage, based on<a href="http://kenegozi.com/blog/uploaded/UpdatePanelTemplate.html">this template</a>, that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.</p>
+<p>I want to have a webpage, based on<a href="http://kenegozi.com/blog/uploaded/updatepaneltemplate.html">this template</a>, that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.</p>
 
 <p>You can leave the actual data retrieval to a simple method returning an array of string array, or you can go and implement a CodeSmith/DAAB/Whatever based supercool data access code. I would ignore it anyway. I want the Ajax stuff.</p>
 
@@ -3033,38 +3032,38 @@ publicclassGourmetController : SmartDispatcherController
 &lt;%
     IDictionary @checked = DictHelper.CreateDict(“checked=’checked’”);
 %&gt;
-&lt;formaction=”Update.aspx”method=”post”&gt;</p>
-<table>
-<tr>
-<th>Food Name</th>
-<th>Cabarnet</th>
-<th>Zinfandel</th>
-<th>Pinot</th>
-</tr>
+&lt;formaction=”Update.aspx”method=”post”&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;Food Name&lt;/th&gt;
+&lt;th&gt;Cabarnet&lt;/th&gt;
+&lt;th&gt;Zinfandel&lt;/th&gt;
+&lt;th&gt;Pinot&lt;/th&gt;
+&lt;/tr&gt;
 &lt;%int i = 0; %&gt;
 &lt;%foreach (FoodAndWineMatch match in matches)  { %&gt;
-<tr>
-<td>
-<span>&lt;%=match.FoodName%&gt;</span>
-&lt;inputtype="hidden"name="matches[&lt;%=i%&gt;].FoodName"value="&lt;%=matches[i].FoodName%&gt;"/&gt;
-</td>
-<td>
-&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesCabarnet", matches[i].MatchesCabarnet?@checked:null)%&gt;
-</td>
-<td>
-&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesZinfandel", matches[i].MatchesZinfandel?@checked:null)%&gt;
-</td>
-<td>
-&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesPinot", matches[i].MatchesPinot?@checked:null)%&gt;
-</td>
-</tr>&lt;%++i; } %&gt;
-<tr>
-&lt;tdcolspan="4"&gt;
-&lt;inputtype="submit"value="Save"/&gt;
-
-</tr>
-</table>
-<p>&lt;/form&gt;</p>
+&lt;tr&gt;
+&lt;td&gt;
+&lt;span&gt;&lt;%=match.FoodName%&gt;&lt;/span&gt;
+&lt;inputtype=”hidden”name=”matches[&lt;%=i%&gt;].FoodName”value=”&lt;%=matches[i].FoodName%&gt;”/&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField(“matches[” + i + “].MatchesCabarnet”, matches[i].MatchesCabarnet?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField(“matches[” + i + “].MatchesZinfandel”, matches[i].MatchesZinfandel?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField(“matches[” + i + “].MatchesPinot”, matches[i].MatchesPinot?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;%++i; } %&gt;
+&lt;tr&gt;
+&lt;tdcolspan=”4”&gt;
+&lt;inputtype=”submit”value=”Save”/&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;</p>
 
 <p>```</p>
 
@@ -3525,7 +3524,7 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>You enable the feature by adding the next attribure to the aspview config section in web.config:</p>
 
 <p><code>
-&lt;aspview .... autoRecompilation="true" ... &gt; ...&lt;/aspview&gt;
+&amp;lt;aspview .... autoRecompilation="true" ... &amp;gt; ...&amp;lt;/aspview&amp;gt;
 </code></p>
 
 <p>Breaking change:</p>
@@ -3533,7 +3532,7 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>If you happen to reference an assembly from the GAC (using the aspview configuration in the web.config) you need to add a hint for the engine, like this:</p>
 
 <p><code>
-&lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&gt;
+&amp;lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&amp;gt;
 </code></p>
 
 <p>Known issues:</p>
@@ -3547,7 +3546,7 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
   </li>
 </ol>
 
-<p>Download from <a href="http://kenegozi.com/blog/uploaded/AspView_0_7_178.zip">here</a>.</p>
+<p>Download from <a href="http://kenegozi.com/blog/uploaded/aspview_0_7_178.zip">here</a>.</p>
 
 <p>Sources are <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">here</a>.</p>
 
@@ -3817,16 +3816,16 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>you can use </p>
 
 <p><code>
-   1:  &lt;subView:MyMenu item="menuItem"&gt;&lt;/subView:MyMenu&gt;
+   1:  &amp;lt;subView:MyMenu item="menuItem"&amp;gt;&amp;lt;/subView:MyMenu&amp;gt;
 </code></p>
 
 <p>instead of </p>
 
 <p><code>
-   1:  &lt;% OutputSubView("MyMenu", Helper.Dict("item", "menuItem")); %&gt;
+   1:  &amp;lt;% OutputSubView("MyMenu", Helper.Dict("item", "menuItem")); %&amp;gt;
 </code></p>
 
-<p>take note the <subview:blah></subview:blah> is not currently allowed. I’ll fix it shortly.</p>
+<p>take note the &lt;subView:Blah /&gt; is not currently allowed. I’ll fix it shortly.</p>
 
 <p>the link is <a href="http://kenegozi.com/blog/GetFile.ashx?FileName=AspView_rev47.zip">here</a></p>
 
@@ -4052,25 +4051,25 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>The views MUST have the following structure: a. Page header - Must be present for intellisense to work:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;
 </code></p>
 
 <p>b. Directives - Not mandatory:</p>
 
 <p><code>
-   1:  &lt;%@ Import Namespace="System.Text"%&gt;   2:  &lt;%@ Import Namespace="System.Drawing"%&gt;
+   1:  &amp;lt;%@ Import Namespace="System.Text"%&amp;gt;   2:  &amp;lt;%@ Import Namespace="System.Drawing"%&amp;gt;
 </code></p>
 
 <p>c. Properties decleration - Currently it’s mandatory. If you have no properties you mast have an empty block:</p>
 
 <p><code>
-   1:  &lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&gt;
+   1:  &amp;lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&amp;gt;
 </code></p>
 
 <p>or just</p>
 
 <p><code>
-   1:  &lt;%   2:  %&gt;
+   1:  &amp;lt;%   2:  %&amp;gt;
 </code></p>
 
 <p>d. View body</p>
@@ -4078,7 +4077,7 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>In a layout view you place the inner view using the ViewContents property, like this:</p>
 
 <p><code>
-   1:  blah   2:  blah   3:  &lt;%=ViewContents%&gt;   4:  blah   5:  blah
+   1:  blah   2:  blah   3:  &amp;lt;%=ViewContents%&amp;gt;   4:  blah   5:  blah
 </code></p>
 
 
@@ -4156,7 +4155,7 @@ So what is AspView?</p>
 <p>A little demo view:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;   2:  &lt;%   3:  string[] strings;   4:  %&gt;   5:     6:     7:  hello from index&lt;br /&gt;   8:  This are the strings:&lt;br /&gt;   9:  &lt;%foreach (string s in strings) { %&gt;  10:  &lt;%=s %&gt;&lt;br /&gt;  11:  &lt;%  } %&gt;  12:    13:  &lt;br /&gt;  14:  End of normal view  15:  &lt;br /&gt;  16:  &lt;% OutputSubView("Home/SubViewSample"); %&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;   2:  &amp;lt;%   3:  string[] strings;   4:  %&amp;gt;   5:     6:     7:  hello from index&amp;lt;br /&amp;gt;   8:  This are the strings:&amp;lt;br /&amp;gt;   9:  &amp;lt;%foreach (string s in strings) { %&amp;gt;  10:  &amp;lt;%=s %&amp;gt;&amp;lt;br /&amp;gt;  11:  &amp;lt;%  } %&amp;gt;  12:    13:  &amp;lt;br /&amp;gt;  14:  End of normal view  15:  &amp;lt;br /&amp;gt;  16:  &amp;lt;% OutputSubView("Home/SubViewSample"); %&amp;gt;
 </code></p>
 
 
@@ -4674,25 +4673,25 @@ So what is AspView?</p>
      <p>The web application that we’re working on now, uses ASP.NET 2.0’s ObjectDataSource model, to bind to GridView and FormView in the front-end.Starting off, I’ve made a hierarchy of base classes to manage the data-binding and visual behaviors for Entity Pages (used to view, edit or insert a single entity) and Master-Details Pages (used to manage Master-Details scenarios).The base classes looked like:</p>
 
 <p><code>
-class BasePage : Page { /* ... */ }class BaseEntityPage&lt;T&gt; : BasePagewhere T: Entity{public BaseEntityPage(){/// hook ObjectDataSource and FromView databind events}//... }class BaseMasterDetailsPage&lt;T&gt; : BaseEntityPage&lt;T&gt;where T: Entity{public BaseMasterDetailsPage() : base(){/// hook GridView databind events}//... }
+class BasePage : Page { /* ... */ }class BaseEntityPage&amp;lt;T&amp;gt; : BasePagewhere T: Entity{public BaseEntityPage(){/// hook ObjectDataSource and FromView databind events}//... }class BaseMasterDetailsPage&amp;lt;T&amp;gt; : BaseEntityPage&amp;lt;T&amp;gt;where T: Entity{public BaseMasterDetailsPage() : base(){/// hook GridView databind events}//... }
 </code></p>
 
 <p>Somewhere along the road, we’ve decided to change the first module being developed, to use ascx controls in a single page, instead of multiple pages in a master page (due to the fact that it became a nested master page, and vs2005 doesn’t like it).So, a developer working on the change from Pages to UserControls, changed the base class to something like that:</p>
 
 <p><code>
-class BaseUserControl : UserControl { /*...*/ }class BaseEntityUserControl&lt;T&gt; : BaseUserControlwhere T: Entity{public BaseEntityUserControl(){/// hook ObjectDataSource and FromView databind events}//... }class BaseMasterDetailsUserControl&lt;T&gt; : BaseEntityUserControl&lt;T&gt;where T: Entity{public BaseMasterDetailsUserControl() : base(){/// hook GridView databind events}//... }
+class BaseUserControl : UserControl { /*...*/ }class BaseEntityUserControl&amp;lt;T&amp;gt; : BaseUserControlwhere T: Entity{public BaseEntityUserControl(){/// hook ObjectDataSource and FromView databind events}//... }class BaseMasterDetailsUserControl&amp;lt;T&amp;gt; : BaseEntityUserControl&amp;lt;T&amp;gt;where T: Entity{public BaseMasterDetailsUserControl() : base(){/// hook GridView databind events}//... }
 </code></p>
 
 <p>Later on, we needed some standalone pages (not “mastered”) to have data capabilities.We already had the databinding for UserControls, but now we would need to create empty “dummy” pages and host UserControls in them, which means that instead of aspx + aspx.cs files per page, we’ll have aspx + aspx.cs + ascx + ascx.cs files !!!We could always keep the BasePage hierarchy next to the BaseControl hierarchy, but it will create an ugly duplication.If Multi-Inheritance was possible, we would have used something like:</p>
 
 <p><code>
-class EntityController { /* ... */ }class BaseEntityPage&lt;T&gt; : BasePage, EntityController { /* ... */ }class BaseEntityUserControl&lt;T&gt; : BaseUserControl, EntityController { /* ... */ }
+class EntityController { /* ... */ }class BaseEntityPage&amp;lt;T&amp;gt; : BasePage, EntityController { /* ... */ }class BaseEntityUserControl&amp;lt;T&amp;gt; : BaseUserControl, EntityController { /* ... */ }
 </code></p>
 
 <p>The solution is to use an external controller, we’ll call the Manager, to do all the recurrent login that applies to both the Pages an the UserControls.We’ll use an EntityManager that will manage both BaseEntityPages and BaseEntitycontrols, and a MasterDetailsManager that will manage BaseMasterDetailsPages and BaseMasterDetailsControls. Each and every page and UserControl will register itself with a manager.Now the base class look like that:</p>
 
 <p><code>
-class EntityManager&lt;T&gt; {}class MasterDetailsManager&lt;T&gt; : EntityManager&lt;T&gt; { }class BaseEntityPage&lt;T&gt; : BasePagewhere T: Entity{private EntityManager&lt;T&gt; manager;public BaseEntityPage(){manager =new EntityManager&lt;T&gt;(this);}//... }class BaseMasterDetailsPage&lt;T&gt; : BaseEntityPage&lt;T&gt;where T: Entity{public BaseMasterDetailsPage() // not calling base() cuz we need a different manager{manager =new MasterDetailsManager&lt;T&gt;(this);}//... }class BaseEntityUserControl&lt;T&gt; : BaseUserControlwhere T: Entity{private EntityManager manager;public BaseEntityUserControl (){manager =new EntityManager&lt;T&gt;(this);}//... }class BaseMasterDetailsUserControl&lt;T&gt; : BaseEntityUserControl&lt;T&gt;where T: Entity{public BaseMasterDetailsUserControl () // not calling base() cuz we need a different manager{manager =new MasterDetailsManager&lt;T&gt;(this);}//... }
+class EntityManager&amp;lt;T&amp;gt; {}class MasterDetailsManager&amp;lt;T&amp;gt; : EntityManager&amp;lt;T&amp;gt; { }class BaseEntityPage&amp;lt;T&amp;gt; : BasePagewhere T: Entity{private EntityManager&amp;lt;T&amp;gt; manager;public BaseEntityPage(){manager =new EntityManager&amp;lt;T&amp;gt;(this);}//... }class BaseMasterDetailsPage&amp;lt;T&amp;gt; : BaseEntityPage&amp;lt;T&amp;gt;where T: Entity{public BaseMasterDetailsPage() // not calling base() cuz we need a different manager{manager =new MasterDetailsManager&amp;lt;T&amp;gt;(this);}//... }class BaseEntityUserControl&amp;lt;T&amp;gt; : BaseUserControlwhere T: Entity{private EntityManager manager;public BaseEntityUserControl (){manager =new EntityManager&amp;lt;T&amp;gt;(this);}//... }class BaseMasterDetailsUserControl&amp;lt;T&amp;gt; : BaseEntityUserControl&amp;lt;T&amp;gt;where T: Entity{public BaseMasterDetailsUserControl () // not calling base() cuz we need a different manager{manager =new MasterDetailsManager&amp;lt;T&amp;gt;(this);}//... }
 </code></p>
 
 <p>All the databinding logic and visual behavior control, is now placed in the managers classes, and the page or control itself, is only dealing with the things that are specifically needed by it.The developers on the team, when creating a new page or UserControl, only need to register their page or control to the appropriate manager, and not to mind all the databinding and behavior stuff.</p>
@@ -4746,9 +4745,9 @@ class EntityManager&lt;T&gt; {}class MasterDetailsManager&lt;T&gt; : EntityManag
 
 <p>So this is a new feature of ASP.NET, that makes it possible to run a few applications in the same process. Every few applications (virtual directories) are assigned to an application pool, and each application pool runs in its own process.There are a few settings that can be done for each application pool. Those settings are overriding the defaults in the machine.config file.</p>
 
-<p>Adding an application pool is done through inetmgr.msc, by just adding a new pool to the Application Pools section. Use the option to copy settings from the default application pool, so you’d have a decent place to start from:<img src="http://kenegozi.com/blog/uploaded/ApplicationPools.PNG" alt="" /></p>
+<p>Adding an application pool is done through inetmgr.msc, by just adding a new pool to the Application Pools section. Use the option to copy settings from the default application pool, so you’d have a decent place to start from:<img src="http://kenegozi.com/blog/uploaded/applicationpools.png" alt="" /></p>
 
-<p>Assigning a pool to an application is done through the main property page of the application’s virtual directory:<img src="http://kenegozi.com/blog/uploaded/SettingApplicationPools.PNG" alt="" /></p>
+<p>Assigning a pool to an application is done through the main property page of the application’s virtual directory:<img src="http://kenegozi.com/blog/uploaded/settingapplicationpools.png" alt="" /></p>
 
 <p>The solution to our problem is now obvious:When configuring a new IIS6.0 server, we will start with an application pool for each ASP.NET version we’re using (1.0, 1.1, 2.0), and any virtual directory we setup in the server will be configured to be part of the corresponding application pool. Now the applications can coexist and run together.</p>
 

@@ -914,7 +914,7 @@ finally
 
 <p>```</p>
 
-<p>var enumValue = Enums.From<myenum>("The description");</myenum></p>
+<p>var enumValue = Enums.From&lt;MyEnum&gt;(“The description”);</p>
 
 <p>var enumDescription = Enums.ToDescription(MyEnum.Something);</p>
 
@@ -941,13 +941,13 @@ Allow only one point of initialisation, through a static Initialise(…) method,
 <p>c. It really is ugly. You don’t believe me? look <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Enums.cs?r=3">here</a>.</p>
 
 <p>Solution 3:
-Instead of using Generic methods (From<t> and ToDescription<t>), I changed the Enums class to a generic Enum<t> class.</t></t></t></p>
+Instead of using Generic methods (From&lt;T&gt; and ToDescription&lt;T&gt;), I changed the Enums class to a generic Enum&lt;T&gt; class.</p>
 
 <p>within the class, there’s a <strong>single</strong> static member, <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Internal/DescribedEnumHandler.cs">DescribedEnumHandler</a> of T.</p>
 
-<p>Every call to Enum<t> for a new T will instantiate the needed handler, Just In Time. </t></p>
+<p>Every call to Enum&lt;T&gt; for a new T will instantiate the needed handler, Just In Time. </p>
 
-<p>That’s because with generic types, every concrete type is a new type, so List<int> and List<long> are two separate types, without any inheritance relationship between them, so their static members are not shared.</long></int></p>
+<p>That’s because with generic types, every concrete type is a new type, so List&lt;int&gt; and List&lt;long&gt; are two separate types, without any inheritance relationship between them, so their static members are not shared.</p>
 
 <p>That’s the class I ended up with: <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Enum.cs?r=25">Enums.cs</a></p>
 
@@ -1060,8 +1060,8 @@ usingSystem.ComponentModel;</p>
 <p>mapping a field of type ModuleTypes will look like that:</p>
 
 <p><code>
-&lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
-              D9.NHibernate" /&gt;
+&amp;lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
+              D9.NHibernate" /&amp;gt;
 </code></p>
 
 <p>or if you use Castle ActiveRecord attributes for mapping:</p>

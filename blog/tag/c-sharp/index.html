@@ -104,10 +104,10 @@
 <p>During the many times I had to deal with serialization implementations, while working on one of the many web frameworks I’ve been involved with, or with serialization libraries, I keep getting back to be needing to remember what I did last time, so this post is to serve as a future reminder to self on how I want it to be done.</p>
 
 <h2 id="serializing-a-datetime-to-a-string">Serializing a DateTime to a string:</h2>
-<pre><code>string Serialize(DateTime value) {
-    const string ISO8601Format = "o"; // this is a terrific little gem!
+<p>&lt;pre&gt;&lt;code&gt;string Serialize(DateTime value) {
+    const string ISO8601Format = “o”; // this is a terrific little gem!
     return value.ToString(ISO8601Format);
-}</code></pre>
+}&lt;/code&gt;&lt;/pre&gt;</p>
 
 <p>Did you notice the “o” format specifier? This is a much better than typing “yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK”, which I’ve been doing until recently.</p>
 
@@ -841,7 +841,7 @@ finally
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Has.UnionWithdocumentationFAILtrustyouri_14163/78672664-0773-411c-bc95-6513e613af5e.png" alt="image" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/has.unionwithdocumentationfailtrustyouri_14163/78672664-0773-411c-bc95-6513e613af5e.png" alt="image" /></p>
 
 <p> </p>
 
@@ -852,10 +852,10 @@ finally
 <p>For those unsure about what Union means (or what it actually does), the following code:</p>
 
 <p>{% highlight c# %}
-var set = new HashSet<int>(new[] {1, 2});
+var set = new HashSet&lt;int&gt;(new[] {1, 2});
 var other = new[] {2, 3};
 set.UnionWith(other);
-Console.WriteLine(Serialize(set));{% endhighlight %}</int></p>
+Console.WriteLine(Serialize(set));{% endhighlight %}</p>
 
 <p> </p>
 
@@ -1061,20 +1061,20 @@ service.Stubs().Get.AssertWasCalled(x=&gt;x.DoThat(theString);
 </ul>
 
 <p>```
-public class AutoStubber<t> where T : class
+public class AutoStubber&lt;T&gt; where T : class
 {
 	static readonly Type TypeofT;
 	static readonly ConstructorInfo Constructor;
 	static readonly Type[] ParameterTypes;
-	static readonly Dictionary&lt;object, AutoStubber<t>&gt; Instances = new Dictionary&lt;object, AutoStubber<t>&gt;();
+	static readonly Dictionary&lt;object, AutoStubber&lt;T&gt;&gt; Instances = new Dictionary&lt;object, AutoStubber&lt;T&gt;&gt;();
 	static AutoStubber()
 	{
 		TypeofT = typeof(T);
 		Constructor = TypeofT.GetConstructors().OrderByDescending(ci =&gt; ci.GetParameters().Length).First();
 		ParameterTypes = Constructor.GetParameters().Select(pi =&gt; pi.ParameterType).ToArray();
-	}</t></t></t></p>
+	}</p>
 
-<pre><code>public static AutoStubber&lt;T&gt; GetStubberFor(T obj)
+<pre><code>public static AutoStubber&amp;lt;T&amp;gt; GetStubberFor(T obj)
 {
 	return Instances[obj];
 }
@@ -1088,11 +1088,11 @@ public T Create()
 	return Instance;
 }
 
-readonly Dictionary&lt;Type, object&gt; _dependencies = new Dictionary&lt;Type, object&gt;();
+readonly Dictionary&amp;lt;Type, object&amp;gt; _dependencies = new Dictionary&amp;lt;Type, object&amp;gt;();
 private T Instance { get; set; }
 public AutoStubber()
 {
-	var parameters = new List&lt;object&gt;(ParameterTypes.Length);
+	var parameters = new List&amp;lt;object&amp;gt;(ParameterTypes.Length);
 	foreach (var parameterType in ParameterTypes)
 	{
 		var parameter = MockRepository.GenerateStub(parameterType);
@@ -1102,14 +1102,14 @@ public AutoStubber()
 	Instance = (T)Constructor.Invoke(parameters.ToArray());
 	Instances[Instance] = this;
 }
-public TDependency Get&lt;TDependency&gt;()
+public TDependency Get&amp;lt;TDependency&amp;gt;()
 {
 	return (TDependency)_dependencies[typeof(TDependency)];
 } } public static class AutoStubberExtensions {
-public static AutoStubber&lt;T&gt; Stubs&lt;T&gt;(this T obj)
+public static AutoStubber&amp;lt;T&amp;gt; Stubs&amp;lt;T&amp;gt;(this T obj)
 	where T : class
 {
-	return AutoStubber&lt;T&gt;.GetStubberFor(obj);
+	return AutoStubber&amp;lt;T&amp;gt;.GetStubberFor(obj);
 } } ```
 </code></pre>
 
@@ -1212,7 +1212,7 @@ public int GetNextId() {
 
 <p>Here’s a screenshot of the test run</p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Interlocked.Increme.locksurprisesurprise_2D4/d163d725-f254-4820-8b6f-4ce0eaf37697.png" alt="interlocked vs lock" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/interlocked.increme.locksurprisesurprise_2d4/d163d725-f254-4820-8b6f-4ce0eaf37697.png" alt="interlocked vs lock" /></p>
 
 <p> </p>
 
@@ -1307,7 +1307,7 @@ public int GetNextId() {
 
 <p><code>
 var numbers = new byte[] {1, 2, 3, 4};
-var avg = numbers.Cast&lt;int&gt;().Average();
+var avg = numbers.Cast&amp;lt;int&amp;gt;().Average();
 Console.WriteLine(avg);
 </code></p>
 
@@ -1760,13 +1760,13 @@ publicstaticclassContentInfo
             newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Tiff, “image/tiff”),
         };</p>
 
-<pre><code>    ///&lt;summary&gt; /// Gets the mime type for a given &lt;see cref="MimeTypes"/&gt; ///&lt;/summary&gt; ///&lt;param name="mimeType"&gt;The file's &lt;see cref="MimeTypes"/&gt;&lt;/param&gt; ///&lt;returns&gt;The file's mime type&lt;/returns&gt; publicstaticstringFor(MimeTypesmimeType)
+<pre><code>    ///&amp;lt;summary&amp;gt; /// Gets the mime type for a given &amp;lt;see cref="MimeTypes"/&amp;gt; ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="mimeType"&amp;gt;The file's &amp;lt;see cref="MimeTypes"/&amp;gt;&amp;lt;/param&amp;gt; ///&amp;lt;returns&amp;gt;The file's mime type&amp;lt;/returns&amp;gt; publicstaticstringFor(MimeTypesmimeType)
     {
         return (frompincontentInfoFor wherep.Key==mimeType selectp.Value)
                .First();
     }
 
-    ///&lt;summary&gt; /// Gets the mime type for a given extension ///&lt;/summary&gt; ///&lt;param name="extension"&gt;The file's extension&lt;/param&gt; ///&lt;returns&gt;The file's mime type&lt;/returns&gt; publicstaticstringFor(stringextension)
+    ///&amp;lt;summary&amp;gt; /// Gets the mime type for a given extension ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="extension"&amp;gt;The file's extension&amp;lt;/param&amp;gt; ///&amp;lt;returns&amp;gt;The file's mime type&amp;lt;/returns&amp;gt; publicstaticstringFor(stringextension)
     {
         returnFor(MimeType.For(extension));
     }
@@ -1777,7 +1777,7 @@ publicstaticclassContentInfo
 
 <p>```
 ///&lt;summary&gt;
-/// Helpers for <see cref="MimeTypes"></see>///&lt;/summary&gt;
+/// Helpers for &lt;see cref=”MimeTypes”/&gt;///&lt;/summary&gt;
 publicclassMimeType
     {
         staticreadonlyKeyValuePair&lt;string, MimeTypes&gt;[] mimeTypeForExtension=new[]
@@ -1793,7 +1793,7 @@ publicclassMimeType
                 newKeyValuePair&lt;string, MimeTypes&gt;(“tiff”, MimeTypes.Tiff),
             };</p>
 
-<pre><code>    ///&lt;summary&gt; /// Selects a &lt;see cref="MimeTypes"/&gt; for a given file extension  ///&lt;/summary&gt; ///&lt;param name="extension"&gt;The file's extension&lt;/param&gt; ///&lt;returns&gt;The file's mime type&lt;/returns&gt; publicstaticMimeTypesFor(stringextension)
+<pre><code>    ///&amp;lt;summary&amp;gt; /// Selects a &amp;lt;see cref="MimeTypes"/&amp;gt; for a given file extension  ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="extension"&amp;gt;The file's extension&amp;lt;/param&amp;gt; ///&amp;lt;returns&amp;gt;The file's mime type&amp;lt;/returns&amp;gt; publicstaticMimeTypesFor(stringextension)
     {
         extension=extension.TrimStart('.');
 
@@ -1871,23 +1871,23 @@ publicenumMimeTypes
 publicclassWebServer 
     {
         ///&lt;summary&gt;
-/// Access to the current instance of <see cref="WebServer"></see>
+/// Access to the current instance of &lt;see cref=”WebServer”/&gt;
 ///&lt;/summary&gt;
 publicstaticWebServerCurrent { get; privateset; }</p>
 
-<pre><code>    ///&lt;summary&gt; /// The current settings ///&lt;/summary&gt; publicISettingsSettings { get; privateset; }
+<pre><code>    ///&amp;lt;summary&amp;gt; /// The current settings ///&amp;lt;/summary&amp;gt; publicISettingsSettings { get; privateset; }
 
     privateWebServiceHosthost;
     privatereadonlyILoggerlogger;
 
-    ///&lt;summary&gt; /// New WebServer ///&lt;/summary&gt; ///&lt;param name="logger"&gt;&lt;see cref="ILogger"/&gt;&lt;/param&gt; ///&lt;param name="settings"&gt;Settings&lt;/param&gt; publicWebServer(ILoggerlogger, ISettingssettings)
+    ///&amp;lt;summary&amp;gt; /// New WebServer ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="logger"&amp;gt;&amp;lt;see cref="ILogger"/&amp;gt;&amp;lt;/param&amp;gt; ///&amp;lt;param name="settings"&amp;gt;Settings&amp;lt;/param&amp;gt; publicWebServer(ILoggerlogger, ISettingssettings)
     {
         this.logger=logger;
         Settings=settings;
         Current=this;
     }
 
-    ///&lt;summary&gt; /// Start a new server ///&lt;/summary&gt; publicvoidStart()
+    ///&amp;lt;summary&amp;gt; /// Start a new server ///&amp;lt;/summary&amp;gt; publicvoidStart()
     {
         logger.Info("Initialising the web server");
         host=newWebServiceHost(typeof(FaxManagerService), newUri("http://localhost:"+Settings.WebServerPort+"/"));
@@ -1896,7 +1896,7 @@ publicstaticWebServerCurrent { get; privateset; }</p>
         host.AddServiceEndpoint(typeof(IFaxManagerService), bindings, "");
         host.Description.Behaviors.Add(newSessionAwareAttribute());
 
-        varsdb=host.Description.Behaviors.Find&lt;ServiceDebugBehavior&gt;();
+        varsdb=host.Description.Behaviors.Find&amp;lt;ServiceDebugBehavior&amp;gt;();
         sdb.HttpHelpPageEnabled=false;
         
         logger.Info("Starting the web server");
@@ -1904,13 +1904,13 @@ publicstaticWebServerCurrent { get; privateset; }</p>
         logger.Info("The web server was started successfully on port "+Settings.WebServerPort);
     }
 
-    ///&lt;summary&gt; /// Restart the server (effectively creating a new service host) ///&lt;/summary&gt; publicvoidRestart()
+    ///&amp;lt;summary&amp;gt; /// Restart the server (effectively creating a new service host) ///&amp;lt;/summary&amp;gt; publicvoidRestart()
     {
         Stop();
         Start();
     }
 
-    ///&lt;summary&gt; /// Stop the server ///&lt;/summary&gt; publicvoidStop()
+    ///&amp;lt;summary&amp;gt; /// Stop the server ///&amp;lt;/summary&amp;gt; publicvoidStop()
     {
         host.Close();
         host=null;
@@ -1956,7 +1956,7 @@ publicstaticWebServerCurrent { get; privateset; }</p>
 
 <p>```</p>
 
-<p>var enumValue = Enums.From<myenum>("The description");</myenum></p>
+<p>var enumValue = Enums.From&lt;MyEnum&gt;(“The description”);</p>
 
 <p>var enumDescription = Enums.ToDescription(MyEnum.Something);</p>
 
@@ -1983,13 +1983,13 @@ Allow only one point of initialisation, through a static Initialise(…) method,
 <p>c. It really is ugly. You don’t believe me? look <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Enums.cs?r=3">here</a>.</p>
 
 <p>Solution 3:
-Instead of using Generic methods (From<t> and ToDescription<t>), I changed the Enums class to a generic Enum<t> class.</t></t></t></p>
+Instead of using Generic methods (From&lt;T&gt; and ToDescription&lt;T&gt;), I changed the Enums class to a generic Enum&lt;T&gt; class.</p>
 
 <p>within the class, there’s a <strong>single</strong> static member, <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Internal/DescribedEnumHandler.cs">DescribedEnumHandler</a> of T.</p>
 
-<p>Every call to Enum<t> for a new T will instantiate the needed handler, Just In Time. </t></p>
+<p>Every call to Enum&lt;T&gt; for a new T will instantiate the needed handler, Just In Time. </p>
 
-<p>That’s because with generic types, every concrete type is a new type, so List<int> and List<long> are two separate types, without any inheritance relationship between them, so their static members are not shared.</long></int></p>
+<p>That’s because with generic types, every concrete type is a new type, so List&lt;int&gt; and List&lt;long&gt; are two separate types, without any inheritance relationship between them, so their static members are not shared.</p>
 
 <p>That’s the class I ended up with: <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Enum.cs?r=25">Enums.cs</a></p>
 
@@ -2029,14 +2029,14 @@ Instead of using Generic methods (From<t> and ToDescription<t>), I changed the E
     {
         Counter=0;
     }
-    publicTGet<t>()
+    publicTGet&lt;T&gt;()
     {
         ++Counter;
         returndefault(T);
     }
-}</t></p>
+}</p>
 
-<p>classWrapper<t>
+<p>classWrapper&lt;T&gt;
 {
     publicstaticintCounter{ get; privateset;}
     staticWrapper()
@@ -2045,7 +2045,7 @@ Instead of using Generic methods (From<t> and ToDescription<t>), I changed the E
     }
     publicTGet()
     {
-        ++Counter;returndefault(T); </t></p>
+        ++Counter;returndefault(T); </p>
 
 <pre><code>}
 </code></pre>
@@ -2218,8 +2218,8 @@ usingSystem.ComponentModel;</p>
 <p>mapping a field of type ModuleTypes will look like that:</p>
 
 <p><code>
-&lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
-              D9.NHibernate" /&gt;
+&amp;lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
+              D9.NHibernate" /&amp;gt;
 </code></p>
 
 <p>or if you use Castle ActiveRecord attributes for mapping:</p>
@@ -2335,19 +2335,19 @@ usingSystem.Reflection;</p>
 <p>{
     ///&lt;summary&gt;
 /// Allow access to enum values with 
-///<see cref="DescriptionAttribute">DescriptionAttribute</see>
+///&lt;see cref=”DescriptionAttribute”&gt;DescriptionAttribute&lt;/see&gt;
 /// set on them
 ///&lt;/summary&gt;
 publicstaticclassDescribedEnumHandlers
     {
         privatestaticreadonlyIDictionaryhandlers=newListDictionary();</p>
 
-<pre><code>    ///&lt;summary&gt; /// Initialises enum types to be used with the &lt;see cref="DescribedEnumHandlers"&gt;&lt;/see&gt; ///&lt;/summary&gt; ///&lt;param name="assemblies"&gt;The assemblies to grab described enums from&lt;/param&gt; publicstaticvoidInitialise(paramsAssembly[] assemblies)
+<pre><code>    ///&amp;lt;summary&amp;gt; /// Initialises enum types to be used with the &amp;lt;see cref="DescribedEnumHandlers"&amp;gt;&amp;lt;/see&amp;gt; ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="assemblies"&amp;gt;The assemblies to grab described enums from&amp;lt;/param&amp;gt; publicstaticvoidInitialise(paramsAssembly[] assemblies)
     {
-        Initialise((IEnumerable&lt;Assembly&gt;)assemblies);
+        Initialise((IEnumerable&amp;lt;Assembly&amp;gt;)assemblies);
     }
 
-    ///&lt;summary&gt; /// Initialises enum types to be used with the &lt;see cref="DescribedEnumHandlers"&gt;&lt;/see&gt; ///&lt;/summary&gt; ///&lt;param name="assemblies"&gt;The assemblies to grab described enums from&lt;/param&gt; publicstaticvoidInitialise(IEnumerable&lt;Assembly&gt;assemblies)
+    ///&amp;lt;summary&amp;gt; /// Initialises enum types to be used with the &amp;lt;see cref="DescribedEnumHandlers"&amp;gt;&amp;lt;/see&amp;gt; ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="assemblies"&amp;gt;The assemblies to grab described enums from&amp;lt;/param&amp;gt; publicstaticvoidInitialise(IEnumerable&amp;lt;Assembly&amp;gt;assemblies)
     {
         vartitledEnums=fromassemblyinassemblies selectassembly intoa fromtypeina.GetTypes()
 
@@ -2362,7 +2362,7 @@ publicstaticclassDescribedEnumHandlers
         }
     }
 
-    ///&lt;summary&gt; /// Extract the description for a given enum value ///&lt;/summary&gt; ///&lt;param name="value"&gt;An enum value&lt;/param&gt; ///&lt;returns&gt;It's description, or it's name if there's no registered description for the given value&lt;/returns&gt; publicstaticstringEnumToDescription(objectvalue)
+    ///&amp;lt;summary&amp;gt; /// Extract the description for a given enum value ///&amp;lt;/summary&amp;gt; ///&amp;lt;param name="value"&amp;gt;An enum value&amp;lt;/param&amp;gt; ///&amp;lt;returns&amp;gt;It's description, or it's name if there's no registered description for the given value&amp;lt;/returns&amp;gt; publicstaticstringEnumToDescription(objectvalue)
     {
         varhandler=handlers[value.GetType()] asDescribedEnumHandler;
         
@@ -2370,7 +2370,7 @@ publicstaticclassDescribedEnumHandlers
             : value.ToString();
     }
 
-    ///&lt;summary&gt; /// Gets the enum value for a given description or value ///&lt;/summary&gt; ///&lt;typeparam name="T"&gt;The enum type&lt;/typeparam&gt; ///&lt;param name="stringValue"&gt;The enum value or description&lt;/param&gt; ///&lt;returns&gt;An enum value matching the given string value, as description (using &lt;see cref="DescriptionAttribute"&gt;DescriptionAttribute&lt;/see&gt;) or as value&lt;/returns&gt; publicstaticEnumToEnumValue&lt;T&gt;(thisstringstringValue)
+    ///&amp;lt;summary&amp;gt; /// Gets the enum value for a given description or value ///&amp;lt;/summary&amp;gt; ///&amp;lt;typeparam name="T"&amp;gt;The enum type&amp;lt;/typeparam&amp;gt; ///&amp;lt;param name="stringValue"&amp;gt;The enum value or description&amp;lt;/param&amp;gt; ///&amp;lt;returns&amp;gt;An enum value matching the given string value, as description (using &amp;lt;see cref="DescriptionAttribute"&amp;gt;DescriptionAttribute&amp;lt;/see&amp;gt;) or as value&amp;lt;/returns&amp;gt; publicstaticEnumToEnumValue&amp;lt;T&amp;gt;(thisstringstringValue)
         whereT :struct
     {
         vartype=typeof (T);
@@ -2380,10 +2380,10 @@ publicstaticclassDescribedEnumHandlers
             : (Enum)Enum.Parse(type, stringValue, false);
     }
     
-    ///&lt;summary&gt; /// Used to cache enum values descriptions mapper ///&lt;/summary&gt; privateclassDescribedEnumHandler
+    ///&amp;lt;summary&amp;gt; /// Used to cache enum values descriptions mapper ///&amp;lt;/summary&amp;gt; privateclassDescribedEnumHandler
     {
-        privatereadonlyIDictionary&lt;Enum, string&gt;toDescription=newDictionary&lt;Enum, string&gt;();
-        privatereadonlyIDictionary&lt;string, Enum&gt;fromDescription=newDictionary&lt;string, Enum&gt;();
+        privatereadonlyIDictionary&amp;lt;Enum, string&amp;gt;toDescription=newDictionary&amp;lt;Enum, string&amp;gt;();
+        privatereadonlyIDictionary&amp;lt;string, Enum&amp;gt;fromDescription=newDictionary&amp;lt;string, Enum&amp;gt;();
         publicDescribedEnumHandler(Typetype)
         {
             varenumEntrys=fromfintype.GetFields()
@@ -2425,8 +2425,8 @@ publicstaticclassDescribedEnumHandlers
 DescribedEnumHandlers.Initialise(typeof(ModuleTypes).Assembly);</p>
 
 <p>Console.WriteLine(DescribedEnumHandlers.EnumToDescription(ModuleTypes.Standard));
-Console.WriteLine(“ר”.ToEnumValue<moduletypes>());
-```</moduletypes></p>
+Console.WriteLine(“ר”.ToEnumValue&lt;ModuleTypes&gt;());
+```</p>
 
 <p>Next time I’ll show you how I made it play nicely with NHibernate</p>
 
@@ -2690,7 +2690,7 @@ private static XmlDocument LoadXml(string url)
 } } ```
 </code></pre>
 
-<p>I’d have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func<t>, then have a separate XmlService use KeyLevelCacheService internally.</t></p>
+<p>I’d have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func&lt;T&gt;, then have a separate XmlService use KeyLevelCacheService internally.</p>
 
 
     </section>
@@ -2761,7 +2761,7 @@ Keep a key per requested entry. Now you only lock what needs locking.</p>
 
 <p>}   </p>
 
-<p>public T Get<t>(string key, Func<t> load())</t></t></p>
+<p>public T Get&lt;T&gt;(string key, Func&lt;T&gt; load())</p>
 
 <p>{</p>
 
@@ -2852,29 +2852,29 @@ Keep a key per requested entry. Now you only lock what needs locking.</p>
 <p>The Extra comma STT
 You probably already know of the collection initialiser syntax introduced into C# 3.0:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/1a6d2ba2-b96c-44ed-92fb-2e005b609e85.png" alt="stt_comma 1" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/sttextracommaincollectioninitialisersand_9a73/1a6d2ba2-b96c-44ed-92fb-2e005b609e85.png" alt="stt_comma 1" /></p>
 
 <p>At times, you’d have a long list of items in the initialiser, and you find yourself doing copy&amp;pastes to add lines, or removing lines from the list. There’s this little extra step you need to do, that is making sure that you have a comma between any two adjacent lines.</p>
 
 <p>That makes the copy&amp;paste a bit annoying.</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/595074d9-dc9c-4331-beba-cf1968fba699.png" alt="stt_comma 2" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/sttextracommaincollectioninitialisersand_9a73/595074d9-dc9c-4331-beba-cf1968fba699.png" alt="stt_comma 2" /></p>
 
 <p>However, it appear that csc.exe would accept an extra trailing comma at the end of the list, so this code is 100% valid:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/5a800ad3-bbc0-4d9c-8f43-b46784fb8032.png" alt="stt_comma 3" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/sttextracommaincollectioninitialisersand_9a73/5a800ad3-bbc0-4d9c-8f43-b46784fb8032.png" alt="stt_comma 3" /></p>
 
 <p>Now it’s easier to text-manipulate the list.</p>
 
 <p>It also works for Enum declarations:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/650d3009-08f2-4014-a360-2901883245d6.png" alt="stt_comma 4" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/sttextracommaincollectioninitialisersand_9a73/650d3009-08f2-4014-a360-2901883245d6.png" alt="stt_comma 4" /></p>
 
 <p>So, even though having three cats in the house is busy enough, as far as c# is concerned I can easily add more of these. Not sure what the existing cats would think of that.</p>
 
 <p>Just to make sure it actually works:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/196e049d-f643-4587-b765-a85d4b21549a.png" alt="stt_comma 5" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/sttextracommaincollectioninitialisersand_9a73/196e049d-f643-4587-b765-a85d4b21549a.png" alt="stt_comma 5" /></p>
 
 <p>curiosities:
 - Envy code R rock.<br />
@@ -3013,7 +3013,6 @@ You probably already know of the collection initialiser syntax introduced into C
 <p>They are simple a leaky abstraction on top of straightforward BCL classes.</p>
 
 <p>So what my solution is?
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 {% highlight c# %}
    1:  publicvoid Upload(string server, int port, string targetFolder, string fileName, string username, string password, bool isActive)   2:  {   3:  var url = string.Format(   4:  “ftp://{0}:{1}{2}/{3}”, server, port, targetFolder, fileName)   5:  using (var ftp = (FtpWebRequest)WebRequest.Create(url))   6:      {   7:          ftp.Credentials = new NetworkCredential(username, password);   8:          ftp.KeepAlive = false;   9:          ftp.UseBinary = true;  10:          ftp.Method = WebRequestMethods.Ftp.UploadFile;  11:  if (isActive)  12:              ftp.UsePassive = false;  13:    14:  using (var writer = new BinaryWriter(ftp.GetRequestStream()))  15:              writer.Write(File.ReadAllBytes(fileName));  16:      }  17:  }{% endhighlight %}</p>
 
@@ -3063,7 +3062,6 @@ You probably already know of the collection initialiser syntax introduced into C
 
 <p>But as the action parameters binder is very smart, and easily extensible, it’s even nicer to just bind the posted data to a HttpPostedFile, using a FileBinder:</p>
 
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 <p>{% highlight c# %}
    1:  [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]   2:  publicclass FileBinderAttribute: Attribute, <strong>IParameterBinder</strong>   3:  {   4:  publicint CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)   5:      {   6:  var key = parameterInfo.Name;   7:  return context.Request.Files[key] != null ? 10 : 0;   8:      }   9:    10:  publicobject Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)  11:      {  12:  var key = parameterInfo.Name;  13:  return context.Request.Files[key] as HttpPostedFile;  14:      }  15:  }{% endhighlight %}</p>
 
@@ -3188,9 +3186,8 @@ You probably already know of the collection initialiser syntax introduced into C
     
      <p>I’ve been asked about it several times lately, so I’ll just put here an oldie that I’ve been using for a few years now untouched:</p>
 
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 <p>{% highlight c# %}
-   1:  // MIT license   2:  // Copyright 2005-2008 Ken Egozi   3:  //    4:  // Permission is hereby granted, free of charge, to any person obtaining a copy   5:  // of this software and associated documentation files (the “Software”), to deal   6:  // in the Software without restriction, including without limitation the rights   7:  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell   8:  // copies of the Software, and to permit persons to whom the Software is   9:  // furnished to do so, subject to the following conditions:  10:  //   11:  // The above copyright notice and this permission notice shall be included in  12:  // all copies or substantial portions of the Software.  13:  //   14:  // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  15:  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  16:  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  17:  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  18:  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  19:  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  20:  // THE SOFTWARE.  21:    22:  using System;  23:  using System.Collections.Generic;  24:  using System.Text;  25:  using System.Security.Cryptography;  26:  using System.Collections;  27:    28:  namespace KenEgozi.CryptographicServices  29:  {  30:  publicstaticclass Hashing  31:      {  32:  privatestatic Hashtable hashAlgorithms = Hashtable.Synchronized(new Hashtable());  33:    34:  /// &lt;summary&gt;  35:  /// Hashing a given string with SHA2.  36:  /// &lt;/summary&gt;  37:  /// <param name="data" />Data to hash&lt;/param&gt;  38:  /// <returns>Hashed data</returns>  39:  publicstaticstring HashData(string data)  40:          {  41:  return HashData(data, HashType.SHA256);  42:          }  43:    44:  /// &lt;summary&gt;  45:  /// Hashing a given string with any of the supported hash algorithms.  46:  /// &lt;/summary&gt;  47:  /// <param name="data" />Data to hash&lt;/param&gt;  48:  /// <param name="hashType" />Hashing algorithm to use&lt;/param&gt;  49:  /// <returns>Hashed data</returns>  50:  publicstaticstring HashData(string data, HashType hashType)  51:          {  52:              HashAlgorithm hash = GetHash(hashType);  53:  byte[] bytes = (new UnicodeEncoding()).GetBytes(data);  54:  byte[] hashed = hash.ComputeHash(bytes);  55:              StringBuilder sb = new StringBuilder(64);  56:  foreach (byte b in hashed)  57:                  sb.AppendFormat(“{0:x2}”, b);  58:  return sb.ToString();  59:          }  60:    61:  privatestatic HashAlgorithm GetHash(HashType hashType)  62:          {  63:  if (!hashAlgorithms.ContainsKey(hashType))  64:                  hashAlgorithms.Add(hashType, CreateaHashAlgorithm(hashType));  65:  return hashAlgorithms[hashType] as HashAlgorithm;  66:          }  67:    68:  privatestatic HashAlgorithm CreateaHashAlgorithm(HashType hashType)  69:          {  70:  switch (hashType)  71:              {  72:  case HashType.MD5:  73:  returnnew MD5CryptoServiceProvider();  74:  case HashType.SHA1:  75:  returnnew SHA1Managed();  76:  case HashType.SHA256:  77:  returnnew SHA256Managed();  78:  case HashType.SHA384:  79:  returnnew SHA384Managed();  80:  case HashType.SHA512:  81:  returnnew SHA512Managed();  82:  default:  83:  thrownew NotImplementedException();  84:              }  85:          }  86:      }  87:    88:  publicenum HashType  89:      {  90:          MD5,  91:          SHA1,  92:          SHA256,  93:          SHA384,  94:          SHA512  95:      }  96:  }{% endhighlight %}</p>
+   1:  // MIT license   2:  // Copyright 2005-2008 Ken Egozi   3:  //    4:  // Permission is hereby granted, free of charge, to any person obtaining a copy   5:  // of this software and associated documentation files (the “Software”), to deal   6:  // in the Software without restriction, including without limitation the rights   7:  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell   8:  // copies of the Software, and to permit persons to whom the Software is   9:  // furnished to do so, subject to the following conditions:  10:  //   11:  // The above copyright notice and this permission notice shall be included in  12:  // all copies or substantial portions of the Software.  13:  //   14:  // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  15:  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  16:  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  17:  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  18:  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  19:  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  20:  // THE SOFTWARE.  21:    22:  using System;  23:  using System.Collections.Generic;  24:  using System.Text;  25:  using System.Security.Cryptography;  26:  using System.Collections;  27:    28:  namespace KenEgozi.CryptographicServices  29:  {  30:  publicstaticclass Hashing  31:      {  32:  privatestatic Hashtable hashAlgorithms = Hashtable.Synchronized(new Hashtable());  33:    34:  /// &lt;summary&gt;  35:  /// Hashing a given string with SHA2.  36:  /// &lt;/summary&gt;  37:  /// &lt;param name=”data”&gt;Data to hash&lt;/param&gt;  38:  /// &lt;returns&gt;Hashed data&lt;/returns&gt;  39:  publicstaticstring HashData(string data)  40:          {  41:  return HashData(data, HashType.SHA256);  42:          }  43:    44:  /// &lt;summary&gt;  45:  /// Hashing a given string with any of the supported hash algorithms.  46:  /// &lt;/summary&gt;  47:  /// &lt;param name=”data”&gt;Data to hash&lt;/param&gt;  48:  /// &lt;param name=”hashType”&gt;Hashing algorithm to use&lt;/param&gt;  49:  /// &lt;returns&gt;Hashed data&lt;/returns&gt;  50:  publicstaticstring HashData(string data, HashType hashType)  51:          {  52:              HashAlgorithm hash = GetHash(hashType);  53:  byte[] bytes = (new UnicodeEncoding()).GetBytes(data);  54:  byte[] hashed = hash.ComputeHash(bytes);  55:              StringBuilder sb = new StringBuilder(64);  56:  foreach (byte b in hashed)  57:                  sb.AppendFormat(“{0:x2}”, b);  58:  return sb.ToString();  59:          }  60:    61:  privatestatic HashAlgorithm GetHash(HashType hashType)  62:          {  63:  if (!hashAlgorithms.ContainsKey(hashType))  64:                  hashAlgorithms.Add(hashType, CreateaHashAlgorithm(hashType));  65:  return hashAlgorithms[hashType] as HashAlgorithm;  66:          }  67:    68:  privatestatic HashAlgorithm CreateaHashAlgorithm(HashType hashType)  69:          {  70:  switch (hashType)  71:              {  72:  case HashType.MD5:  73:  returnnew MD5CryptoServiceProvider();  74:  case HashType.SHA1:  75:  returnnew SHA1Managed();  76:  case HashType.SHA256:  77:  returnnew SHA256Managed();  78:  case HashType.SHA384:  79:  returnnew SHA384Managed();  80:  case HashType.SHA512:  81:  returnnew SHA512Managed();  82:  default:  83:  thrownew NotImplementedException();  84:              }  85:          }  86:      }  87:    88:  publicenum HashType  89:      {  90:          MD5,  91:          SHA1,  92:          SHA256,  93:          SHA384,  94:          SHA512  95:      }  96:  }{% endhighlight %}</p>
 
 <p>Not beautiful, however useful.</p>
 
@@ -3372,9 +3369,9 @@ You probably already know of the collection initialiser syntax introduced into C
 
 <p>So, if you’re using autorecompilation=true, the add this to your web.config:</p>
 
-<p>```</p>
-<system.codedom> <compilers> <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CSharp.CSharpCodeProvider,System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" warninglevel="4"> <provideroption value="v3.5" name="CompilerVersion" /> <provideroption value="false" name="WarnAsError" /> </compiler> </compilers>
-</system.codedom>
+<p>```
+&lt;system.codedom&gt; &lt;compilers&gt; &lt;compiler language=”c#;cs;csharp” extension=”.cs” type=”Microsoft.CSharp.CSharpCodeProvider,System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089” warningLevel=”4”&gt; &lt;provideroption value=”v3.5” name=”CompilerVersion” /&gt; &lt;provideroption value=”false” name=”WarnAsError” /&gt; &lt;/compiler&gt; &lt;/compilers&gt;
+&lt;/system.codedom&gt;</p>
 
 <p>```</p>
 
@@ -3561,12 +3558,12 @@ You probably already know of the collection initialiser syntax introduced into C
 
 <p>So, when you want to generate:</p>
 
-<p>```
-<?xml version="1.0" encoding="utf-8"?></p>
-<root>
-    <result type="boolean">true</result>
-</root>
-<p>```</p>
+<p><code>
+&amp;lt;?xml version="1.0" encoding="utf-8"?&amp;gt;
+&amp;lt;root&amp;gt;
+    &amp;lt;result type="boolean"&amp;gt;true&amp;lt;/result&amp;gt;
+&amp;lt;/root&amp;gt;
+</code></p>
 
 <p>instead of (using System.XML):</p>
 
@@ -3604,13 +3601,14 @@ XmlOutput xo = new XmlOutput()
 
 <p>```</p>
 
-<?xml version="1.0" encoding="utf-8"?>
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
 
-<root>
+<p>&lt;root&gt;</p>
 
-    <result type="&lt;%=view.Type%&gt;">&lt;%=view.Value%&gt;</result>
+<pre><code>&amp;lt;result type="&lt;%=view.Type%&amp;gt;"&gt;&amp;lt;%=view.Value%&amp;gt;&amp;lt;/result&amp;gt;
+</code></pre>
 
-</root>
+<p>&lt;/root&gt;</p>
 
 <p>```</p>
 
@@ -3618,17 +3616,17 @@ XmlOutput xo = new XmlOutput()
 
 <p>```</p>
 
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <numbers>
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;
+&lt;root&gt;
+    &lt;numbers&gt;</p>
 
-        &lt;% foreach (Number number in view.Numbers) { %&gt;
-        <number value="&lt;%=number%&gt;">This is the number: &lt;%=number%&gt;</number>
+<pre><code>    &amp;lt;% foreach (Number number in view.Numbers) { %&amp;gt;
+    &amp;lt;number value="&lt;%=number%&amp;gt;"&gt;This is the number: &amp;lt;%=number%&amp;gt;&amp;lt;/number&amp;gt;
 
 
-        &lt;% } %&gt;
-    </numbers>
-</root>
+    &amp;lt;% } %&amp;gt;
+&amp;lt;/numbers&amp;gt; &amp;lt;/root&amp;gt;
+</code></pre>
 
 <p>```</p>
 
@@ -3636,30 +3634,30 @@ XmlOutput xo = new XmlOutput()
 
 <p>```</p>
 
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <user>
-        <username>&lt;%=view.User.Username%&gt;</username>
-        <realname>&lt;%=view.User.RealName%&gt;</realname>
-        <description>&lt;%#view.User.Username%&gt;</description>
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;
+&lt;root&gt;
+    &lt;user&gt;
+        &lt;username&gt;&lt;%=view.User.Username%&gt;&lt;/username&gt;
+        &lt;realname&gt;&lt;%=view.User.RealName%&gt;&lt;/realname&gt;
+        &lt;description&gt;&lt;%#view.User.Username%&gt;&lt;/description&gt;</p>
 
-        <articles>
+<pre><code>    &amp;lt;articles&amp;gt;
 
-            &lt;% foreach (Article article in view.User.Articles) { %&gt;
-            <article id="&lt;%=article.Id%&gt;">&lt;%#article.Title%&gt;</article>
+        &amp;lt;% foreach (Article article in view.User.Articles) { %&amp;gt;
+        &amp;lt;article id="&lt;%=article.Id%&amp;gt;"&gt;&amp;lt;%#article.Title%&amp;gt;&amp;lt;/article&amp;gt;
 
-            &lt;% } %&gt;
-        </articles>
-        <hobbies>
-            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
+        &amp;lt;% } %&amp;gt;
+    &amp;lt;/articles&amp;gt;
+    &amp;lt;hobbies&amp;gt;
+        &amp;lt;% foreach (Hobby hobby in view.User.Hobbies) { %&amp;gt; 
 
-            <hobby>&lt;%#hobby.Name%&gt;</hobby>
+        &amp;lt;hobby&amp;gt;&amp;lt;%#hobby.Name%&amp;gt;&amp;lt;/hobby&amp;gt;
 
-            &lt;% } %&gt; 
+        &amp;lt;% } %&amp;gt; 
 
-        </hobbies>
-    </user>
-</root>
+    &amp;lt;/hobbies&amp;gt;
+&amp;lt;/user&amp;gt; &amp;lt;/root&amp;gt;
+</code></pre>
 
 <p>```</p>
 
@@ -3667,32 +3665,32 @@ XmlOutput xo = new XmlOutput()
 
 <p>```</p>
 
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <user>
-        <username>&lt;%=view.User.Username%&gt;</username>
-        <realname>&lt;%=view.User.RealName%&gt;</realname>
-        <description>&lt;%#view.User.Username%&gt;</description>
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;
+&lt;root&gt;
+    &lt;user&gt;
+        &lt;username&gt;&lt;%=view.User.Username%&gt;&lt;/username&gt;
+        &lt;realname&gt;&lt;%=view.User.RealName%&gt;&lt;/realname&gt;
+        &lt;description&gt;&lt;%#view.User.Username%&gt;&lt;/description&gt;</p>
 
-        <articles>
+<pre><code>    &amp;lt;articles&amp;gt;
 
-            &lt;% foreach (Article article in view.User.Articles) { %&gt;
+        &amp;lt;% foreach (Article article in view.User.Articles) { %&amp;gt;
 
-            <subview:article article="&lt;%=article%&gt;"></subview:article>
+        &amp;lt;subview:Article article="&lt;%=article%&amp;gt;"&gt;&amp;lt;/subview:Article&amp;gt;
 
 
-            &lt;% } %&gt;
-        </articles>
-        <hobbies>
-            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
+        &amp;lt;% } %&amp;gt;
+    &amp;lt;/articles&amp;gt;
+    &amp;lt;hobbies&amp;gt;
+        &amp;lt;% foreach (Hobby hobby in view.User.Hobbies) { %&amp;gt; 
 
-            <subview:hobby hobby="&lt;%=hobby%&gt;"></subview:hobby> 
+        &amp;lt;subview:Hobby hobby="&lt;%=hobby%&amp;gt;"&gt;&amp;lt;/subview:Hobby&amp;gt; 
 
-            &lt;% } %&gt; 
+        &amp;lt;% } %&amp;gt; 
 
-        </hobbies>
-    </user>
-</root>
+    &amp;lt;/hobbies&amp;gt;
+&amp;lt;/user&amp;gt; &amp;lt;/root&amp;gt;
+</code></pre>
 
 <p>```</p>
 
@@ -4141,7 +4139,7 @@ using System;using Castle.ActiveRecord;using Castle.ActiveRecord.Framework;using
 <p>and now you can do stuff like:</p>
 
 <p><code>
-using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&lt;Category&gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
+using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&amp;lt;Category&amp;gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
 </code></p>
 
 <p>Assuming Category has [ActiveRecord] mapping.</p>
@@ -4326,7 +4324,7 @@ using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContex
 <p>First we would create a base class for our controllers, with a TypedPropertyBag and TypedFlash properties:</p>
 
 <p><code>
-public abstract class Controller&lt;IView&gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
+public abstract class Controller&amp;lt;IView&amp;gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&amp;lt;IView&amp;gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&amp;lt;IView&amp;gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
 </code></p>
 
 <p>tip:</p>
@@ -4342,24 +4340,24 @@ public interface IStupidView{ Guid Id { get; set; }    string Name { get; set; }
 <p>controller:</p>
 
 <p><code>
-public class StupidController : Controller&lt;IStupidView&gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
+public class StupidController : Controller&amp;lt;IStupidView&amp;gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
 </code></p>
 
 <p>view (Index.aspx):</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;&lt;p&gt;&lt;%=view.Message %&gt;&lt;/p&gt;&lt;form action="DoStuff.rails"&gt;Name: &lt;input type="text" name="name" value="&lt;%= view.Name %&gt;" /&gt; &lt;br /&gt;password: &lt;input type="password" name="password" /&gt; &lt;br /&gt;&lt;input type="submit" /&gt;&lt;/form&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&amp;gt;" %&gt;&amp;lt;%%&amp;gt;&amp;lt;p&amp;gt;&amp;lt;%=view.Message %&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;form action="DoStuff.rails"&amp;gt;Name: &amp;lt;input type="text" name="name" value="&lt;%= view.Name %&amp;gt;" /&gt; &amp;lt;br /&amp;gt;password: &amp;lt;input type="password" name="password" /&amp;gt; &amp;lt;br /&amp;gt;&amp;lt;input type="submit" /&amp;gt;&amp;lt;/form&amp;gt;
 </code></p>
 
 <p>view (DoStuff.aspx):</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;The data was: &lt;br /&gt;Id: &lt;%= view.Id %&gt;, Name: &lt;%= view.Name %&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&amp;gt;" %&gt;&amp;lt;%%&amp;gt;The data was: &amp;lt;br /&amp;gt;Id: &amp;lt;%= view.Id %&amp;gt;, Name: &amp;lt;%= view.Name %&amp;gt;
 </code></p>
 
 <p>Look at the intellisense (and at my ultra-cool black color scheme):</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TypedViewPropertiesinMonoRailandAspView_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/typedviewpropertiesinmonorailandaspview_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
 
 <p>Things to notice:</p>
 
@@ -4370,7 +4368,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 <p>view (Index.aspx):</p>
 
 <p><code>
-&lt;aspview ... &gt;... &lt;reference assembly="AspViewTestSite.dll"/&gt;...&lt;/aspview&gt;
+&amp;lt;aspview ... &amp;gt;... &amp;lt;reference assembly="AspViewTestSite.dll"/&amp;gt;...&amp;lt;/aspview&amp;gt;
 </code></p>
 
 <ol>
@@ -4378,7 +4376,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 </ol>
 
 <p><code>
-...&lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&gt;(Properties); %&gt;...blah blah &lt;%=view.UsefulProperty %&gt;...
+...&amp;lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&amp;gt;(Properties); %&gt;...blah blah &amp;lt;%=view.UsefulProperty %&amp;gt;...
 </code></p>
 
 <p>Ok, cut the crap. where can I get it?</p>
@@ -5437,25 +5435,25 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>The views MUST have the following structure: a. Page header - Must be present for intellisense to work:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;
 </code></p>
 
 <p>b. Directives - Not mandatory:</p>
 
 <p><code>
-   1:  &lt;%@ Import Namespace="System.Text"%&gt;   2:  &lt;%@ Import Namespace="System.Drawing"%&gt;
+   1:  &amp;lt;%@ Import Namespace="System.Text"%&amp;gt;   2:  &amp;lt;%@ Import Namespace="System.Drawing"%&amp;gt;
 </code></p>
 
 <p>c. Properties decleration - Currently it’s mandatory. If you have no properties you mast have an empty block:</p>
 
 <p><code>
-   1:  &lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&gt;
+   1:  &amp;lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&amp;gt;
 </code></p>
 
 <p>or just</p>
 
 <p><code>
-   1:  &lt;%   2:  %&gt;
+   1:  &amp;lt;%   2:  %&amp;gt;
 </code></p>
 
 <p>d. View body</p>
@@ -5463,7 +5461,7 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>In a layout view you place the inner view using the ViewContents property, like this:</p>
 
 <p><code>
-   1:  blah   2:  blah   3:  &lt;%=ViewContents%&gt;   4:  blah   5:  blah
+   1:  blah   2:  blah   3:  &amp;lt;%=ViewContents%&amp;gt;   4:  blah   5:  blah
 </code></p>
 
 
@@ -5541,7 +5539,7 @@ So what is AspView?</p>
 <p>A little demo view:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;   2:  &lt;%   3:  string[] strings;   4:  %&gt;   5:     6:     7:  hello from index&lt;br /&gt;   8:  This are the strings:&lt;br /&gt;   9:  &lt;%foreach (string s in strings) { %&gt;  10:  &lt;%=s %&gt;&lt;br /&gt;  11:  &lt;%  } %&gt;  12:    13:  &lt;br /&gt;  14:  End of normal view  15:  &lt;br /&gt;  16:  &lt;% OutputSubView("Home/SubViewSample"); %&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;   2:  &amp;lt;%   3:  string[] strings;   4:  %&amp;gt;   5:     6:     7:  hello from index&amp;lt;br /&amp;gt;   8:  This are the strings:&amp;lt;br /&amp;gt;   9:  &amp;lt;%foreach (string s in strings) { %&amp;gt;  10:  &amp;lt;%=s %&amp;gt;&amp;lt;br /&amp;gt;  11:  &amp;lt;%  } %&amp;gt;  12:    13:  &amp;lt;br /&amp;gt;  14:  End of normal view  15:  &amp;lt;br /&amp;gt;  16:  &amp;lt;% OutputSubView("Home/SubViewSample"); %&amp;gt;
 </code></p>
 
 
@@ -5735,7 +5733,7 @@ So what is AspView?</p>
 </code></p>
 
 <p><code>
-   3:  return Execute&lt;Post&gt;("from Post p where p.Author = ?", authorName);
+   3:  return Execute&amp;lt;Post&amp;gt;("from Post p where p.Author = ?", authorName);
 </code></p>
 
 <p><code>
@@ -5745,7 +5743,7 @@ So what is AspView?</p>
 <p>Here is the magic:</p>
 
 <p><code>
-   1:  publicstatic T[] Execute&lt;T&gt;(string hql, paramsobject[] parameters)
+   1:  publicstatic T[] Execute&amp;lt;T&amp;gt;(string hql, paramsobject[] parameters)
 </code></p>
 
 <p><code>
@@ -5769,7 +5767,7 @@ So what is AspView?</p>
 </code></p>
 
 <p><code>
-   7:  for (int position = 0; position &lt; queryParams.Length; ++position)
+   7:  for (int position = 0; position &amp;lt; queryParams.Length; ++position)
 </code></p>
 
 <p><code>
@@ -5805,7 +5803,7 @@ So what is AspView?</p>
 <p>My options are:</p>
 
 <p><code>
-   1:  Execute&lt;T&gt;(string hql, 
+   1:  Execute&lt;T&amp;gt;(string hql, 
 </code></p>
 
 <p><code>
@@ -5823,13 +5821,13 @@ So what is AspView?</p>
 <p>Or:</p>
 
 <p><code>
-   1:  Execute&lt;T&gt;(string hql, IParameter[] parameters)
+   1:  Execute&amp;lt;T&amp;gt;(string hql, IParameter[] parameters)
 </code></p>
 
 <p>where IParameter definition is something like:</p>
 
 <p><code>
-   1:  publicinterface IParameter&lt;T&gt;
+   1:  publicinterface IParameter&amp;lt;T&amp;gt;
 </code></p>
 
 <p><code>
@@ -5961,20 +5959,20 @@ So what is AspView?</p>
 
 <p>Let’s look at the Type Hierarchy example, that can be found here.</p>
 
-<p>It shows an implementation of a class diagram that look a little bit like this:<img src="http://kenegozi.com/blog/uploaded/Company_Entity_Person_Class_Diagram.GIF" alt="Class Diagram" /></p>
+<p>It shows an implementation of a class diagram that look a little bit like this:<img src="http://kenegozi.com/blog/uploaded/company_entity_person_class_diagram.gif" alt="Class Diagram" /></p>
 
 <p>Let’s look at the code :
 [ActiveRecord(“entity”), JoinedBase]publicclassEntity : ActiveRecordBase{privateint _id;[PrimaryKey]publicint Id{get { return id; }set { id = value; }}}[ActiveRecord(“entitycompany”)]publicclassCompanyEntity : Entity{privateint comp_id;[JoinedKey(“comp_id”)]publicint CompId{get { return comp_id; }set { comp_id = value; }}}[ActiveRecord(“entityperson”)]publicclassPersonEntity : Entity{privateint person_id;[JoinedKey(“person_id”)]publicint PersonId{get { return person_id; }set { person_id = value; }}}
-But look what happens. since the Id property on entity is public and inherited to the subclasses, you get something like this:<img src="http://kenegozi.com/blog/uploaded/IdOrPersonId.GIF" alt="Should I use .Id or .PersonId?" /></p>
+But look what happens. since the Id property on entity is public and inherited to the subclasses, you get something like this:<img src="http://kenegozi.com/blog/uploaded/idorpersonid.gif" alt="Should I use .Id or .PersonId?" /></p>
 
 <p>So there is a duplicate field here !!!. and it’s not only a getter-setter thingie. It also have different private members.</p>
 
 <p>My solution for this is to virtualize the base Id, and protectedize (hehe) the _id member, like this:</p>
 
 <p>[ActiveRecord(“entity”), JoinedBase]publicclassEntity : ActiveRecordBase{protectedint _id;[PrimaryKey]publicvirtualint Id{get { return id; }set { id = value; }}}[ActiveRecord(“entitycompany”)]publicclassCompanyEntity : Entity{[JoinedKey(“comp_id”)]publicoverrideint Id{get { return _id; }set { _id = value; }}}[ActiveRecord(“entityperson”)]publicclassPersonEntity : Entity{[JoinedKey(“person_id”)]publicoverrideint Id{get { return _id; }set { _id = value; }}}
-Now it makes more sence:<img src="http://kenegozi.com/blog/uploaded/NowOnlyId.GIF" alt="I should use .Id" /></p>
+Now it makes more sence:<img src="http://kenegozi.com/blog/uploaded/nowonlyid.gif" alt="I should use .Id" /></p>
 
-<p>And before you hit me with a big stick - I do know of ActiveRecordBase<t> . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich</t></p>
+<p>And before you hit me with a big stick - I do know of ActiveRecordBase&lt;T&gt; . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich</p>
 
 
     </section>
@@ -6208,7 +6206,7 @@ Now it makes more sence:<img src="http://kenegozi.com/blog/uploaded/NowOnlyId.GI
 <p>So you’d like to have something like this:</p>
 
 <p><code>
-publicclass Manager&lt;T&gt;where T: struct OR string{...}
+publicclass Manager&amp;lt;T&amp;gt;where T: struct OR string{...}
 </code></p>
 
 <p>or maybe you’d like to handle objects and strings:</p>

@@ -343,14 +343,14 @@
 
 <p>```</p>
 
-<h3>Services</h3>
+<p>&lt;h3&gt;Services&lt;/h3&gt;</p>
 
 <p>&lt;% for (var ix=0; ix &lt; view.services.length; ++i) { %&gt;</p>
 
 <p>&lt;% var service = view.services[ix]; %&gt;</p>
 
-<p> &lt;%=service.name %&gt; </p>
-<p>&lt;% } %&gt;	</p>
+<p>&lt;p&gt; &lt;%=service.name %&gt; &lt;/p&gt;
+&lt;% } %&gt;	</p>
 
 <p>```</p>
 
@@ -599,7 +599,7 @@ hello Ken
 <p> </p>
 
 <p><code>
-var url = '&lt;%=viewData.returnUrl%&gt;';
+var url = '&amp;lt;%=viewData.returnUrl%&amp;gt;';
 </code></p>
 
 <p>or</p>
@@ -729,7 +729,7 @@ function validateMaxLength(elmId) {
 	var elementContent = element.value;
 	var elementContentLength = elementContent.length;</p>
 
-<pre><code>return elementContentLength &lt;= N; } ```
+<pre><code>return elementContentLength &amp;lt;= N; } ```
 </code></pre>
 
 <p>or something like that.</p>
@@ -753,7 +753,7 @@ one newline
 
 <p> </p>
 
-<p>When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to <br /> tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. </p>
+<p>When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to &lt;br/&gt; tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. </p>
 
 <p>Now the client side JS matched the server criteria. </p>
 
@@ -965,7 +965,7 @@ elementContent = elementContent.replace('\r\n','\n');
 
 <p> </p>
 
-<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Errorthecurrentwebsitesdeveloperisacompl_12E27/eb1345ee-9ea0-4d03-8cc1-95b53a5e3c2e.png" alt="image" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/errorthecurrentwebsitesdeveloperisacompl_12e27/eb1345ee-9ea0-4d03-8cc1-95b53a5e3c2e.png" alt="image" /></p>
 
 <p> </p>
 
@@ -976,12 +976,12 @@ elementContent = elementContent.replace('\r\n','\n');
 <p>The funniestsaddest thing is the source of this page:</p>
 
 <p><code>
-&lt;script language=&amp;quot;JavaScript&amp;quot;&gt; 
+&amp;lt;script language=&amp;quot;JavaScript&amp;quot;&amp;gt; 
 if (document.all) {
  document.writeln(...);}
 else {
- document.writeln(&amp;quot;&lt;p&gt;&lt;font color=\&amp;quot;#999999\&amp;quot;&gt;&lt;b&gt;Error ! The current browser is either too old or too modern (usind DOM document structure).&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&amp;quot;);}
-&lt;/script&gt; 
+ document.writeln(&amp;quot;&amp;lt;p&amp;gt;&amp;lt;font color=\&amp;quot;#999999\&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Error ! The current browser is either too old or too modern (usind DOM document structure).&amp;lt;/b&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/p&amp;gt;&amp;quot;);}
+&amp;lt;/script&amp;gt; 
 </code></p>
 
 <p> </p>
@@ -2758,7 +2758,7 @@ function extractFirstLevelTextFrom(elm) {
 
 <p>What should it do?</p>
 
-<p>I want to have a webpage, based on<a href="http://kenegozi.com/blog/uploaded/UpdatePanelTemplate.html">this template</a>, that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.</p>
+<p>I want to have a webpage, based on<a href="http://kenegozi.com/blog/uploaded/updatepaneltemplate.html">this template</a>, that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.</p>
 
 <p>You can leave the actual data retrieval to a simple method returning an array of string array, or you can go and implement a CodeSmith/DAAB/Whatever based supercool data access code. I would ignore it anyway. I want the Ajax stuff.</p>
 

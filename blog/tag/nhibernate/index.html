@@ -673,10 +673,10 @@ public class SqlLogFilter : IViewFilter
 				.Split(new[] {&amp;quot;NHibernate:&amp;quot;}, StringSplitOptions.RemoveEmptyEntries)
 				.Select(q =&gt; q.Trim());
 			log = queries
-				.Select(q =&gt; &amp;quot;&lt;pre&gt;&amp;quot; + q + &amp;quot;&lt;/pre&gt;&amp;quot;)
+				.Select(q =&gt; &amp;quot;&amp;lt;pre&amp;gt;&amp;quot; + q + &amp;quot;&amp;lt;/pre&amp;gt;&amp;quot;)
 				.Aggregate(&amp;quot;&amp;quot;, (q1, q2) =&gt; q1 + q2);
 			var count = queries.Count();
-			log = &amp;quot;&lt;p&gt;Queries: &amp;quot; + count + &amp;quot;&lt;/p&gt;&amp;quot; + log;
+			log = &amp;quot;&amp;lt;p&amp;gt;Queries: &amp;quot; + count + &amp;quot;&amp;lt;/p&amp;gt;&amp;quot; + log;
 		}
 		return input.Replace(SQL_LOG_PLACEHOLDER, log);
 	}
@@ -1109,8 +1109,8 @@ usingSystem.ComponentModel;</p>
 <p>mapping a field of type ModuleTypes will look like that:</p>
 
 <p><code>
-&lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
-              D9.NHibernate" /&gt;
+&amp;lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
+              D9.NHibernate" /&amp;gt;
 </code></p>
 
 <p>or if you use Castle ActiveRecord attributes for mapping:</p>
@@ -1635,9 +1635,9 @@ public virtual ModuleTypes ModuleType {get; set;}
 
 <p>```</p>
 
-<p>DetachedCriteria spec = DetachedCriteria.For<whadever>() ...; &lt;= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    ...; &lt;= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    ...; &lt;= setup the pagingICollection<whadever> stuff = whadeverRepository.FindAll(pagedCriteria);
+<p>DetachedCriteria spec = DetachedCriteria.For&lt;Whadever&gt;() …; &lt;= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    …; &lt;= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    …; &lt;= setup the pagingICollection&lt;Whadever&gt; stuff = whadeverRepository.FindAll(pagedCriteria);
 int total = whadeverRepository.Count(countCriteria);
-```</whadever></whadever></p>
+```</p>
 
 
     </section>
@@ -1703,9 +1703,9 @@ int total = whadeverRepository.Count(countCriteria);
 
 <p>…</p>
 
-<p>public ICollection<post> FindInArchive(int year, int month) { </post></p>
+<p>public ICollection&lt;Post&gt; FindInArchive(int year, int month) { </p>
 
-<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List<post>(); }</post></p>
+<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List&lt;Post&gt;(); }</p>
 
 <p>…</p>
 
@@ -1805,8 +1805,7 @@ int total = whadeverRepository.Count(countCriteria);
 
 <p>```</p>
 
-<configsections> <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" /></configsections>
-<log4net> <appender name="rollingFile" type="log4net.Appender.RollingFileAppender,log4net"> <param name="File" value="log.txt" /> <param name="AppendToFile" value="true" /> <param name="DatePattern" value="yyyy.MM.dd" /> <layout type="log4net.Layout.PatternLayout,log4net"> <conversionpattern value="%d %p %m%n" /> </layout> </appender> <logger name="NHibernate.SQL"> <level value="ALL" />    <appender-ref ref="rollingFile" />  </logger></log4net>
+<p>&lt;configSections&gt; &lt;section name=”log4net” type=”log4net.Config.Log4NetConfigurationSectionHandler,log4net” /&gt;&lt;/configSections&gt;&lt;log4net&gt; &lt;appender name=”rollingFile” type=”log4net.Appender.RollingFileAppender,log4net” &gt; &lt;param name=”File” value=”log.txt” /&gt; &lt;param name=”AppendToFile” value=”true” /&gt; &lt;param name=”DatePattern” value=”yyyy.MM.dd” /&gt; &lt;layout type=”log4net.Layout.PatternLayout,log4net”&gt; &lt;conversionPattern value=”%d %p %m%n” /&gt; &lt;/layout&gt; &lt;/appender&gt; &lt;logger name=”NHibernate.SQL”&gt; &lt;level value=”ALL” /&gt;    &lt;appender-ref ref=”rollingFile” /&gt;  &lt;/logger&gt;&lt;/log4net&gt;</p>
 
 <p>```</p>
 
@@ -2203,7 +2202,7 @@ log4net.Config.XmlConfigurator.Configure();
 
 <p>I tried Linq for SQL (on a VS C# 2008 Express Beta2). No designer. Hand coded the entity, and have used the attributes for mapping.</p>
 
-<p>First problem encountered: in order to make a column lazy, I need to change the underlying type to Link<myoriginaltype>, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.</myoriginaltype></p>
+<p>First problem encountered: in order to make a column lazy, I need to change the underlying type to Link&lt;MyOriginalType&gt;, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.</p>
 
 <p>Couldn’t yet find a way to actually lazy load that property once the instance has already been loaded.</p>
 
@@ -2283,7 +2282,7 @@ using System;using Castle.ActiveRecord;using Castle.ActiveRecord.Framework;using
 <p>and now you can do stuff like:</p>
 
 <p><code>
-using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&lt;Category&gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
+using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&amp;lt;Category&amp;gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
 </code></p>
 
 <p>Assuming Category has [ActiveRecord] mapping.</p>
@@ -2797,7 +2796,7 @@ Repository.Blog.FindOne(Where.Blog.Id == blogId)
 <p>Why? If we have a type Entity, that looks a bit like that:</p>
 
 <p><code>
-class Entity{ ... [HasMany ...] public IList&lt;Item&gt; Items ... [HasMany ...] public IList&lt;AnotherItem&gt; AnotherItems ... ...}
+class Entity{ ... [HasMany ...] public IList&amp;lt;Item&amp;gt; Items ... [HasMany ...] public IList&amp;lt;AnotherItem&amp;gt; AnotherItems ... ...}
 </code></p>
 
 <p>An eager fetch will do:</p>
@@ -3212,7 +3211,7 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 
 <p>And here’s my story.</p>
 
-<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/NHibernateCouldnotfindconstructorforinse_A7E6/Post-Comment-Stupid_erd_thumb%5B2%5D.gif" alt="" /></p>
+<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nhibernatecouldnotfindconstructorforinse_a7e6/post-comment-stupid_erd_thumb%5b2%5d.gif" alt="" /></p>
 
 <p>So I want to show the posts with the longest comments measured by the comment’s length. Stupid, huh? but it’s a demo only (I cannot expose the actual ERD). Let’s say I want the top 5.</p>
 
@@ -3269,11 +3268,11 @@ SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOI
 </code></p>
 
 <p><code>
-   3:      SimpleQuery&lt;PostProjection&gt; q =
+   3:      SimpleQuery&amp;lt;PostProjection&amp;gt; q =
 </code></p>
 
 <p><code>
-   4:  new SimpleQuery&lt;PostProjection&gt;(typeof(Post), @"
+   4:  new SimpleQuery&amp;lt;PostProjection&amp;gt;(typeof(Post), @"
 </code></p>
 
 <p><code>

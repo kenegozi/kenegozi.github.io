@@ -976,10 +976,10 @@ public class SqlLogFilter : IViewFilter
 				.Split(new[] {&amp;quot;NHibernate:&amp;quot;}, StringSplitOptions.RemoveEmptyEntries)
 				.Select(q =&gt; q.Trim());
 			log = queries
-				.Select(q =&gt; &amp;quot;&lt;pre&gt;&amp;quot; + q + &amp;quot;&lt;/pre&gt;&amp;quot;)
+				.Select(q =&gt; &amp;quot;&amp;lt;pre&amp;gt;&amp;quot; + q + &amp;quot;&amp;lt;/pre&amp;gt;&amp;quot;)
 				.Aggregate(&amp;quot;&amp;quot;, (q1, q2) =&gt; q1 + q2);
 			var count = queries.Count();
-			log = &amp;quot;&lt;p&gt;Queries: &amp;quot; + count + &amp;quot;&lt;/p&gt;&amp;quot; + log;
+			log = &amp;quot;&amp;lt;p&amp;gt;Queries: &amp;quot; + count + &amp;quot;&amp;lt;/p&amp;gt;&amp;quot; + log;
 		}
 		return input.Replace(SQL_LOG_PLACEHOLDER, log);
 	}
@@ -1925,21 +1925,21 @@ public interface IParameterBinder
     /// zero indicating whether the parameter can be bound successfully. The greater the value (points)
     /// the more successful the implementation indicates to the framework
     /// &lt;/summary&gt;
-    /// <param name="context" />The context.&lt;/param&gt;
-    /// <param name="controller" />The controller.&lt;/param&gt;
-    /// <param name="controllerContext" />The controller context.&lt;/param&gt;
-    /// <param name="parameterInfo" />The parameter info.&lt;/param&gt;
-    /// <returns></returns>
+    /// &lt;param name=”context”&gt;The context.&lt;/param&gt;
+    /// &lt;param name=”controller”&gt;The controller.&lt;/param&gt;
+    /// &lt;param name=”controllerContext”&gt;The controller context.&lt;/param&gt;
+    /// &lt;param name=”parameterInfo”&gt;The parameter info.&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
     int CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo);</p>
 
-<pre><code>/// &lt;summary&gt;
+<pre><code>/// &amp;lt;summary&amp;gt;
 /// Binds the specified parameters for the action.
-/// &lt;/summary&gt;
-/// &lt;param name="context"&gt;The context.&lt;/param&gt;
-/// &lt;param name="controller"&gt;The controller.&lt;/param&gt;
-/// &lt;param name="controllerContext"&gt;The controller context.&lt;/param&gt;
-/// &lt;param name="parameterInfo"&gt;The parameter info.&lt;/param&gt;
-/// &lt;returns&gt;&lt;/returns&gt;
+/// &amp;lt;/summary&amp;gt;
+/// &amp;lt;param name="context"&amp;gt;The context.&amp;lt;/param&amp;gt;
+/// &amp;lt;param name="controller"&amp;gt;The controller.&amp;lt;/param&amp;gt;
+/// &amp;lt;param name="controllerContext"&amp;gt;The controller context.&amp;lt;/param&amp;gt;
+/// &amp;lt;param name="parameterInfo"&amp;gt;The parameter info.&amp;lt;/param&amp;gt;
+/// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;
 object Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo); } ```
 </code></pre>
 
@@ -2236,7 +2236,7 @@ public void SomeAction([DataBind("User")] int age, [DataBind("User")] string nam
     
      <p>After making it build locally and reaching the conclusion that AspView builds correctly as part of the main Castle build , I’ve commited the changes to the repository, and the build server appear to agree with me:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Ididntbrakethebuild_D22C/c49d0e53-906c-49fa-9f00-1508189902d1.png" alt="Build_Succeded_on_the_build_server" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/ididntbrakethebuild_d22c/c49d0e53-906c-49fa-9f00-1508189902d1.png" alt="Build_Succeded_on_the_build_server" /></p>
 
 
     </section>
@@ -2275,12 +2275,12 @@ public void SomeAction([DataBind("User")] int age, [DataBind("User")] string nam
     
      <p>can you guess why this makes me happy?</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/BuildSucceededAhappyredscreen_C613/b7f64277-21b7-46e7-a831-112db41ae514.png" alt="Build_Succeded" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/buildsucceededahappyredscreen_c613/b7f64277-21b7-46e7-a831-112db41ae514.png" alt="Build_Succeded" /></p>
 
 <p>This is the output of building Castle’s trunk, both for .NET 3.5 and .NET 2.0, after inserting AspView into the core project. Took me a while as I had to:
 - Change the Xunit tests into NUnit - to match the runner     wasn’t too complicated, though I has to manually add [SetUp] and [TestFixture] everywhere, as they’re not needed in Xunit
 - Setting the correct Castle license snippet on every file
-- Making the build pass and run all the tests correctly.     now that was a royal PITA, as part of the tests include compiling view templates from source files, and copying files to the build folder using NANT is not simple, as the <copy> task flattens the source directory structure. For now I settled on specifying each views folder in the build file but Im looking at improving that bit.</copy></p>
+- Making the build pass and run all the tests correctly.     now that was a royal PITA, as part of the tests include compiling view templates from source files, and copying files to the build folder using NANT is not simple, as the &lt;copy&gt; task flattens the source directory structure. For now I settled on specifying each views folder in the build file but Im looking at improving that bit.</p>
 
 <p>So, soon enough (hopefully by the end of this day) you’d be able to see AspView on the build server.</p>
 
@@ -2366,7 +2366,6 @@ public void SomeAction([DataBind("User")] int age, [DataBind("User")] string nam
 
 <p>But as the action parameters binder is very smart, and easily extensible, it’s even nicer to just bind the posted data to a HttpPostedFile, using a FileBinder:</p>
 
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 <p>{% highlight c# %}
    1:  [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]   2:  publicclass FileBinderAttribute: Attribute, <strong>IParameterBinder</strong>   3:  {   4:  publicint CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)   5:      {   6:  var key = parameterInfo.Name;   7:  return context.Request.Files[key] != null ? 10 : 0;   8:      }   9:    10:  publicobject Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)  11:      {  12:  var key = parameterInfo.Name;  13:  return context.Request.Files[key] as HttpPostedFile;  14:      }  15:  }{% endhighlight %}</p>
 
@@ -2899,7 +2898,7 @@ D:\MyTools\StaticMapGenerator /site:D:\Dev\MySite
 <p>No I can do stuff like:</p>
 
 <p><code>
-&lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&gt;"&gt; &lt;/script&gt;&lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&gt;" /&gt;&lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&gt;
+&amp;lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&amp;gt;"&gt; &amp;lt;/script&amp;gt;&amp;lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&amp;gt;" /&gt;&amp;lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&amp;gt;
 </code></p>
 
 <p>How cool is that?</p>
@@ -2968,7 +2967,7 @@ public class GoogleAnalyticsComponent : ViewComponent{
 <p>Accompanied by the AnalyticsCode view template:</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %&gt;&lt;script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt; _uacct = "MY_URCHIN_CODE"; urchinTracker();&lt;/script&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %&amp;gt;&amp;lt;script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script type="text/javascript"&amp;gt; _uacct = "MY_URCHIN_CODE"; urchinTracker();&amp;lt;/script&amp;gt;
 </code></p>
 
 <p>, that can easily be extensible to set the urchin code with a parameter.</p>
@@ -3102,14 +3101,14 @@ public class GoogleAnalyticsComponent : ViewComponent{
     
      <p>I found out that on many occasions I use stuff like:</p>
 
-<p>```</p>
-<aspview:properties>string message = "";</aspview:properties>
-<p>```</p>
+<p><code>
+&amp;lt;aspview:properties&amp;gt;string message = "";&amp;lt;/aspview:properties&amp;gt;
+</code></p>
 
 <p>To avoid the need of:</p>
 
 <p><code>
-&lt;% = message ?? "" %&gt;
+&amp;lt;% = message ?? "" %&amp;gt;
 </code></p>
 
 <p>That’s it.</p>
@@ -3218,14 +3217,14 @@ public class GoogleAnalyticsComponent : ViewComponent{
 <p>and given those schematic templates:</p>
 
 <ul>
-  <li>(layouts\site.aspx):<img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/78a6d860-81fe-4660-af25-0e99db002a10.png" alt="SiteLayout" /></li>
-  <li>(layouts\admin.aspx)<img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/b49097cb-8d59-4cd2-a6cf-335efdc787d2.png" alt="AdminLayout" /></li>
-  <li>(users\index.aspx)<img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/c8f9a805-5caf-4448-82ad-1e30a5542230.png" alt="Index" /> </li>
+  <li>(layouts\site.aspx):<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/78a6d860-81fe-4660-af25-0e99db002a10.png" alt="SiteLayout" /></li>
+  <li>(layouts\admin.aspx)<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/b49097cb-8d59-4cd2-a6cf-335efdc787d2.png" alt="AdminLayout" /></li>
+  <li>(users\index.aspx)<img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/c8f9a805-5caf-4448-82ad-1e30a5542230.png" alt="Index" /> </li>
 </ul>
 
 <p>We’d get:</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/684e8604-0bdd-46be-b9fe-b6433e527f3a.png" alt="rendered view" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/684e8604-0bdd-46be-b9fe-b6433e527f3a.png" alt="rendered view" /></p>
 
 
     </section>
@@ -3271,13 +3270,13 @@ public class GoogleAnalyticsComponent : ViewComponent{
 <p>Given the following view template:</p>
 
 <p><code>
-&lt;%string markup = "&lt;span&gt;";%&gt;&lt;%=markup%&gt;&lt;%#markup%&gt;${markup}
+&amp;lt;%string markup = "&lt;span&amp;gt;";%&gt;&amp;lt;%=markup%&amp;gt;&amp;lt;%#markup%&amp;gt;${markup}
 </code></p>
 
 <p>The rendered output would be:</p>
 
 <p><code>
-&lt;span&gt;&amp;amp;lt;span&amp;amp;gt;&amp;amp;lt;span&amp;amp;gt;
+&amp;lt;span&amp;gt;&amp;amp;lt;span&amp;amp;gt;&amp;amp;lt;span&amp;amp;gt;
 </code></p>
 
 <p>Have fun.</p>
@@ -3337,7 +3336,7 @@ public string DoubleId(string s){ return s + s;}
 <p>Now you can put it directly in your view template, and this is how:</p>
 
 <p><code>
-&lt;script runat="server"&gt;public string DoubleId(string s){ return s + s;}&lt;/script&gt;Regular view code&lt;%=DoubleIt(view.Name) %&gt;
+&amp;lt;script runat="server"&amp;gt;public string DoubleId(string s){ return s + s;}&amp;lt;/script&amp;gt;Regular view code&amp;lt;%=DoubleIt(view.Name) %&amp;gt;
 </code></p>
 
 <p>Now the devil advocates would say that “Logic In View Is Evil”. And I would concur. But it’s not actually logic. It’s supposed to be used for view-related string manipulations and such. And anyway you can do Evil Deeds without it, too. And you don’t HAVE to use it if you don’t want to.</p>
@@ -3405,7 +3404,7 @@ public string DoubleId(string s){ return s + s;}
 <p>So, </p>
 
 <p><code>
-&lt;%="&lt;tag&gt;" %&gt; 
+&amp;lt;%="&lt;tag&amp;gt;" %&gt; 
 </code></p>
 
 <p>would output </p>
@@ -3417,32 +3416,25 @@ public string DoubleId(string s){ return s + s;}
 <p>While</p>
 
 <p><code>
-&lt;%=RawHtml("&lt;tag&gt;") %&gt;
+&amp;lt;%=RawHtml("&lt;tag&amp;gt;") %&gt;
 </code></p>
 
 <p>would output </p>
 
-<p>```</p>
-<tag>
-```
+<p><code>
+&amp;lt;tag&amp;gt;
+</code></p>
 
+<p>The only exception here is ViewContents on layouts. since the view contents is 99% of the times made of markup, so in the layout would still write:</p>
 
+<p><code>
+&amp;lt;%=ViewContents %&amp;gt; 
+</code></p>
 
-The only exception here is ViewContents on layouts. since the view contents is 99% of the times made of markup, so in the layout would still write:
+<p>All of that stuff is being implemented with AspView trunk (versions 1.0.4.x) that works with Castle trunk.</p>
 
-```
-&lt;%=ViewContents %&gt; 
-```
+<p>If anyone wishes me to bubble it down to the 1.0.3.x branch (for Castle RC3), please leave your comments here. Unless I’ll see that people actually want that I would probably not make the effort.</p>
 
-
-
-All of that stuff is being implemented with AspView trunk (versions 1.0.4.x) that works with Castle trunk.
-
-If anyone wishes me to bubble it down to the 1.0.3.x branch (for Castle RC3), please leave your comments here. Unless I'll see that people actually want that I would probably not make the effort.
-
-
-
-</tag>
 
     </section>
 
@@ -3507,10 +3499,9 @@ If anyone wishes me to bubble it down to the 1.0.3.x branch (for Castle RC3), pl
 
 <p>You can, ofcourse declare it on every view:</p>
 
-<p>```</p>
-<aspview:parameters>&lt;%SuperCoolHelper SuperCoolHelper;%&gt;</aspview:parameters>
-<p>&lt;%=MyCoolHelper.CoolStuff() %&gt;
-```</p>
+<p><code>
+&amp;lt;aspview:parameters&amp;gt;&amp;lt;%SuperCoolHelper SuperCoolHelper;%&amp;gt;&amp;lt;/aspview:parameters&amp;gt;&amp;lt;%=MyCoolHelper.CoolStuff() %&amp;gt;
+</code></p>
 
 <p>You can also use the DictionaryAdapter and add the helper to the base view interface:</p>
 
@@ -3518,7 +3509,7 @@ If anyone wishes me to bubble it down to the 1.0.3.x branch (for Castle RC3), pl
 
 <p>public interface IView{ SuperCoolHelper SuperCoolHelper { get; set; }}</p>
 
-<p>…&lt;% Page Language=”C#” Inherits=”Castle.MonoRail.Views.AspView.ViewAtDesignTime<iview>" %&gt;</iview></p>
+<p>…&lt;% Page Language=”C#” Inherits=”Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IView&gt;” %&gt;</p>
 
 <p>…&lt;%=view.MyCoolHelper.CoolStuff() %&gt;</p>
 
@@ -3541,14 +3532,14 @@ public class MyViewAtDesignTime : ViewAtDesignTime{ SuperCoolHelper SuperCoolHel
 <p>and in the view:</p>
 
 <p><code>
-&lt;% Page Language="C#" Inherits="MyViewAtDesignTime" %&gt;...&lt;%=MyCoolHelper.CoolStuff() %&gt;
+&amp;lt;% Page Language="C#" Inherits="MyViewAtDesignTime" %&amp;gt;...&amp;lt;%=MyCoolHelper.CoolStuff() %&amp;gt;
 </code></p>
 
 <p>You can mix that with the DictionaryAdapter integration:</p>
 
 <p>```
-&lt;% Page Language=”C#” Inherits=”MyViewAtDesignTime<ipostview>" %&gt;...
-&lt;%=MyCoolHelper.CoolStuff(view.Post.Title) %&gt;</ipostview></p>
+&lt;% Page Language=”C#” Inherits=”MyViewAtDesignTime&lt;IPostView&gt;” %&gt;…
+&lt;%=MyCoolHelper.CoolStuff(view.Post.Title) %&gt;</p>
 
 <p>```</p>
 
@@ -3854,18 +3845,14 @@ public interface IContentItem{ public string Markup { get; }}
 <p>your view would look like:</p>
 
 <p>```
-…</p>
-<h3>Preview:</h3>
-<div>&lt;%=view.ContentItem.Markup %&gt; </div>
-<h3>Source:</h3>
-<div>&lt;%=Helpers.Html.HtmlEncode(view.ContentItem.Markup) %&gt; </div>
-<p>…</p>
+…
+&lt;h3&gt;Preview:&lt;/h3&gt;&lt;div&gt;&lt;%=view.ContentItem.Markup %&gt; &lt;/div&gt;&lt;h3&gt;Source:&lt;/h3&gt;&lt;div&gt;&lt;%=Helpers.Html.HtmlEncode(view.ContentItem.Markup) %&gt; &lt;/div&gt;…</p>
 
 <p>```</p>
 
 <p>easy enough.</p>
 
-<p>However, what if the piece of markup that you want to show, has some view-logic, so you have a template generating the markup from an entity? For example, this blog has a view “Posts/One” that gets a Post entity, and fits it into a single post markup, putting the title in a &lt;h4&gt;, tags in <span> with theit title and href, etc.</span></p>
+<p>However, what if the piece of markup that you want to show, has some view-logic, so you have a template generating the markup from an entity? For example, this blog has a view “Posts/One” that gets a Post entity, and fits it into a single post markup, putting the title in a &lt;h4&gt;, tags in &lt;span&gt; with theit title and href, etc.</p>
 
 <p>How can you show the markup source for that?</p>
 
@@ -3882,7 +3869,7 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>and in the view:</p>
 
 <p><code>
-...&lt;% foreach (Post post in view.Posts) { %&gt;&lt;h3&gt;Preview:&lt;/h3&gt;&lt;subview:.Posts.One post="&lt;%=post %&gt;" &gt; &lt;/subview:.Posts.One&gt;&lt;h3&gt;Source:&lt;/h3&gt;&lt;filter:HtmlEncode&gt; &lt;subview:.Posts.One post="&lt;%=post %&gt;" &gt; &lt;/subview:.Posts.One&gt;&lt;/filter:HtmlEncode&gt;&lt;% } %&gt;
+...&amp;lt;% foreach (Post post in view.Posts) { %&amp;gt;&amp;lt;h3&amp;gt;Preview:&amp;lt;/h3&amp;gt;&amp;lt;subview:.Posts.One post="&lt;%=post %&amp;gt;" &gt; &amp;lt;/subview:.Posts.One&amp;gt;&amp;lt;h3&amp;gt;Source:&amp;lt;/h3&amp;gt;&amp;lt;filter:HtmlEncode&amp;gt; &amp;lt;subview:.Posts.One post="&lt;%=post %&amp;gt;" &gt; &amp;lt;/subview:.Posts.One&amp;gt;&amp;lt;/filter:HtmlEncode&amp;gt;&amp;lt;% } %&amp;gt;
 </code></p>
 
 <p>Hey - you won’t even need to create that filter. AspView is supplied with four basic (however useful) filters:</p>
@@ -3955,7 +3942,7 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 - Since I am not at kinder garden, I do not “play” with setting up new projects. When I start a new project, it would probably last for quite some time. So the time it takes me to copy&amp;paste a minimal web.config, setup a few lines in global.asax.cs, add references and create Controllers and Views folders, costs me about 5 minutes of the global project costs.I can live with that.
 - Shame. However, I can add them to my initial web.config/global.asax.cs files that I use as templates for new projects. Again - one-time cost, and not a price-i one.
 - I do not want to use those. Didn’t use them even when I was doing WebForms. I’m happy enough with ViewComponents, SubViews and ViewFilters, and I can easily use any cool 3rd party JS controllers (YUI/Dojo/jQuery/ExtJs/Moo/You-Name-It)
-- Again - I do not trust WYSIWYG generated markup. It might be good enough for the texts on my personal blog (dear Windows Live Writer - can’t you <br /> instead of <br />? what’s the deal). It is definitely not good enough for any production level web site.</p>
+- Again - I do not trust WYSIWYG generated markup. It might be good enough for the texts on my personal blog (dear Windows Live Writer - can’t you &lt;br /&gt; instead of &lt;br&gt;? what’s the deal). It is definitely not good enough for any production level web site.</p>
 
 <p>So - all the downsides are taken care of.</p>
 
@@ -4007,22 +3994,22 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>in the layout:</p>
 
 <p><code>
-...&lt;%=CapturedContent %&gt;...
+...&amp;lt;%=CapturedContent %&amp;gt;...
 </code></p>
 
 <p>in the view:</p>
 
 <p><code>
-...&lt;component:CaptureFor id="CapturedContent"&gt; Some markup &lt;component:SomeFancyStuff&gt;Fancy component content&lt;/component:SomeFancyStuff&gt;&lt;/component:CaptureFor&gt;
+...&amp;lt;component:CaptureFor id="CapturedContent"&amp;gt; Some markup &amp;lt;component:SomeFancyStuff&amp;gt;Fancy component content&amp;lt;/component:SomeFancyStuff&amp;gt;&amp;lt;/component:CaptureFor&amp;gt;
 </code></p>
 
 <p>While working on that, I found out yet another problem. nested components of same type would brake</p>
 
 <p>so:</p>
 
-<p>```</p>
-<component:bold><component:bold>stuff</component:bold></component:bold>
-<p>```</p>
+<p><code>
+&amp;lt;component:Bold&amp;gt;&amp;lt;component:Bold&amp;gt;stuff&amp;lt;/component:Bold&amp;gt;&amp;lt;/component:Bold&amp;gt;
+</code></p>
 
 <p>would brake.</p>
 
@@ -4226,13 +4213,13 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>View sources files used to look like this:</p>
 
 <p><code>
-&lt;%Page Language= ... %&gt;&lt;% int someProperty;%&gt;... rest of view ...
+&amp;lt;%Page Language= ... %&amp;gt;&amp;lt;% int someProperty;%&amp;gt;... rest of view ...
 </code></p>
 
 <p>The problem was that if you had no properties (or have used the DictionaryAdpater option <a href="http://kenegozi.com/Blog/2007/10/17/typed-view-properties-in-monorail-and-aspview.aspx">described here</a>) then you had to have an empty section, like:</p>
 
 <p><code>
-&lt;%Page Language= ... %&gt;&lt;%%&gt;... rest of view ...
+&amp;lt;%Page Language= ... %&amp;gt;&amp;lt;%%&amp;gt;... rest of view ...
 </code></p>
 
 <p>Which is quite ugly.</p>
@@ -4242,7 +4229,7 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>The new syntax (new stuff in <strong>Bold Italic Font</strong>):</p>
 
 <p><code>
-&lt;%Page Language= ... %&gt;**&lt;aspView:properties&gt;**&lt;% int someProperty;%&gt;**&lt;/aspView:properties&gt;**... rest of view ...
+&amp;lt;%Page Language= ... %&amp;gt;**&amp;lt;aspView:properties&amp;gt;**&amp;lt;% int someProperty;%&amp;gt;**&amp;lt;/aspView:properties&amp;gt;**... rest of view ...
 </code></p>
 
 <p>You can download the new binaries, and a utility to migrate your existing views to the new syntax, from <a href="http://www.aspview.com">http://www.aspview.com</a></p>
@@ -4287,13 +4274,13 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>View sources files used to look like this:</p>
 
 <p><code>
-&lt;%Page Language= ... %&gt;... blah blah ...&lt;subview:whatever name="value"&gt;&lt;/subview:whatever&gt;
+&amp;lt;%Page Language= ... %&amp;gt;... blah blah ...&amp;lt;subview:whatever name="value"&amp;gt;&amp;lt;/subview:whatever&amp;gt;
 </code></p>
 
 <p>The problem was thatyou could only have passed variables (byname), so if you needed to pass a string literal you had to declare a string object with the literal:</p>
 
 <p><code>
-&lt;%Page Language= ... %&gt;... blah blah ...&lt;%string value="literal";  %&gt;&lt;subview:whatever name="value"&gt;&lt;/subview:whatever&gt;
+&amp;lt;%Page Language= ... %&amp;gt;... blah blah ...&amp;lt;%string value="literal";  %&amp;gt;&amp;lt;subview:whatever name="value"&amp;gt;&amp;lt;/subview:whatever&amp;gt;
 </code></p>
 
 <p>The new syntax follows the syntax for view components, and also the expected scripting syntax.</p>
@@ -4301,7 +4288,7 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>so now:</p>
 
 <p><code>
-&lt;%Page Language= ... %&gt;&lt;%%&gt;&lt;subview:whatever name="mike" age="&lt;%=30%&gt;" currentItem="&lt;%=item%&gt;"&gt;&lt;/subview:whatever&gt;
+&amp;lt;%Page Language= ... %&amp;gt;&amp;lt;%%&amp;gt;&amp;lt;subview:whatever name="mike" age="&lt;%=30%&amp;gt;" currentItem="&amp;lt;%=item%&amp;gt;"&gt;&amp;lt;/subview:whatever&amp;gt;
 </code></p>
 
 <p>would pass the string literal <strong>“mike”</strong> to <strong>name</strong>, the int constant <strong>30</strong> to <strong>age</strong>, and the object <strong>item</strong> to <strong>currentItem</strong>.</p>
@@ -4425,7 +4412,7 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 <p>First we would create a base class for our controllers, with a TypedPropertyBag and TypedFlash properties:</p>
 
 <p><code>
-public abstract class Controller&lt;IView&gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
+public abstract class Controller&amp;lt;IView&amp;gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&amp;lt;IView&amp;gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&amp;lt;IView&amp;gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
 </code></p>
 
 <p>tip:</p>
@@ -4441,24 +4428,24 @@ public interface IStupidView{ Guid Id { get; set; }    string Name { get; set; }
 <p>controller:</p>
 
 <p><code>
-public class StupidController : Controller&lt;IStupidView&gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
+public class StupidController : Controller&amp;lt;IStupidView&amp;gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
 </code></p>
 
 <p>view (Index.aspx):</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;&lt;p&gt;&lt;%=view.Message %&gt;&lt;/p&gt;&lt;form action="DoStuff.rails"&gt;Name: &lt;input type="text" name="name" value="&lt;%= view.Name %&gt;" /&gt; &lt;br /&gt;password: &lt;input type="password" name="password" /&gt; &lt;br /&gt;&lt;input type="submit" /&gt;&lt;/form&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&amp;gt;" %&gt;&amp;lt;%%&amp;gt;&amp;lt;p&amp;gt;&amp;lt;%=view.Message %&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;form action="DoStuff.rails"&amp;gt;Name: &amp;lt;input type="text" name="name" value="&lt;%= view.Name %&amp;gt;" /&gt; &amp;lt;br /&amp;gt;password: &amp;lt;input type="password" name="password" /&amp;gt; &amp;lt;br /&amp;gt;&amp;lt;input type="submit" /&amp;gt;&amp;lt;/form&amp;gt;
 </code></p>
 
 <p>view (DoStuff.aspx):</p>
 
 <p><code>
-&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;The data was: &lt;br /&gt;Id: &lt;%= view.Id %&gt;, Name: &lt;%= view.Name %&gt;
+&amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&amp;gt;" %&gt;&amp;lt;%%&amp;gt;The data was: &amp;lt;br /&amp;gt;Id: &amp;lt;%= view.Id %&amp;gt;, Name: &amp;lt;%= view.Name %&amp;gt;
 </code></p>
 
 <p>Look at the intellisense (and at my ultra-cool black color scheme):</p>
 
-<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TypedViewPropertiesinMonoRailandAspView_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
+<p><img src="http://kenegozi.com/blog/uploaded/windowslivewriter/typedviewpropertiesinmonorailandaspview_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
 
 <p>Things to notice:</p>
 
@@ -4469,7 +4456,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 <p>view (Index.aspx):</p>
 
 <p><code>
-&lt;aspview ... &gt;... &lt;reference assembly="AspViewTestSite.dll"/&gt;...&lt;/aspview&gt;
+&amp;lt;aspview ... &amp;gt;... &amp;lt;reference assembly="AspViewTestSite.dll"/&amp;gt;...&amp;lt;/aspview&amp;gt;
 </code></p>
 
 <ol>
@@ -4477,7 +4464,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 </ol>
 
 <p><code>
-...&lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&gt;(Properties); %&gt;...blah blah &lt;%=view.UsefulProperty %&gt;...
+...&amp;lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&amp;gt;(Properties); %&gt;...blah blah &amp;lt;%=view.UsefulProperty %&amp;gt;...
 </code></p>
 
 <p>Ok, cut the crap. where can I get it?</p>
@@ -4863,7 +4850,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
     <p>We can override the “default” render of the controls via sections in the markup (define sections will override it). <strong>(dude - It’s a component, not a control;) )</strong></p>
   </li>
   <li>
-    <p>Egozi uses prototype (pasha as well?) as ajax framework. For Ajax – call CancelLayout method and RenderView(“name_of_view”). This is called SubView and we use it in the markup with <subview:name_of_view></subview:name_of_view>. <strong>(Actually I tend to use prototype as a Javascript enhancement, where needed. If only ‘ajax’ calls are needed, jQuery or YAHOO.connection would be a better lightweight solution)</strong></p>
+    <p>Egozi uses prototype (pasha as well?) as ajax framework. For Ajax – call CancelLayout method and RenderView(“name_of_view”). This is called SubView and we use it in the markup with &lt;subView:name_of_view /&gt;. <strong>(Actually I tend to use prototype as a Javascript enhancement, where needed. If only ‘ajax’ calls are needed, jQuery or YAHOO.connection would be a better lightweight solution)</strong></p>
   </li>
   <li>
     <p>We can use the Cache attribute (MonoRail) over the controller method (aka “Action”) in order to avoid cacheability of urls (like Response.Exired = DateTime.Now.AddDays(-1) or something like this). <strong>(You can also use Response.Cache as before, the attribute makes our code nicer)</strong></p>
@@ -4989,7 +4976,7 @@ public class StupidController : Controller&lt;IStupidView&gt;{    public void In
 
 <p>The code shown was from going-ddd branch.</p>
 
-<p>bad name btw, as the model is too simple for DDD, and I also violate it from time to time … (Repository<comment> ...)</comment></p>
+<p>bad name btw, as the model is too simple for DDD, and I also violate it from time to time … (Repository&lt;Comment&gt; …)</p>
 
 
     </section>
@@ -5164,38 +5151,38 @@ publicclassGourmetController : SmartDispatcherController
 &lt;%
     IDictionary @checked = DictHelper.CreateDict(“checked=’checked’”);
 %&gt;
-&lt;formaction=”Update.aspx”method=”post”&gt;</p>
-<table>
-<tr>
-<th>Food Name</th>
-<th>Cabarnet</th>
-<th>Zinfandel</th>
-<th>Pinot</th>
-</tr>
+&lt;formaction=”Update.aspx”method=”post”&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;Food Name&lt;/th&gt;
+&lt;th&gt;Cabarnet&lt;/th&gt;
+&lt;th&gt;Zinfandel&lt;/th&gt;
+&lt;th&gt;Pinot&lt;/th&gt;
+&lt;/tr&gt;
 &lt;%int i = 0; %&gt;
 &lt;%foreach (FoodAndWineMatch match in matches)  { %&gt;
-<tr>
-<td>
-<span>&lt;%=match.FoodName%&gt;</span>
-&lt;inputtype="hidden"name="matches[&lt;%=i%&gt;].FoodName"value="&lt;%=matches[i].FoodName%&gt;"/&gt;
-</td>
-<td>
-&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesCabarnet", matches[i].MatchesCabarnet?@checked:null)%&gt;
-</td>
-<td>
-&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesZinfandel", matches[i].MatchesZinfandel?@checked:null)%&gt;
-</td>
-<td>
-&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesPinot", matches[i].MatchesPinot?@checked:null)%&gt;
-</td>
-</tr>&lt;%++i; } %&gt;
-<tr>
-&lt;tdcolspan="4"&gt;
-&lt;inputtype="submit"value="Save"/&gt;
-
-</tr>
-</table>
-<p>&lt;/form&gt;</p>
+&lt;tr&gt;
+&lt;td&gt;
+&lt;span&gt;&lt;%=match.FoodName%&gt;&lt;/span&gt;
+&lt;inputtype=”hidden”name=”matches[&lt;%=i%&gt;].FoodName”value=”&lt;%=matches[i].FoodName%&gt;”/&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField(“matches[” + i + “].MatchesCabarnet”, matches[i].MatchesCabarnet?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField(“matches[” + i + “].MatchesZinfandel”, matches[i].MatchesZinfandel?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField(“matches[” + i + “].MatchesPinot”, matches[i].MatchesPinot?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;%++i; } %&gt;
+&lt;tr&gt;
+&lt;tdcolspan=”4”&gt;
+&lt;inputtype=”submit”value=”Save”/&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;</p>
 
 <p>```</p>
 
@@ -5538,8 +5525,8 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 <p>example:</p>
 
 <p><code>
-&lt;%
- int? someInt = default(int);%&gt;
+&amp;lt;%
+ int? someInt = default(int);%&amp;gt;
 </code></p>
 
 <p><code>
@@ -5547,7 +5534,7 @@ some markup
 </code></p>
 
 <p><code>
-&lt;% if (someInt == default(int)) DoSomething();%&gt;
+&amp;lt;% if (someInt == default(int)) DoSomething();%&amp;gt;
 </code></p>
 
 <p>it happened because of the way GetParameter worked </p>
@@ -6055,7 +6042,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
 <p>You enable the feature by adding the next attribure to the aspview config section in web.config:</p>
 
 <p><code>
-&lt;aspview .... autoRecompilation="true" ... &gt; ...&lt;/aspview&gt;
+&amp;lt;aspview .... autoRecompilation="true" ... &amp;gt; ...&amp;lt;/aspview&amp;gt;
 </code></p>
 
 <p>Breaking change:</p>
@@ -6063,7 +6050,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
 <p>If you happen to reference an assembly from the GAC (using the aspview configuration in the web.config) you need to add a hint for the engine, like this:</p>
 
 <p><code>
-&lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&gt;
+&amp;lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&amp;gt;
 </code></p>
 
 <p>Known issues:</p>
@@ -6077,7 +6064,7 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
   </li>
 </ol>
 
-<p>Download from <a href="http://kenegozi.com/blog/uploaded/AspView_0_7_178.zip">here</a>.</p>
+<p>Download from <a href="http://kenegozi.com/blog/uploaded/aspview_0_7_178.zip">here</a>.</p>
 
 <p>Sources are <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">here</a>.</p>
 
@@ -6359,33 +6346,30 @@ However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disab
 
 <p>The syntax for the ViewComponents is xml-like: just add</p>
 
-<p>```</p>
-<component:viewcomponentnamearguments><section:sectionname></section:sectionname>Some content  
-```
+<p><code>
+&amp;lt;component:VIEWCOMPONENTNAMEARGUMENTS&amp;gt;&amp;lt;section:SECTIONNAME&amp;gt;&amp;lt;/section:SECTIONNAME&amp;gt;Some content  &amp;lt;/component:VIEWCOMPONENTNAME&amp;gt;
+</code></p>
 
-where VIEWCOMPONENTNAME is the component's class name, SECTIONNAME is the section name, for components that uses sections, and the ARGUMENTS are xml-attributes, for example: id="capturedContent" myData="&lt;%=items %&gt;"
+<p>where VIEWCOMPONENTNAME is the component’s class name, SECTIONNAME is the section name, for components that uses sections, and the ARGUMENTS are xml-attributes, for example: id=”capturedContent” myData=”&lt;%=items %&gt;”</p>
 
-examples (from the test site):
+<p>examples (from the test site):</p>
 
-for constant arguments:
+<p>for constant arguments:</p>
 
-```
-&lt;component:CaptureForid="capturedContent"&gt;   This content should be rendered in the captured-for place holder  
-```
+<p><code>
+&amp;lt;component:CaptureForid="capturedContent"&amp;gt;   This content should be rendered in the captured-for place holder  &amp;lt;/component:CaptureFor&amp;gt;
+</code></p>
 
-for variable arguments:
+<p>for variable arguments:</p>
 
-```
-&lt;component:GridComponentsource="&lt;%=items%&gt;"&gt;    <section:header><table><thead><th>Id</th><th>Word</th></thead><section:item><tr><td>1</td><td>&lt;%=item %&gt; </td></tr></section:item><section:footer></section:footer>
-```
+<p><code>
+&amp;lt;component:GridComponentsource="&lt;%=items%&amp;gt;"&gt;    &amp;lt;section:header&amp;gt;&amp;lt;table&amp;gt;&amp;lt;thead&amp;gt;&amp;lt;th&amp;gt;Id&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;Word&amp;lt;/th&amp;gt;&amp;lt;/thead&amp;gt;&amp;lt;/section:header&amp;gt;&amp;lt;section:item&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;%=item %&amp;gt; &amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/section:item&amp;gt;&amp;lt;section:footer&amp;gt;&amp;lt;/table&amp;gt;&amp;lt;/section:footer&amp;gt;&amp;lt;/component:GridComponent&amp;gt;
+</code></p>
 
-As usual, source code is at [http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/](http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/), 
+<p>As usual, source code is at <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/</a>, </p>
 
-Note that for a successful build you'd need to fix the siteRoot parameter in vcompils's app.config, to point to the actual physical path to the test site's root
+<p>Note that for a successful build you’d need to fix the siteRoot parameter in vcompils’s app.config, to point to the actual physical path to the test site’s root</p>
 
-
-
-</table></section:header></component:viewcomponentnamearguments>
 
     </section>
 
@@ -6505,10 +6489,10 @@ Note that for a successful build you'd need to fix the siteRoot parameter in vco
 <p>example: </p>
 
 <p><code>
-&lt;%@PageLanguage="C#"Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;  &lt;%  %&gt;  Outside the filter  &lt;filter:LowerCase&gt;Inside the LowerCaseViewFilter - this text should be viewed in lower case&lt;/filter:LowerCase&gt;  Outside the filter AGain  &lt;filter:UpperCase&gt;  Inside the UpperCaseViewFilter - this text should be viewed in upper case  &lt;/filter:UpperCase&gt;  Finally - outside the filter
+&amp;lt;%@PageLanguage="C#"Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;  &amp;lt;%  %&amp;gt;  Outside the filter  &amp;lt;filter:LowerCase&amp;gt;Inside the LowerCaseViewFilter - this text should be viewed in lower case&amp;lt;/filter:LowerCase&amp;gt;  Outside the filter AGain  &amp;lt;filter:UpperCase&amp;gt;  Inside the UpperCaseViewFilter - this text should be viewed in upper case  &amp;lt;/filter:UpperCase&amp;gt;  Finally - outside the filter
 </code></p>
 
-<p>As you can see, the syntax is simple. Given a viewFilter, named “MyViewFilter”, you use the xml tag <filter:my> or <filter:myviewfilter>. The viewfilter itself has to be suffixed with "ViewFilter" (Just like Controllers are suffixed with "Controller", etc.), and it has to implement IViewFilter which is defined with:</filter:myviewfilter></filter:my></p>
+<p>As you can see, the syntax is simple. Given a viewFilter, named “MyViewFilter”, you use the xml tag &lt;filter:my&gt; or &lt;filter:myViewFilter&gt;. The viewfilter itself has to be suffixed with “ViewFilter” (Just like Controllers are suffixed with “Controller”, etc.), and it has to implement IViewFilter which is defined with:</p>
 
 <p><code>
 using System;using System.Collections.Generic;  using System.Text;    namespace Castle.MonoRail.Views.AspView  {publicinterfaceIViewFilter     {string ApplyOn(string input);         }}  
@@ -6634,16 +6618,16 @@ using System;using System.Collections.Generic;  using System.Text;    namespace 
 <p>you can use </p>
 
 <p><code>
-   1:  &lt;subView:MyMenu item="menuItem"&gt;&lt;/subView:MyMenu&gt;
+   1:  &amp;lt;subView:MyMenu item="menuItem"&amp;gt;&amp;lt;/subView:MyMenu&amp;gt;
 </code></p>
 
 <p>instead of </p>
 
 <p><code>
-   1:  &lt;% OutputSubView("MyMenu", Helper.Dict("item", "menuItem")); %&gt;
+   1:  &amp;lt;% OutputSubView("MyMenu", Helper.Dict("item", "menuItem")); %&amp;gt;
 </code></p>
 
-<p>take note the <subview:blah></subview:blah> is not currently allowed. I’ll fix it shortly.</p>
+<p>take note the &lt;subView:Blah /&gt; is not currently allowed. I’ll fix it shortly.</p>
 
 <p>the link is <a href="http://kenegozi.com/blog/GetFile.ashx?FileName=AspView_rev47.zip">here</a></p>
 
@@ -6916,25 +6900,25 @@ using System;using System.Collections.Generic;  using System.Text;    namespace 
 <p>The views MUST have the following structure: a. Page header - Must be present for intellisense to work:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;
 </code></p>
 
 <p>b. Directives - Not mandatory:</p>
 
 <p><code>
-   1:  &lt;%@ Import Namespace="System.Text"%&gt;   2:  &lt;%@ Import Namespace="System.Drawing"%&gt;
+   1:  &amp;lt;%@ Import Namespace="System.Text"%&amp;gt;   2:  &amp;lt;%@ Import Namespace="System.Drawing"%&amp;gt;
 </code></p>
 
 <p>c. Properties decleration - Currently it’s mandatory. If you have no properties you mast have an empty block:</p>
 
 <p><code>
-   1:  &lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&gt;
+   1:  &amp;lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&amp;gt;
 </code></p>
 
 <p>or just</p>
 
 <p><code>
-   1:  &lt;%   2:  %&gt;
+   1:  &amp;lt;%   2:  %&amp;gt;
 </code></p>
 
 <p>d. View body</p>
@@ -6942,7 +6926,7 @@ using System;using System.Collections.Generic;  using System.Text;    namespace 
 <p>In a layout view you place the inner view using the ViewContents property, like this:</p>
 
 <p><code>
-   1:  blah   2:  blah   3:  &lt;%=ViewContents%&gt;   4:  blah   5:  blah
+   1:  blah   2:  blah   3:  &amp;lt;%=ViewContents%&amp;gt;   4:  blah   5:  blah
 </code></p>
 
 
@@ -7020,7 +7004,7 @@ So what is AspView?</p>
 <p>A little demo view:</p>
 
 <p><code>
-   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;   2:  &lt;%   3:  string[] strings;   4:  %&gt;   5:     6:     7:  hello from index&lt;br /&gt;   8:  This are the strings:&lt;br /&gt;   9:  &lt;%foreach (string s in strings) { %&gt;  10:  &lt;%=s %&gt;&lt;br /&gt;  11:  &lt;%  } %&gt;  12:    13:  &lt;br /&gt;  14:  End of normal view  15:  &lt;br /&gt;  16:  &lt;% OutputSubView("Home/SubViewSample"); %&gt;
+   1:  &amp;lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&amp;gt;   2:  &amp;lt;%   3:  string[] strings;   4:  %&amp;gt;   5:     6:     7:  hello from index&amp;lt;br /&amp;gt;   8:  This are the strings:&amp;lt;br /&amp;gt;   9:  &amp;lt;%foreach (string s in strings) { %&amp;gt;  10:  &amp;lt;%=s %&amp;gt;&amp;lt;br /&amp;gt;  11:  &amp;lt;%  } %&amp;gt;  12:    13:  &amp;lt;br /&amp;gt;  14:  End of normal view  15:  &amp;lt;br /&amp;gt;  16:  &amp;lt;% OutputSubView("Home/SubViewSample"); %&amp;gt;
 </code></p>
 
 
@@ -7267,7 +7251,7 @@ So what is AspView?</p>
 <p>SOLUTION:Add a proper xmlns to the html tag.My layouts start with this:</p>
 
 <p><code>
-   1:  &lt;?brail 
+   1:  &amp;lt;?brail 
 </code></p>
 
 <p><code>
@@ -7279,7 +7263,7 @@ So what is AspView?</p>
 </code></p>
 
 <p><code>
-   4:      output '&gt;'
+   4:      output '&amp;gt;'
 </code></p>
 
 <p><code>
@@ -7287,16 +7271,16 @@ So what is AspView?</p>
 </code></p>
 
 <p><code>
-   6:  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+   6:  &amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&amp;gt;
 </code></p>
 
 <p><code>
-   7:  &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="he-il" lang="he" &gt;
+   7:  &amp;lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="he-il" lang="he" &amp;gt;
 </code></p>
 
 <p>This applies to brail, but can of course be used on any other view engine, with the needed adjustments.</p>
 
-<p>Lines 1-5 is needed due to a bug(?) in some versions of brail. brail used to recognize a script by ‘<? ?>’, ‘<?brail ?>’ and ‘&lt;% %&gt;’ signs. therefore, using a <?xml ?> declaration caused the boo compiler to say that he knows nothing about ‘xml’. I think that Ayende has solved the problem now, by allowing only ‘<?brail ?>’, but I think it’s not yet on the main trunk, so I still use the listed method.</p>
+<p>Lines 1-5 is needed due to a bug(?) in some versions of brail. brail used to recognize a script by ‘&lt;? ?&gt;’, ‘&lt;?brail ?&gt;’ and ‘&lt;% %&gt;’ signs. therefore, using a &lt;?xml ?&gt; declaration caused the boo compiler to say that he knows nothing about ‘xml’. I think that Ayende has solved the problem now, by allowing only ‘&lt;?brail ?&gt;’, but I think it’s not yet on the main trunk, so I still use the listed method.</p>
 
 <p>Line 6 is the DOCTYPE, I use XHTML 1.0 transitional.</p>
 
@@ -7416,8 +7400,8 @@ So what is AspView?</p>
 <p>take a look at this:
 ${HtmlHelper.Form(‘/Home/Search.rails’)} ${HtmlHelper.LabelFor(‘q’,’search:’)} ${HtmlHelper.InputText(‘q’, ‘’, 50, 50)} ${HtmlHelper.SubmitButton(‘Search’)} ${HtmlHelper.EndForm()} 
 and that:
-&lt;form method="post" action="Home/Search.rails"&gt;<label for="q">Search:</label><input type="text" name="q" /><input type="submit" value="Search" />&lt;/form&gt;
-Okay. So AjaxHelper is cool, and maybe FormHelper will have someAdded Value in it, but I cannot figure out yet the benefits of using HtmlHelper, especially for non-data elements, such as <label></label></p>
+&lt;form method=”post” action=”Home/Search.rails”&gt;&lt;label for=”q”&gt;Search:&lt;/label&gt;&lt;input type=”text” name=”q” /&gt;&lt;input type=”submit” value=”Search” /&gt;&lt;/form&gt;
+Okay. So AjaxHelper is cool, and maybe FormHelper will have someAdded Value in it, but I cannot figure out yet the benefits of using HtmlHelper, especially for non-data elements, such as &lt;label&gt;</p>
 
 <p>If you have a good reason to use HtmlHelper, please enlight my.</p>
 
@@ -7459,17 +7443,17 @@ Okay. So AjaxHelper is cool, and maybe FormHelper will have someAdded Value in i
 
 <p>.xhtml isn’t enough, and even not Doctype-ing.</p>
 
-<p>No. he must have the optional <?xml version="1.0" ?>.</p>
+<p>No. he must have the optional &lt;?xml version=”1.0” ?&gt;.</p>
 
 <p>So I’ve added it to my Layout.boo file.</p>
 
-<p>Boo? Boom. Boo marks macros (such as <?brail ?>) with <? ?> blocks, and Boo doesn’t recognize a macro with the name xml.</p>
+<p>Boo? Boom. Boo marks macros (such as &lt;?brail ?&gt;) with &lt;? ?&gt; blocks, and Boo doesn’t recognize a macro with the name xml.</p>
 
 <p>My current solution is to write:
-<?brail output '<' output '?xml version="1.0" ?'output '>' ?>
+&lt;?brail output ‘&lt;’ output ‘?xml version=”1.0” ?’output ‘&gt;’ ?&gt;
 I guess that adding a dummy xml macro would make the boo templates look nicer, but it is an ugly solution, and since (ugly &amp; nice != nice), we need a better solution.</p>
 
-<p>Maybe a change in Brail (on BrailPreProcessor.boo), to transform <?xml ... ?> stuff to it’s “output” equiv, can be done. </p>
+<p>Maybe a change in Brail (on BrailPreProcessor.boo), to transform &lt;?xml … ?&gt; stuff to it’s “output” equiv, can be done. </p>
 
 
     </section>
