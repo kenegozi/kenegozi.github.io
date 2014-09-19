@@ -8,7 +8,7 @@ tags: [miscellanea,personal]
 
 I've revisited my [google-ajax-enabled search page](http://kenegozi.com/Blog/2007/01/24/my-first-codeproject-article-is-up.aspx) (at [kenegozi.com](http://kenegozi.com)) 
 
-![homepage](http://kenegozi.com/Blog/uploaded/Newdesigntomysearchpage_AFB1/homepage_thumb.png)
+![homepage](http://kenegozi.com/blog/uploaded/newdesigntomysearchpage_afb1/homepage_thumb.png)
 
 
 

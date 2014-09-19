@@ -12,7 +12,7 @@ Modifies the current [HashSet&lt;T&gt;](#) object to contain all elements that a
 
 &#160;
 
-![image](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Has.UnionWithdocumentationFAILtrustyouri_14163/78672664-0773-411c-bc95-6513e613af5e.png)
+![image](http://kenegozi.com/blog/uploaded/windowslivewriter/has.unionwithdocumentationfailtrustyouri_14163/78672664-0773-411c-bc95-6513e613af5e.png)
 
 &#160;
 

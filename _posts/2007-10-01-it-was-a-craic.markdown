@@ -14,7 +14,7 @@ Just so you'd understand how muse-ful can Ireland be:
 
 
 
-![Waterfall at Wicklow](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Itwasacraic_1219C/86fa9a1e-eea3-40f6-bba6-4a4e3716608a.png)
+![Waterfall at Wicklow](http://kenegozi.com/blog/uploaded/windowslivewriter/itwasacraic_1219c/86fa9a1e-eea3-40f6-bba6-4a4e3716608a.png)
 
 
 
@@ -22,7 +22,7 @@ and:
 
 
 
-![View from Valetia Island](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Itwasacraic_1219C/d5524fe3-ad52-43d6-a889-7c0178b68712.png)
+![View from Valetia Island](http://kenegozi.com/blog/uploaded/windowslivewriter/itwasacraic_1219c/d5524fe3-ad52-43d6-a889-7c0178b68712.png)
 
 
 

@@ -8,5 +8,5 @@ tags: [miscellanea]
 
 I've just been hacked !! I feel sooo important ... 
 
-![Gosh, my site is hacked](http://kenegozi.com/blog/uploaded/hacked.PNG)
+![Gosh, my site is hacked](http://kenegozi.com/blog/uploaded/hacked.png)
 

@@ -66,7 +66,7 @@ I'd like to teach it Boo and brail. Hope to have a little time for that.
 
 Now I'll add an image and test the upload ability:
 
-![Ken Egozi - That's me !](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/UsingWindowsLiveWriterforthefirsttime_BFBD/KenEgozi_Small_thumb3.jpg)
+![Ken Egozi - That's me !](http://kenegozi.com/blog/uploaded/windowslivewriter/usingwindowslivewriterforthefirsttime_bfbd/kenegozi_small_thumb3.jpg)
 
 Like a charm, and note the nice drop shadow.
 

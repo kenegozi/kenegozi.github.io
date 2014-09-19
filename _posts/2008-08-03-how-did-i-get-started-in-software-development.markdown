@@ -21,14 +21,14 @@ After a few months of getting comfy with the language, I've learned to read Engl
 
 I also had to learn some Assembler as the ZX's BASIC was pretty much limited.  
 
-![zx_spectrum](http://kenegozi.com/Blog/uploaded/HowDidIGetStartedInSoftwareDevelopment_DBEC/zx_spectrum_thumb.jpg)
+![zx_spectrum](http://kenegozi.com/blog/uploaded/howdidigetstartedinsoftwaredevelopment_dbec/zx_spectrum_thumb.jpg)
 
  
 
  What was your first programming language?
 BASIC, as noted above
 
-![BASIC](http://kenegozi.com/Blog/uploaded/HowDidIGetStartedInSoftwareDevelopment_DBEC/BASIC_thumb.png)
+![BASIC](http://kenegozi.com/blog/uploaded/howdidigetstartedinsoftwaredevelopment_dbec/basic_thumb.png)
 
 
 What was the first real program you wrote?
@@ -40,7 +40,7 @@ This word processor was for the sole purpose of aiding my older sister go throug
 
 At 18 I wrote another program in Pascal, aimed at keeping track of membership payments for a local [Bnei-Akiva](http://en.wikipedia.org/wiki/Bnei_Akiva) Branch. I learned the hard way that building a DB engine by hand without any theoretical background, and without ever hearing about terms like "SQL", "Relations", "Transaction" and the like, is not a simple thing to do. By the time this application had enough features I have already left to recruit to the IDF, so it never got into production.
 
-![turbo_pascal](http://kenegozi.com/Blog/uploaded/HowDidIGetStartedInSoftwareDevelopment_DBEC/turbo_pascal_thumb.png)
+![turbo_pascal](http://kenegozi.com/blog/uploaded/howdidigetstartedinsoftwaredevelopment_dbec/turbo_pascal_thumb.png)
 
 
 

@@ -14,7 +14,7 @@ Just in case that Scott Hanselman's blog isn't accessible, I'll post here the st
 2. Install watir:A.By opening cmd.exe and typing "gem install watir" (will install the latest available gem version, which is a kind of a "live update" and "live download" feature of ruby, OrB. By installing [watir-1.4.1.exe (792.19 KB)](http://kenegozi.com/blog/uploaded/watir-1.4.1.exe), OrC. By downloading from here
 
 
-3. Install [WatirRecorder++](http://kenegozi.com/blog/uploaded/WatirRecorder_Setup_Lite.msi)
+3. Install [WatirRecorder++](http://kenegozi.com/blog/uploaded/watirrecorder_setup_lite.msi)
 
 Some problems I've faces during the use of Watir:
 

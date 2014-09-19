@@ -16,7 +16,7 @@ So I'm bound to use live.com for now. Not too bad it is, however a bit slower th
 
 
 
-![image](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Iamusinglive.comfromthewrongreason_2B94/a7db81f2-3eca-4368-91c7-75e73b19e67e.png)
+![image](http://kenegozi.com/blog/uploaded/windowslivewriter/iamusinglive.comfromthewrongreason_2b94/a7db81f2-3eca-4368-91c7-75e73b19e67e.png)
 
 I hope gmail will be back soon.
 

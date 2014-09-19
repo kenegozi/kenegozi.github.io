@@ -12,7 +12,7 @@ I've had to take a lot of jokes about having a name of a snack-bar, but now I lo
 
 Here is a bad image of the snack-bar, acquired from the video:
 
-![](http://kenegozi.com/blog/uploaded/egozi_legend.PNG)
+![](http://kenegozi.com/blog/uploaded/egozi_legend.png)
 
 Have fun ...
 

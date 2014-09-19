@@ -16,7 +16,7 @@ I'd kindly ask all of you ASP.NET Ajax wiz guys (and gals), to supply me with a 
 
 What should it do?
 
-I want to have a webpage, based on[this template](http://kenegozi.com/blog/uploaded/UpdatePanelTemplate.html), that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.
+I want to have a webpage, based on[this template](http://kenegozi.com/blog/uploaded/updatepaneltemplate.html), that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.
 
 You can leave the actual data retrieval to a simple method returning an array of string array, or you can go and implement a CodeSmith/DAAB/Whatever based supercool data access code. I would ignore it anyway. I want the Ajax stuff.
 

@@ -65,13 +65,13 @@ Not too exciting on it's own, right?
 
 Now take a look at on the binary format:
 
-![IMG_0262_small](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Thenextbigthinginsoftwaredevelopment_DF74/669e2a08-9aeb-420a-95b5-97b1c6c721c7.jpg)
+![IMG_0262_small](http://kenegozi.com/blog/uploaded/windowslivewriter/thenextbigthinginsoftwaredevelopment_df74/669e2a08-9aeb-420a-95b5-97b1c6c721c7.jpg)
 
 &#160;
 
 and here after call to RelaxOnDaddy():
 
-![IMG_0268_small](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Thenextbigthinginsoftwaredevelopment_DF74/89961070-5601-475a-bc2f-88ac6afea136.jpg)
+![IMG_0268_small](http://kenegozi.com/blog/uploaded/windowslivewriter/thenextbigthinginsoftwaredevelopment_df74/89961070-5601-475a-bc2f-88ac6afea136.jpg)
 
 &#160;
 

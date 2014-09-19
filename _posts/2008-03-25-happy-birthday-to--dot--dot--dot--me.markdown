@@ -20,17 +20,17 @@ Sarit took me on a surprise vacation.
 
 Mt. Hermon, view from Kefar Giladi:
 
-![Mt. Hermon, view from Kefar Giladi](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/HappyBirthdayto.ME_13220/d7ed1eab-b9b7-4ffa-a7f5-f22786cfe917.jpg)
+![Mt. Hermon, view from Kefar Giladi](http://kenegozi.com/blog/uploaded/windowslivewriter/happybirthdayto.me_13220/d7ed1eab-b9b7-4ffa-a7f5-f22786cfe917.jpg)
 
 
 
-Grotto at Rosh-Hanikra:![Grotto in Rosh-Hanikra](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/HappyBirthdayto.ME_13220/eebdb5ec-3f75-4bb0-a243-28e9ad440cd5.jpg)
+Grotto at Rosh-Hanikra:![Grotto in Rosh-Hanikra](http://kenegozi.com/blog/uploaded/windowslivewriter/happybirthdayto.me_13220/eebdb5ec-3f75-4bb0-a243-28e9ad440cd5.jpg)
 
 
 
 That's me at the Zavitan pools next to the waterfall:
 
-![אני בזויתן 2](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/HappyBirthdayto.ME_13220/19df7e4f-3b10-41d2-a311-0a9ed2d8b7fc.jpg)
+![אני בזויתן 2](http://kenegozi.com/blog/uploaded/windowslivewriter/happybirthdayto.me_13220/19df7e4f-3b10-41d2-a311-0a9ed2d8b7fc.jpg)
 
 
 

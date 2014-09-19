@@ -16,7 +16,7 @@ here's what I got.
 
 &#160;
 
-![Live photo share wtf](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Windowslivewtfskeeponcoming_D5F8/5f08e34f-f6fa-4437-aa19-c370e87dc13f.png)
+![Live photo share wtf](http://kenegozi.com/blog/uploaded/windowslivewriter/windowslivewtfskeeponcoming_d5f8/5f08e34f-f6fa-4437-aa19-c370e87dc13f.png)
 
 &#160;
 

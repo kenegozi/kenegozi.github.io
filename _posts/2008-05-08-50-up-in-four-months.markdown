@@ -16,7 +16,7 @@ Two weeks ago I've noticed that:
 
 
 
-![300](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/50upinfourmonths_539/a60de299-3de2-467b-b40e-f944de2d8870.png)
+![300](http://kenegozi.com/blog/uploaded/windowslivewriter/50upinfourmonths_539/a60de299-3de2-467b-b40e-f944de2d8870.png)
 
 
 

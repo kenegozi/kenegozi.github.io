@@ -24,7 +24,7 @@ Problem solved.
 
 &#160;
 
-![image](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/dot.164bitwouldnotintegratewithVisualStu_11BEC/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png)
+![image](http://kenegozi.com/blog/uploaded/windowslivewriter/dot.164bitwouldnotintegratewithvisualstu_11bec/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png)
 
 &#160;
 

@@ -16,9 +16,9 @@ A little web search and I've found this: [http://technet2.microsoft.com/WindowsS
 
 So this is a new feature of ASP.NET, that makes it possible to run a few applications in the same process. Every few applications (virtual directories) are assigned to an application pool, and each application pool runs in its own process.There are a few settings that can be done for each application pool. Those settings are overriding the defaults in the machine.config file.
 
-Adding an application pool is done through inetmgr.msc, by just adding a new pool to the Application Pools section. Use the option to copy settings from the default application pool, so you'd have a decent place to start from:![](http://kenegozi.com/blog/uploaded/ApplicationPools.PNG)
+Adding an application pool is done through inetmgr.msc, by just adding a new pool to the Application Pools section. Use the option to copy settings from the default application pool, so you'd have a decent place to start from:![](http://kenegozi.com/blog/uploaded/applicationpools.png)
 
-Assigning a pool to an application is done through the main property page of the application's virtual directory:![](http://kenegozi.com/blog/uploaded/SettingApplicationPools.PNG)
+Assigning a pool to an application is done through the main property page of the application's virtual directory:![](http://kenegozi.com/blog/uploaded/settingapplicationpools.png)
 
 The solution to our problem is now obvious:When configuring a new IIS6.0 server, we will start with an application pool for each ASP.NET version we're using (1.0, 1.1, 2.0), and any virtual directory we setup in the server will be configured to be part of the corresponding application pool. Now the applications can coexist and run together.
 

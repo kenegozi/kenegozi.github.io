@@ -8,7 +8,7 @@ tags: [sql]
 
 Using SQL Server Management Studio (be it the 'full' version or the express one), you can sometime encounter the error:
 
-![Database has no valid owner](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/SQLServer2005CannotcreateDatabaseDiagram_123DC/c20f45d1-6118-4b12-845d-1a78e619c256.png)
+![Database has no valid owner](http://kenegozi.com/blog/uploaded/windowslivewriter/sqlserver2005cannotcreatedatabasediagram_123dc/c20f45d1-6118-4b12-845d-1a78e619c256.png)
 
 in words:
 

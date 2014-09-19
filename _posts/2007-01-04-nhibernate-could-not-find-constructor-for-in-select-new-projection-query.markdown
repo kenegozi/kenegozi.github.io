@@ -10,7 +10,7 @@ There are two facts here:1. I love NHibernate.2. I hate NHibernate's exception m
 
 And here's my story.
 
-On a project I'm working on, I need to show a projection of "top 10" from the database. let's show this on the good old Blog scenario:![](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/NHibernateCouldnotfindconstructorforinse_A7E6/Post-Comment-Stupid_erd_thumb%5B2%5D.gif)
+On a project I'm working on, I need to show a projection of "top 10" from the database. let's show this on the good old Blog scenario:![](http://kenegozi.com/blog/uploaded/windowslivewriter/nhibernatecouldnotfindconstructorforinse_a7e6/post-comment-stupid_erd_thumb%5b2%5d.gif)
 
 So I want to show the posts with the longest comments measured by the comment's length. Stupid, huh? but it's a demo only (I cannot expose the actual ERD). Let's say I want the top 5.
 

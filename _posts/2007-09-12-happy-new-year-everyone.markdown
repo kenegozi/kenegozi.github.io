@@ -18,7 +18,7 @@ A year of improvement and becoming better at being who you are, and what you do.
 
 
 
-![Happy New Year](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/HappyNewYearEveryone_B86F/658b5b47-af89-43d3-8444-d07c189ec12e.jpg)
+![Happy New Year](http://kenegozi.com/blog/uploaded/windowslivewriter/happynewyeareveryone_b86f/658b5b47-af89-43d3-8444-d07c189ec12e.jpg)
 
 And thank's to Idan Gross ([WWW.IDANGROSS.COM](http://www.IDANGROSS.COM)) for the lovely picture.
 

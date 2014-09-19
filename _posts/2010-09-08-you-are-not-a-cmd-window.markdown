@@ -10,5 +10,5 @@ A screenshot between [Oren Ellenbogen](http://lnbogen.com/) and another college 
 
 &#160;
 
-![i_am_not_cmd](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Youarenotacmdwindow_1108B/2159e518-493a-4759-bbd1-1d0192e2f414.png)
+![i_am_not_cmd](http://kenegozi.com/blog/uploaded/windowslivewriter/youarenotacmdwindow_1108b/2159e518-493a-4759-bbd1-1d0192e2f414.png)
 

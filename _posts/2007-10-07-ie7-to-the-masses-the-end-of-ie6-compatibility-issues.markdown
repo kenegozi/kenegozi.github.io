@@ -24,7 +24,7 @@ Finally we can use input[type=text] and the likes
 
 I've kept IE6 on my box for so long only to be able to test what I write. Even though I use Firefox for day-to-day browsing, I still need IE for some crappy israeli sites that would just not work on non IE (and by not work - I mean that you get an alert box saying:
 
-![This site is IE only](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/IE7tothemassestheendofIE6compatibilityis_BB5D/04f348e7-4909-48a7-8e7a-66a2ee4f68ad.png)
+![This site is IE only](http://kenegozi.com/blog/uploaded/windowslivewriter/ie7tothemassestheendofie6compatibilityis_bb5d/04f348e7-4909-48a7-8e7a-66a2ee4f68ad.png)
 
 For people who knows not Hebrew:
 

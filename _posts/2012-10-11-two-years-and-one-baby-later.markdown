@@ -8,7 +8,7 @@ tags: [personal]
 
 two years ago, my Noam (who was 1y and a wee back then) got caught on camera doing this:
 
-![IMG_2370](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Babysmashonbigscreen_1138F/9940be20-38ab-4442-8318-45e8977431ee.jpg)(from [http://kenegozi.com/blog/2010/10/07/baby-smash-on-big-screen](http://kenegozi.com/blog/2010/10/07/baby-smash-on-big-screen))
+![IMG_2370](http://kenegozi.com/blog/uploaded/windowslivewriter/babysmashonbigscreen_1138f/9940be20-38ab-4442-8318-45e8977431ee.jpg)(from [http://kenegozi.com/blog/2010/10/07/baby-smash-on-big-screen](http://kenegozi.com/blog/2010/10/07/baby-smash-on-big-screen))
 
 
 

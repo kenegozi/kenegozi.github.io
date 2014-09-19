@@ -12,5 +12,5 @@ Happened to me last week,I think while trying to log into hotmail.
 
 
 
-![](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Yellowerrorpageonamicrosoftsite_E1AD/9b6cb1b9-d0c0-4370-a4cf-3e9f29e8f3d9.gif)
+![](http://kenegozi.com/blog/uploaded/windowslivewriter/yellowerrorpageonamicrosoftsite_e1ad/9b6cb1b9-d0c0-4370-a4cf-3e9f29e8f3d9.gif)
 

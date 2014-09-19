@@ -12,7 +12,7 @@ After generating the public key (with puttygen) I copied to git-hub only the key
 
 
 
-![public rsa key](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/gitselftaketwogithubkeyconfiguration_10A4F/69e80d06-4f9d-478d-a970-f7c88acd53ae.png)
+![public rsa key](http://kenegozi.com/blog/uploaded/windowslivewriter/gitselftaketwogithubkeyconfiguration_10a4f/69e80d06-4f9d-478d-a970-f7c88acd53ae.png)
 
 
 

@@ -12,7 +12,7 @@ I really don't need to add anything, right?
 
 
 
-![download-button-primary](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/DownloadFirefox3_C7F8/791adbf0-bdee-45a0-a706-93b1fe5b49cd.png)
+![download-button-primary](http://kenegozi.com/blog/uploaded/windowslivewriter/downloadfirefox3_c7f8/791adbf0-bdee-45a0-a706-93b1fe5b49cd.png)
 
 
 

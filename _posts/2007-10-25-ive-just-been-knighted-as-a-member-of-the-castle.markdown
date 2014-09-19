@@ -14,7 +14,7 @@ In a few more: It seam that the Castle Project PMC got tired of me nagging them 
 
 
 
-![Ken in Castle](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/IvejustbeenKnighted_CA2E/cd0df52e-011f-40a3-98ed-f7dbc6850e2b.png)
+![Ken in Castle](http://kenegozi.com/blog/uploaded/windowslivewriter/ivejustbeenknighted_ca2e/cd0df52e-011f-40a3-98ed-f7dbc6850e2b.png)
 
 
 

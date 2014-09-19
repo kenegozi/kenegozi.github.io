@@ -12,5 +12,5 @@ Thumbs up !!! To me, and of course, to newtelligence guys who've designed and wr
 
 And if you do not believe me (I find it hard to. Not generally of course, since I'm a decent reliable person most of the time, but the matter of the little googled I've surprisingly gained), attached here is a snapshot:
 
-![](http://kenegozi.com/blog/uploaded/first%20at%20google%20-%20pdb.PNG)
+![](http://kenegozi.com/blog/uploaded/first%20at%20google%20-%20pdb.png)
 

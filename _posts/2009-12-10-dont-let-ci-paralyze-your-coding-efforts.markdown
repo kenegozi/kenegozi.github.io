@@ -8,7 +8,7 @@ tags: [scm]
 
 Anyone who have ever seen something like that might relate to this post:
 
-![image](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/DontletCIparalyzeyourcodingefforts_FE4A/143eb433-6060-496d-b9a7-c37e595651e5.png)
+![image](http://kenegozi.com/blog/uploaded/windowslivewriter/dontletciparalyzeyourcodingefforts_fe4a/143eb433-6060-496d-b9a7-c37e595651e5.png)
 
 &#160;
 

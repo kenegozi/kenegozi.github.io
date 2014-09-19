@@ -26,9 +26,9 @@ Now I feel the urge to complete my damn Bachelor's (and I'm around 84, so no hon
 
 
 
-That's Wife holding a Cat:![Wife holding a Cat](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/DefaultingHtmlEncodetoAntiXSS_14D2D/75f25e75-861d-46a1-aaa1-53902da5105d.jpg)
+That's Wife holding a Cat:![Wife holding a Cat](http://kenegozi.com/blog/uploaded/windowslivewriter/defaultinghtmlencodetoantixss_14d2d/75f25e75-861d-46a1-aaa1-53902da5105d.jpg)
 
 
 
-Me, not holding by liqueur:![Not holding my liquer](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/DefaultingHtmlEncodetoAntiXSS_14D2D/06f8f90c-e117-46e4-90fd-d88169b65818.jpg)
+Me, not holding by liqueur:![Not holding my liquer](http://kenegozi.com/blog/uploaded/windowslivewriter/defaultinghtmlencodetoantixss_14d2d/06f8f90c-e117-46e4-90fd-d88169b65818.jpg)
 

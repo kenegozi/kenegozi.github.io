@@ -8,7 +8,7 @@ tags: [tools,testing,scm]
 
 Finally.
 
-![green](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/TeamCity5.1Git_EC2C/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png)
+![green](http://kenegozi.com/blog/uploaded/windowslivewriter/teamcity5.1git_ec2c/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png)
 
 &#160;
 

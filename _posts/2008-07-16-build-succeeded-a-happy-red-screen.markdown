@@ -8,7 +8,7 @@ tags: [castle,monorail,aspview]
 
 can you guess why this makes me happy?
 
-![Build_Succeded](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/BuildSucceededAhappyredscreen_C613/b7f64277-21b7-46e7-a831-112db41ae514.png)
+![Build_Succeded](http://kenegozi.com/blog/uploaded/windowslivewriter/buildsucceededahappyredscreen_c613/b7f64277-21b7-46e7-a831-112db41ae514.png)
 
 This is the output of building Castle's trunk, both for .NET 3.5 and .NET 2.0, after inserting AspView into the core project. Took me a while as I had to:
 - Change the Xunit tests into NUnit - to match the runner     wasn't too complicated, though I has to manually add [SetUp] and [TestFixture] everywhere, as they're not needed in Xunit

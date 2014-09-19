@@ -14,11 +14,11 @@ What is a projection?
 
 Consider this genius ERD:
 
-![](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/ProjectingtononActiveRecordclassesusingA_C76B/Post_Comment_Genius_ERD_thumb3.gif)
+![](http://kenegozi.com/blog/uploaded/windowslivewriter/projectingtononactiverecordclassesusinga_c76b/post_comment_genius_erd_thumb3.gif)
 
 A sample projection could be a kind of a view:
 
-![](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/ProjectingtononActiveRecordclassesusingA_C76B/CommentView_Genius_ERD_thumb1.gif)
+![](http://kenegozi.com/blog/uploaded/windowslivewriter/projectingtononactiverecordclassesusinga_c76b/commentview_genius_erd_thumb1.gif)
 
 The SQL is (surprise!)
 

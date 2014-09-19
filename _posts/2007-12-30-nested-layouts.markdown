@@ -24,14 +24,14 @@ in the controller:
 
 and given those schematic templates:
 
-- (layouts\site.aspx):![SiteLayout](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/78a6d860-81fe-4660-af25-0e99db002a10.png)
-- (layouts\admin.aspx)![AdminLayout](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/b49097cb-8d59-4cd2-a6cf-335efdc787d2.png)
-- (users\index.aspx)![Index](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/c8f9a805-5caf-4448-82ad-1e30a5542230.png) 
+- (layouts\site.aspx):![SiteLayout](http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/78a6d860-81fe-4660-af25-0e99db002a10.png)
+- (layouts\admin.aspx)![AdminLayout](http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/b49097cb-8d59-4cd2-a6cf-335efdc787d2.png)
+- (users\index.aspx)![Index](http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/c8f9a805-5caf-4448-82ad-1e30a5542230.png) 
 
 
 
 
 We'd get:
 
-![rendered view](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NestedLayouts_104EF/684e8604-0bdd-46be-b9fe-b6433e527f3a.png)
+![rendered view](http://kenegozi.com/blog/uploaded/windowslivewriter/nestedlayouts_104ef/684e8604-0bdd-46be-b9fe-b6433e527f3a.png)
 

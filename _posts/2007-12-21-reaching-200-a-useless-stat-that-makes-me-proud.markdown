@@ -10,7 +10,7 @@ When I've started using feedburner (mid Sep.) there were about 160 subscribers.
 
 Nowadays:
 
-![200 readers](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Reaching200aUselessStatThatMakesMeProud_AFE0/113c3c8e-ed2b-4af0-9cde-9a281b0b9029.gif)
+![200 readers](http://kenegozi.com/blog/uploaded/windowslivewriter/reaching200auselessstatthatmakesmeproud_afe0/113c3c8e-ed2b-4af0-9cde-9a281b0b9029.gif)
 
 
 

@@ -18,7 +18,7 @@ I was sorry that we could not make Simpsons Cats for our kitties, so we settled 
 
 
 
-![Egozi_Simpson](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/PresentingyoutheEgozimpsons_1372A/6a5968cf-aa1f-4577-b327-57b3364eae40.jpg)
+![Egozi_Simpson](http://kenegozi.com/blog/uploaded/windowslivewriter/presentingyoutheegozimpsons_1372a/6a5968cf-aa1f-4577-b327-57b3364eae40.jpg)
 
 
 

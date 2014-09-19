@@ -42,7 +42,7 @@ Known issues:
 
 
 
-Download from [here](http://kenegozi.com/blog/uploaded/AspView_0_7_178.zip).
+Download from [here](http://kenegozi.com/blog/uploaded/aspview_0_7_178.zip).
 
 Sources are [here](http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/).
 

@@ -70,7 +70,7 @@ view (DoStuff.aspx):
 
 Look at the intellisense (and at my ultra-cool black color scheme):
 
-![TypedView intellisense](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TypedViewPropertiesinMonoRailandAspView_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png)
+![TypedView intellisense](http://kenegozi.com/blog/uploaded/windowslivewriter/typedviewpropertiesinmonorailandaspview_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png)
 
 
 

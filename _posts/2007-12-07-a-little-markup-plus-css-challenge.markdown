@@ -10,7 +10,7 @@ After reading [the challenge on Dror's blog (Hebrew)](http://blogs.microsoft.co.
 
 In short, for non hebrew readers, Dror is asking for a markup+css solution for the next layout:
 
-![css layout](http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/Alittlemarkupcsschallenge_A30E/e02b26e1-f40f-40fc-9d27-e1ca0083549a.png)
+![css layout](http://kenegozi.com/blog/uploaded/windowslivewriter/alittlemarkupcsschallenge_a30e/e02b26e1-f40f-40fc-9d27-e1ca0083549a.png)
 
 no javascript allowed for layout purposes.
 

@@ -24,7 +24,7 @@ I know, the terminology is confusing, as you want to "update" from the trunk to 
 
 screenshot:
 
-![branch to trunk](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/6113704f-cbba-43b4-a328-05f9cd744045.png)
+![branch to trunk](http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/6113704f-cbba-43b4-a328-05f9cd744045.png)
 
 now you havea merged trunk on your workstation. Make sure that everything compiles and that tests are green, and commit.
 Merging from the trunk to a branch
@@ -32,17 +32,17 @@ a) Go to your branch's folder, right-click->tortoise->merge;
 
 Now, you want the changes between the last trunk revision that you have on your branch, to the newest revision of the trunk. To find out that last trunk revision that you have on your branch, go to your branch's folder, right-click->tortoise->show-log, and look for it. If you are a good reader you'd easily find it since you have mentioned the revision numbers of your merges in the commit remarks, as you are kindly recommended)A screenshot from the branch's log:
 
-![Branch log](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/63ee9bb6-0636-4d57-b664-2abb3e06a1d9.png)
+![Branch log](http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/63ee9bb6-0636-4d57-b664-2abb3e06a1d9.png)
 
 I need to check if I have merged my branch to the trunk on a later point. I'll do that using the Trunk's log (trunk folder, right-click->tortoise->show-log):
 
-![Trunk Log](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/6c5edd77-055d-441e-987c-4d8c884c8bc7.png)
+![Trunk Log](http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/6c5edd77-055d-441e-987c-4d8c884c8bc7.png)
 
 Indeed. It seams that my branch is in sync with the trunk at revision 918
 
 b) Now you fill From: your trunk, revision "last revision you have"To: your trunk, revision "new, wantedstate" (usually HEAD).in my example, the last trunk version I have merged into my branch is 902, so that's the screenshot:
 
-![trunk to branch](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/9bc12b6f-764a-4284-878a-54b5e8754c6b.png)
+![trunk to branch](http://kenegozi.com/blog/uploaded/windowslivewriter/mergingintortoisesvn_d95f/9bc12b6f-764a-4284-878a-54b5e8754c6b.png)
 
 I know, terminology sucks again. You probably thing "from trunk to trunk? Is he crazy?" well, again, you want to get the changes that was made TO THE TRUNK, and apply them to your branch. Remembering that this is actually a patch that will get applied make anything clear again.
 

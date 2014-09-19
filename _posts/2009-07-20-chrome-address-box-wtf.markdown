@@ -6,7 +6,7 @@ tags: [tools]
 ---
 
 
-![chrome address box wtf](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/chromeaddressboxwtf_EC34/7a7faa2c-0b99-46fb-b8cf-95ccaf8a08d8.png)&#160; 
+![chrome address box wtf](http://kenegozi.com/blog/uploaded/windowslivewriter/chromeaddressboxwtf_ec34/7a7faa2c-0b99-46fb-b8cf-95ccaf8a08d8.png)&#160; 
 
 &#160;
 

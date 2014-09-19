@@ -25,4 +25,4 @@ take:
 The end result is:
 
 &#160;
-![image](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Recipefordisaster_102A/742a40d2-17c1-4f2a-a557-c467219c65b5.png)
+![image](http://kenegozi.com/blog/uploaded/windowslivewriter/recipefordisaster_102a/742a40d2-17c1-4f2a-a557-c467219c65b5.png)

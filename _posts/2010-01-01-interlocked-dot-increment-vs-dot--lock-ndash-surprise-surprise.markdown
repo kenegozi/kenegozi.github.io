@@ -58,7 +58,7 @@ To my surprise, when asking for IDs in parallel, the interlocked construct was a
 
 Here's a screenshot of the test run
 
-![interlocked vs lock](http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Interlocked.Increme.locksurprisesurprise_2D4/d163d725-f254-4820-8b6f-4ce0eaf37697.png)
+![interlocked vs lock](http://kenegozi.com/blog/uploaded/windowslivewriter/interlocked.increme.locksurprisesurprise_2d4/d163d725-f254-4820-8b6f-4ce0eaf37697.png)
 
 &#160;
 
