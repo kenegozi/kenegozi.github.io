@@ -388,6 +388,9 @@ a:hover,a:focus {
     width: auto;
     padding-right: 40px;
   }
+  #hero-unit .btn-lg {
+    font-size: 13px;
+  }
 }
 
 #hero-unit .row {
@@ -449,6 +452,9 @@ a:hover,a:focus {
   .navbar-top.navbar {
     margin: 0;
     height: auto;
+  }
+  #hero-unit .btn-lg {
+    font-size: 16px;
   }
   #hero-unit {
     padding-top: 38px;
