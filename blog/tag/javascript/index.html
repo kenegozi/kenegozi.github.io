@@ -1,0 +1,3719 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Ken Egozi | Web builder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="Ken Egozi">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='Ken Egozi | Web builder' property='og:title'>
+	
+	<link rel="canonical" href="http://kenegozi.com/blog/tag/javascript/index.html" />
+
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	<!-- IE 9 Fallback-->
+	<!--[if IE 9]>
+		<link href="/assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements and IE Fallback-->
+	<!--[if lt IE 9]>
+	  <script src="/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
+<body id="top" class="">
+	
+	<!-- NAVBAR -->
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- END NAVBAR -->
+<section class="container content tags">
+  <h1 class="post_title">Posts Tagged &ldquo;javascript&rdquo;</h1>
+  <div class="post-sidebar">
+	<h5>Follow</h5>
+	<p>
+		<a href="http://feeds2.feedburner.com/kenegozi">
+			<img src="http://feeds.feedburner.com/~fc/kenegozi?bg=000033&amp;fg=00FF00&amp;anim=1" height="26" width="88" style="border:0" alt="">
+		</a>
+	</p>
+	<hr/>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/06/28/installing-older-node-dot-js-with-latest-npm-on-osx">Installing older node.js with latest npm on osx</a></h2>
+    <div class="meta">
+        <time>on June 28, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>At the time I write this, Heroku support Node 0.4.7, however the latest release is 0.4.8</p>
+
+<p>Installing in the usual way (brew install node) will bring 0.4.8 in, so instead I opted to download the .pkg for 0.4.7</p>
+
+<p>Node.js was installed correctly, however, it came with an old version on npm (the package manager for node.js). </p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Searching around for npm installation brought up downloading the sh script and executing it. The snippet is curl http://npmjs.org/install.sh</td>
+      <td>sh</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For *nix noobs – this mean that the content of the file at http://npmjs.org/install.sh will be pushed as input for sh which is the runner for .sh scripts. </p>
+
+<p>The problem is that the script tries to delete old npm versions, but it fails to do so for lack of permissions. Usually one prefixes with <code>sudo</code> to make this work, however it still did not work for me. What I ended up doing is breaking the process in two – first download the script into a local file (curl http://npmjs.org/install.sh &gt; install.sh) and then <code>sudo sh install.sh</code></p>
+
+<p>I should be starting a “tips” section on the blog.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/10/21/spot-the-bug-hellip-dynamic-language-slaponforehead-moment">Spot the bug &hellip; dynamic language slap-on-forehead moment</a></h2>
+    <div class="meta">
+        <time>on October 21, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/debugging" rel="tag">debugging</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>This is a view template rendering html. When running it, it caused the page to freeze (i.e. the page keeps loading).</p>
+
+<p> </p>
+
+<p>```</p>
+
+<h3>Services</h3>
+
+<p>&lt;% for (var ix=0; ix &lt; view.services.length; ++i) { %&gt;</p>
+
+<p>&lt;% var service = view.services[ix]; %&gt;</p>
+
+<p> &lt;%=service.name %&gt; </p>
+<p>&lt;% } %&gt;	</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>Took me a while to grasp it. I tried various things, thought that the templating-engine code was bad, blamed every line of code in the application, until I actually re-read the template code carefully </p>
+
+<p> </p>
+
+<p>You see, the indexer is “ix” while the ++ is working on “i”.</p>
+
+<p> </p>
+
+<p>Since it is Javascript, no “I do not know what i is” exception was thrown. Instead, the first time it was encountered, JS decided it equals zero, and then the poor thing just kept increasing, probably until it would have overflowed.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p>In case you have missed it, it was javascript. Not AspView, nor Jsp. I am using a new, super-simple javascript base templating engine, for places where embedding something like AspView would be an overkill, and using NVelocity would be as annoying as using NVelocity.</p>
+
+<p> </p>
+
+<p>I hope to have it released as open source soon. Basically it is a simple transformer into simple JS code, and I’m using the supercool <a href="http://kenegozi.com/blog/2010/09/09/javascript-and--dot-net-ndash-meet-jint.aspx">Jint</a> libraryfor running it within .NET. I am also planning on making it available for Java at some point using <a href="http://www.mozilla.org/rhino/">Mozilla Rhino</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/09/javascript-and--dot-net-ndash-meet-jint">JavaScript and .NET &ndash; meet jint</a></h2>
+    <div class="meta">
+        <time>on September 9, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve been looking for JavaScript scripting possibilities for .NET for quite some time. I always know I could hack an IKVM (java-to-csharp compiler) over Rhino (Java implementation of JavaScript), but it always felt a bit too complex.</p>
+
+<p>I had my hopes on Microsoft to implement a JavaScript over the DLR but the news on the subject where vague at best, and with the latest moves on shutting down support of IronPython and IronRuby, I’d think that IronJS won’t really happen anytime soon. There is a project named IronJS over at github, but it is quite incomplete. (for e.g., the test suite include a single mostly-commented-out file).</p>
+
+<p> </p>
+
+<p>Reading one more <a href="http://www.codeproject.com/KB/cs/EmbeddingJSCS.aspx">Rhino/IKVM article on CodeProject</a> this week, I stumbled on a comment pointing to a new JS interpreter implementation for .NET.  yup – that’s right. Interpreter. Not a compiler, nor a VM. The project is at <a href="http://jint.codeplex.com/">http://jint.codeplex.com/</a>.</p>
+
+<p> </p>
+
+<p>I Hg cloned the repo, ran MsBuild.exe on the Jint.sln file, and referenced output binaries (only two dll files - jint’s and antlr’s), and voila.</p>
+
+<p> </p>
+
+<p>the following stupid code, showing executing JS code (see the regex syntax in script1), executing .NET code from JS script (the DateTime class), and passing a .NET object as parameter to the script:</p>
+
+<p> </p>
+
+<p>```</p>
+
+<p>class Person
+{
+    public string Name;
+}
+static void Main(string[] args)
+{
+    var script1 = @"return ‘hello’.replace(/l{2}/gi, ‘LL’);";
+    var script2 = @"var d = new System.DateTime(2010,3,1);
+                    return d.Day;";
+    var script3 = @"return ‘hello ‘ + p.Name;";</p>
+
+<pre><code>var jint = new Jint.JintEngine();
+
+var result1 = jint.Run(script1);
+Console.WriteLine(result1);
+
+var result2 = jint.Run(script2);
+Console.WriteLine(result2);
+
+var p = new Person { Name = &amp;quot;Ken&amp;quot; };
+jint.SetParameter(&amp;quot;p&amp;quot;, p);
+var result3 = jint.Run(script3);
+Console.WriteLine(result3);
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>The output is:</p>
+
+<p><code>
+heLLo
+1
+hello Ken
+</code></p>
+
+<p> </p>
+
+<p> </p>
+
+<p>so what the whole fuss is about?</p>
+
+<p> </p>
+
+<p>think about a view engine that can execute in the Server for generating initial http response, and then executing the same templates on the client-side. Not only that, it should be possible to share templates between Java and .NET servers in a heterogeneous environment</p>
+
+<p> </p>
+
+<p>I know that Spark view engine support both server and client side execution, but I remember hearing from the leaders of Spark that it was never a goal, and I also do not like the syntax of Spark anyway (brings back bad memories from nant)</p>
+
+<p> </p>
+
+<p>It also has a few more appealing features. For one, it does <em>not</em> generate bytecode, so you can hot-swap scripts without leaking memory.</p>
+
+<p> </p>
+
+<p>I’ll be playing with this some more should time allow.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/06/08/the-right-tool-for-the-job-xss-edition">The right tool for the job, XSS edition</a></h2>
+    <div class="meta">
+        <time>on June 8, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>It is not very uncommon to see pages that include a “returnUrl” parameter, usually within authentication flows. At times, the browser will run some script (like a call to an analytics service) and then another script issuing a redirect (through setting location.href etc.)</p>
+
+<p> </p>
+
+<p>There are also other cases where UGC can find its way into JavaScript blocks. People might want to have their script do fancy stuff with the page’s data.</p>
+
+<p> </p>
+
+<p><code>
+var url = '&lt;%=viewData.returnUrl%&gt;';
+</code></p>
+
+<p>or</p>
+
+<p> </p>
+
+<p>```</p>
+
+<p>var commenterName = ‘&lt;%=viewData.newComment.authorName%&gt;’;</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>for e.g.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>Now for the “stating the obvious”:</p>
+
+<p>Just like any other UGC, this type of content must be sanitized to prevent XSS attacks.</p>
+
+<p> </p>
+
+<p>Not to long ago I was called to do a security inspection on a web application’s codebase. During which, some very few XSS holes were detected using JavaScript injection. This was quite surprising to me, as I knew that all content injected into JavaScript was being sanitized by the team.</p>
+
+<p>Digging further I found out that they did call a sanitize function on UGC, just not the correct function. What they did was to run a JSON formatter over the UGC string, a thing that was solving JS errors occurring from string quoting problems, but it did not eliminate malicious scripts.</p>
+
+<p>The weird thing was that the team was already using the AntiXss library (which is a very aggressive, white list based input sanitation library for .NET), for html fragments. The library also have a JavaScript Encode function. Switching the sanitation function of the team from calling the JSON library to calling the AntiXss library fixed the problem for good.</p>
+
+<p> </p>
+
+<p>e.g. code to demonstrate the difference between the methods:</p>
+
+<p>{% highlight c# %}
+static void Main()
+{
+    var ugc = "‘;alert(‘xss’);’";
+    Render(JsonConvert.SerializeObject(ugc));
+    Render(AntiXss.JavaScriptEncode(ugc));
+}</p>
+
+<p>static void Render(string encoded)
+{
+    Console.WriteLine("var returnUrl = ‘"+encoded+"’;");
+}{% endhighlight %}</p>
+
+<p>The output from the above snippet is:</p>
+
+<p><code>
+var returnUrl = '&amp;quot;';alert('xss');'&amp;quot;';
+var returnUrl = ''\x27\x3balert\x28\x27xss\x27\x29\x3b\x27'';
+</code></p>
+
+<p> </p>
+
+<p>There are a couple of things to learn from that story:
+- When you encounter a problem, look around for common solutions. for e.g., every language that is being used for web development today has a library that takes care of XSS, so use it instead of coming up with a partial solution using the wrong library, or even worse –try to re-invent the way of doing that. You are probably not in the business of Anti XSS, so don’t spend time on solving the problem.
+- Know your toolbox. If you are using a tool, be aware of its capabilities (and shortages). Exploring the AntiXss library a little bit would have shown the team that there is a perfectly good solution for their problem.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/04/19/newlines-in-textarea-are-treated-differently-on-different-browsers">Newlines in textarea are treated differently on different browsers</a></h2>
+    <div class="meta">
+        <time>on April 19, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>And guess who is the craziest one.</p>
+
+<p> 
+scenario
+Client side validation is good right? so you have this field of User Generated Content, which is exposed via a textarea element on your page. For e.g. – comment on blog post.</p>
+
+<p>Now you have a limit of N characters on the field, maybe enforced within a DB constraint or whatever.</p>
+
+<p> 
+First attempt:
+```
+function validateMaxLength(elmId) {
+	var element = document.getElementById(elmId);
+	var elementContent = element.value;
+	var elementContentLength = elementContent.length;</p>
+
+<pre><code>return elementContentLength &lt;= N; } ```
+</code></pre>
+
+<p>or something like that.</p>
+
+<p> </p>
+
+<p>BUT</p>
+
+<p>think again.</p>
+
+<p>Assuming the element’s content was something like</p>
+
+<p><code>
+the element contains at least
+one newline
+</code></p>
+
+<p> </p>
+
+<p>how would you count newlines? would you count two characters per newline (for \r\n)? or only one?</p>
+
+<p> </p>
+
+<p>When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to <br /> tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. </p>
+
+<p>Now the client side JS matched the server criteria. </p>
+
+<p> </p>
+
+<p>Case closed.</p>
+
+<p> </p>
+
+<p>Or was it?</p>
+
+<p> 
+QA kicks in
+After a little while I got a bug opened by the QA team about inconsistency between client and server validation regarding lengths of string. </p>
+
+<p>Checked it, and was about to close the bug with a “works for me” message, but then it hit me. </p>
+
+<p> 
+You have to be so special
+On IE, newlines are \r\n, so it reports too many characters, and the validation might fails wrongfully. Since I mostly use Chrome for day-to-day, and since I did not suspect <em>that</em> to be a cross-browser issue, I never tested it on IE during development.</p>
+
+<p> 
+Solution
+Good old string.replace</p>
+
+<p><code>
+elementContent = elementContent.replace('\r\n','\n');
+</code></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p>Ken, </p>
+
+<p>the cross-browserer</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/12/05/error-ndash-the-current-websitersquos-developer-is-a-complete-moron">Error &ndash; the current website&rsquo;s developer is a complete moron</a></h2>
+    <div class="meta">
+        <time>on December 5, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>How lame can you get?</p>
+
+<p> </p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Errorthecurrentwebsitesdeveloperisacompl_12E27/eb1345ee-9ea0-4d03-8cc1-95b53a5e3c2e.png" alt="image" /></p>
+
+<p> </p>
+
+<p>It is even misspelled.</p>
+
+<p> </p>
+
+<p>The funniestsaddest thing is the source of this page:</p>
+
+<p><code>
+&lt;script language=&amp;quot;JavaScript&amp;quot;&gt; 
+if (document.all) {
+ document.writeln(...);}
+else {
+ document.writeln(&amp;quot;&lt;p&gt;&lt;font color=\&amp;quot;#999999\&amp;quot;&gt;&lt;b&gt;Error ! The current browser is either too old or too modern (usind DOM document structure).&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&amp;quot;);}
+&lt;/script&gt; 
+</code></p>
+
+<p> </p>
+
+<p>So many bad practices in a such a small snippet. And the stuff in the (…) part was too painful to paste.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/04/13/javascript-and-the-extended-array-prototype">Javascript and the extended Array prototype</a></h2>
+    <div class="meta">
+        <time>on April 13, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I do quite a bit of javascript stuff lately, and I wanted to enjoy the easier syntax of array methods such as forEach, find etc.</p>
+
+<p>As the current project is not using prototype.js, but rather a different js stack (jquery, various jquery plugins, EJS, and a bit more) I did not have the extended Array stuff that comes with prototype.js</p>
+
+<p> </p>
+
+<p>But before I ran off to add the needed methods to Array’s prototype, I had an annoying voice in the back of my head, whispering “extending Array’s prototype is evil, extending Array’s prototype is evil”, so I looked at alternatives.</p>
+
+<p> 
+Alternative 1 – subclassing Array.
+I went ahead to implement a MyArray (or Array2) type of solution.</p>
+
+<p>using one method of JS subclassing I thought of</p>
+
+<p>```</p>
+
+<p>var MyArray = function() {
+};</p>
+
+<p>MyArray.prototype = new Array;</p>
+
+<p>MyArray.prototype.forEach = function(action) {
+  for (var i = 0, l=this.length; i &lt; l, ++i)
+    action(this[i]);
+};
+…</p>
+
+<p>```</p>
+
+<p>the problem with that approach is that IE does not like Array subclassing, thus the .length property becomes unreliable, rendering the whole idea of subclassing Array useless.</p>
+
+<p> 
+Alternative 2 – using a different object alltogether
+It would work, however things like </p>
+
+<p><code>
+if (anArrayInstance instanceof Array)
+</code></p>
+
+<p>will naturally break.</p>
+
+<p> 
+Alternative 3 – extend any ‘interesting’ instances
+<code>
+function extendArray(arr) {
+    if (arr.__wasExtended) return;
+    arr.forEach = function(action) {
+      for (var i = 0, l=this.length; i &lt; l, ++i)
+        action(this[i]);
+    };
+    arr.__wasExtended = true;
+}
+</code></p>
+
+<p>which is wrong as any instance will get a copy of all the functions, so too much memory will be used for non-core functionality</p>
+
+<p> 
+Alternative 4 – use the separated scoped Array trick
+just read <a href="http://dean.edwards.name/weblog/2006/11/hooray/">http://dean.edwards.name/weblog/2006/11/hooray/</a></p>
+
+<p>the idea is to use an Array object from a separate iframe, thus enjoy the Array (instanceof), but not interfere with existing Array object on the main window</p>
+
+<p> </p>
+
+<p>On top of all that. all three alternatives are problematic, as a regular</p>
+
+<p><code>
+var a = [];
+</code></p>
+
+<p>will not be extended. which is not such a big problem if you’re disciplined enough, but it’s terribly annoying to need to extend every array you want. think about JSON data you get from a service. you’d first have to iterate over the object graph and extend all of the arrays. yuck.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>Now, do you remember that annoying voice from the back of my head? I decided to stand up to him !</p>
+
+<p>Why actually not extend the Array prototype and be done with it?</p>
+
+<p>It will solve the “instanceof” problem, it will solve the need to apply the functions manually on all arrays (as any [] will natively have the new functions), and it wouldn’t cost much memory as it will only be added to the single prototype of all array instances.</p>
+
+<p> </p>
+
+<p>The usual reason for not wanting to do so, is that it would break the associative array ‘feature’ of javascript, and you won’t be able to</p>
+
+<p>for (var i in myArray)</p>
+
+<p>anymore.</p>
+
+<p> </p>
+
+<p>You know what? that reason is a total bullshit.</p>
+
+<p>Why? cuz there’s not such thing as an associative array in javascript !</p>
+
+<p>If anything, the Object object is similar enough. However the Array object should be used with 0-based integer index, just like any native java/c#/c/whatever array.</p>
+
+<p> </p>
+
+<p>Removing that ‘problem’ from the equation, and we can resort back to stuff like</p>
+
+<p><code>
+Array.prototype.numSort = function() {
+    this.sort(function(a, b) { return a - b; });
+    return this;
+};
+Array.prototype.forEach = function(action, index) {
+    for (var i = 0, l = this.length; i &lt; l; ++i)
+        action(this[i], index);
+};
+Array.prototype.find = function(func) {
+	for (var i = 0, l = this.length; i &lt; l; ++i) {
+		var item = this[i];
+		if (func(item))
+			return item;
+	}
+	return null;
+};
+Array.prototype.where = function(func) {
+	var found = [];
+	for (var i = 0, l = this.length; i &lt; l; ++i) {
+		var item = this[i];
+		if (func(item))
+			found.push(item);
+	}
+	return found;
+};
+</code></p>
+
+<p> </p>
+
+<p>You just have to <em>love</em> dynamic languages :)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/02/23/extracting-text-from-a-dom-element">Extracting text from a DOM element</a></h2>
+    <div class="meta">
+        <time>on February 23, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve just been asked the following question by a friend:</p>
+
+<p>in javascript - how do i get the text of an html-element, which doesn’t include text of all the children? firefox only</p>
+
+<p> </p>
+
+<p>Every html DOM element has a collection of direct children, called childNodes. Each node has a type, and text nodes (those are text portions that are part of an element’s inner content) have ‘3’ for their type.</p>
+
+<p> </p>
+
+<p>So, the following code is the solution:</p>
+
+<p><code>
+function extractFirstLevelTextFrom(elm) {
+   var text = '';
+   for (var i =0; i &lt; elm.childNodes.length; ++i) {
+      if (elm.childNodes[i].nodeType==3) 
+          text += elm.childNodes[i].nodeValue;
+   }
+   return text;
+}
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/11/25/not-storing-data-in-dom-elements-ndash-jquery-dot-data-function">[not] storing data in DOM elements - jQuery.data function</a></h2>
+    <div class="meta">
+        <time>on November 25, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>At time you’d want to store data, related to a DOM element.</p>
+
+<p> </p>
+
+<p>storing it directly into the element (either by elm.someArbitraryName = value, or with setAttribute) is wacky. Some browsers might not like you using non standard attributes, so you start using things like ‘alt’ and ‘rel’. Then again, these things has meaning, and storing arbitrary data is … well, uncool to say the least.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>jQuery.data() to the rescue. As jQuery objects are wrappers that HasA DOM elements, and not the DOM elements themselves (as in prototype), storing data on them is like storing data on POJSO (Plain Old JavaScript Objects), and the data() functions allows for an easy way of doing that.</p>
+
+<p> </p>
+
+<p>Read on that (and of a few other jQuery tips) at <a href="http://marcgrabanski.com/article/5-tips-for-better-jquery-code">http://marcgrabanski.com/article/5-tips-for-better-jquery-code</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/15/single-and-looking">Single and looking</a></h2>
+    <div class="meta">
+        <time>on October 15, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/css" rel="tag">css</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>explanation (before the wife kills me): I have some free time in the coming months, so I’m looking for interesting consulting gigs.</p>
+
+<p>So, if you’re in a company / dev team, and looking for some help with Castle (Windsor, MonoRail), NHibernate, or general information system design and architecture advices or training, setting up build and test environments, or any other of the things I rant about in this blog, then I’m your guy. </p>
+
+<p>I also do web-client ninja work, dancing the crazy css/html/javascript tango (jQuery: yes, Ms-Ajax: no) </p>
+
+<p>I currently live in Israel, but I’m fine with going abroad for short terms if you’re an off-shore client. </p>
+
+<p>you can contact me at “ken@kenegozi.com”</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/07/12/int-dot-parse-parseint">int.Parse != parseInt</a></h2>
+    <div class="meta">
+        <time>on July 12, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Serving as a mental note, and as a service to dear readers who hadn’t been bitten by this yet.</p>
+
+<p> </p>
+
+<p>javascript’s parseInt method is not the same as .NET’s int.Parse.</p>
+
+<p> </p>
+
+<p>there’s this ‘radix’ argument which is meant to tell the parseInt method whether we want to treat the string we parse as binary, octal, decimal, hexadecimal or whatever.</p>
+
+<p>Now the naive programmer (a.k.a. myself) would think that the default is always base 10, so parseInt(x) === parseInt(x, 10) for every x.</p>
+
+<p> </p>
+
+<p>Apparently parseInt tries to outsmart us, and it’s actually guessing the radix if not set. so if x begins with 0x, it would guess hexadecimal, and if x begins with 0 it would guess it’s octal.</p>
+
+<p>so, parseInt(‘010’) === parseInt(‘010’, 8) === 8</p>
+
+<p>ok, I can live with that maybe.</p>
+
+<p>however it would also ‘guess’ that 09 is octal (even though 9 is not an octal digit !) thus parseInt(‘09’) === 0</p>
+
+<p> </p>
+
+<p>I found this by chance, when a Date.parse method I have was parsing "09/07/2008" into a date-info object with day==0, causing it to fall back into today’s date</p>
+
+<p> </p>
+
+<p>So, the lessons we’ve learned today:
+- javascript is not c#
+- always set the radix when using parseInt - parseInt(x, 10)
+- don’t let your cat spill a glass of soda on your desk as it would ruin your earphones, and unless the laptop was on an elevated stand it would have ruin it also     </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/08/07/aspnet-ajax-updatepanel-challenge">ASP.NET Ajax UpdatePanel Challenge</a></h2>
+    <div class="meta">
+        <time>on August 7, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Actually, it’s not much of a challenge, but it is a catchy title.</p>
+
+<p>Or is it?</p>
+
+<p>Anyway, that’s the details:</p>
+
+<p>I’d kindly ask all of you ASP.NET Ajax wiz guys (and gals), to supply me with a simple UpdatePanel thing.</p>
+
+<p>What should it do?</p>
+
+<p>I want to have a webpage, based on<a href="http://kenegozi.com/blog/uploaded/UpdatePanelTemplate.html">this template</a>, that on dropdown change, will go to the server with the selected value in the dropdown, and update the data (table) with some crap, based on the sent value.</p>
+
+<p>You can leave the actual data retrieval to a simple method returning an array of string array, or you can go and implement a CodeSmith/DAAB/Whatever based supercool data access code. I would ignore it anyway. I want the Ajax stuff.</p>
+
+<p>Now, to the why.</p>
+
+<p>I am doing that MonoRail presentation at Microsoft’s Israel IVCUG (Israel Visual C(#/++) User Group) next week. I might be showing some demos, and I want to be fare when I show a comparison to WebForms stuff, and not come up with a crappy code and say “ha ha”, but show something that one of you, my-dear-readers-who-actually-uses-asp-net-ajax-for-living, wrote, and is considered a good example.</p>
+
+<p>Also, I’m lazy. Seriously. Creating a presentation takes a LOT of time and effort, and I do not have much of the first, and rather avoid much of the later.</p>
+
+<p>So, please do send me that code, to my-first-name at that-blog’s-hostname.</p>
+
+<p>thanks.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/01/24/my-first-codeproject-article-is-up">My first CodeProject article is up</a></h2>
+    <div class="meta">
+        <time>on January 24, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve <a href="http://www.codeproject.com/Ajax/CoolNSimpleGoogleAJAX.asp">posted an article to CodeProject</a> about <a href="http://kenegozi.com/blog/2007/01/15/GoogleAJAXSearchAPIAndMyNewHomepage.aspx">building my Google Ajax Search Enabled</a><a href="http://kenegozi.com/">Homepage</a>.</p>
+
+<p>So, go there, read it, comment it, vote for it, tell your friends about it, print it and glue it to your forehead, whatever you think is appropriate.</p>
+
+<p>Unless you didn’t like it. In that case, you shouldn’t do anything. why bother ? :)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/01/15/google-ajax-search-api-and-my-new-homepage">Google AJAX Search API and My New Homepage</a></h2>
+    <div class="meta">
+        <time>on January 15, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I have loaded a <a href="http://kenegozi.com/">new homepage</a>, and used a little of the <a href="http://code.google.com/apis/ajaxsearch/documentation">Google AJAX Search API</a> to make it interesting. Actually, I’m using it now as my browser’s default homepage, instead of google.com</p>
+
+<p>Not only that, but I have documented the process of making it, and have sent it to <a href="http://www.codeproject.com/">codeproject</a>, to be published, as my first contribution there, in hope for more to come.</p>
+
+<p>So, please leave your impressions, eiether here or in the codeproject article (I’ll post the addresss once it will be up).</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,3771 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Ken Egozi | Web builder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="Ken Egozi">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='Ken Egozi | Web builder' property='og:title'>
+	
+	<link rel="canonical" href="http://kenegozi.com/blog/tag/nhibernate/index.html" />
+
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	<!-- IE 9 Fallback-->
+	<!--[if IE 9]>
+		<link href="/assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements and IE Fallback-->
+	<!--[if lt IE 9]>
+	  <script src="/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
+<body id="top" class="">
+	
+	<!-- NAVBAR -->
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- END NAVBAR -->
+<section class="container content tags">
+  <h1 class="post_title">Posts Tagged &ldquo;nhibernate&rdquo;</h1>
+  <div class="post-sidebar">
+	<h5>Follow</h5>
+	<p>
+		<a href="http://feeds2.feedburner.com/kenegozi">
+			<img src="http://feeds.feedburner.com/~fc/kenegozi?bg=000033&amp;fg=00FF00&amp;anim=1" height="26" width="88" style="border:0" alt="">
+		</a>
+	</p>
+	<hr/>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/10/10/mysql-error-105-phantom-table-menace">MySQL error 105 - Phantom Table Menace</a></h2>
+    <div class="meta">
+        <time>on October 10, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>MySQL is weird
+The weirdest problem happened to a college today.</p>
+
+<p>When creating the database schema during integration tests run, he got “Cannot create table FOO error 105” from MySQL.</p>
+
+<p>There <em>used</em> to be a table named FOO with a VARCHAR primary key. The schema then changed so that the primary key of FOO became BIGINT. There is also a second table in the system (call it BAR) which has a foreign-key into FOO’s primary key. A classic master/details scenario.</p>
+
+<p>However, the table BAR was obsoleted from the schema.</p>
+
+<p>The integration tests runner is dropping all tables and recreating them before running the test suite. It is inferring the schema from the persisted classes using NHibernate’s mapper and the Schema creation feature of NHibernate.
+Sleeves up
+We cranked open the mysql console and started to look around:
+- When doing “SHOW TABLES”, the FOO table was not listed.
+- CREATE TABLE FOO (<code>Id</code> BIGINT) - fail with error 105.
+- CREATE TABLE FOO (<code>Id</code> VARCHAR) – success !!
+- huh?
+- DROP TABLE FOO – success
+- encouraging !
+- CREATE TABLE FOO (<code>Id</code> BIGINT) - fail with error 105 – again
+- huh ???
+- DROP TABLE FOO – fail with “cannot delete … foreign key …”
+- but SHOW TABLES still does not list FOO 
+- huh ?????
+- DROP DATABASE dev; CREATE DATABASE dev;
+- now everything works.
+Back to work
+Luckily this was not a production database, and even more lucky – the said DB change (change that PK from VARVHAR to BIGINT) would need to run on production within a separate DB instance that can be recreated on deploy.</p>
+
+<h2 id="and-while-were-at-it">And while we’re at it</h2>
+
+<p>Way can’t MySQL store non-indexed columns in an index?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/05/nhibernate-and-activerecordrsquos-showsql-in-web-application">NHibernate (and ActiveRecord&rsquo;s) show_sql in web application</a></h2>
+    <div class="meta">
+        <time>on January 5, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Looking into
+When using an OR/M of any kind, it is quite worthwhile to be able to look at the SQL generated by the tool, for various reasons (such as tuning the DB, finding SELECT N+1 issues, and sheer curiosity).</p>
+
+<p> 
+Solution #1
+One way of doing that is to start a profiler on the DB engine, but it has its downsides. For one, you would need a profiler tool, which is not always freely available. You might also not be able to access the DB engine with that kind of tool on various hosted environments.</p>
+
+<p> </p>
+
+<p>In NHibernate’s configuration (and it is also exposed to Castle’s ActiveRecord users) you can set a property names “show_sql” to true. This will cause NHibernate to spit every SQL query, along with its parameters, onto the Console. Very useful when running Tests, but when running within a Web Application, you do not have access to the Console window, and can’t really see what is going on.</p>
+
+<p>That also leads to another problem with using a profiler on the DB engine – you won’t be able to figure out which queries belong to which web request.</p>
+
+<p> 
+Solution #2
+One comprehensive solution is to use the excellent tool from <a href="http://ayende.com/">Oren Eini</a> – NhProf. I will not cover this tool here; it does lots of great stuff, and can help your development cycle. However not everyone will be willing to pay the price for using it.</p>
+
+<p> </p>
+
+<p>not to worry, I hereby offer you two more options, which gives you less options, but are good enough for the problem at hand, and are free.</p>
+
+<p> 
+Free solution #1
+NHibernate is using log4net. it stores a <em>lot</em> of what it’s doing there. So, one can always setup a logger named “NHibernate.SQL” and get a hold of the queries. I do not cover log4net usage here. Google it up, and then set up the NHibernate.SQL logger.</p>
+
+<p>You’d also want to setup a log4net variable for you to group the queries it gets by the web-request that needed them. You can do so by setting a property on log4net’s GlobalContext. e.g., in Application_BeginRequest:</p>
+
+<p><code>
+log4net.GlobalContext.Properties[&amp;quot;page_url&amp;quot;] = Context.Request.RawUrl + &amp;quot;|&amp;quot; + Guid.NewGuid();
+</code></p>
+
+<p>then you’d set the log appender to write the page_url value, and you’ll be able to Group By it.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>But this suck. You need to depend on log4net even if you do not want to, and setup that hack-ish global property, then read it from the log4net storage, and lots of complexities. wouldn’t it be great if you could simply got a hold of the Console’s output (or at least the NH parts of it?)</p>
+
+<p> 
+Free solution #2 – even simpler
+The Console object allow you to set a custom Writer to its Out stream. Meaning, you can grab the Console’s output into an in memory string during a request, and then at the end of the request, grab all lines that starts with “NHibernate:” and you’re done:</p>
+
+<p> </p>
+
+<p>on Application_BeginRequest:</p>
+
+<p><code>
+var writer = new StringWriter();
+Console.SetOut(writer);
+Context.Items[SqlLogFilter.SQL_LOG_WRITER_KEY] = writer;
+</code></p>
+
+<p>on Application_EndRequest:</p>
+
+<p><code>
+var writer = HttpContext.Current.Items[SQL_LOG_WRITER_KEY] as StringWriter;
+if (writer != null)
+{
+	var lines = writer.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+	var relevantLines =
+		lines.Where(l =&gt; l.StartsWith(&amp;quot;NHibernate&amp;quot;) || l.Length &gt; 0 &amp;amp;&amp;amp; char.IsWhiteSpace(l[0])).ToArray()
+		;
+	var queries = string.Join(Environment.NewLine, relevantLines)
+		.Split(new[] {&amp;quot;NHibernate:&amp;quot;}, StringSplitOptions.RemoveEmptyEntries)
+		.Select(q =&gt; q.Trim());
+	DoSomethingWith(queries);
+}
+</code></p>
+
+<p> </p>
+
+<p>within DoSomethingWith you can do whatever you like with the queries string collection</p>
+
+<p> </p>
+
+<p>The more complete solution that I use, is taking advantage of a feature in Monorail’s AspView called <a href="http://kenegozi.com/blog/2007/11/13/viewfilter-take-2.aspx">ViewFilter</a> (you can do this with ASP.NET’s output filter; look up HttpFilter. it’s not as clean, but workable). I create a filter that wrap the stuff that’s on the Application_EndRequest, turn the queries collection into a bunch of &lt;pre&gt; elements, and stick it within the view-engine’s output by simple string.Replace call, injecting these &lt;pre&gt; elements into a marker location in the markup.</p>
+
+<p>I’d then use jQuery to make these &lt;pre&gt; elements visible when clicking somewhere secret on the screen.</p>
+
+<p> </p>
+
+<p>The ViewFilter’s code (for reference):</p>
+
+<p><code>
+public class SqlLogFilter : IViewFilter
+{
+	public static readonly string SQL_LOG_PLACEHOLDER = &amp;quot;SQL_LOG_PLACEHOLDER&amp;quot;;
+	public static readonly string SQL_LOG_WRITER_KEY = &amp;quot;SQL_LOG_WRITER_KEY&amp;quot;;
+	public string ApplyOn(string input)
+	{
+		var log = &amp;quot;&amp;quot;;
+		var writer = HttpContext.Current.Items[SQL_LOG_WRITER_KEY] as StringWriter;
+		if (writer != null)
+		{
+			var lines = writer.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			var relevantLines =
+				lines.Where(l =&gt; l.StartsWith(&amp;quot;NHibernate&amp;quot;) || l.Length &gt; 0 &amp;amp;&amp;amp; char.IsWhiteSpace(l[0])).ToArray()
+				;
+			var queries = string.Join(Environment.NewLine, relevantLines)
+				.Split(new[] {&amp;quot;NHibernate:&amp;quot;}, StringSplitOptions.RemoveEmptyEntries)
+				.Select(q =&gt; q.Trim());
+			log = queries
+				.Select(q =&gt; &amp;quot;&lt;pre&gt;&amp;quot; + q + &amp;quot;&lt;/pre&gt;&amp;quot;)
+				.Aggregate(&amp;quot;&amp;quot;, (q1, q2) =&gt; q1 + q2);
+			var count = queries.Count();
+			log = &amp;quot;&lt;p&gt;Queries: &amp;quot; + count + &amp;quot;&lt;/p&gt;&amp;quot; + log;
+		}
+		return input.Replace(SQL_LOG_PLACEHOLDER, log);
+	}
+}
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/15/single-and-looking">Single and looking</a></h2>
+    <div class="meta">
+        <time>on October 15, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/css" rel="tag">css</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>explanation (before the wife kills me): I have some free time in the coming months, so I’m looking for interesting consulting gigs.</p>
+
+<p>So, if you’re in a company / dev team, and looking for some help with Castle (Windsor, MonoRail), NHibernate, or general information system design and architecture advices or training, setting up build and test environments, or any other of the things I rant about in this blog, then I’m your guy. </p>
+
+<p>I also do web-client ninja work, dancing the crazy css/html/javascript tango (jQuery: yes, Ms-Ajax: no) </p>
+
+<p>I currently live in Israel, but I’m fine with going abroad for short terms if you’re an off-shore client. </p>
+
+<p>you can contact me at “ken@kenegozi.com”</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/12/described-enums-in-nhibernate">Described Enums in NHibernate</a></h2>
+    <div class="meta">
+        <time>on October 12, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/d9" rel="tag">d9</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>First feature in D9.NHibernate: DescribedEnumStringType</p>
+
+<p>That’s a generic IUserType for mapping enum columns using the descriptions of values instead of their names.</p>
+
+<p>It depends on D9.Commons which contains the Described Enum helpers <a href="http://kenegozi.com/Blog/2008/10/10/described-enums-2-dot-0.aspx">described in an early post</a></p>
+
+<p>Usage:</p>
+
+<p>given the following enum:</p>
+
+<p>```
+usingSystem.ComponentModel;</p>
+
+<p>namespaceOpenUni.Domain.Modules
+{
+    publicenumModuleTypes
+    {
+        [Description(“ר”)]
+        Standard,</p>
+
+<pre><code>    [Description("מ")]
+    Advanced,
+
+    [Description("מס")]
+    AdvancedSeminar,
+
+    [Description("תש")]
+    Masters
+} } ```
+</code></pre>
+
+<p>mapping a field of type ModuleTypes will look like that:</p>
+
+<p><code>
+&lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
+              D9.NHibernate" /&gt;
+</code></p>
+
+<p>or if you use Castle ActiveRecord attributes for mapping:</p>
+
+<p><code>
+[Property(ColumnType = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], D9.NHibernate")]
+public virtual ModuleTypes ModuleType {get; set;}
+</code></p>
+
+<p>Code is here:</p>
+
+<p><a href="http://code.google.com/p/d-9/source/browse/#svn/trunk">http://code.google.com/p/d-9/source/browse/#svn/trunk</a></p>
+
+<p>I’ll build and upload binaries once I get some time for that. meanwhile you should be able to just svn-co the code, then nant from the root. (assuming nant 0.86b2 and .net 3.5 on the machine) </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/02/happy-new-year-here-comes-sql">Happy new year, here comes SQL</a></h2>
+    <div class="meta">
+        <time>on October 2, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/hql" rel="tag">hql</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>One of the things occupying me is my work on my last seminar for the university, so I’d finally get my Bachelor’s degree.</p>
+
+<p>The project is building an application for managing, uhm, a university. You reckon they figured out a way to prototype a new system for free … ?</p>
+
+<p>Anyway, the seminar name is “Database Management Systems Workshop”, so one of the things I have to do is to present a full E/R-D even before I start coding. And UI design sheets. So no agile here :(</p>
+
+<p>My aim is to be able to demonstrate some cool stuff though, like the usage of an advanced O/R mapper (NH), static and dynamic object-based querying (hql and Criteria API), some advanced T-SQL stuff (<a href="http://www.setfocus.com/TechnicalArticles/sql-server-2005-tsql-3.aspx">recursive set-based queries using CTE</a>, and some <a href="http://kenegozi.com/Blog/2008/07/28/unique-when-not-null-or-not-empty-in-sql-server.aspx">fancy integrity enforcing triggers</a>), smart caching with <a href="http://davidhayden.com/blog/dave/archive/2006/04/29/2929.aspx">SqlCacheDependency</a>, and more.</p>
+
+<p>To make things interesting I decided to create a large-ish mount of fake data. Well, at least in terms of a non-production university-demo app. My DB currently holds 600K students and over 500 possible modules.</p>
+
+<p>I’ll blog a bit on the ways I used to populate that data, and other data as well (such as the ModulePrerequisites table which is an adjacency table).</p>
+
+<p>So, beware, some SQL might follow</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/09/12/get-unique-results-from-joined-queries-in-nhibernate">Get unique results from joined queries in NHibernate</a></h2>
+    <div class="meta">
+        <time>on September 12, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/hql" rel="tag">hql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve just added a page to <a href="http://www.nhforge.org/">NHibernate’s new community site</a>, about <a href="http://www.nhforge.org/wikis/howtonh/get-unique-results-from-joined-queries.aspx">Getting unique results from joined queries</a>.</p>
+
+<p>Comments (and edits) are welcome</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/07/24/quotbut-its-using-reflection-so-it-must-be-slowquot">&quot;But it's using reflection, so it must be slow&quot;</a></h2>
+    <div class="meta">
+        <time>on July 24, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Well, <a href="http://darioquintana.com.ar/blogging/?p=43">not <em>that</em> slow apparently</a>. </p>
+
+<p>The lesson:</p>
+
+<p>Don’t be afraid of powerful tools. </p>
+
+<p>You can use reflection right, gain the power, while not losing too much performance.</p>
+
+<p>Quoting from nhusers mailing list:</p>
+
+<p>How much you be scare about the use of reflection in NH if 1.000.000 of access to get &amp; set to a field mean 0.2seconds ?– Fabio Maulo</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/23/fabio-and-ayende-on-caching">Fabio and Ayende On Caching</a></h2>
+    <div class="meta">
+        <time>on June 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>A quick ripoff from NHibernate’s users group:</p>
+
+<p>Fabio Maulo:</p>
+
+<p>The base concepts to understand are (my opinion):- <em>The Cache is not the panacea of performance.</em>- Don’t use the Cache like the base of your app; add the management of Cache at the end of your development process to increase the performance only where you really need do it.- Implementing a method named GetAll is, in most cases, a bad idea; an acceptable mediation is PaginateAll(pageSize).- InMemoryFilter can have less performance than filter trough RDBMS (especially when you intent to do it trough Cache with a large amount of entities).- Take care on what happen to the memory usage of your app when you are using Cache.</p>
+
+<p>Ayende:</p>
+
+<p>The cache is not magic, and should not be treated in such a fashion. I refuse to use the 2nd level cache in my applications until I have a perf problem that can’t be solved by creating smarter queries.Think about the cache as band aid, and good design as avoiding the need for that.</p>
+
+<p>And I say Hallelujahs </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/05/12/cloning-a-detachedcriteria">Cloning a DetachedCriteria</a></h2>
+    <div class="meta">
+        <time>on May 12, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I always need to look it up, so I might as well put it here for future reference:</p>
+
+<p>What is a DetachedCriteria?</p>
+
+<p>This is an ICriteria object, that is detached from any ISession, therefore is suitable to be passed around as a specification that is being built up dynamically.</p>
+
+<p>Why would I want to clone it?</p>
+
+<p>Well, say I want to run two similar queries (same WHERE part) but with a different projection or aggregation. For example - when fetching a paged collection, you’d want to create the spec criteria, then add Count projection on A to get the ‘total number of records’ ,and add the paging restrictions (sort, then from row 101 take 10 records). Now if you’d try to add the restrictions to the criteria to which you have already applied Count on, and error would occur.</p>
+
+<p>Solution:</p>
+
+<p>There’s CriteriaTransformer class, which holds a few useful static methods, amongst them, Clone(DetachedCritetia):</p>
+
+<p>```</p>
+
+<p>DetachedCriteria spec = DetachedCriteria.For<whadever>() ...; &lt;= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    ...; &lt;= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    ...; &lt;= setup the pagingICollection<whadever> stuff = whadeverRepository.FindAll(pagedCriteria);
+int total = whadeverRepository.Count(countCriteria);
+```</whadever></whadever></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/05/09/using-nhibernates-named-queries-with-activerecord">Using nhibernate's named queries with ActiveRecord</a></h2>
+    <div class="meta">
+        <time>on May 9, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/hql" rel="tag">hql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>One of the methods of querying the DB when using NHibernate, is to issue <a href="http://www.hibernate.org/hib_docs/reference/en/html/queryhql.html">HQL</a> queries. HQL stands for “Hibernate Query Language”. It has a SQL-like syntax and is very intuitive for people with SQL background.</p>
+
+<p>The way this works is that NHibernate ‘compiles’ the HQL query into SQL, and then issues the SQL query (using ADO.NET’s facilities) to the DB.</p>
+
+<p>Sounds pricey?</p>
+
+<p>enter Named Queries.</p>
+
+<p>now these are HQL (or SQL) queries, each has a name (obviously), that are been supplied to NH through the mapping. The queries are being translated and cached as IDbCommand objects as part of the framework initialisation, which mean that you get rid of the HQL-&gt;SQL overhead throughout the life of the process.</p>
+
+<p>One other major benefit, is that the mechanism to actually execute these named queries, does not differentiate between HQL and SQL queries (for the simple fact that these queries have already been transferred to SQL at runtime). That gives you the possibility to replace HQL queries into tighter SQL queries (with the same parameters and which returns the same resultset) should your DBA figure out a better one.</p>
+
+<p>But if you’re using ActiveRecord, you usually do not have direct access into the mapping (.hbm) files. So how would you use named queries with AR?</p>
+
+<p>enter HqlNamedQueryAttribute (not such a great name, as I did state that it would also work for SQL queries).</p>
+
+<p>So, for an example, on this blog’s source code, within PostRepository.cs you’d see this code:</p>
+
+<p>```</p>
+
+<p>…</p>
+
+<h1 id="region-queriesassembly-hqlnamedqueryqueriesfindpostsinarchive-queriesfindpostsinarchiveassembly-hqlnamedqueryqueriesfindbyurlfriendlytagname-queriesfindbyurlfriendlytagnamenamespace-kenegozicomdomain-internal-partial-class-queries--internal-const-string-findpostsinarchive---from-post-p-where--yearplifecyclecreationdate--year-and-monthplifecyclecreationdate--month--order-by-plifecyclecreationdate-desc-internal-const-string-findbyurlfriendlytagname---select-p--from--post-p--join-ptags-t-where-turlfriendlyname-like-urlfriendlytagname-order-by-plifecyclecreationdate-desc-endregion">region queries[assembly: HqlNamedQuery(Queries.FindPostsInArchive, Queries.FindPostsInArchive)][assembly: HqlNamedQuery(Queries.FindByUrlFriendlyTagName, Queries.FindByUrlFriendlyTagName)]namespace KenEgozi.Com.Domain{ internal partial class Queries { internal const string FindPostsInArchive = @” from Post p where  year(p.Lifecycle.CreationDate) = :year and month(p.Lifecycle.CreationDate) = :month  order by p.Lifecycle.CreationDate desc”; internal const string FindByUrlFriendlyTagName = @” select p  from  Post p  join p.Tags t where t.UrlFriendlyName like :urlFriendlyTagName order by p.Lifecycle.CreationDate desc;”; }}#endregion</h1>
+
+<p>…</p>
+
+<p>public ICollection<post> FindInArchive(int year, int month) { </post></p>
+
+<p>return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter(“year”, year) .SetParameter(“month”, month) .List<post>(); }</post></p>
+
+<p>…</p>
+
+<p>```</p>
+
+<p>Queries class is marked as partial, as other queries might be presented on other repositories or services that would need to add more named queries. I considered grouping of queries into groups by the using repository, or by aggregate roots, but the thing is - having all of the queries under the same namespace helps discoverability, and helps with preventing duplications</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/04/03/logging-sql-output-from-nhibernate-using-log4net">Logging SQL output from NHibernate, using Log4Net</a></h2>
+    <div class="meta">
+        <time>on April 3, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following a question from NHibernate’s users list:</p>
+
+<p>```</p>
+
+<configsections> <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" /></configsections>
+<log4net> <appender name="rollingFile" type="log4net.Appender.RollingFileAppender,log4net"> <param name="File" value="log.txt" /> <param name="AppendToFile" value="true" /> <param name="DatePattern" value="yyyy.MM.dd" /> <layout type="log4net.Layout.PatternLayout,log4net"> <conversionpattern value="%d %p %m%n" /> </layout> </appender> <logger name="NHibernate.SQL"> <level value="ALL" />    <appender-ref ref="rollingFile" />  </logger></log4net>
+
+<p>```</p>
+
+<p>and configuring your application to use Log4Net (if you hadn’t done that anyway):</p>
+
+<p><code>
+log4net.Config.XmlConfigurator.Configure();
+</code></p>
+
+<p>If you wan’t to know more about log4net and it’s configuration options - look <a href="http://www.ondotnet.com/pub/a/dotnet/2003/06/16/log4net.html?page=2">here</a> or use your favorite search engine.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/19/on-linq-for-sql-and-poco">On Linq for SQL and POCO</a></h2>
+    <div class="meta">
+        <time>on November 19, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/linq" rel="tag">linq</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m looking at the option of using Linq To SQL for persistence.</p>
+
+<p>Basic assumptions:
+- Entities should be POCOs
+- I like Linq as query language
+- I hate visible generated code
+- Would rather avoid xml configurations</p>
+
+<p>Today I’m using NHibernate (so 1 and 3 are set), and AR Attributes (so 4 is set). As for querying, I resort to hql (nice, yet too stringy), ICriteria (still stringy) and NHQG (cool, super cool, yet coupled with NH, while Linq is a “query everything” language)</p>
+
+<p>I tried Linq for SQL (on a VS C# 2008 Express Beta2). No designer. Hand coded the entity, and have used the attributes for mapping.</p>
+
+<p>First problem encountered: in order to make a column lazy, I need to change the underlying type to Link<myoriginaltype>, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.</myoriginaltype></p>
+
+<p>Couldn’t yet find a way to actually lazy load that property once the instance has already been loaded.</p>
+
+<p>I much better like the way NH is handling things, with a runtime-generated proxy that takes care of lazy loading (among other stuff), so I get it without hassling my entities code.</p>
+
+<p>Didn’t even mention First and Second Level Caches.</p>
+
+<p>I guess I’d have to try and hop into NHibernate.Linq, and try to help Ayende with bringing it forward. That would mean diving into NH code, something I haven’t done for quite some time now …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/18/activerecord-dot-linq-naive-but-working">ActiveRecord.Linq - naive but Working</a></h2>
+    <div class="meta">
+        <time>on November 18, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/linq" rel="tag">linq</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve spent some times lately with Linq To SQL and have played a bit with the Mapping namespace.</p>
+
+<p>Why I do not like it very much is a matter for a different post. The matter at hand is that I want the power of Linq, and I want the power of NHibernate, and I want the easy road of ActiveRecord.</p>
+
+<p>What do I mean by that? I’d like:
+- query language == Linq<br />
+- persistence engine == NHibernate<br />
+- Mapping == ActiveRecord attributes </p>
+
+<p>the needed prequisites:
+- Linq (framework =&gt; framework.Version &gt;= 3.5)<br />
+- <a href="http://www.hookedonlinq.com/LINQToNHibernate.ashx">NHibernate.Linq</a> (source =&gt; source.getFrom(Rhino-Tools) )<br />
+- Linq for ActiveRecord - Keep on Reading </p>
+
+<p>So, <a href="http://www.ayende.com">Ayende</a> has kick-started it, and with some help from <a href="http://blogs.magiconsoftware.com/blogs/bdiaz/">Bobby Diaz</a>, we have a prototype level NHibernate provider for Linq.</p>
+
+<p>To make it work with ActiveRecord, all you need is to add:</p>
+
+<p><code>
+using System;using Castle.ActiveRecord;using Castle.ActiveRecord.Framework;using NHibernate;namespace NHibernate.Linq{    public class ActiveRecordContext : NHibernateContext { public ActiveRecordContext() : base(null) { session = GetSession(); }  private ISession GetSession() { ISessionScope scope = SessionScope.Current; if (scope == null) throw new InvalidOperationException("You should be in a SessionScope()"); ISessionFactoryHolder holder = ActiveRecordMediator.GetSessionFactoryHolder(); return holder.CreateSession(typeof(ActiveRecordBase)); } }}
+</code></p>
+
+<p>and now you can do stuff like:</p>
+
+<p><code>
+using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&lt;Category&gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
+</code></p>
+
+<p>Assuming Category has [ActiveRecord] mapping.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/07/28/a-sign-that-im-starting-to-like-nhqg-too-much">A Sign That I'm Starting To Like NHQG Too Much</a></h2>
+    <div class="meta">
+        <time>on July 28, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today I noticed that piece of code on my working copy:</p>
+
+<p><code>
+Repository.Blog.FindOne(Where.Blog.Id == blogId)
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/20/eagerly-loading-multiple-collections-in-one-roundtrip">Eagerly loading multiple collections in one roundtrip</a></h2>
+    <div class="meta">
+        <time>on June 20, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today at work I did a session with my team, showing them several methods to query the DB in a NH/AR enviroment.</p>
+
+<p>When we talked about eager fetching, I said that doing it for more than one collection in one query isn’t good (as advised in hibernate’s site), since it might build up a rather large cartesian product.</p>
+
+<p>Why? If we have a type Entity, that looks a bit like that:</p>
+
+<p><code>
+class Entity{ ... [HasMany ...] public IList&lt;Item&gt; Items ... [HasMany ...] public IList&lt;AnotherItem&gt; AnotherItems ... ...}
+</code></p>
+
+<p>An eager fetch will do:</p>
+
+<p><code>
+SELECT *FROM  Entities INNER JOIN Items ON Entities.Id = Items.EntityIdINNER JOIN AnotherItems ON Entities.Id = AnotherItems.EntityId
+</code></p>
+
+<p>The result length will be e<em>i</em>a, where e is the number of rows in Entities table, i is the number of rows in Items table , and a .. (you fill the blank).</p>
+
+<p>But, luckily for us, NH is keeping a single concrete copy of each entity in a session. <a href="http://ayende.com/Blog/archive/2007/06/20/Efficently-loading-deep-object-graphs.aspx">Ayende is abusing that in a way, that makes the above possible</a>, without the 3rd (or more) dimention in the cartesian product.</p>
+
+<p>How it works? Using a MultiCriteria,he isgettinghis entities,eagerly fetching one collection at a time. So it would return e<em>i+e</em>arows. So for the first query, NH will populate the Entity instances, with the first collection (Items) populated. For the second query, NH will populate <em>another</em> Entity instances with the second collection (AnotherItems) populated. But, since it’s in the same session, actually the first Entity instances (with Items already populated) will get their AnotherItems collection populated.</p>
+
+<p>That’s why at the end of the snippet, you see that he actually deals with list[0]. That’s where the first set of references is placed, and the other items in that list (list[1] … list[n]) are just copies of the references to the same Entity objects.</p>
+
+<p>Quite a similar approach was seen when <a href="http://www.ayende.com/Blog/archive/2006/11/22/7081.aspx">Ayende has shown us how to eager fetch using SQL</a> (at the end of the post). The query there returns an array of Message items and an array of User items, but the User instances actually are wired to their Message instances, so he is using only the first array.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/03/19/activewriter-2nd-preview-is-out">ActiveWriter - 2nd preview is out</a></h2>
+    <div class="meta">
+        <time>on March 19, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio-2005" rel="tag">visual-studio-2005</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>ActiveWriter is a VS2005 plugin, that adds a new item type for your projects. This item is actually a visual designer for ActiveRecord classes. Quite neat, and hopefully will increase the penetration of Castle’s ActiveRecord to the “If there’s no VS wizard, I do not use it” kinda guys.</p>
+
+<p>You can read about it and download it from <a href="http://altinoren.com/activewriter/">http://altinoren.com/activewriter/</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/01/04/nhibernate-could-not-find-constructor-for-in-select-new-projection-query">NHibernate ' Could not find constructor for: ' in ' select new ' projection query</a></h2>
+    <div class="meta">
+        <time>on January 4, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/hql" rel="tag">hql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>There are two facts here:1. I love NHibernate.2. I hate NHibernate’s exception messages.</p>
+
+<p>And here’s my story.</p>
+
+<p>On a project I’m working on, I need to show a projection of “top 10” from the database. let’s show this on the good old Blog scenario:<img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/NHibernateCouldnotfindconstructorforinse_A7E6/Post-Comment-Stupid_erd_thumb%5B2%5D.gif" alt="" /></p>
+
+<p>So I want to show the posts with the longest comments measured by the comment’s length. Stupid, huh? but it’s a demo only (I cannot expose the actual ERD). Let’s say I want the top 5.</p>
+
+<p>I am using Castle ActiveRecord. There is a Post and a Comment classes. However, I do not wish to load Posts objects, since It will load the Comments, too, and maybe other stuff that the Post class is related to. So I have defined a PostProjection class: </p>
+
+<p><code>
+   1:  publicclass PostProjection
+</code></p>
+
+<p><code>
+   2:  {
+</code></p>
+
+<p><code>
+   3:  publicstring Title;
+</code></p>
+
+<p><code>
+   4:  publicint Length;
+</code></p>
+
+<p><code>
+   5:  public PostProjection(string title, int length)
+</code></p>
+
+<p><code>
+   6:      {
+</code></p>
+
+<p><code>
+   7:          Title = title;
+</code></p>
+
+<p><code>
+   8:          Length = length;
+</code></p>
+
+<p><code>
+   9:      }
+</code></p>
+
+<p><code>
+  10:  }
+</code></p>
+
+<p>I have also added an [Import] attribute on the Post. The actual querying is done using the next hql:</p>
+
+<p><code>
+   1:  publicstatic PostProjection[] GetTopPosts(int postsToGet)
+</code></p>
+
+<p><code>
+   2:  {
+</code></p>
+
+<p><code>
+   3:      SimpleQuery&lt;PostProjection&gt; q =
+</code></p>
+
+<p><code>
+   4:  new SimpleQuery&lt;PostProjection&gt;(typeof(Post), @"
+</code></p>
+
+<p><code>
+   5:          select new PostProjection(p.Title, sum(c.LineCount)) 
+</code></p>
+
+<p><code>
+   6:          from 
+</code></p>
+
+<p><code>
+   7:              Post p inner join 
+</code></p>
+
+<p><code>
+   8:              p.Comments c 
+</code></p>
+
+<p><code>
+   9:          order by sum(o.LineCount) desc
+</code></p>
+
+<p><code>
+  10:          group by p.Title");
+</code></p>
+
+<p><code>
+  11:      q.SetQueryRange(postsToGet);
+</code></p>
+
+<p><code>
+  12:  return q.Execute();
+</code></p>
+
+<p><code>
+  13:  }
+</code></p>
+
+<p>It worked great.</p>
+
+<p>Yesterday I’ve upgraded my Castle dll’s to the ones from build 229. It includes NHibernate 1.2.0.2002</p>
+
+<p>Now the “select new” started to fail, and NHibernate started to claim than “Could not find constructor for: PostProjection”.</p>
+
+<p>I’ve been scratching my head, trying various approaches, and even was keen to skip the “new” and use an object[ ] and populate the Projection Array by hand, but then I tried changing the “length” parameter of the constructor from “int” to “long”. Magically it solved the problem.</p>
+
+<p>Now, if only NHibernate would have said :</p>
+
+<p>Could not find constructor for: PostProjection.Looking for: PostProjection(string, long)</p>
+
+<p>I would’ve known what the problem was, and what should I change.</p>
+
+<p>So what have we learned today?</p>
+
+<ol>
+  <li>NHibernate expects sum() to return “long” rather than “int”2. NHibernate’s error messages suck.</li>
+</ol>
+
+<p>I’ve svn-ed the NHibernate trunk, added some code so this message would be more developer friendly, and I’m going to send the patch to NHibernate’s JIRA.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+</body>
+</html>

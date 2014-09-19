@@ -1,0 +1,6889 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Ken Egozi | Web builder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="Ken Egozi">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='Ken Egozi | Web builder' property='og:title'>
+	
+	<link rel="canonical" href="http://kenegozi.com/blog/tag/tools/index.html" />
+
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	<!-- IE 9 Fallback-->
+	<!--[if IE 9]>
+		<link href="/assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements and IE Fallback-->
+	<!--[if lt IE 9]>
+	  <script src="/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
+<body id="top" class="">
+	
+	<!-- NAVBAR -->
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- END NAVBAR -->
+<section class="container content tags">
+  <h1 class="post_title">Posts Tagged &ldquo;tools&rdquo;</h1>
+  <div class="post-sidebar">
+	<h5>Follow</h5>
+	<p>
+		<a href="http://feeds2.feedburner.com/kenegozi">
+			<img src="http://feeds.feedburner.com/~fc/kenegozi?bg=000033&amp;fg=00FF00&amp;anim=1" height="26" width="88" style="border:0" alt="">
+		</a>
+	</p>
+	<hr/>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2012/09/04/using-gists-in-your-blog-embed-them-into-your-feed">Using gists in your blog? Embed them into your feed</a></h2>
+    <div class="meta">
+        <time>on September 4, 2012</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I love using github gists for code snippets on my blog. It has many pros, especially how easy it becomes for people to comment and suggest improvements, via the github mechanisms we all love.</p>
+
+<p>There are however two drawbacks that people commonly refer to with regards to using gists that way:
+- Since the content of the code is no longer part of the post, it is not being indexed by search engines, and<br />
+- Since the content of the code is not part of the post, and since the embedding mechanism is JS based, people who consume the blog via the feed and use feed aggregators that does not run javascript (most of them don’t), will not get the contents.</p>
+
+<p>My answer to the first one is simple. I don’t really care. Not that I do not care about SEO, just that I do not need to have my post indexed and tagged under a bunch of irrelevant reserved words and common code. If the snippet is about using an interesting component ABC, I will mention that said ABC in the post content outside of the snippet, problem solved.</p>
+
+<p>The latter is more interesting. I used to manually add a link to the gist page whenever embedding one, but it is not a very fun thing to do.</p>
+
+<p>So, in order to overcome this, I wrote a small code snippet (yey) that upon saving a post (or updating it), will look for gists embeds, grab the gist source from github, stick in into the post as a “ContentForFeed” and serve with a link to the gist page, just for the fun of it.</p>
+
+<p>And the code for it (it’s a hacky c#, but easily translatable to other languages, and/or to a cleaner form)</p>
+
+<p>Have fun reading snippets</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/11/01/determining-sql-server-edition">Determining SQL Server edition</a></h2>
+    <div class="meta">
+        <time>on November 1, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Thanks to <a href="http://support.microsoft.com/kb/321185">http://support.microsoft.com/kb/321185</a> and to Ariel (<a href="https://twitter.com/#!/q">@Q</a>) who have read it more carefully than I did, I learnt that there is a SERVERPROPERTY that you can query:</p>
+
+<p><code>
+SELECT SERVERPROPERTY ('edition')
+</code></p>
+
+<p>I expected to find Developer, but found Express instead.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/10/10/mysql-error-105-phantom-table-menace">MySQL error 105 - Phantom Table Menace</a></h2>
+    <div class="meta">
+        <time>on October 10, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>MySQL is weird
+The weirdest problem happened to a college today.</p>
+
+<p>When creating the database schema during integration tests run, he got “Cannot create table FOO error 105” from MySQL.</p>
+
+<p>There <em>used</em> to be a table named FOO with a VARCHAR primary key. The schema then changed so that the primary key of FOO became BIGINT. There is also a second table in the system (call it BAR) which has a foreign-key into FOO’s primary key. A classic master/details scenario.</p>
+
+<p>However, the table BAR was obsoleted from the schema.</p>
+
+<p>The integration tests runner is dropping all tables and recreating them before running the test suite. It is inferring the schema from the persisted classes using NHibernate’s mapper and the Schema creation feature of NHibernate.
+Sleeves up
+We cranked open the mysql console and started to look around:
+- When doing “SHOW TABLES”, the FOO table was not listed.
+- CREATE TABLE FOO (<code>Id</code> BIGINT) - fail with error 105.
+- CREATE TABLE FOO (<code>Id</code> VARCHAR) – success !!
+- huh?
+- DROP TABLE FOO – success
+- encouraging !
+- CREATE TABLE FOO (<code>Id</code> BIGINT) - fail with error 105 – again
+- huh ???
+- DROP TABLE FOO – fail with “cannot delete … foreign key …”
+- but SHOW TABLES still does not list FOO 
+- huh ?????
+- DROP DATABASE dev; CREATE DATABASE dev;
+- now everything works.
+Back to work
+Luckily this was not a production database, and even more lucky – the said DB change (change that PK from VARVHAR to BIGINT) would need to run on production within a separate DB instance that can be recreated on deploy.</p>
+
+<h2 id="and-while-were-at-it">And while we’re at it</h2>
+
+<p>Way can’t MySQL store non-indexed columns in an index?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/08/22/asp-dot-net-mvc3-model-validation-using-interface-attributes">ASP.NET MVC3 Model Validation using Interface Attributes</a></h2>
+    <div class="meta">
+        <time>on August 22, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/asp-net-mvc" rel="tag">asp-net-mvc</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>After reading <a href="http://bradwilson.typepad.com/blog/2011/08/interface-attributes-class-attributes.html">Brad Wilson’s post on that</a>, I thought to myself:</p>
+
+<p>Brad is 100% correct regarding the way the CLR treat interface attributes, but this does not mean the users should not be able to use validation attributes on model interfaces</p>
+
+<p>So I sat down to extend the model validation to do just that: (see <a href="https://gist.github.com/1163635">https://gist.github.com/1163635</a> if it is broken here)</p>
+
+<p>Now I know it is hacky – it should not go on a FilterAttributes() method. If I had access to the sources I’d have added a virtual “GetValidationAttribute” method on DataAnnotationsModelMetadataProvider… (hint hint hint)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/08/19/count-number-of-times-a-file-has-been-download-via-http-logs-dos-edition">Count number of times a file has been download via HTTP logs - DOS edition</a></h2>
+    <div class="meta">
+        <time>on August 19, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Apparently you can also do this with DOS, but it is not nearly as easy as it is with <a href="http://blog.benhall.me.uk/2011/08/count-number-of-times-file-has-been.html">Unix shells</a> or <a href="http://kenegozi.com/blog/2011/08/18/count-number-of-times-a-file-has-been-download-via-http-logs-iis-and-powershell-edition">Poweshell</a>.</p>
+
+<p>DOS corner:
+Good old DOS have FINDSTR which is quite similar to ‘grep’ but does not have anything to resemble ‘wc –l’. However, the FIND command can count occurrences so</p>
+
+<p><code>
+type log_file | find /c url
+</code></p>
+
+<p>would work – for a single file.</p>
+
+<p>in order to do that for all files, an on-disk concatenated version would need to be created and removed. Here’s a batch file to accomplish this:</p>
+
+<p>```</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>@Echo offpushd C:\inetpub\logs\LogFiles\W3SVC1if exist all.log del all.logcopy /a *.log all.log &gt; nultype all.log</td>
+      <td>find /c %1del all.log &gt; nulpopd</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>```</p>
+
+<p>yuck? indeed</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/08/18/count-number-of-times-a-file-has-been-download-via-http-logs-iis-and-powershell-edition">Count number of times a file has been download via HTTP logs - IIS and powershell edition</a></h2>
+    <div class="meta">
+        <time>on August 18, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following <a href="http://blog.benhall.me.uk/2011/08/count-number-of-times-file-has-been.html">ben hall’s post</a> (great blog – subscribe!) on counting file access data from Apache logs using *nix commanline’s grep, I thought to see how easy would it be to get the same with Powershell (I’ve been wanting to learn PS for ages – I have a few Windows servers I manage, and I love *nix commandline and miss it on these machines).</p>
+
+<p>Smoking pipes
+I also wanted to be more idiomatic – looks like shell scripting (both with bash and friends, as well as with Powershell) favor piping outputs to inputs.</p>
+
+<p>for e.g. – the command that Ben is using – reading the file using grep’s switch, </p>
+
+<p><code>
+grep –o url log_file | wc -l
+</code></p>
+
+<p>would be rewritten as</p>
+
+<p><code>
+cat log_file | grep url | wc -l
+</code></p>
+
+<p>Not being a unix master myself, I cannot tell which is better, but personally I prefer the latter; instead of needing to remember grep’s switch, I pipe cat into grep.</p>
+
+<p>It becomes even better once going through multiple files – I have no idea what grep’s syntax for that is, but I can pipe ‘ls’ into ‘cat’</p>
+
+<p>WRONGcat does not except input as a pipe. You need to resort to other syntaxes (see <a href="http://stackoverflow.com/questions/864316/how-to-pipe-list-of-files-returned-by-find-command-to-cat-to-view-all-the-files">http://stackoverflow.com/questions/864316/how-to-pipe-list-of-files-returned-by-find-command-to-cat-to-view-all-the-files</a>)</p>
+
+<p>anyway, 
+Powershell-ing
+First – ‘count strings’ is done by Select-String (this is the one of two parts I needed googling for)</p>
+
+<p>the equivalent for ‘cat’ is … (wait for it) … ‘cat’</p>
+
+<p>so, </p>
+
+<p><code>
+cat log_file | select-string url
+</code></p>
+
+<p>will return all relevant lines</p>
+
+<p>So how do you count lines (equivalent to ‘wc –l’) ? - there’s a command called ‘measure’</p>
+
+<p>Now we are at </p>
+
+<p><code>
+cat log_file | select-string url | measure
+</code>
+IIS logs vs apache’s
+Not sure about how Apache does things, but with IIS, the access logs are split by default on a daily basis. All logs per a website are within a designated folder (, so one needs to iterate over all of them to count access to a given url.</p>
+
+<p>That’s where cat’s piping impediment could have been bothering, however with powershell – things are a bit easier – you can actually pipe ‘ls’ into ‘cat’ !
+show me the codez already
+<code>
+ls C:\inetpub\logs\LogFiles\W3SVC1 | cat | select-string "e.js" | measure
+</code></p>
+
+<p>does the trick !</p>
+
+<p>Actually – there’s a little trick here to take this a step forward</p>
+
+<p>As opposed to unix shells, powershell is object oriented, and has richer models over simple text lines.</p>
+
+<p>meaning – the output of ‘ls’ in powershell is not simply the file-names, but rather FileInfo objects</p>
+
+<p>So, what’s so good about it you ask?</p>
+
+<p>select-string, when fed with FileInfo instances, knows to look for the string within the file’s content instead of its name!</p>
+
+<p>so we can drop ‘cat’ for that purpose and the final version is:</p>
+
+<p>```</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ls C:\inetpub\logs\LogFiles\W3SVC1</td>
+      <td>select-string “e.js”</td>
+      <td>measure</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>```</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/08/15/windsor-3-is-here">Windsor 3 is here</a></h2>
+    <div class="meta">
+        <time>on August 15, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>See the announcement and grab the latest beta bits.</p>
+
+<p><a href="http://groups.google.com/group/castle-project-users/browse_thread/thread/632ef8b47395736b">http://groups.google.com/group/castle-project-users/browse_thread/thread/632ef8b47395736b</a></p>
+
+<p>What’s new?</p>
+
+<p><a href="http://docs.castleproject.org/Default.aspx?Page=Whats-New-In-Windsor-3&amp;NS=Windsor">http://docs.castleproject.org/Default.aspx?Page=Whats-New-In-Windsor-3&amp;NS=Windsor</a></p>
+
+<p>Major kudos to <a href="http://kozmic.pl/">Krzysztof Koźmic</a> for running the Windsor show so smoothly.</p>
+
+<p>btw – a new design to the castle project website is about to be launched. It looks awesome! I’ll update once its out</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/06/28/installing-older-node-dot-js-with-latest-npm-on-osx">Installing older node.js with latest npm on osx</a></h2>
+    <div class="meta">
+        <time>on June 28, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>At the time I write this, Heroku support Node 0.4.7, however the latest release is 0.4.8</p>
+
+<p>Installing in the usual way (brew install node) will bring 0.4.8 in, so instead I opted to download the .pkg for 0.4.7</p>
+
+<p>Node.js was installed correctly, however, it came with an old version on npm (the package manager for node.js). </p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Searching around for npm installation brought up downloading the sh script and executing it. The snippet is curl http://npmjs.org/install.sh</td>
+      <td>sh</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For *nix noobs – this mean that the content of the file at http://npmjs.org/install.sh will be pushed as input for sh which is the runner for .sh scripts. </p>
+
+<p>The problem is that the script tries to delete old npm versions, but it fails to do so for lack of permissions. Usually one prefixes with <code>sudo</code> to make this work, however it still did not work for me. What I ended up doing is breaking the process in two – first download the script into a local file (curl http://npmjs.org/install.sh &gt; install.sh) and then <code>sudo sh install.sh</code></p>
+
+<p>I should be starting a “tips” section on the blog.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/06/19/the-hungry-fox-jumped-over-the-lazy-mac">The hungry fox jumped over the lazy mac</a></h2>
+    <div class="meta">
+        <time>on June 19, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><img src="http://kenegozi.com/blog/uploaded/windows-live-writer/7a555aa0b563_1288b/image_thumb_0439.png" alt="image" /></p>
+
+<p>And I use mainly chrome for day-to-day. the FF window is only open for a secondary gmail account, and the occasional Firebug session</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/02/28/google-reader-bug-leading-to-a-glitch-in-my-feed">Google Reader bug leading to a glitch in my feed</a></h2>
+    <div class="meta">
+        <time>on February 28, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I have recently change the blog engine, and as part of that move, the permalinks for posts changed a bit (removed the .aspx suffix, and also got rid of the www. prefix)</p>
+
+<p>So, the atom feed now lists a different <id> tag for each entry (post). </id></p>
+
+<p>Google Reader cache data on posts based on the id tag, therefore subscribers to my blog who are using Google Reader will probably see 20 new messages.</p>
+
+<p>The real glitch though is a bug in Google Reader. As far as reader is concerned, the <updated> and <created> tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.</created></updated></p>
+
+<p>So, I can understand why all my last 20 entries re-appear with the same date.</p>
+
+<p>The annoying part is that Reader chooses a weird way to sort them. It could have at least use the publish date as a secondary sort order.</p>
+
+<p>So, sorry for the glitch, and for those of you coming to my site, sorry for the poor UI design - a full redesign is in the make and will be pushed as soon as I can.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/02/19/for-all-wheel-inventors-that-may-be-reading-this">To all wheel inventors who might be reading this</a></h2>
+    <div class="meta">
+        <time>on February 19, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><img src="http://kenegozi.com/blog/uploaded/windows-live-writer/8ef84b74ed01_12ed9/bart-simpson-generator_thumb_9798.gif" alt="bart-simpson-generator" /></p>
+
+<p>I know a few people that needs to exercise a Bart Simpson punishment for wheel inventing, <a href="http://en.wikipedia.org/wiki/Not_Invented_Here">NIH</a>, and more. I also sadly know that this probably won’t help (as is the case with Bart’s recurring mischiefs). </p>
+
+<p>via <a href="http://www.addletters.com/bart-simpson-chalkboard-wallpaper-generator.htm">http://www.addletters.com/bart-simpson-chalkboard-wallpaper-generator.htm</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/10/21/spot-the-bug-hellip-dynamic-language-slaponforehead-moment">Spot the bug &hellip; dynamic language slap-on-forehead moment</a></h2>
+    <div class="meta">
+        <time>on October 21, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/debugging" rel="tag">debugging</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>This is a view template rendering html. When running it, it caused the page to freeze (i.e. the page keeps loading).</p>
+
+<p> </p>
+
+<p>```</p>
+
+<h3>Services</h3>
+
+<p>&lt;% for (var ix=0; ix &lt; view.services.length; ++i) { %&gt;</p>
+
+<p>&lt;% var service = view.services[ix]; %&gt;</p>
+
+<p> &lt;%=service.name %&gt; </p>
+<p>&lt;% } %&gt;	</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>Took me a while to grasp it. I tried various things, thought that the templating-engine code was bad, blamed every line of code in the application, until I actually re-read the template code carefully </p>
+
+<p> </p>
+
+<p>You see, the indexer is “ix” while the ++ is working on “i”.</p>
+
+<p> </p>
+
+<p>Since it is Javascript, no “I do not know what i is” exception was thrown. Instead, the first time it was encountered, JS decided it equals zero, and then the poor thing just kept increasing, probably until it would have overflowed.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p>In case you have missed it, it was javascript. Not AspView, nor Jsp. I am using a new, super-simple javascript base templating engine, for places where embedding something like AspView would be an overkill, and using NVelocity would be as annoying as using NVelocity.</p>
+
+<p> </p>
+
+<p>I hope to have it released as open source soon. Basically it is a simple transformer into simple JS code, and I’m using the supercool <a href="http://kenegozi.com/blog/2010/09/09/javascript-and--dot-net-ndash-meet-jint.aspx">Jint</a> libraryfor running it within .NET. I am also planning on making it available for Java at some point using <a href="http://www.mozilla.org/rhino/">Mozilla Rhino</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/10/16/official-c-sharp--driver-for-mongodb-from-10gen">Official c# driver for MongoDB from 10gen</a></h2>
+    <div class="meta">
+        <time>on October 16, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The announcement is on the users list - <a href="http://groups.google.com/group/mongodb-user/browse_thread/thread/62b071549a95dd4a?hl=en">http://groups.google.com/group/mongodb-user/browse_thread/thread/62b071549a95dd4a?hl=en</a></p>
+
+<p> </p>
+
+<p>Until now the two offerings were <a href="http://github.com/atheken/NoRM">Norm</a> and <a href="http://github.com/samus/mongodb-csharp">mongo-csharp</a>, both are excellent OSS projects with lots of contributions and very nice velocity. My concern there was always that although there is definitely a place for more than one flavour, as usage patterns and even personal taste differ and pleasing everyone in a single product is impossible (see on rubyland for e.g., – there are <a href="http://github.com/jnunemaker/mongomapper/tree/master">MongoMapper</a>, and <a href="http://mongoid.org/">Mongoid</a>, and there are even some more, less-widespread ones). The major difference is that since the core of the ruby driver is maintained in a single location (and backed by paid-developers thx to <a href="http://www.10gen.com/index">10gen</a>), the things that are the same across (mainly BSON, client-server setup, connection management) are not duplicated, so we get a fully featured, very robust, tested by many core, and it gets out very fast. </p>
+
+<p>On the c# side of things, the implementation of replica-sets in the client took some time to emerge after the official support on the server side was out. </p>
+
+<p> </p>
+
+<p>So, it is an exciting announcement for the .NET community. I hope that the current drivers will know to adapt the drivers to use the official core.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/25/cdrw-driven-nostalgiandashwinfx-edition">CDRW driven nostalgia&ndash;WinFX edition</a></h2>
+    <div class="meta">
+        <time>on September 25, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I was looking in my box-with-old-cds to find a CDRW to burn some podcast episodes (I have a CD based MP3 player in my car) and I stumbled upon an old CDRW. Looking into the content before erasing, and I found there some early beta installations for WinFX – that is what .NET 3.0 used to be called. These files were from mid-2006.</p>
+
+<p> </p>
+
+<p>so, 4 and something years ago I was all excited about the new, shiny things from MS. The farthest away I went was into some use of the Boo language, and starting with some .NET OSS hacking (AspView, and Castle in general)</p>
+
+<p>These days I find myself using Ruby (go Sinatra), Python (for AppEngine), and even god forbid Java. git it is my SCM of choice, MongoDB and MySql for data storage, etc.</p>
+
+<p>I still find the .NET environment most productive, with a high quality core and superb language support, but I certainly have expanded my horizons to other areas.</p>
+
+<p> </p>
+
+<p>I wonder what my areas of interests would look like on 2014 …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/23/the-big-development-machines-survey">The big development machines survey</a></h2>
+    <div class="meta">
+        <time>on September 23, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>All right, not that big.</p>
+
+<p> </p>
+
+<p>I’ve set up a simple survey about what development machine you use at  work. If you are self employed and are using your personal machine for paid work, please state that in the comments field.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>It is located at <a href="http://dev-machines.appspot.com/">http://dev-machines.appspot.com/</a>, go ahead and click your way into there.</p>
+
+<p> </p>
+
+<p>Some explanations:</p>
+
+<p>in the CPU slot, choose the CPU you have. the nC/mT bit on the Core i7 is about how many Cores and how many Threads the CPU support. Most i7 cpus has two cores, with hyperthreading, so the OS reports 4 cpus. There are some 4 cores models (with HT – the OS say 8) and a single model with 6 cores. You can browse <a href="http://ark.intel.com/Default.aspx">this Intel’s page</a> to get a feel about yours.</p>
+
+<p>If you’re on an AMD, then just try to match the nearest option. I am not familiar with current AMD models, sorry.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>This is the first time I deploy to google’s AppEngine, and the first time I am actually deploying python code as an application rather than automation scripts, so please be patient with possible failures.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/18/teamcity-5-dot-1--plus--git--plus--fix-here--plus--fix-there">TeamCity 5.1 + git + fix here + fix there</a></h2>
+    <div class="meta">
+        <time>on September 18, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/testing" rel="tag">testing</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/scm" rel="tag">scm</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Finally.</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/TeamCity5.1Git_EC2C/d1d672b3-4786-4d4c-a491-5160e2a6cf41.png" alt="green" /></p>
+
+<p> </p>
+
+<p>I have a tiny project that need updating – the idcc.co.il website (*).</p>
+
+<p> 
+Source control
+I setup a new git repository on my home machine (using smart-http from git-dot-aspx, a different story for a different post) and now I got to setup a build server.</p>
+
+<p> 
+Team city
+Downloaded TeamCity 5.1.4 (the free, Professional version). Installation was mostly painless, except that the build-agent properties setter got stuck and I had to manually edit the build-agent conf file. No biggie – just RTFM: <a href="http://confluence.jetbrains.net/display/TCD5/Setting+up+and+Running+Additional+Build+Agents#SettingupandRunningAdditionalBuildAgents-InstallingviaZIPFile">http://confluence.jetbrains.net/display/TCD5/Setting+up+and+Running+Additional+Build+Agents#SettingupandRunningAdditionalBuildAgents-InstallingviaZIPFile</a>.</p>
+
+<p> 
+git integration
+Git is supported out of the box. I did have a minor glitch – the git-dot-aspx thing is <em>very</em> immature, and it simply did not work. Luckily the repository is located on the same machine as the build server and build agent so I simply directed the VCS root to the location on the filesystem.</p>
+
+<p> 
+building
+I had a few glitches with MSBuild complaining about missing project types (the webapplication targets file) – that’s the first three failures you see in the snapshot. I then copied the targets from somewhere else and I got the bulid running</p>
+
+<p> 
+Fixing the tests
+only to find that I have a broken test. Since when I created the initial website, I never set a build server, thus some changes I later introduced caused a minor regression. Now that I have a proper build server it (hopefully) won’t happen again.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<ul>
+  <li>yes, <a href="http://blogs.microsoft.co.il/blogs/ohad/">Ohad</a> and myself are setting up a second idcc conference. It is still in stealth mode, but keep you tabs of this. An announcement is planned for early October.</li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/16/fixing-text-files-to-dos-style-line-endings-crlf">fixing text files to DOS style line endings - CRLF</a></h2>
+    <div class="meta">
+        <time>on September 16, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today I ran into a project that had mixed line-ending styles between files in the project. There were even a few files that had different type of line endings within the same file (bulk of lines with UNIX style, and other bulks with DOS style)</p>
+
+<p> </p>
+
+<p>I ended up running the following c# “script” to fix that, and set all files to UTF-8 while I was at it.</p>
+
+<p>The trick is to simply load the file with File.ReadAllLines which is indifferent when it comes to the line-ending type, and then write that back using WriteAllLines which will use the currently set Environment.NewLine value (which is CRLF when on windows)</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>The code is listed here; you can simply <a href="http://gist.github.com/582193">download a zip</a>, open it to the folder of your choice and dbl-click it.</p>
+
+<p>the only prerequisite is .NET 4.0 (I wanted the recursive and lazy Directory.EnumerateFiles)</p>
+
+<p> </p>
+
+<p>The is listed here. It is generated by a javascript snippet so if you cannot see this in your offline feed reader, just go to the <a href="http://gist.github.com/582193">gist page</a></p>
+
+<p> </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/08/09/mongodb-1-dot-6-is-out">MongoDB 1.6 is out</a></h2>
+    <div class="meta">
+        <time>on August 9, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>A bit late, but I was pre-occupied with a few things so it went under my radar.</p>
+
+<p> </p>
+
+<p>This release brings some exciting <a href="http://www.mongodb.org/display/DOCS/1.6+Release+Notes">features</a>, such as <a href="http://www.mongodb.org/display/DOCS/Sharding">automatic-sharding</a> and <a href="http://www.mongodb.org/display/DOCS/Replica+Set+Tutorial">replica-sets</a>, which completes MangoDB’s Horizontal Scalability and High Availability to a complete solution. A finer control over consistency is also available now, with the <a href="http://www.mongodb.org/display/DOCS/Verifying+Propagation+of+Writes+with+getLastError">w option</a>, with which you can assert update propagation to a certain amount of servers (so if you use replica sets of 3 machines, you might want to set w=2 or even 3, depending on your consistency needs).</p>
+
+<p> </p>
+
+<p>These features, along with the <a href="http://www.mongodb.org/display/DOCS/Last+Error+Commands#LastErrorCommands-fsyncoption">fsync option</a>, makes MongoDB a legitimate solution for both high-scale distributed data stores, as well as for small, single machine scenarios. Everyone can enjoy the simplicity of this DB engine.</p>
+
+<p> </p>
+
+<p>As for using MongoDB from .NET, I’m still undecided between mongo-csharp or NoRM. I also successfully used IronRuby with MongoMapper and Mongoid, so at least we have plenty of options at our disposal.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/07/16/what-would-make-razor-really-cool">What would make Razor really cool</a></h2>
+    <div class="meta">
+        <time>on July 16, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The new thing in MS web development is <a href="http://weblogs.asp.net/scottgu/archive/2010/07/02/introducing-razor.aspx">Razor</a>, which at its base a templating engine.</p>
+
+<p> </p>
+
+<p>It would be really cool if:
+- It would expose programmatic API (with c#5 going to Compiler-As-Service it would be a real shame if Razor would not behave the same way)
+- It would not enforce an over bloated base-class (like, erm, System.Web.UI.Page). I wouldn’t go as far as an Interface (since looks like they do not believe in Design By Contract over there), but a super-simple abstract base class with minimal pre-set behaviour would be nice. It is doable with still supporting Webforms/MVC integration using wrappers (like the HttpContextBase approach)</p>
+
+<p>These things would allow using it as a true templating engine, which then can be embedded as a view engine for other web frameworks (like Monorail and Fubu, and more), use it for off-line email templates processing, maybe even for emitting customised setting files for automated deployment scenarios.</p>
+
+<p> </p>
+
+<p>I need to try and explore into there and sniff around.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/06/08/the-right-tool-for-the-job-xss-edition">The right tool for the job, XSS edition</a></h2>
+    <div class="meta">
+        <time>on June 8, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>It is not very uncommon to see pages that include a “returnUrl” parameter, usually within authentication flows. At times, the browser will run some script (like a call to an analytics service) and then another script issuing a redirect (through setting location.href etc.)</p>
+
+<p> </p>
+
+<p>There are also other cases where UGC can find its way into JavaScript blocks. People might want to have their script do fancy stuff with the page’s data.</p>
+
+<p> </p>
+
+<p><code>
+var url = '&lt;%=viewData.returnUrl%&gt;';
+</code></p>
+
+<p>or</p>
+
+<p> </p>
+
+<p>```</p>
+
+<p>var commenterName = ‘&lt;%=viewData.newComment.authorName%&gt;’;</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>for e.g.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>Now for the “stating the obvious”:</p>
+
+<p>Just like any other UGC, this type of content must be sanitized to prevent XSS attacks.</p>
+
+<p> </p>
+
+<p>Not to long ago I was called to do a security inspection on a web application’s codebase. During which, some very few XSS holes were detected using JavaScript injection. This was quite surprising to me, as I knew that all content injected into JavaScript was being sanitized by the team.</p>
+
+<p>Digging further I found out that they did call a sanitize function on UGC, just not the correct function. What they did was to run a JSON formatter over the UGC string, a thing that was solving JS errors occurring from string quoting problems, but it did not eliminate malicious scripts.</p>
+
+<p>The weird thing was that the team was already using the AntiXss library (which is a very aggressive, white list based input sanitation library for .NET), for html fragments. The library also have a JavaScript Encode function. Switching the sanitation function of the team from calling the JSON library to calling the AntiXss library fixed the problem for good.</p>
+
+<p> </p>
+
+<p>e.g. code to demonstrate the difference between the methods:</p>
+
+<p>{% highlight c# %}
+static void Main()
+{
+    var ugc = "‘;alert(‘xss’);’";
+    Render(JsonConvert.SerializeObject(ugc));
+    Render(AntiXss.JavaScriptEncode(ugc));
+}</p>
+
+<p>static void Render(string encoded)
+{
+    Console.WriteLine("var returnUrl = ‘"+encoded+"’;");
+}{% endhighlight %}</p>
+
+<p>The output from the above snippet is:</p>
+
+<p><code>
+var returnUrl = '&amp;quot;';alert('xss');'&amp;quot;';
+var returnUrl = ''\x27\x3balert\x28\x27xss\x27\x29\x3b\x27'';
+</code></p>
+
+<p> </p>
+
+<p>There are a couple of things to learn from that story:
+- When you encounter a problem, look around for common solutions. for e.g., every language that is being used for web development today has a library that takes care of XSS, so use it instead of coming up with a partial solution using the wrong library, or even worse –try to re-invent the way of doing that. You are probably not in the business of Anti XSS, so don’t spend time on solving the problem.
+- Know your toolbox. If you are using a tool, be aware of its capabilities (and shortages). Exploring the AntiXss library a little bit would have shown the team that there is a perfectly good solution for their problem.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/02/01/dottrace-3-dot-1-64bit-would-not-integrate-with-visual-studio-and-resharper">dotTrace 3.1 64bit would not integrate with Visual Studio and Resharper</a></h2>
+    <div class="meta">
+        <time>on February 1, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Installed dotTrace 3.1</p>
+
+<p>Since I run windows 7 64bit on my laptop, I chose to install the 64bit version of dotTrace. After the the installation, the standalone profiler worked great. It was also showing up in the Visual Studio AddIns menu. However, the purple button (next to the Debug “Play” button”) was greyed out, and the one within the Resharper Unit Testing sessions window was also disabled.</p>
+
+<p> </p>
+
+<p>After re-installing, re-booting, and re-filling my cuppa’ coffee, I suddenly remembered that Visual Studio is actually a 32bit application, and that I’d probably want to install the 32bit version of dotTrace if I want them both to play nicely.</p>
+
+<p> </p>
+
+<p>Did it.</p>
+
+<p> </p>
+
+<p>Problem solved.</p>
+
+<p> </p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/dot.164bitwouldnotintegratewithVisualStu_11BEC/ba809117-d5aa-4d54-a3cc-b18565e0cb6c.png" alt="image" /></p>
+
+<p> </p>
+
+<p>FYI</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/27/can-you-spot-the-bug">Can you spot the bug?</a></h2>
+    <div class="meta">
+        <time>on January 27, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/testing" rel="tag">testing</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Can you spot what will cause the following NUnit test not to run on TeamCity 4.5?</p>
+
+<p><code>
+[TestFixture(&amp;quot;Testing some cool things&amp;quot;)]
+public class CoolThingsFixture
+{
+	[Test]
+	public void When_Do_Expect()
+	{
+		Assert.That(2, Is.EqualTo(1+1));
+	}
+}
+</code></p>
+
+<p> </p>
+
+<p>hint: TeamCity list it with the ignored tests, yelling “No suitable constructor was found”</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/20/whatrsquos-new-in-monorail-2-dot-0">What&rsquo;s new in Monorail 2.0</a></h2>
+    <div class="meta">
+        <time>on January 20, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>During the long, long time it took to get from 1.0RC3 to 2.0, many things have changed, and many things were added. I probably won’t cover it all in this post, and I’ll probably forget a few things that I got so accustomed to use (I have always used trunk versions, even way before I became a committer).</p>
+
+<p> </p>
+
+<p> 
+Programmatic config
+If (like me) you do not like putting stuff in config files that the operations team do not care about, you can now run a Monorail application without the Monorail section in the web.config file.</p>
+
+<p>How?  you’d need your Global class to implement IMonoRailConfigurationEvents.</p>
+
+<p>e.g. from many of my websites: (I’m configuring AspView as view-engine)</p>
+
+<p><code>
+public void Configure(IMonoRailConfiguration configuration)
+{
+	configuration.ControllersConfig.AddAssembly(Assembly.GetExecutingAssembly());
+	configuration.ViewEngineConfig.ViewPathRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, &amp;quot;Views&amp;quot;);
+	configuration.ViewEngineConfig.ViewEngines.Add(new ViewEngineInfo(typeof(AspViewEngine), false));
+}
+</code></p>
+
+<p>you can setup many optional things that way. e.g.: </p>
+
+<p><code>
+// configue jquery as the validation engine
+configuration.JSGeneratorConfiguration.AddLibrary(&amp;quot;jquery-1.2.1&amp;quot;, typeof (JQueryGenerator))
+	.AddExtension(typeof (CommonJSExtension))
+	.ElementGenerator
+	.AddExtension(typeof (JQueryElementGenerator))
+	.Done
+	.BrowserValidatorIs(typeof (JQueryValidator))
+	.SetAsDefault();
+// configure url extensions
+configuration.UrlConfig.UseExtensions = false;
+</code></p>
+
+<p>delve into the intellisense on the IMonoRailConfiguration interface to find more</p>
+
+<p> 
+Return binders
+The example speaks for itself:</p>
+
+<p>```
+public class State
+{
+    public string Code { get; set; }
+}</p>
+
+<p>[return: JSONReturnBinder]
+public State[] GetStates()
+{
+    // fake code for the sake of the demonstration
+    return new[] { new State { Code=“CA” }, new State { Code=“WA” } };
+}
+```</p>
+
+<p>will render the JSON representation of the given State array</p>
+
+<p> 
+New routing engine
+see <a href="http://www.castleproject.org/monorail/documentation/trunk/advanced/routing.html">http://www.castleproject.org/monorail/documentation/trunk/advanced/routing.html</a></p>
+
+<p>and <a href="http://kenegozi.com/blog/2009/02/10/monorail-routing-and-the-homepage-routing-rule.aspx">http://kenegozi.com/blog/2009/02/10/monorail-routing-and-the-homepage-routing-rule.aspx</a> for setting a homepage route</p>
+
+<p> 
+RescueController
+A rescue controller will take care of exceptions that have happened during an Action.</p>
+
+<p>You’d create your rescue controller, implement IRescueController, inherit from SmartDispatcherController, and setup the rescue controller in the RescueAttribute on the regular controller.</p>
+
+<p>see more here: <a href="http://www.castleproject.org/monorail/documentation/trunk/usersguide/rescues.html">http://www.castleproject.org/monorail/documentation/trunk/usersguide/rescues.html</a></p>
+
+<p> 
+AspView
+The C# based view engine became a first class citizen in Monorail. There has been many improvements there during the time, which deserve a separate post perhaps. meanwhile you can look at the aspview tag on this blog: <a href="http://kenegozi.com/blog/Tag/aspview.aspx">http://kenegozi.com/blog/Tag/aspview.aspx</a></p>
+
+<p> </p>
+
+<p>I can’t think of more stuff right now, so ping me if I forgot anything.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/19/monorail-2-dot-0-ndash-why-the-hell-did-it-take-so-long">Monorail 2.0 &ndash; why the hell did it take so long</a></h2>
+    <div class="meta">
+        <time>on January 19, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Being an Open Source project, with very good test coverage and a very active development, most users that actually run Castle bits in production were running off of trunk anyway.</p>
+
+<p> </p>
+
+<p>The trunk is very stable, and the act of “release” should have simply been tagging any single commit to trunk as the 2.0 RTM.</p>
+
+<p> </p>
+
+<p>However, we felt that we wanted some more stuff to justify a release – like updating the documentation, re-doing samples and Visual Studio integration packages, etc.</p>
+
+<p>That lead us to a halt, as active committers did not use neither integrations nor samples, and same for the documentation. My personal stand was (and still is) that if someone wanted an official release so badly, then that one should contribute toward this, either with time and work, or with sponsorship money to buy this time and work.</p>
+
+<p> </p>
+
+<p>No one did.</p>
+
+<p> </p>
+
+<p>A few attempts at these parts was taken, but none concluded.</p>
+
+<p> </p>
+
+<p>Meanwhile the project grew more and more, and parts of it became mandatory dependencies to various mainstream projects (such as NHibernate), while Windsor became more and more adopted as an IoC container of choice for many people.</p>
+
+<p>Getting to a single point of approval across the board for the whole castle stack, without breaking third-party projects that depends on parts of Castle, became very difficult.</p>
+
+<p> 
+Breaking apart
+In order to allow a manageable release process, the project was broken down to its parts. Now we have the four main projects, released on their on, with depending projects using compiled releases of the others.</p>
+
+<p>The main projects are:</p>
+
+<ul>
+  <li>Core (de-facto including Dynamic Proxy) which is used on many other OSS projects </li>
+  <li>ActiveRecord </li>
+  <li>IoC stack (MicroKernel + Windsor) </li>
+  <li>Monorail </li>
+</ul>
+
+<p>More details can be found on the <a href="http://www.castleproject.org/castle/projects.html">projects page of castle’s website</a></p>
+
+<p> </p>
+
+<p>An all-trunk builds can be retrieved <a href="http://www.hornget.net/packages/web/castle.monorail/castle.monorail-trunk">with the aid of the horn-get project</a>.</p>
+
+<p> 
+So why is Monorail last?
+The reason is rather simple. Monorail depends on almost any other part of the stack. It even has subprojects such as ActiveRecord’s DataBinder (ARDataBind) which depends on ActiveRecord, and a WindsorIntegration project which depends on the IoC stack.</p>
+
+<p>As a result we had to wait to get releases for all other projects.</p>
+
+<p> 
+What’s next?
+I still have no idea. There are a few discussions going on about that (such as <a href="http://groups.google.com/group/castle-project-devel/browse_thread/thread/2c77d17327488889#">this one on the new roadmap</a>), and you are all welcome to join the debates.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/17/monorail-2-dot-0-is-out">Monorail 2.0 is out</a></h2>
+    <div class="meta">
+        <time>on January 17, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>After a long huge wait, finally Monorail 2.0 is out, get yours from  <a href="https://sourceforge.net/projects/castleproject/files/">https://sourceforge.net/projects/castleproject/files/</a></p>
+
+<p> </p>
+
+<p>HUGE thanks to John Simons and the rest of the Castle project committers, plus the rest of the good people that have supplied us with patches, bug fixes, and whatnot.</p>
+
+<p> </p>
+
+<p>This move somewhat concludes the move from the old 1.0RC3 release from 2007, to the new releases of the Castle stack about two years afterwards.</p>
+
+<p> </p>
+
+<p>I’m going to follow up with a couple of “what’s new”, “how-to upgrade” and “why the hell did it take so long” posts soon, so keep watching.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/17/autostubber-to-ease-stub-based-unit-tests">AutoStubber to ease stub based unit tests</a></h2>
+    <div class="meta">
+        <time>on January 17, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/testing" rel="tag">testing</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Tired of setting up stubs for your class under test?</p>
+
+<p>Tired of compile errors when you add one more dependency to a class?</p>
+
+<p>The AutoStubber to the rescue.</p>
+
+<p>Given</p>
+
+<p>```
+interface IServiceA
+{
+	string GetThis(long param);
+}
+interface IServiceB
+{
+	Do DoThat(string s);
+}</p>
+
+<p>class MyService
+{
+	public MyService(IServiceA a, IServiceB b) { … }
+	…
+}</p>
+
+<p>…
+```</p>
+
+<p>you can write;</p>
+
+<p>```
+var service = new AutoStubber.Create();
+// Arrange
+var theString = "whatever";
+service.Stubs().Get.Stub(x=&gt;x.GetThis(0).IgnoreArguments().Return(theString);</p>
+
+<p>// Act
+service.Execute();</p>
+
+<p>// Assert
+service.Stubs().Get.AssertWasCalled(x=&gt;x.DoThat(theString);
+```</p>
+
+<p> </p>
+
+<p>The code for AutoStubber:</p>
+
+<ul>
+  <li>Mind you – it’s not the prettiest, but it gets the job done</li>
+</ul>
+
+<p>```
+public class AutoStubber<t> where T : class
+{
+	static readonly Type TypeofT;
+	static readonly ConstructorInfo Constructor;
+	static readonly Type[] ParameterTypes;
+	static readonly Dictionary&lt;object, AutoStubber<t>&gt; Instances = new Dictionary&lt;object, AutoStubber<t>&gt;();
+	static AutoStubber()
+	{
+		TypeofT = typeof(T);
+		Constructor = TypeofT.GetConstructors().OrderByDescending(ci =&gt; ci.GetParameters().Length).First();
+		ParameterTypes = Constructor.GetParameters().Select(pi =&gt; pi.ParameterType).ToArray();
+	}</t></t></t></p>
+
+<pre><code>public static AutoStubber&lt;T&gt; GetStubberFor(T obj)
+{
+	return Instances[obj];
+}
+
+bool _created;
+public T Create()
+{
+	if (_created)
+		throw new InvalidOperationException(&amp;quot;Create can only be called once per AutoStubber&amp;quot;);
+	_created = true;
+	return Instance;
+}
+
+readonly Dictionary&lt;Type, object&gt; _dependencies = new Dictionary&lt;Type, object&gt;();
+private T Instance { get; set; }
+public AutoStubber()
+{
+	var parameters = new List&lt;object&gt;(ParameterTypes.Length);
+	foreach (var parameterType in ParameterTypes)
+	{
+		var parameter = MockRepository.GenerateStub(parameterType);
+		parameters.Add(parameter);
+		_dependencies[parameterType] = parameter;
+	}
+	Instance = (T)Constructor.Invoke(parameters.ToArray());
+	Instances[Instance] = this;
+}
+public TDependency Get&lt;TDependency&gt;()
+{
+	return (TDependency)_dependencies[typeof(TDependency)];
+} } public static class AutoStubberExtensions {
+public static AutoStubber&lt;T&gt; Stubs&lt;T&gt;(this T obj)
+	where T : class
+{
+	return AutoStubber&lt;T&gt;.GetStubberFor(obj);
+} } ```
+</code></pre>
+
+<p> </p>
+
+<p>I know there is the AutoMockingContainer, and various other stuff out there, but this thing just was very natural to me, it uses a very simple API (do not need to keep reference to the Container), and took me less than an hour to knock off.</p>
+
+<p>An enhancement I consider would be to allow setting pre-created values to some of the parameters. But meanwhile I did not happen to need it.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/12/13/quoted">Quoted</a></h2>
+    <div class="meta">
+        <time>on December 13, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve just found out that my I’m being *<a href="http://books.google.com/books?id=7cUIRtXwFlQC&amp;pg=PT58&amp;lpg=PT58&amp;dq=Ken+Egozi&amp;source=bl&amp;ots=_llGnA4p9i&amp;sig=U9VHuOb_PN_GebUzitWmCeFSG9s&amp;hl=en#v=onepage&amp;q=Ken%20Egozi&amp;f=false">quoted in a book</a> !</p>
+
+<p> </p>
+
+<p>the book is <a href="http://www.amazon.com/gp/product/0470496649?ie=UTF8&amp;tag=kenegoziswebl-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0470496649">Testing ASP.NET Web Applications (Wrox Programmer to Programmer)</a><img src="http://www.assoc-amazon.com/e/ir?t=kenegoziswebl-20&amp;l=as2&amp;o=1&amp;a=0470496649" alt="" /> from <a href="http://blog.benhall.me.uk/">Ben Hall</a>, a great guy I know from the first UK ALT.NET conf, and <a href="http://www.mcwherter.net/blog/">another guy</a>, who happens to blog quite rarely, but I do like his </p>
+
+<p><a href="http://www.mcwherter.net/wordpress/?cat=14">So You Think You’re A Web Developer</a> series. Plus anyone investing time in Web apps testing is a worthy man, not to mention a guy that invests time in educating people into testing their web apps. </p>
+
+<p> </p>
+
+<p> </p>
+
+<ul>
+  <li>Actually, it’s not anything smart that I’ve been saying, but rather <a href="http://kenegozi.com/Blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx">my simple IoC implementation</a>, which I originally created for a tiny project that couldn’t have had *any 3rd party dependency (including Windsor), and is now being used as a manner of teaching what an IoC is and how it can help you.  neat, and thx for the credit.</li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/12/11/windsorrsquos-logging-facility-getting-a-named-instance">Windsor&rsquo;s Logging Facility; getting a named instance</a></h2>
+    <div class="meta">
+        <time>on December 11, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>When using Windsor’s logging facility, you’d usually take a dependency of an ILogger in your component, and have Windsor create the logger instance. The logger’s name will be of your component’s full type name.</p>
+
+<p>e.g. for the following component:</p>
+
+<p><code>
+namespace My.Application
+{
+	public class UsingLogIntegration
+	{
+		readonly ILogger logger;
+		public UsingLogIntegration(ILogger logger)
+		{
+			this.logger = logger;
+		}
+	}
+}
+</code></p>
+
+<p>The logger’s name will be My.Application.UsingLogIntegration</p>
+
+<p> </p>
+
+<p>At times, you would need to get a logger in a different way, either because you’d want a special name, or you will be in a location where you cannot have Windsor resolve that for you as a dependency (say within an ASP.NET’s Global.asax class, which gets instantiated by ASP.NET, not by Windsor).</p>
+
+<p> </p>
+
+<p>The naive approach would be to ask the container for an ILogger, however if you’d try this, you’ll discover that Container.Resolve<ilogger>() will not fit your needs. So what will you do?</ilogger></p>
+
+<p> </p>
+
+<p>Well, the facility also sets an ILoggerFactory, which is in charge of creating loggers. So, do that instead:</p>
+
+<p><code>
+var loggerTypeOrName = GetTheTypeForTheLoggerOrAStringIfYouPrefer();
+var logger = Container.Resolve().Create(loggerTypeOrName);
+</code></p>
+
+<p>ILoggerFactory.Create() can live with a type (will use the full type name as name) or with a string.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/10/16/castle-windsor-and-the-loggingfacility">Castle Windsor and the LoggingFacility</a></h2>
+    <div class="meta">
+        <time>on October 16, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So you want to be able to do some logging from your code.</p>
+
+<p> </p>
+
+<p>log4net for example, is a very common logging framework for .NET, and using it is pretty straight forward, and the net is full of log4net intros.</p>
+
+<p> </p>
+
+<p>Usage example:</p>
+
+<p><code>
+namespace My.Application
+{
+	public class UsingLog4netDirectly
+	{
+		private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
+		...
+		...
+		...
+	}
+}
+</code></p>
+
+<p> </p>
+
+<p>However, there are some caveats with using it directly.
+- You get a hard dependency on log4net’s dll 
+- You need to manually setup the logger instance with logger name for each class – that’s both annoying and error prone 
+- And has bad impact on testing. </p>
+
+<p>Windsor, once again, can help a lot with making it much easier. e.g:</p>
+
+<p><code>
+namespace My.Application
+{
+	public class UsingLogIntegration
+	{
+		readonly ILogger logger;
+		public UsingLogIntegration(ILogger logger)
+		{
+			this.logger = logger;
+		}
+		...
+		...
+		...
+	}
+}
+</code></p>
+
+<p> </p>
+
+<p>Windsor will take care of injecting the correct logger instance, with the name set correctly (using the class name, not needing the wacky MethodBase… stuff)</p>
+
+<p> </p>
+
+<p>So, what do you set this up?</p>
+
+<p> 
+Required assemblies:
+Assuming you already use Windsor, you need 
+- Castle.Facilities.Logging  (the logging facility) 
+- Castle.Services.Logging.Log4netIntegration (or any other built-in or custom made Integration) 
+- log4net.dll  (or any other actual logger implementation) </p>
+
+<p>You actually do not need to reference these assemblies, only make sure they are on the application’s bin folder.  If you use the programmatic configuration (like I do), you’d also need the first (the facility) referenced from your code.</p>
+
+<p> 
+Registration:
+<code>
+container.AddFacility(&amp;quot;LoggingFacility&amp;quot;, new LoggingFacility(LoggerImplementation.Log4net));
+</code></p>
+
+<p> </p>
+
+<p>and …  that’s it !</p>
+
+<p> </p>
+
+<p>You still need to setup log4net’s configuration, and tell the application where it is:</p>
+
+<p><code>
+log4net.Config.XmlConfigurator.Configure();
+</code></p>
+
+<p> 
+Get a different logger for tests
+Easy. Instead of configuring the facility, you simply configure another implementation. </p>
+
+<p>container.Register(Component.For().Instance(new ConsoleLogger()));</p>
+
+<p>If you’d explore the Castle.Core.Logging namespace you’d find few, very useful built-in implementations, such as a NullLogger (which you get by calling NullLogger.Instance), ConsoleLogger, StreamLogger (write to a file or memory stream), TraceLogger (writes to the diagnostic trace output) and WebLogger (writes to the HttpContext’s Trace, visible at trace.axd).</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/08/04/copy-and-paste-an-image-from-word2007-to-paint-dot-net">Copy and Paste an image from Word2007 to Paint.NET</a></h2>
+    <div class="meta">
+        <time>on August 4, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Scenario:
+I got a docx document by email, with an image embedded inside.  I needed to take it to Paint.NET for some cropping and resizing.  Usually I’d copy the image, then “Paste as New Image” on Paint.NET (using Ctrl+Alt+V, or the Edit menu).
+Problem:
+Paint.NET did not recognize the clipboard content as a valid image.
+Solution:
+I pasted the image into the good ol’ Paint.exe, then copied from there, and “Pasted as New” in Paint.NET</p>
+
+<p> </p>
+
+<p>voila.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/07/20/chrome-address-box-wtf">chrome address box wtf</a></h2>
+    <div class="meta">
+        <time>on July 20, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/chromeaddressboxwtf_EC34/7a7faa2c-0b99-46fb-b8cf-95ccaf8a08d8.png" alt="chrome address box wtf" />  </p>
+
+<p> </p>
+
+<p>I should start a wtf tag here …</p>
+
+<p> </p>
+
+<p>Chrome 3 appear to be just around the corner. </p>
+
+<p>I’m switching now.</p>
+
+<p> </p>
+
+<p>UPDATE: so far Chrome 3 is stable. </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/06/22/accessing-a-specific-revision-of-svn-repository-through-the-browser">Accessing a specific revision of SVN repository through the browser</a></h2>
+    <div class="meta">
+        <time>on June 22, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/scm" rel="tag">scm</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Just throw ‘!svn/bc/REVISION_NUMBER/’ to the url, right after the repository root</p>
+
+<p> </p>
+
+<p>thx <a href="http://www.gooli.org/blog">gooli</a> for the <a href="http://www.gooli.org/blog/accessing-svn-revision-via-a-browser/">superb tip</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/05/26/mysql-wonrsquot-start-ndash-error-1067">MySql won&rsquo;t start &ndash; Error 1067</a></h2>
+    <div class="meta">
+        <time>on May 26, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>We’re using MySql at work, and for that I installed 5.1 on my workstation (Windows 7 RC x64), with all the defaults (next, next, next, …, finish)</p>
+
+<p> </p>
+
+<p>Being environmentally friendly (or mentally instable – depends on who you’re asking), I tend to shut down my workstation when I go home at the end of every day.</p>
+
+<p> </p>
+
+<p>So – today, when first navigating to a url served by my local working copy, I was greeted with a SystemException telling me that MySql is not responding.</p>
+
+<p> </p>
+
+<p>My first reaction was WTF</p>
+
+<p>My following reaction was</p>
+
+<p>Win-R   cmd    net start mysql</p>
+
+<p>Surprisingly enough, instead of the laconic OK, I was greeted with:</p>
+
+<p>The MySQL service could not be started. </p>
+
+<p>A system error has occurred. </p>
+
+<p>System error 1067 has occurred.</p>
+
+<p>My next reaction was back to WTF.</p>
+
+<p> </p>
+
+<p>Goggling around I found no meaningful answer, so I went for uninstall/reinstall. </p>
+
+<p>So, Win+MySql (to look for an uninstaller in the Start Menu, lazy me) I stumbled upon “MySQL Server Instance Config Wizard”</p>
+
+<p>This dude apparently can re-do the Instance Configuration thing, and running it (again with the next, …, next, finish ritual) appear to have fixed the problem.</p>
+
+<p> </p>
+
+<p>After all I do have something nice to say about MySql.  when weird shit happen, there is a tool to make instance re-install rather painless.</p>
+
+<p>All the rest about it is crap.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/11/25/not-storing-data-in-dom-elements-ndash-jquery-dot-data-function">[not] storing data in DOM elements - jQuery.data function</a></h2>
+    <div class="meta">
+        <time>on November 25, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>At time you’d want to store data, related to a DOM element.</p>
+
+<p> </p>
+
+<p>storing it directly into the element (either by elm.someArbitraryName = value, or with setAttribute) is wacky. Some browsers might not like you using non standard attributes, so you start using things like ‘alt’ and ‘rel’. Then again, these things has meaning, and storing arbitrary data is … well, uncool to say the least.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>jQuery.data() to the rescue. As jQuery objects are wrappers that HasA DOM elements, and not the DOM elements themselves (as in prototype), storing data on them is like storing data on POJSO (Plain Old JavaScript Objects), and the data() functions allows for an easy way of doing that.</p>
+
+<p> </p>
+
+<p>Read on that (and of a few other jQuery tips) at <a href="http://marcgrabanski.com/article/5-tips-for-better-jquery-code">http://marcgrabanski.com/article/5-tips-for-better-jquery-code</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/11/07/taking-gogrid-for-a-spin-first-impressions">Taking GoGrid for a spin - first impressions</a></h2>
+    <div class="meta">
+        <time>on November 7, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today I opened a GoGrid account, as I’m looking for quite some time to upgrade my hosted environment.</p>
+
+<p>Setting up the account was a breeze, and in a few minutes from starting the process I had a running instance of vs2008 64bit, with IIS and MSSql2005 express.</p>
+
+<p>First impressions:</p>
+
+<p>Good:</p>
+
+<ul>
+  <li>Quick, easy to use control panel, pricing seem reasonable</li>
+  <li>The image contains .net 3.0, and lack some updates so 3.5 was not installing until I allowed all of the windows update stuff to do the magic first.</li>
+  <li>Online chat is helpful and very responsive. I did not need any actual tech help yet though.</li>
+</ul>
+
+<p>Bad:</p>
+
+<ul>
+  <li>They charge for offline machines, so you can’t just turn on and off the machines, but you have to delete machines that are not in use, and in case you want to re-add them you have to recreate a new machine from their image, then running updates, installs, DB setup etc from scratch</li>
+</ul>
+
+<p>That’s it for now</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/11/d9-yet-another-tools-project">D9 - Yet another tools project</a></h2>
+    <div class="meta">
+        <time>on October 11, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve started a new oss project under the name “D9”.</p>
+
+<p>the project is hosted at <a href="http://code.google.com/p/d-9/">http://code.google.com/p/d-9/</a></p>
+
+<p>I’m adding all kinds of useful stuff I’ve written during my years doing .NET, that I didn’t have any better place for.</p>
+
+<p>It’s fairly empty now, but during the following days I hope to add more stuff in there.</p>
+
+<p>Currently you can find:</p>
+
+<ul>
+  <li>D9.Commons - well, common stuff. Things that need no reference outside the BCL.Currently the only thing there is a helper for using the DescriptionAttribute on enum values. more to come</li>
+  <li>D9.NHibernate - helpers for NHibernate development. The only thing there currently is a UserType that allow persisting enums using their DescriptionAttribute instead of their name</li>
+  <li>D9.StaticMapGenerator - I’ve written about this before. It’s a command-line tools that generates a strongly type sitemap for a website’s static files (css, js and image files)</li>
+</ul>
+
+<p>What I’m gonna add shortly:</p>
+
+<ul>
+  <li>D9.QuerySpecBuilder - a library for generating SQL code in a structured Criteria-like manner</li>
+</ul>
+
+<p>I generally am doing this so I’ll have a place for all my recurring stuff (instead of copy&amp;pasting from project to project every now and then). If people will find it useful it’d be great. If people will want to contribute to it it’d be even greater.</p>
+
+<p>License is “new BSD” so feel free to use it if you like</p>
+
+<p>comments, endorsements and insults are welcome as always.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/09/22/ioc-dot-net-smackdown">IoC.NET Smackdown</a></h2>
+    <div class="meta">
+        <time>on September 22, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve just came across a comparison on IoC containers in the .NET world:</p>
+
+<ul>
+  <li><a href="http://blog.ashmind.com/index.php/2008/08/19/comparing-net-di-ioc-frameworks-part-1/">http://blog.ashmind.com/index.php/2008/08/19/comparing-net-di-ioc-frameworks-part-1/</a></li>
+  <li><a href="http://blog.ashmind.com/index.php/2008/09/08/comparing-net-di-ioc-frameworks-part-2/">http://blog.ashmind.com/index.php/2008/09/08/comparing-net-di-ioc-frameworks-part-2/</a></li>
+</ul>
+
+<p>Haven’t read it yet cuz Im actually off-computer right now (the lappy is attached to the living room TV, and the break in the movie is almost over), but MAN is has COLOUR charts, so you can <a href="http://www.imdb.com/title/tt0309356/">bet your arse</a> I’m gonna read it later.</p>
+
+<p>Not that I’m excited. I’m pretty sure that (INSERT WINNER HERE LATER) will prove to be the best IoC ever.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/08/23/factorysupportfacility-gotcha">FactorySupportFacility gotcha</a></h2>
+    <div class="meta">
+        <time>on August 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The FactorySupportFacility in Windsor is very useful but there’s a little something to be aware of when using it.</p>
+
+<p>What is it?
+This facility allows you to tell the container that when a given service is to be resolved, instead of new-ing it, it should call a factory method to obtain an instance.</p>
+
+<p>This is very useful for context objects (like DbContext, HttpContext etc.) , which are usually being supplied by a framework thus you can’t have the container instantiate them directly. So, assuming you want to inject a ISomeContext object into a service, you need to create a factory that can obtain it for you:</p>
+
+<p>```</p>
+
+<p>public class SomeContextFactory</p>
+
+<p>{</p>
+
+<p>ISomeContext ObtainFromFramework()</p>
+
+<p>{</p>
+
+<pre><code>  return SomeFrameworkContext.Current; //or whatever
+</code></pre>
+
+<p>}</p>
+
+<p>}</p>
+
+<p>```</p>
+
+<p>then you can setup the container to use that factory when injecting the context</p>
+
+<p>The usage:
+Online examples:
+- <a href="http://www.jroller.com/hammett/entry/castle_s_factory_facility">http://www.jroller.com/hammett/entry/castle_s_factory_facility</a>(using XML config, and it’s somewhat old - that’s the first announcment of this facility from Hammet back in the mesosoican era).
+- <a href="http://mawi.org/ProgrammaticCastleMicrokernelWindsorAmpTheFactoryFacility.aspx">http://mawi.org/ProgrammaticCastleMicrokernelWindsorAmpTheFactoryFacility.aspx</a>(using programmatic container initialisation).</p>
+
+<p>And, the gotcha:
+When taking the programmatic road, you must follow this order of doing things:
+- Create the facility instance:</p>
+
+<p><code>
+var facility = new FactorySupportFacility();
+</code>
+- Add it to the container</p>
+
+<p><code>
+container.Kernel.AddFacility("factory.support", facility);
+</code>
+- Register your factories in the facility:</p>
+
+<p><code>
+facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "ObtainFromFramework");
+</code></p>
+
+<p>If you mix 2 and 3, it would break.</p>
+
+<p>There reason of course is that registering the factory into the facility, mean that the facility needs no know about the current container and kernel. This is being done in step 2 so you simply can’t do step 3 before that.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/08/07/on-google-insights-do-numbers-always-count">On google insights - do numbers always count?</a></h2>
+    <div class="meta">
+        <time>on August 7, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/alt-net-israel" rel="tag">alt-net-israel</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>A dude on the <a href="http://groups.google.com/group/altnetisrael/">ALT.NET Israel mailing list</a> has given the new Google Insights a few things to chew on.</p>
+
+<p>For example, he’s shown that there is much more interest in ASP.NET MVC over MonoRail.</p>
+
+<p>So a wonder came up, whether one should choose a framework or a technology should it be highly searched for.</p>
+
+<p>my take on the matter:</p>
+
+<ul>
+  <li>even if many people have searched for A, they might have found it, and decided against it.</li>
+  <li>even if many of them do like or work with A, it doesn’t mean it’s right for me.</li>
+</ul>
+
+<p>I’d look for this type of people in the tech community.</p>
+
+<p>People that:
+- Are very professional, highly skilled, ones I do want to get help from;
+- Have shown interest in helping the community, rather than asking questions.
+- Can, on top of answering questions and giving advice, <strong>fix and improve the said technology themselves or using my suggestions/patches on the spot thus improving my productivity</strong></p>
+
+<p>No matter how you’d turn the search statistics, based on parameter 3 only, any OSS will be way ahead a closed source solution.</p>
+
+<p>Gustavo Ringel also had a say:</p>
+
+<p>I see a lot of articles about how to do stupid things with typed datasets, and much less about how to do great things with ORM’s…should i had go for typed datasets instead of NHibernate or other ORM because i have more help of less skilled people?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/08/06/skype-addon-for-firefox-has-killed-google-maps">Skype addon for FireFox has killed Google Maps</a></h2>
+    <div class="meta">
+        <time>on August 6, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m a big fan of google maps. A simple and yet very effective tool. I wish they had maps for Israel too …</p>
+
+<p>Anyway, I noticed today that the maps do not load on my FF. started disabling addons one by one (you’d usually blame FireBug …) but I found out that it was the skype plugin’s fault.</p>
+
+<p>hmm. Im not really using it much anyway, and for the rare cases I do need to phone someone abroad, I guess I’ll copy and paste into skype.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/07/21/patch-management-approaches-using-decent-csm">Patch management approaches using decent CSM</a></h2>
+    <div class="meta">
+        <time>on July 21, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/scm" rel="tag">scm</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following Ayende’s post on <a href="http://ayende.com/Blog/archive/2008/07/21/Patch management approaches using centralized SCM">Patch management approaches using centralized SCM</a>, here are how I would have dealt with the 4 issues that he brings up, using a Decentralised SCM.</p>
+
+<p> </p>
+
+<p>I use git, so I’ll use git terms here. I guess it’s quite similar for other DSCM systems.</p>
+
+<p> </p>
+
+<p>Note that I haven’t used patches on git development as until now all of my git work was on repositories I had write access to, However the principals are the same (i.e. - all of the tree is local to my machine, thus I can reach any point in the history locally).</p>
+
+<p> </p>
+
+<p>First I’ll clone the hosted repository to my local machine.</p>
+
+<ul>
+  <li>
+    <h1 id="id-have-created-a-separate-local-feature-branch-for-each-feature-so-separating-the-patches-is-easy">1     I’d have created a separate local feature branch for each feature, so separating the patches is easy</h1>
+  </li>
+  <li>
+    <h1 id="again-i-can-do-this-in-two-separate-local-branches-so-i-do-not-need-to-quotrevert-and-applyquot-when-i-move-between-the-two-i-also-get-to-have-a-complete-scm-experience-not-only-a-single-patchstep-per-feature------i-can-also-have-a-third-branch-combining-the-work-of-the-two-feature-branches-for-my-own-use">2     again, I can do this in two separate local branches, so I do not need to "revert and apply" when I move between the two. I also get to have a complete SCM experience, not only a single patch/step per feature.      I can also have a third branch, combining the work of the two feature branches, for my own use</h1>
+  </li>
+  <li>
+    <h1 id="the-second-features-branch-would-be-based-on-the-first-one-should-the-first-need-some-rework-that-is-important-to-the-second-itd-be-easy-to-apply-changes-on-the-first-then-rebase-the-second-ontop-of-the-updated-first">3     the second feature’s branch would be based on the first one. should the first need some rework that is important to the second, it’d be easy to apply changes on the first, then rebase the second ontop of the updated first</h1>
+  </li>
+  <li>
+    <h1 id="just-two-commits-on-the-same-branch">4     just two commits on the same branch.</h1>
+  </li>
+</ul>
+
+<p>So, using a DSCM, I can work locally with the benefits of a SCM, have as many branches/features as I want. the whole tree is stored locally, and its blazing fast to switch branches, so I can easily work on every aspect I want, and easily create a patch from every node in the history tree, to send to the project owners.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/22/simple-string-hashing-in--dot-net">Simple String Hashing in .NET</a></h2>
+    <div class="meta">
+        <time>on June 22, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve been asked about it several times lately, so I’ll just put here an oldie that I’ve been using for a few years now untouched:</p>
+
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<p>{% highlight c# %}
+   1:  // MIT license   2:  // Copyright 2005-2008 Ken Egozi   3:  //    4:  // Permission is hereby granted, free of charge, to any person obtaining a copy   5:  // of this software and associated documentation files (the “Software”), to deal   6:  // in the Software without restriction, including without limitation the rights   7:  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell   8:  // copies of the Software, and to permit persons to whom the Software is   9:  // furnished to do so, subject to the following conditions:  10:  //   11:  // The above copyright notice and this permission notice shall be included in  12:  // all copies or substantial portions of the Software.  13:  //   14:  // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  15:  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  16:  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  17:  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  18:  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  19:  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  20:  // THE SOFTWARE.  21:    22:  using System;  23:  using System.Collections.Generic;  24:  using System.Text;  25:  using System.Security.Cryptography;  26:  using System.Collections;  27:    28:  namespace KenEgozi.CryptographicServices  29:  {  30:  publicstaticclass Hashing  31:      {  32:  privatestatic Hashtable hashAlgorithms = Hashtable.Synchronized(new Hashtable());  33:    34:  /// &lt;summary&gt;  35:  /// Hashing a given string with SHA2.  36:  /// &lt;/summary&gt;  37:  /// <param name="data" />Data to hash&lt;/param&gt;  38:  /// <returns>Hashed data</returns>  39:  publicstaticstring HashData(string data)  40:          {  41:  return HashData(data, HashType.SHA256);  42:          }  43:    44:  /// &lt;summary&gt;  45:  /// Hashing a given string with any of the supported hash algorithms.  46:  /// &lt;/summary&gt;  47:  /// <param name="data" />Data to hash&lt;/param&gt;  48:  /// <param name="hashType" />Hashing algorithm to use&lt;/param&gt;  49:  /// <returns>Hashed data</returns>  50:  publicstaticstring HashData(string data, HashType hashType)  51:          {  52:              HashAlgorithm hash = GetHash(hashType);  53:  byte[] bytes = (new UnicodeEncoding()).GetBytes(data);  54:  byte[] hashed = hash.ComputeHash(bytes);  55:              StringBuilder sb = new StringBuilder(64);  56:  foreach (byte b in hashed)  57:                  sb.AppendFormat(“{0:x2}”, b);  58:  return sb.ToString();  59:          }  60:    61:  privatestatic HashAlgorithm GetHash(HashType hashType)  62:          {  63:  if (!hashAlgorithms.ContainsKey(hashType))  64:                  hashAlgorithms.Add(hashType, CreateaHashAlgorithm(hashType));  65:  return hashAlgorithms[hashType] as HashAlgorithm;  66:          }  67:    68:  privatestatic HashAlgorithm CreateaHashAlgorithm(HashType hashType)  69:          {  70:  switch (hashType)  71:              {  72:  case HashType.MD5:  73:  returnnew MD5CryptoServiceProvider();  74:  case HashType.SHA1:  75:  returnnew SHA1Managed();  76:  case HashType.SHA256:  77:  returnnew SHA256Managed();  78:  case HashType.SHA384:  79:  returnnew SHA384Managed();  80:  case HashType.SHA512:  81:  returnnew SHA512Managed();  82:  default:  83:  thrownew NotImplementedException();  84:              }  85:          }  86:      }  87:    88:  publicenum HashType  89:      {  90:          MD5,  91:          SHA1,  92:          SHA256,  93:          SHA384,  94:          SHA512  95:      }  96:  }{% endhighlight %}</p>
+
+<p>Not beautiful, however useful.</p>
+
+<p>You can download this file from <a href="http://kenegozi.com/blog/uploaded/hashing.cs.txt">here</a> (just remove the .txt - the server doesn’t serve .cs files directly) </p>
+
+<p>btw, the colouring of the source was made with the help of <a href="http://www.manoli.net/csharpformat/">http://www.manoli.net/csharpformat/</a>, even though I had to do some manual tweaking to make it work with this blog. If colours of reserved words, comments etc. do not appear, then please refresh your browser’s cache to get the updated css</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/22/castle-dot-tools-dot--in-castle-contribs-repository-has-moved-a-bit">Castle.Tools.* in Castle Contrib's repository has moved a bit</a></h2>
+    <div class="meta">
+        <time>on June 22, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/css" rel="tag">css</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The tools (various small helper libraries) are now under <a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/">http://svn.castleproject.org:8080/svn/castlecontrib/Tools/</a></p>
+
+<p>what’s in there:
+- <a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.StaticMapGenerator/">Castle.Tools.StaticMapGenerator</a> - That one creates a typed tree representing js/css/image files on the site’s filesystem. more here:<a href="http://kenegozi.com/Blog/2008/01/17/staticmapgenerator-for-asp-dot-net-first-teaser.aspx">http://kenegozi.com/Blog/2008/01/17/staticmapgenerator-for-asp-dot-net-first-teaser.aspx</a>Which reminds me that I need to add .swf files to the mix …
+- <a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.SQLQueryGenerator/">Castle.Tools.SQLQueryGenerator</a> - That one is for building plain old SQL strings in a typed and intellisense friendly way.more here:<a href="http://kenegozi.com/Blog/2008/01/27/already-added-stuff-to-sql-query-generator.aspx">http://kenegozi.com/Blog/2008/01/27/already-added-stuff-to-sql-query-generator.aspx</a>
+- <a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.QuerySpecBuilder/">Castle.Tools.QuerySpecBuilder/</a> - The new kid in the block. That’s a tool that is used to build specs programmatically, which would later be translated to a SQL string for your flavour of DAL. The generated SQL is mostly ANSI compliant, apart from the Paging syntax which is TSQL only currently, but at some point I’ll add an extension point to allow other syntaxes.I also have an external thing to make it extremely useful with NHibernate’s ISQLQuery.I’ll blog about all that when I’ll have a little time.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/20/the-fox-is-hungry">The Fox Is Hungry</a></h2>
+    <div class="meta">
+        <time>on June 20, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>My impression on Firefox 3 by now:
+- It looks nicer.
+- It still eats up all of my poor machine’s memory</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TheFoxIsHungry_103C0/2f49a476-1521-4d49-aace-53b135b8fe8f.png" alt="The fox is hungry" /></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/18/download-firefox-3">Download Firefox 3</a></h2>
+    <div class="meta">
+        <time>on June 18, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I really don’t need to add anything, right?</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/DownloadFirefox3_C7F8/791adbf0-bdee-45a0-a706-93b1fe5b49cd.png" alt="download-button-primary" /></p>
+
+<p>Installed it myself today. Appear to be a bit faster, and to eat up less memory.</p>
+
+<p>The Google Toolbar and FireFTP were updated automatically.</p>
+
+<p>I needed to manually re-install <a href="http://www.getfirebug.com/">FireBug</a> and <a href="https://addons.mozilla.org/en-US/firefox/addon/1419">IE-Tab</a></p>
+
+<p>btw, does anybody know where did the Back and Forward buttons has gone to? Im using the keyboard usually, but sometimes (especially during in-office-lunch-time) I need to click the Back thing with the mouse</p>
+
+<p>UPDATE: it appear that as part of the upgrade, FF3 has inherited my customised toolbars and that’s why it was looking weird. So I right-clicked on the toolbar -&gt; customise, the clicked “Restore Default Set”. All the buttons came back, then I rearranged the toolbar to my liking.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/04/03/logging-sql-output-from-nhibernate-using-log4net">Logging SQL output from NHibernate, using Log4Net</a></h2>
+    <div class="meta">
+        <time>on April 3, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following a question from NHibernate’s users list:</p>
+
+<p>```</p>
+
+<configsections> <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" /></configsections>
+<log4net> <appender name="rollingFile" type="log4net.Appender.RollingFileAppender,log4net"> <param name="File" value="log.txt" /> <param name="AppendToFile" value="true" /> <param name="DatePattern" value="yyyy.MM.dd" /> <layout type="log4net.Layout.PatternLayout,log4net"> <conversionpattern value="%d %p %m%n" /> </layout> </appender> <logger name="NHibernate.SQL"> <level value="ALL" />    <appender-ref ref="rollingFile" />  </logger></log4net>
+
+<p>```</p>
+
+<p>and configuring your application to use Log4Net (if you hadn’t done that anyway):</p>
+
+<p><code>
+log4net.Config.XmlConfigurator.Configure();
+</code></p>
+
+<p>If you wan’t to know more about log4net and it’s configuration options - look <a href="http://www.ondotnet.com/pub/a/dotnet/2003/06/16/log4net.html?page=2">here</a> or use your favorite search engine.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/03/09/agentsmith-resharper-plugin">AgentSmith - Resharper plugin</a></h2>
+    <div class="meta">
+        <time>on March 9, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>From the website:</p>
+
+<p>Current version includes following features: </p>
+
+<ul>
+  <li>
+    <p>Naming convention validation.</p>
+  </li>
+  <li>
+    <p>XML comment validation.</p>
+  </li>
+  <li>
+    <p>XML comment, string literals, identifiers and resources (.resx files) spell checking </p>
+  </li>
+  <li></li>
+</ul>
+
+<p>Smart paste.</p>
+
+<p>The coolest thing is the ability to spell check identifiers. I’d love it.</p>
+
+<p>It’s at <a href="http://www.agentsmithplugin.com/">http://www.agentsmithplugin.com/</a> and I found out about it on Castle’s dev list (thx Victor)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/03/04/tool-visual-xpath">[Tool] - Visual XPath</a></h2>
+    <div class="meta">
+        <time>on March 4, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>As I’m trying to avoid xml files as much as possible, when I do find the need to xpath, I always need to refresh my memory on the matter.</p>
+
+<p>Today I’ve been working with kml files, and the need for some simple xpath queries came up, forcing me to do some trial-and-error in an area I don’t really like …</p>
+
+<p>Next time I’ll have <a href="http://weblogs.asp.net/nleghari/articles/visualxpath.aspx">Visual XPath</a> to help me with that.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/27/sql-query-generator-first-release">SQL Query Generator - First Release</a></h2>
+    <div class="meta">
+        <time>on January 27, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>What is it?
+A tool that generates a strongly typed representation of a relational database, to be used for generating SQL queries in a type-safe fashion, with the aid of intellisense.</p>
+
+<p>Where to get it?
+- Current Binaries: <a href="http://kenegozi.com/Blog/Files/download.aspx?filename=Castle.Tools.SQLQueryGenerator-0.9.0.429-Debug.zip">from here</a>
+- Source code: http://svn.castleproject.org:8080/svn/castlecontrib/Castle.Tools.SQLQueryGenerator/trunk/</p>
+
+<p>UPDATE (22/06/2008):The source has slightly moved (to a sub folder):<a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.SQLQueryGenerator/">http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.SQLQueryGenerator/</a></p>
+
+<p>Limitations:
+- Currently works only with SQL Server 2005. Patches for more DB types would be welcomed.<br />
+- Currently only SELECT queries are implemented. Soon I’ll add support for generating INSERT, UPDATE and DELETE, too.<br />
+- GroupBy, Order By and Having clauses didn’t make it to this initial release. I hope to add those this week.</p>
+
+<p>How to use it?- Generating the classes:Run Castle.Tools.SQLQueryGenerator.exe.Parameters:The mandatory flag is /db:DBNAME where DBNAME is your database name. By default, the server being looked for is (local). you can select another using /server:SERVER.By default, Integrated Security is used. You can supply /userid:USER and /password:PASS to override it.You can alternatively supply a /connectionstring:CONSTR parameter.<br />
+- Add the generated file, named “SQLQuery.Generated.cs” to your project.<br />
+- Add a reference to Castle.Tools.SQLQueryGenerator.Runtime.dll<br />
+- Use and Enjoy</p>
+
+<p>Usage sample (from Examples.cs in the test project:</p>
+
+<p><code>
+SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs);Console.WriteLine(q);
+</code></p>
+
+<p>Would print out:</p>
+
+<p><code>
+SELECT [dbo].[Blogs].[Id], [dbo].[Blogs].[Name]FROM [dbo].[Blogs]
+</code></p>
+
+<p>Not impressed? Well,</p>
+
+<p><code>
+dbo_ForumMessages Message = SQL.ForumMessages.As("Message");dbo_ForumMessages Parent = SQL.ForumMessages.As("Parent"); SQLQuery q = SQLQuery .Select(Message.Id, Message.ParentId, Message.Content) .From(Message) .Join(Parent, Message.ParentId == Parent.Id);Console.WriteLine(q);
+</code></p>
+
+<p>Will spit out</p>
+
+<p><code>
+SELECT [Message].[Id], [Message].[ParentId], [Message].[Content]FROM [dbo].[ForumMessages] AS [Message] JOIN [dbo].[ForumMessages] AS [Parent] ON ([Message].[ParentId] = [Parent].[Id])
+</code></p>
+
+<p>Need parameters?</p>
+
+<p><code>
+Parameter&lt;int&gt; blogId = new Parameter&lt;int&gt;("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
+</code></p>
+
+<p>would echo</p>
+
+<p><code>
+SELECT [dbo].[Blogs].[Id], [dbo].[Blogs].[Name]FROM [dbo].[Blogs]WHERE ([dbo].[Blogs].[Id] = @BlogId)
+</code></p>
+
+<p>How can YOU help?- Use it. Praise it. Use Paypal. </p>
+
+<ul>
+  <li>Or you can suggest improvements, spot bugs, create patches and buy me beer.</li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/27/already-added-stuff-to-sql-query-generator">Already Added Stuff To SQL Query Generator</a></h2>
+    <div class="meta">
+        <time>on January 27, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>the new stuff:</p>
+
+<ul>
+  <li>Reusing clauses  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Operators (</td>
+          <td> </td>
+          <td>, &amp;&amp;, !) on where clause</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>OrderBy clause</li>
+</ul>
+
+<p>Examples:</p>
+
+<p>Reusing clauses:</p>
+
+<p><code>
+FromClause from = new FromClause(SQL.Blogs);WhereClause where = new WhereClause(SQL.Blogs.Id == 2); SQLQuery q1 = SQLQuery .Select(SQL.Blogs.Id) .From(from) .Where(where); SQLQuery q2 = SQLQuery .Select(SQL.Blogs.Name) .From(from) .Where(where); Console.WriteLine(q1);Console.WriteLine(q2);
+</code></p>
+
+<p>makes</p>
+
+<p><code>
+SELECT [dbo].[Blogs].[Id]FROM [dbo].[Blogs]WHERE ([dbo].[Blogs].[Id] = 2)SELECT [dbo].[Blogs].[Name]FROM [dbo].[Blogs]WHERE ([dbo].[Blogs].[Id] = 2)
+</code></p>
+
+<p>Operators:</p>
+
+<p><code>
+SQLQuery q1 = SQLQuery .Select(SQL.Blogs.Id) .From(SQL.Blogs) .Where(SQL.Blogs.Id &gt; 2 || SQL.Blogs.Name == "Ken");Console.WriteLine(q1);
+</code></p>
+
+<p>makes</p>
+
+<p><code>
+SELECT [dbo].[Blogs].[Id]FROM [dbo].[Blogs]WHERE (([dbo].[Blogs].[Id] &gt; 2) OR ([dbo].[Blogs].[Name] = N'Ken'))
+</code></p>
+
+<p>OrderBy Clause:</p>
+
+<p><code>
+SQLQuery q = SQLQuery .Select(SQL.Blogs.Id) .From(SQL.Blogs) .Where(SQL.Blogs.Id &gt; 2) .OrderBy(Order.By(SQL.Blogs.Id), Order.By(SQL.Blogs.Name).Desc);Console.WriteLine(q);
+</code></p>
+
+<p>makes</p>
+
+<p><code>
+SELECT [dbo].[Blogs].[Id]FROM [dbo].[Blogs]WHERE ([dbo].[Blogs].[Id] &gt; 2)ORDER BY [dbo].[Blogs].[Id], [dbo].[Blogs].[Name] DESC
+</code></p>
+
+<p>Didn’t have time to upload a binary, but you can simply grab the source and build yourself. it has absolutely no dependencies but .NET 2.0</p>
+
+<p>Where from?</p>
+
+<p>http://svn.castleproject.org:8080/svn/castlecontrib/Castle.Tools.SQLQueryGenerator/trunk/</p>
+
+<p>UPDATE (22/06/2008):The source has slightly moved (to a sub folder):<a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.SQLQueryGenerator/">http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.SQLQueryGenerator/</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/19/sql-query-genrator">SQL Query Generator</a></h2>
+    <div class="meta">
+        <time>on January 19, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Imagine you could write that in your IDE:</p>
+
+<p><code>
+SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Join(SQL.Posts, Join.On(SQL.Blogs.Id == SQL.Posts.BlogId)) .Where(SQL.Blogs.Name != "Ken's blog");
+Console.WriteLine(q); 
+</code></p>
+
+<p>and getting that output :</p>
+
+<p><code>
+SELECT [Blogs].[Id], [Blogs].[Name]FROM ([Blogs] JOIN [Posts] ON ([Blogs].[Id]=[Posts].[BlogId]))WHERE ([Blogs].[Name]&lt;&gt;'Ken''s blog') 
+</code></p>
+
+<p>Soon enough you would be able to to that.</p>
+
+<p>After having fun creating the Static Sitemap Generator, today I’ve had a little free time (as my main machine is being reinstalled), so I came up with a SQL query generator.</p>
+
+<p>It would be a tool to generate classes out of a database, that would make writing typed sql queries a breeze.</p>
+
+<p>I have most of it working, except the part where I retrieve the metadata from the database … No worries, my good friend and SQL guru Moran is about to send me the queries for that real soon.</p>
+
+<p>First release would work with SQL Server 2005, and later on I’ll add extension points to hook up other db engines.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/19/retrieving-all-column-names-and-types-from-sql-server-2005-for--dot-net">Retrieving All Column Names And Types From SQL Server 2005 For .NET</a></h2>
+    <div class="meta">
+        <time>on January 19, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Nothing fancy.</p>
+
+<p>With a little help from Moran Benisty, here’s the script I use to get the metadata I need for the <a href="http://kenegozi.com/Blog/2008/01/19/sql-query-genrator.aspx">SQLQueryGenerator</a>:</p>
+
+<p><code>
+SELECT schemas.name AS [Schema], tables.name AS [Table], columns.name AS [Column], CASE  WHEN columns.system_type_id = 34 THEN 'byte[]' WHEN columns.system_type_id = 35 THEN 'string' WHEN columns.system_type_id = 36 THEN 'System.Guid' WHEN columns.system_type_id = 48 THEN 'byte' WHEN columns.system_type_id = 52 THEN 'short' WHEN columns.system_type_id = 56 THEN 'int' WHEN columns.system_type_id = 58 THEN 'System.DateTime' WHEN columns.system_type_id = 59 THEN 'float' WHEN columns.system_type_id = 60 THEN 'decimal' WHEN columns.system_type_id = 61 THEN 'System.DateTime' WHEN columns.system_type_id = 62 THEN 'double' WHEN columns.system_type_id = 98 THEN 'object' WHEN columns.system_type_id = 99 THEN 'string' WHEN columns.system_type_id = 104 THEN 'bool' WHEN columns.system_type_id = 106 THEN 'decimal' WHEN columns.system_type_id = 108 THEN 'decimal' WHEN columns.system_type_id = 122 THEN 'decimal' WHEN columns.system_type_id = 127 THEN 'long' WHEN columns.system_type_id = 165 THEN 'byte[]' WHEN columns.system_type_id = 167 THEN 'string' WHEN columns.system_type_id = 173 THEN 'byte[]' WHEN columns.system_type_id = 175 THEN 'string' WHEN columns.system_type_id = 189 THEN 'long' WHEN columns.system_type_id = 231 THEN 'string' WHEN columns.system_type_id = 239 THEN 'string' WHEN columns.system_type_id = 241 THEN 'string' WHEN columns.system_type_id = 241 THEN 'string' END AS [Type], columns.is_nullable AS [Nullable]FROM sys.tables tables INNER JOIN sys.schemas schemas ON (tables.schema_id = schemas.schema_id ) INNER JOIN sys.columns columns ON (columns.object_id = tables.object_id) WHERE tables.name &lt;&gt; 'sysdiagrams'  AND tables.name &lt;&gt; 'dtproperties' 
+ORDER BY [Schema], [Table], [Column], [Type]
+</code></p>
+
+<p>Quick, Dirty, Working.</p>
+
+<p>Anyone up to contributing a similar thing for SQL 2000 / MySql / Oracle / Postgres / MS-ACCESS ?</p>
+
+<p>it’s going to be subversion-ed really soon.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/17/yagni-my-tiny-ioc-feels-lonely">YAGNI - My Tiny IoC Feels Lonely</a></h2>
+    <div class="meta">
+        <time>on January 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>It’s funny. At the end of the day, I didn’t use <a href="http://kenegozi.com/Blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx">the tiny IoC</a> in the StaticSiteMap for the testing.</p>
+
+<p>It was fun however.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/17/staticmapgenerator-source-is-available">StaticMapGenerator Source Is Available</a></h2>
+    <div class="meta">
+        <time>on January 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The Static SiteMap Generator’s home is in Castle Contrib, and it’s named Castle.Tools.StaticMapGenerator</p>
+
+<p>I’ve just commited it to the repository, so it’s at http://svn.castleproject.org:8080/svn/castlecontrib/Castle.Tools.StaticMapGenerator/trunk/</p>
+
+<p>UPDATE (22/06/2008):The source has slightly moved (to a sub folder):<a href="http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.StaticMapGenerator/">http://svn.castleproject.org:8080/svn/castlecontrib/Tools/Castle.Tools.StaticMapGenerator/</a></p>
+
+<p>I hope to have time soon to blog about the creation of this little tool, and of the usage. Also, expect a binary soon.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/17/staticmapgenerator-for-asp-dot-net-first-teaser">StaticMapGenerator for ASP.NET, First Teaser</a></h2>
+    <div class="meta">
+        <time>on January 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Last night I got frustrated with the fact that I have no intellisense (nor compile time check) for locating static files like .js, .css and image files.</p>
+
+<p>So I sat up and created a simple console application that can generate exactly that, out of the site’s filesystem.</p>
+
+<p>usage:</p>
+
+<p><code>
+D:\MyTools\StaticMapGenerator /site:D:\Dev\MySite
+</code></p>
+
+<p>it generates a file called Static.Site.Generated.cs within the site’s root folder, and then I go and include that file in my web project.</p>
+
+<p>No I can do stuff like:</p>
+
+<p><code>
+&lt;script type="text/javascript" src="&lt;%= Static.Site.Include.Scripts.myscript_js %&gt;"&gt; &lt;/script&gt;&lt;link rel="stylesheet" href="&lt;%= Static.Site.Include.CSS.master_css %&gt;" /&gt;&lt;img alt="Ken Egozi" title="My Logo" src="&lt;%= Static.Site.Include.Images.Logos.my_logo_png" /&gt;
+</code></p>
+
+<p>How cool is that?</p>
+
+<p>It works in every ASP.NET compatible web framework (MonoRail, ASP.NET MVC, even WebForms …)</p>
+
+<p>The only prequisite is .NET 2.0 runtime.</p>
+
+<p>Sorry for keeping it out of reach for the moment. I need a little bit of time to setup a svn repository to make the source public (it would of course be BSD/Apache2/MIT thing) and to upload a binary. No promises given, I’ll try to make it in the coming weekend, or even tonight, so stay tuned.</p>
+
+<p>The code is somewhat naive, and certainly does not cover any edge cases, however it’s enough to work cleanly on the largest project I’m currently involved in (Music Glue). Patches to make it more configurable and able to handle more edge cases would be gladly accepted once it’s out.</p>
+
+<p>One cool spot - as part of this, <a href="http://kenegozi.com/Blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx">I have also implemented my tiny IoC container in 33 LoC</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines">It's My Turn To Build An IoC Container In 15 Minutes and 33 Lines</a></h2>
+    <div class="meta">
+        <time>on January 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Last night I’ve built a nice new tool called StaticMapGenerator which is used to generate a typed static resources site-map for ASP.NET sites (works for MonoRail, ASP.NET MVC and even WebForms).</p>
+
+<p>I’ll blog about it on a separate post in details.</p>
+
+<p>Since I didn’t want any dependency (but .NET 2.0 runtime) for the generator and the generated code, I couldn’t use Windsor to IoC. That calls for a hand rolled simple IoC implementation</p>
+
+<p><a href="http://www.ayende.com/Blog/archive/2007/10/20/Building-an-IoC-container-in-15-lines-of-code.aspx">Ayende has already done it in 15 lines</a>, but I wanted also to automagically set dependencies and have a simpler registration model.</p>
+
+<p>so I’ve quickly hacked together a configurable DI resolver (a.k.a. IoC container) in 15 Minutes and 33 Lines Of Code. Call me a sloppy-coder, call me whadever-ya-like. It just works.</p>
+
+<p><code>
+static class IoC {  static readonly IDictionary&lt;Type, Type&gt; types = new Dictionary&lt;Type, Type&gt;();   public static void Register&lt;TContract, TImplementation&gt;()  { types[typeof(TContract)] = typeof(TImplementation);  }  public static T Resolve&lt;T&gt;()  { return (T)Resolve(typeof(T)); }  public static object Resolve(Type contract) { Type implementation = types[contract];  ConstructorInfo constructor = implementation.GetConstructors()[0];  ParameterInfo[] constructorParameters = constructor.GetParameters();   if (constructorParameters.Length == 0) return Activator.CreateInstance(implementation);  List&lt;object&gt; parameters = new List&lt;object&gt;(constructorParameters.Length);   foreach (ParameterInfo parameterInfo in constructorParameters)  parameters.Add(Resolve(parameterInfo.ParameterType));  return constructor.Invoke(parameters.ToArray()); }}
+</code></p>
+
+<p>Ok, I’ve cheated. You’d need using statements too, but you can see that I was generous enough with newlines …</p>
+
+<p>Usage:</p>
+
+<p>Given those:
+<code>
+public interface IFileSystemAdapter { }public class FileSystemAdapter : IFileSystemAdapter { }public interface IBuildDirectoryStructureService { }public class BuildDirectoryStructureService : IBuildDirectoryStructureService{ IFileSystemAdapter fileSystemAdapter; public BuildDirectoryStructureService(IFileSystemAdapter fileSystemAdapter) { this.fileSystemAdapter = fileSystemAdapter; }
+}
+</code></p>
+
+<p>You can do that:</p>
+
+<p><code>
+IoC.Register&lt;IFileSystemAdapter, FileSystemAdapter&gt;();IoC.Register&lt;IBuildDirectoryStructureService, BuildDirectoryStructureService&gt;(); IBuildDirectoryStructureService service = IoC.Resolve&lt;IBuildDirectoryStructureService&gt;();
+</code>
+You need not worry about supplying the BuildDirectoryStructureService with an implementation for the service it depends on, but only to register an implementation for that service.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/12/conditional-rendering-or-i-do-not-want-analytics-code-on-dev-machine">Conditional Rendering, or I Do Not Want Analytics Code On Dev Machine</a></h2>
+    <div class="meta">
+        <time>on January 12, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>From time to time you’d want some of your markup rendered only on ‘real’ scenarios. For example, you wouldn’t want google analytics to track visits you do on your dev machine. Sometime you’d even develop while your machine is not even connected to the internet, and every page would try get the analytics script and will behave strangely.</p>
+
+<p>In Monorail, the Request has a property named IsLocal, just for that. I’ve wrapped it in a nice ViewComponent.</p>
+
+<p>```
+public class GoogleAnalyticsComponent : ViewComponent{
+ public override void Render() { if (Request.IsLocal) return; RenderView(“AnalyticsCode”); }} </p>
+
+<p>```</p>
+
+<p>Accompanied by the AnalyticsCode view template:</p>
+
+<p><code>
+&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %&gt;&lt;script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt; _uacct = "MY_URCHIN_CODE"; urchinTracker();&lt;/script&gt;
+</code></p>
+
+<p>, that can easily be extensible to set the urchin code with a parameter.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/12/04/cool-vs-uncool-in-programming-languages">Cool vs Uncool in programming languages</a></h2>
+    <div class="meta">
+        <time>on December 4, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Have just read <a href="http://ayende.com/Blog/archive/2007/12/04/If-it-is-not-dynamic-vs.-static--what-is.aspx">Ayende’s post about C#/Java vs Boo/Ruby</a>. </p>
+
+<p>Tried to comment, but then I decided it’s worth a post. </p>
+
+<p>I’d say that the difference is MAF - Management Acceptance Factor<br />
+- Java and C# has the Big Names behind them, so managers are comfortable. Ruby and Boo does not, hence … 
+- Java is v6, c# is v3, while Ruby and Boo are v0.x - another Management Scary. </p>
+
+<p>Boo is also a way too cool/strange/creepy name for a distinguished suit to grasp.  </p>
+
+<p>It’s like when you’re a collage girl, and you want to introduce your new boyfriend to your mama. It doesn’t matter that he has a BSc and MBA plus 3 castles in the Swiss alps. If he’d first show up to the family on his <a href="http://www.kawasaki.com/Products/detail.aspx?id=269&amp;content=photos">way-too-cool motorcycle</a>, then you’re going to be grounded. </p>
+
+<p>When I approached my last manager about MonoRail, and told him that the views will be written in ‘Boo’, he got all scared. Then I wrote AspView, views to be written in c#, and he gave consent to go MonoRail.Even though, at least at that time, Brail was way more mature than AspView.The ‘cooler’ languages needs to be marketed to management. </p>
+
+<p>Ruby works in Eclipse. I wonder who is going to start an OSS effort to create a decent Boo plugin for VS2008 (based on the VS2008 shell). </p>
+
+<p>Make it demoable, make it look ‘official’, and MAF would go way higher.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/27/using-the-codegenerator-and-the-dictionaryadapter">Using the CodeGenerator and the DictionaryAdapter</a></h2>
+    <div class="meta">
+        <time>on November 27, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following users requests, I have just posted two documents to using.castleproject.org.</p>
+
+<p>The first is an explanation about the CodeGenerator (from Contrib), and another one, on using the DictionaryAdapter.</p>
+
+<p>Here are the links:</p>
+
+<ul>
+  <li><a href="http://using.castleproject.org/display/Contrib/Castle.Tools.CodeGenerator">http://using.castleproject.org/display/Contrib/Castle.Tools.CodeGenerator</a></li>
+  <li><a href="http://using.castleproject.org/display/Comp/Castle.Tools.DictionaryAdapter">http://using.castleproject.org/display/Comp/Castle.Tools.DictionaryAdapter</a></li>
+</ul>
+
+<p>Related stuff:</p>
+
+<ul>
+  <li><a href="http://kenegozi.com/Blog/2007/10/16/typed-session-using-castle-components-dictionaryadapter.aspx">A post about using the DictionaryAdapter in ASP.NET</a></li>
+  <li><a href="http://kenegozi.com/Blog/2007/10/17/typed-view-properties-in-monorail-and-aspview.aspx">A post about using the Typed Views option in AspView</a></li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/15/howto-make-windows-live-writer-output-xhtml-markup">HOWTO: Make Windows Live Writer Output XHTML Markup</a></h2>
+    <div class="meta">
+        <time>on November 15, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Problem:</p>
+
+<ul>
+  <li>The output you get from Windows Live Writer is not XHTML, i.e. unclosed br and img tags. </li>
+</ul>
+
+<p> </p>
+
+<p>Possible causes:</p>
+
+<ul>
+  <li>When you’ve setup your blog in Windows Live Writer, you have used a version older than Beta 3 </li>
+  <li>Your blog’s style couldn’t have been detected by WLW </li>
+  <li>Your blog’s style was been detected correctly, however you do not have a valid XHTML DOCTYPE declaration in your blog </li>
+</ul>
+
+<p>Setting XHTML output manually:</p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Weblogs</td>
+          <td>Edit Weblog Settings</td>
+          <td>Advanced</td>
+          <td>Markup Type</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p> </p>
+
+<p>Thanks <a href="http://jcheng.wordpress.com">Mr. Joe Chang</a>, from the Windows Live Writer team, who have pointed that out for me.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/10/08/aspview-for-castle-rc3-new-release">AspView for Castle RC3 - new release</a></h2>
+    <div class="meta">
+        <time>on October 8, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Although about three weeks too late, I present thee:</p>
+
+<p>AspView, builtfor Castle RC3 (<a href="http://kenegozi.com/Blog/Files/download.aspx?filename=AspView_for_Castle_RC3_Release.zip">release</a>, <a href="http://kenegozi.com/Blog/Files/download.aspx?filename=AspView_for_Castle_RC3_Debug.zip">debug</a>, <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">source</a>)</p>
+
+<p>I’ve also introduced a well due improvement to the engine. Now it supports the use of a 404 rescue view, that would get rendered in case of the url mapping to a non-existent controller.</p>
+
+<p>the commit comment (for revision 314) says it all:</p>
+
+<p>Handling view creation for EmptyController, specifically when a controller is not found and a 404 rescue exists</p>
+
+<p>Next improvement will include an option for doing AutoRecompilation in memory, as sometimes the IIS process gets hold on the CompiledViews assembly files (dll and pdb) and failing the automatic recompilation process. </p>
+
+<p>I certainly need that as it happens on my machine too much, and building the Web project takes a solid 10-15 seconds, while running vcompile is a milliseconds thing only.</p>
+
+<p>Soon …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/10/07/ie7-to-the-masses-the-end-of-ie6-compatibility-issues">IE7 to the masses - the end of IE6 compatibility issues?</a></h2>
+    <div class="meta">
+        <time>on October 7, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/css" rel="tag">css</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>That’s a great news for everyone who build websites and web applications.</p>
+
+<p>IE7 would be installable even to XP users without the Genuine Check.</p>
+
+<p>That means that in short time, the IE7 adoption rate would increase so much, that hopefully the annoying IE6 would become as obsolete as Netscape 4 and IE 5.5 …</p>
+
+<p>No more dirty CSS hacks (or at least, a lot less)</p>
+
+<p>No more buggy box-model</p>
+
+<p>Finally we can use input[type=text] and the likes</p>
+
+<p>I’ve kept IE6 on my box for so long only to be able to test what I write. Even though I use Firefox for day-to-day browsing, I still need IE for some crappy israeli sites that would just not work on non IE (and by not work - I mean that you get an alert box saying:</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/IE7tothemassestheendofIE6compatibilityis_BB5D/04f348e7-4909-48a7-8e7a-66a2ee4f68ad.png" alt="This site is IE only" /></p>
+
+<p>For people who knows not Hebrew:</p>
+
+<p>“This site supports IE browsers, from version 5.5 and up. Support to other browsers is planned for next release”</p>
+
+<p>Ha Ha.</p>
+
+<p>This message is there for at least a year.</p>
+
+<p>And it’s not even dependant on ActiveX or other IE magic. It’s only some laziness regarding JS and CSS compatibility.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/09/21/yet-another-xunit-framework-for-.net">Yet Another xUnit framework for .NET</a></h2>
+    <div class="meta">
+        <time>on September 21, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>look at <a href="http://www.codeplex.com/xunit">http://www.codeplex.com/xunit</a></p>
+
+<p>Quite interesting. I might give that a shot soon.</p>
+
+<p>You can read about it at <a href="http://jamesnewkirk.typepad.com/posts/2007/09/announcing-xuni.html">http://jamesnewkirk.typepad.com/posts/2007/09/announcing-xuni.html</a></p>
+
+<p>The upside for that isthe simplification of things by removing some attributes, and having a more consistent model regarding assertions on exceptions.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/09/12/im-burned">I'm Burned</a></h2>
+    <div class="meta">
+        <time>on September 12, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Main reason - I want to reduce traffic to my blog (I do have a gazziliona million few hundredssubscribers, just like you, my dear reader.).</p>
+
+<p>Plus, <a href="http://blogs.feedburner.com/feedburner/archives/2007/07/freeburner_for_everyone.php">since feed-burner has gone Google-d, they give the PRO services for free</a>, so I’d be able to enjoy the stats - which means I’d be able to know exactly how many people are reading me, and then can arrange the kenegozi-readers-party (thought about the <a href="http://www.thegarden.com/">Madison Square Garden</a>, but I guess my living room will do just fine).</p>
+
+<p>So, please update your favorite reader to point to <a href="http://feeds.feedburner.com/kenegozi">http://feeds.feedburner.com/kenegozi</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/09/11/google-reader-is-even-better-theyve-added-a-search-box">Google Reader Is Even Better - They've Added a Search Box</a></h2>
+    <div class="meta">
+        <time>on September 11, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Seriously, it’s Google. What took them so long?</p>
+
+<p>Anyway - Google Reader remains my feed reader of choice. I do not use my laptop offline much, so it’s ok like that, plus the offline mode in reader kinda works, so for the occasional offline sessions I do have it’s more than enough.</p>
+
+<p>It took me almost a week to notice, though …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/08/27/vs2005-has-lost-grip-of-resharper-3-fonts-and-color-reinstall">VS2005 has lost grip of Resharper 3 Fonts and Color? re-install</a></h2>
+    <div class="meta">
+        <time>on August 27, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m using VS2005 (with SP1, like duhh) and have had R# 3.0.1</p>
+
+<p>Now, I’m not a fan of the default font and color scheme, as I like better the slicker mono-fonts, like <a href="http://www.microsoft.com/downloads/details.aspx?familyid=22e69ae4-7e40-4807-8a86-b3d36fab68d3&amp;displaylang=en">Consolas</a>. I am also becoming a Black-Background type, not for the WouldSaveTheRainForests==true reason (in LCD the light is static no matter what color it shows) but for the implements IDLikeToKeepMyEyeSightForALongTime reason.</p>
+
+<p>So, started with importing a color scheme from some internet-found-place, don’t remember where, and then tried to change those Resharper coloring options (like, a variable name that is being used an odd amount of times, by internal classes, however not in an explicit-interface implemented method, that returns a struct), just to find out the the Fonts-And-Colors menu miss those lovely Resharper entries).</p>
+
+<p>Okay, so what should I do? Export the settings, edit the xml, and re-import. Not much fun there.</p>
+
+<p>Hmm. Googled it (I may use the term, as I actually use Google as a search engine), and found <a href="http://support.jetbrains.com/kb/entry!default.jspa?categoryID=28&amp;externalID=104&amp;fromSearchPage=true">a post on jetbrains support site</a>, with the same problem.no solution though.</p>
+
+<p>However - this is how I solved it eventually:</p>
+
+<ol>
+  <li>
+    <p>Export the current settings toa file</p>
+  </li>
+  <li>
+    <p>Reset all settings</p>
+  </li>
+  <li>
+    <p>Re-install R# (hey - now it’s 3.0.2 !!)</p>
+  </li>
+  <li>
+    <p>Import back my settings.</p>
+  </li>
+</ol>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/07/30/merging-with-tortoisesvn">Merging with TortoiseSVN</a></h2>
+    <div class="meta">
+        <time>on July 30, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Assuming you have a main “trunk” in your subversion repository, and that you are actually working on a different branch.</p>
+
+<p>You’d need to merge your changes from your branch to the trunk so other team members would be able to use your code. You’d also want to be able to merge from the trunk to your branch, to be able to use your teammate’s code.</p>
+
+<p>The thing you should bear in mind while you merge, is that the actual merge process is actually working by generating a patch (using diff) and applying this patch on the target.</p>
+
+<p>a quick note: It is very much recommended that you have committed all changes to the target of the merge, into the repository, so it would be easy to revert if something went wrong.</p>
+
+<p>So:
+Merging from a branch to the trunk
+a. Go to the trunk folder on your filesystem, right-click-&gt;tortoise-&gt;merge.</p>
+
+<p>b. You want the changes between the current trunk revision and your branch’s current revision to be applied on the trunk, so you choose:From: your trunk, revision HEADTo: your branch, revision HEAD.</p>
+
+<p>I know, the terminology is confusing, as you want to “update” from the trunk to the branch’s state, but remember that you want the diff(erence), or in other words, the changes that will take the trunk FROM it’s current state, TO your branch’s state.</p>
+
+<p>screenshot:</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/6113704f-cbba-43b4-a328-05f9cd744045.png" alt="branch to trunk" /></p>
+
+<p>now you havea merged trunk on your workstation. Make sure that everything compiles and that tests are green, and commit.
+Merging from the trunk to a branch
+a) Go to your branch’s folder, right-click-&gt;tortoise-&gt;merge;</p>
+
+<p>Now, you want the changes between the last trunk revision that you have on your branch, to the newest revision of the trunk. To find out that last trunk revision that you have on your branch, go to your branch’s folder, right-click-&gt;tortoise-&gt;show-log, and look for it. If you are a good reader you’d easily find it since you have mentioned the revision numbers of your merges in the commit remarks, as you are kindly recommended)A screenshot from the branch’s log:</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/63ee9bb6-0636-4d57-b664-2abb3e06a1d9.png" alt="Branch log" /></p>
+
+<p>I need to check if I have merged my branch to the trunk on a later point. I’ll do that using the Trunk’s log (trunk folder, right-click-&gt;tortoise-&gt;show-log):</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/6c5edd77-055d-441e-987c-4d8c884c8bc7.png" alt="Trunk Log" /></p>
+
+<p>Indeed. It seams that my branch is in sync with the trunk at revision 918</p>
+
+<p>b) Now you fill From: your trunk, revision “last revision you have”To: your trunk, revision “new, wantedstate” (usually HEAD).in my example, the last trunk version I have merged into my branch is 902, so that’s the screenshot:</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/MerginginTortoiseSVN_D95F/9bc12b6f-764a-4284-878a-54b5e8754c6b.png" alt="trunk to branch" /></p>
+
+<p>I know, terminology sucks again. You probably thing “from trunk to trunk? Is he crazy?” well, again, you want to get the changes that was made TO THE TRUNK, and apply them to your branch. Remembering that this is actually a patch that will get applied make anything clear again.</p>
+
+<p>now you havea merged branch on your workstation. Make sure that everything compiles and that tests are green, and commit. Recommendation: write down in the commit’s remark, the revision number of the trunk (the current HEAD before the merge) for next time.</p>
+
+<p>My thanks to <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-merge.html">this page</a>, and to Lee Henson who have pointed it out for me, and helped my grasp the whole merge==diff’n’patch thing.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/07/28/a-sign-that-im-starting-to-like-nhqg-too-much">A Sign That I'm Starting To Like NHQG Too Much</a></h2>
+    <div class="meta">
+        <time>on July 28, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today I noticed that piece of code on my working copy:</p>
+
+<p><code>
+Repository.Blog.FindOne(Where.Blog.Id == blogId)
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/24/regionerate-c-region-maker">Regionerate - c# region maker</a></h2>
+    <div class="meta">
+        <time>on June 24, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Check out <a href="http://regionerate.net/">this nice tool</a> from <a href="http://blog.rauchy.net/">Omer Rauchwerger</a>.</p>
+
+<p>It could help a team to manage a coding convention. Should be very useful in Open Source environments. For example, when committing changes to castle project (or sending a patch) there is a <a href="http://www.castleproject.org/community/codingstandards.html">coding standard</a> than needs to be followed. Regionerate could help a lot with that effort.</p>
+
+<p>I need to see if it can select methods and properties by attributes. It could then help making MonoRail controllers and ActiveRecord decorated classes more readable (region of all actions with a “SkipFilterAttribute”, region of “Property” and region of “HasMany”, etc.)</p>
+
+<p>UPDATE:</p>
+
+<p>Silly me, I forgot to mention that <a href="http://weblogs.asp.net/rosherove/archive/2007/06/24/regionerate-free-code-layout-addin-for-vs-net.aspx">I found about this great tool at Roy Osherov’s blog</a>. A very good one, that is. Many <a href="http://weblogs.asp.net/rosherove/archive/tags/Agile/default.aspx">Agile related stuff</a>, and <a href="http://weblogs.asp.net/rosherove/archive/2007/06/21/que-sera-sera-a-song-about-agile-development.aspx">funny little things</a>, too. <a href="http://feeds.feedburner.com/Iserializable">So go on and subscribe to it’s feed</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/22/vs-2008-javascript-intellisense-prototypejs-gt-isfuntoscriptbrowsers-true">VS 2008 Javascript Intellisense + PrototypeJs =&gt; isFunToScriptBrowsers == true</a></h2>
+    <div class="meta">
+        <time>on June 22, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Checkout <a href="http://weblogs.asp.net/scottgu/archive/2007/06/21/vs-2008-javascript-intellisense.aspx">the latest post of Scott Guthrie</a>.</p>
+
+<p>Is the long awaited JS IDE will be VS2008?</p>
+
+<p>Now it’s a matter of adding ///<summery> tags to [prototype.js](http://www.prototypejs.org/) and maybe people would really stop being afraid of developing javascript code.</summery></p>
+
+<p>Now that’s a good reason to switch to VS2008, combined with the fact than you <a href="http://kenegozi.com/Blog/2007/06/20/visual-studio-2008-will-target-multiple-net-runtimes.aspx">can hold to your current .NET distribution</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/20/visual-studio-2008-will-target-multiple-net-runtimes">Visual Studio 2008 will target multiple .NET runtimes</a></h2>
+    <div class="meta">
+        <time>on June 20, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><a href="http://weblogs.asp.net/scottgu/archive/2007/06/20/vs-2008-multi-targeting-support.aspx">That’s a big announcement</a>.</p>
+
+<p>After all, even VS2005 was actually calling csc.exe rather that calling some magical inner stuff as in 2002/2003.</p>
+
+<p>I hope that this also means better addin development support, so great projects like <a href="http://www.jonorossi.com/upload/cvsi.htm">CVSI</a> and <a href="http://www.altinoren.com/activewriter/">ActiveWriter</a>, could become even better.</p>
+
+<p>Do you think they’d enable a “Compile for Mono” option?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/15/aspview-a-little-bugfix">AspView - a little bugfix</a></h2>
+    <div class="meta">
+        <time>on June 15, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>If you are an AspView user you might have noticed a problem.</p>
+
+<p>If you setup a nullable-value-type parameter with a default value other than null, then you’d get a casting error.</p>
+
+<p>example:</p>
+
+<p><code>
+&lt;%
+ int? someInt = default(int);%&gt;
+</code></p>
+
+<p><code>
+some markup 
+</code></p>
+
+<p><code>
+&lt;% if (someInt == default(int)) DoSomething();%&gt;
+</code></p>
+
+<p>it happened because of the way GetParameter worked </p>
+
+<p>GetParameter is a method that gets a view parameter value from the view’s properties collection (PropertyBag, Flash, Request.Params, etc.). It’s located inthe AspViewBase class (the base class for each and every view in the AspView world).</p>
+
+<p>So, now it’s fixed, and a test was added to make sure it’ll stay that way.</p>
+
+<p>As soon as google.com will be accesible again, you’d be able to check out and build.</p>
+
+<p>UPDATE:</p>
+
+<p>I’m too tired (3am here). The sources are on castle contrib and not on google, so you’d find them <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">here</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/31/google-gears-local-storage-and-offline-mode-for-rich-internet-application">Google Gears - Local storage and Offline mode for Rich Internet Application</a></h2>
+    <div class="meta">
+        <time>on May 31, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Wow.</p>
+
+<p>Another great tool from Google.</p>
+
+<p><a href="http://gears.google.com/">http://gears.google.com/</a></p>
+
+<p>Works on Win/Mac/Linux, for IE and FF.</p>
+
+<p>In a few words - it can give you offline browsing, plus local storage using SQLite (so you can run SQL queries strait from your javascript to query the local store)</p>
+
+<p>I wonder what secutiry issues can come up. However, it looks very cool, and can help bring power to existing DHTML/Ajax apps.</p>
+
+<p>Makes me think. Now that you do SQL from javascript, isn’t it time forJsHibernate? and what about an ActiveRecord inplementation in javascript?</p>
+
+<p>So, in the Flex/Silverlight war, it seams that Google is gonna win again …</p>
+
+<p>(from <a href="http://feeds.feedburner.com/~r/ScottHanselman/~3/120988066/GoogleGearsMaybeAllRichInternetApplicationsNeededWasLocalStorageAndAnOfflineMode.aspx">Scott Hanselman’s Blog</a>)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/30/nant-085-rc3-and-net-20">NANT 0.85 rc3 and .NET 2.0</a></h2>
+    <div class="meta">
+        <time>on May 30, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I needed to manually Castle today, for the first time.</p>
+
+<p>The need is for Castle.MonoRail.TestSupport.BaseControllerTest only, so I do not really care about all the rest.</p>
+
+<p>Opened “How to build.txt” </p>
+
+<p>I know that the builds in the CI server are failing due to some filing tests on DP2, so I add “-D:common.run-tests=false”.</p>
+
+<p>no brainer.</p>
+
+<p>I am also targeting .net2 only, so I add “-t:net-2.0”</p>
+
+<p>baboom. This fails.</p>
+
+<p>The nant exe is telling me that I can only build to .net 1.1, or .net compact framework 1.0.</p>
+
+<p>So I went to nant’s config file, and found out to my surprise, that the frameworks that are present there are:</p>
+
+<p>.net 1.1,</p>
+
+<p>.net compact framework 1.0</p>
+
+<p>.net 2.0 BETA 1</p>
+
+<p>hmmm.</p>
+
+<p>So I’ve edited the config, changed the existing .net 2.0 config name to .net2.0Beta1,</p>
+
+<p>copy&amp;pasted the .net node to another one, now switching version number from </p>
+
+<p>sdkdirectory=”${path::combine(sdkInstallRoot, ‘bin’)}” frameworkdirectory=”${path::combine(installRoot, ‘v2.0.40607’)}” frameworkassemblydirectory=”${path::combine(installRoot, ‘v2.0.40607’)}”clrversion=”2.0.40607”</p>
+
+<p>to</p>
+
+<p>sdkdirectory=”${path::combine(sdkInstallRoot, ‘bin’)}” frameworkdirectory=”${path::combine(installRoot, ‘v2.0.50727’)}” frameworkassemblydirectory=”${path::combine(installRoot, ‘v2.0.50727’)}”clrversion=”2.0.50727”  </p>
+
+<p>voila. Now the build is starting.<br />
+However, the Castle.Components.Validator.Tests dll refuse to build. I’ll disable it, too.</p>
+
+<p>UPDATE:</p>
+
+<p>I’m an idiot. Did not notice that NAnt has gone far beyond rc3 a long time ago …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/27/new-feature-to-the-blog-a-blogroll">New feature to the blog - a blogroll</a></h2>
+    <div class="meta">
+        <time>on May 27, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>just added a blogroll.</p>
+
+<p>To the DB, to the Domain, to the controller and to the view.</p>
+
+<p>Took me (all in all) 30 minutes, including all the coding, CSS-ing, uploading to the webserver, setting up the DB table on the hosted server, adding a few entries, clearing the browser’s cache, and viewing it.</p>
+
+<p>ah, and committing changes to Google code.</p>
+
+<p>All of that was made in the Budapest Airport cafeteria, while waiting for my flight home (was a great trip. Photos, though not many of them, will be posted later on).</p>
+
+<p>Rest assure that the DB access code is tested, and that the calls to the DB and to the cached data from the Controller and View are all typed.</p>
+
+<p>I’d like to thank NHibernate, Castle and AspView (hey - that’s me !), who made this possible.</p>
+
+<p>I bet Ayende would have done it in 20 …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/25/things-my-blog-is-missing">Things my blog is missing</a></h2>
+    <div class="meta">
+        <time>on May 25, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Since this blog is running on an engine that I wrote (available on Google code site, <a href="http://code.google.com/p/kenegozi-weblog/">here</a>), it lack some features that more mature blog engines already have. (the other engines lacks the combined power of ActiveRecord/MonoRail/AspView …)</p>
+
+<p>So, that’s currently my list:</p>
+
+<ol>
+  <li>
+    <p>Blogroll, for obvious reasons.</p>
+  </li>
+  <li>
+    <p>Email alert for me when anyone posts a comment for one of my posts.</p>
+  </li>
+  <li>
+    <p>Comments feed (via ATOM).</p>
+  </li>
+</ol>
+
+<p>UPDATE - Done</p>
+
+<ol>
+  <li>
+    <p>Email subscriptions for new posts, or new comments on specific posts.</p>
+  </li>
+  <li>
+    <p>I have a problem with the font. I should fix the CSS but the Internet connection here (I’m at a Budapest hotel) is quite poor. Will be fixed next week.</p>
+  </li>
+</ol>
+
+<p>UPDATE - Done</p>
+
+<p>Any other suggestions?</p>
+
+<p>note that I do not intent on implementing Pingbacks and Trackbacks, since those were littering my blog in the past.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/24/nunitorg-seams-down">NUnit.org seams down</a></h2>
+    <div class="meta">
+        <time>on May 24, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So if you wanna download it, you should go directry to the <a href="http://sourceforge.net/project/showfiles.php?group_id=10749">NUnit’s page on sourceforge</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/20/a-new-version-of-aspview-07">A new version of AspView - 0.7</a></h2>
+    <div class="meta">
+        <time>on May 20, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve just commited to the repository a new version of AspView.</p>
+
+<p>The main addition is “Auto Recompilation” feature.</p>
+
+<p>This means that when you change one of the view sources, the application will automatically recompile the views upon the following request.</p>
+
+<p>You enable the feature by adding the next attribure to the aspview config section in web.config:</p>
+
+<p><code>
+&lt;aspview .... autoRecompilation="true" ... &gt; ...&lt;/aspview&gt;
+</code></p>
+
+<p>Breaking change:</p>
+
+<p>If you happen to reference an assembly from the GAC (using the aspview configuration in the web.config) you need to add a hint for the engine, like this:</p>
+
+<p><code>
+&lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&gt;
+</code></p>
+
+<p>Known issues:</p>
+
+<ol>
+  <li>
+    <p>You need to let ASPNET user (or the Application Pool user) a modify access on the bin folder.Note that if you use the inner WebServer of Visual Studio this should not be a problem, since in that case the web application runs with your user, that has the needed peremissions on the bin folder.</p>
+  </li>
+  <li>
+    <p>For a strange reason, after you change a view and do the F5 in the browser, you still see the old version, and only on second F5 will the views be actually recompiled and refreshed. I hope to fix it soon …</p>
+  </li>
+</ol>
+
+<p>Download from <a href="http://kenegozi.com/blog/uploaded/AspView_0_7_178.zip">here</a>.</p>
+
+<p>Sources are <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">here</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/18/backing-up-a-hosted-sql-server-db">Backing up a hosted SQL Server DB</a></h2>
+    <div class="meta">
+        <time>on May 18, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/sql" rel="tag">sql</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>As you already have probably noticed by now, I did some renovation on my blog.</p>
+
+<p>Among other things, it is now being served froma SQL Server database, rather than form the daBlog xml files.</p>
+
+<p>One caveat of this, is the fact that backuping the blog’s content became much harder. Since I have no access to db backups, I neede to find a way to generate the INSERT scripts that will enable me recreationg the content if it would be needed.</p>
+
+<p>My first try-out was <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=56E5B1C5-BF17-42E0-A410-371A838E570A&amp;displaylang=en">the Microsoft SQL Server Database Publishing Wizard</a>, <a href="http://weblogs.asp.net/scottgu/archive/2006/12/22/recipe-deploying-a-sql-database-to-a-remote-hosting-environment-part-1.aspx">that I saw at Scott Gu’s blog</a></p>
+
+<p>This tool is meant to create the script form a local dev db, in order to make it run on the remote one. Actually you can make it run on the remote one, nd save the generated sql file locally, for backup purposes.</p>
+
+<p>I tried it up, but it send some nasty .NET break dialogs.It however managed to create A script, that I’m yet to check for it’s usability.</p>
+
+<p>Nice tool. But I’ll look for something that is pure t-sql so it’d be easier to run (maybe automated every once in a while)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/03/19/the-system-administrator-has-set-policies-to-prevent-this-installation">The system administrator has set policies to prevent this installation</a></h2>
+    <div class="meta">
+        <time>on March 19, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Another dumb error message.</p>
+
+<p>While installing <a href="http://altinoren.com/activewriter/">ActiveWriter</a>, it asked me to install DslToolsRedist. Trying to do so raised the said error message. I was on my way to shot the admin, but then googled a bit, and found out on <a href="http://www.appdeploy.com/messageboards/tm.asp?m=8872&amp;mpage=1">http://www.appdeploy.com/messageboards/tm.asp?m=8872&amp;mpage=1</a>that it is caused by prior installations of he same product that was not fully removed from the registry while uninstalled. Searching “DSL” in HKEY_CLASSES_ROOT\Installer\Products\ showed me that a previous CTP left some dirt in my registry. Removed that key, reinstalled DslToolsand the ActiveWriter magic could finally started.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/03/19/activewriter-2nd-preview-is-out">ActiveWriter - 2nd preview is out</a></h2>
+    <div class="meta">
+        <time>on March 19, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio-2005" rel="tag">visual-studio-2005</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>ActiveWriter is a VS2005 plugin, that adds a new item type for your projects. This item is actually a visual designer for ActiveRecord classes. Quite neat, and hopefully will increase the penetration of Castle’s ActiveRecord to the “If there’s no VS wizard, I do not use it” kinda guys.</p>
+
+<p>You can read about it and download it from <a href="http://altinoren.com/activewriter/">http://altinoren.com/activewriter/</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/02/22/reflector-5-is-out">Reflector 5 is out</a></h2>
+    <div class="meta">
+        <time>on February 22, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The best tool ever is even better now, and you can find it <a href="http://www.aisto.com/roeder/dotnet/">here</a>.</p>
+
+<p>Thanks to <a href="http://blogs.microsoft.co.il/blogs/yosit/archive/2007/02/20/_D705DD05_-_DE05D405EA05E005D505E805_-_2D00_-Reflector-5.aspx">Yosi</a> for the reference.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/01/duck-type-in-net">Duck Type in .NET</a></h2>
+    <div class="meta">
+        <time>on November 1, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>There is a <a href="http://www.codeproject.com/cs/library/nduck.asp">great article</a> on CodeProject, by Guenter Prossliner.</p>
+
+<p>A simple class in presented there, that makes Duck Typing possible for Generics enabledCLS languages (VB.NET 8 and C#2.0 for instance).</p>
+
+<p>I’ll present it here in short form:</p>
+
+<p>let’s say we have two classes:</p>
+
+<p><code>
+   1:  class Foo1   2:  {   3:  publicstring Bar() { }   4:  }   5:  class Foo2   6:  {   7:  publicstring Bar() { }   8:  }
+</code></p>
+
+<p>Now you have a method that can work with instances of eiether one, and invoke Bar on it:</p>
+
+<p><code>
+   1:  void SimpleMethodOnFoo1(Foo1 foo)   2:  {   3:      foo.Bar();   4:  }   5:  void SimpleMethodOnFoo2(Foo2 foo)   6:  {   7:      foo.Bar();   8:  }
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/08/03/watir-recorder-and-running-hebrew-watir-scripts-in-ruby">WATIR Recorder and running Hebrew watir scripts in Ruby</a></h2>
+    <div class="meta">
+        <time>on August 3, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Just in case that Scott Hanselman’s blog isn’t accessible, I’ll post here the steps to use watir and WatirRecorder.</p>
+
+<ol>
+  <li>
+    <p>Install Ruby using the <a href="http://rubyforge.org/frs/download.php/11926/ruby184-20.exe">Ruby One-Click Installer</a>, or search <a href="http://www.ruby-lang.org/en/">http://www.ruby-lang.org/en/</a>for a newer version to download.</p>
+  </li>
+  <li>
+    <p>Install watir:A.By opening cmd.exe and typing “gem install watir” (will install the latest available gem version, which is a kind of a “live update” and “live download” feature of ruby, OrB. By installing <a href="http://kenegozi.com/blog/uploaded/watir-1.4.1.exe">watir-1.4.1.exe (792.19 KB)</a>, OrC. By downloading from here</p>
+  </li>
+  <li>
+    <p>Install <a href="http://kenegozi.com/blog/uploaded/WatirRecorder_Setup_Lite.msi">WatirRecorder++</a></p>
+  </li>
+</ol>
+
+<p>Some problems I’ve faces during the use of Watir:</p>
+
+<ol>
+  <li>
+    <p>The WatirRecorder couldn’t run my recorded tests. So I’ve saved the script to afile, changed it’s extension to .rb and let Ruby run the test.</p>
+  </li>
+  <li>
+    <p>This led to another problem. For some reason, Ruby doesn’t handle hebrew characters sowell when they’re saved in UTF8 format, and that’s the format WatirRecorder saves the scripts, So if you are recording hebrew characters toyour script, then after saving the script to a file and changing it’s extension to .rb, open it in notepad and resave it in ANSI encoding, and Ruby will run the test flawlessly.</p>
+  </li>
+</ol>
+
+<p>Thumbs up for the makers of Ruby, Watir and WatirRecorder++, as well as to Scott Hanselman who’ve pointed this tool out for us</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+</body>
+</html>

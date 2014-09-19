@@ -1,0 +1,3584 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Ken Egozi | Web builder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="Ken Egozi">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='Ken Egozi | Web builder' property='og:title'>
+	
+	<link rel="canonical" href="http://kenegozi.com/blog/tag/blog-engine/index.html" />
+
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	<!-- IE 9 Fallback-->
+	<!--[if IE 9]>
+		<link href="/assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements and IE Fallback-->
+	<!--[if lt IE 9]>
+	  <script src="/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
+<body id="top" class="">
+	
+	<!-- NAVBAR -->
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- END NAVBAR -->
+<section class="container content tags">
+  <h1 class="post_title">Posts Tagged &ldquo;blog-engine&rdquo;</h1>
+  <div class="post-sidebar">
+	<h5>Follow</h5>
+	<p>
+		<a href="http://feeds2.feedburner.com/kenegozi">
+			<img src="http://feeds.feedburner.com/~fc/kenegozi?bg=000033&amp;fg=00FF00&amp;anim=1" height="26" width="88" style="border:0" alt="">
+		</a>
+	</p>
+	<hr/>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2012/09/04/using-gists-in-your-blog-embed-them-into-your-feed">Using gists in your blog? Embed them into your feed</a></h2>
+    <div class="meta">
+        <time>on September 4, 2012</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I love using github gists for code snippets on my blog. It has many pros, especially how easy it becomes for people to comment and suggest improvements, via the github mechanisms we all love.</p>
+
+<p>There are however two drawbacks that people commonly refer to with regards to using gists that way:
+- Since the content of the code is no longer part of the post, it is not being indexed by search engines, and<br />
+- Since the content of the code is not part of the post, and since the embedding mechanism is JS based, people who consume the blog via the feed and use feed aggregators that does not run javascript (most of them don’t), will not get the contents.</p>
+
+<p>My answer to the first one is simple. I don’t really care. Not that I do not care about SEO, just that I do not need to have my post indexed and tagged under a bunch of irrelevant reserved words and common code. If the snippet is about using an interesting component ABC, I will mention that said ABC in the post content outside of the snippet, problem solved.</p>
+
+<p>The latter is more interesting. I used to manually add a link to the gist page whenever embedding one, but it is not a very fun thing to do.</p>
+
+<p>So, in order to overcome this, I wrote a small code snippet (yey) that upon saving a post (or updating it), will look for gists embeds, grab the gist source from github, stick in into the post as a “ContentForFeed” and serve with a link to the gist page, just for the fun of it.</p>
+
+<p>And the code for it (it’s a hacky c#, but easily translatable to other languages, and/or to a cleaner form)</p>
+
+<p>Have fun reading snippets</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2012/07/17/from-mongodb-to-azure-storage">From MongoDB to Azure Storage</a></h2>
+    <div class="meta">
+        <time>on July 17, 2012</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/azure" rel="tag">azure</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/design" rel="tag">design</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>My blog has been running happily for some time on a MongoDB storage. It used to be hosted on a VM in a really awesome company, where I had both the application and the DB sharing a 2GB VPS, and it worked pretty well.</p>
+
+<p>At some point I moved the app to AppHarbor (which runs in AWS) and I moved the data to MongoLab (which is also on AWS). Both are really great services.</p>
+
+<p>Before it was running on MongoDB, it used to be running on RDBMS (via NHibernate OR/M) and I remember the exercise of translating the Data Access calls from RDMBS to a Document store as fun. Sure, a blog is a very simplistic specimen but even at that level you get to think about modeling approaches (would comments go on separate collection or as subdocuments? how to deal with comment-count? and what about tag clouds? what about pending comments that are suspected to be spam?)</p>
+
+<p>I am now going to repeat that exercise with Azure Storage.</p>
+
+<p>The interesting data API requirements are:
+- Add Comment to Post – atomically adds a comment to a post, and updates the post’s CommentsCount field.<br />
+- View-By-Tag (e.g. all posts tagged with ‘design’, order by publish-date DESC)<br />
+- view latest N posts (for atom feed, and for the homepage)<br />
+- view Monthly archive (e.g. all posts from July 2012)<br />
+- Get a single post by its permalink (for a post’s page)<br />
+- Tag Cloud – get posts count per tag<br />
+- Archive summary – how many posts were published on each month?<br />
+- Get total comments count (overall across all posts)<br />
+- Store images, while using a hash of the content to generate etags for controlling duplications.</p>
+
+<p>Given the rich featureset of MongoDB, I was able to use secondary indexes, sub-documents, atomic document updates and (for 4, 6 and 8) simple mapReduce calls. The only de-normalization was done with CommentsCount field on post, which is atomically updated every time a comment is added or removed from the post, so the system stayed fully consistent all the time. The queries that required mapReduce (which could get pricy on larger data-sets, and annoying even on small ones) where actually prone to aggressive caching, so no big pain there. </p>
+
+<p>I will be exploring (in upcoming posts, its 2am now and the baby just woke up) what it takes to get the same spec implemented using Azure Storage options – mostly Table Storage and Blog Storage.*</p>
+
+<ul>
+  <li>yeah there is SQL Azure which is full fledged RDBMS, which can easily sport all of the requirements, but where’s the fun in that?</li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2012/07/09/phantom-feed-entries-with-google-readerndashproblem-hopefully-solved">Phantom feed entries with Google Reader&ndash;problem hopefully solved</a></h2>
+    <div class="meta">
+        <time>on July 9, 2012</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/azure" rel="tag">azure</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I have had a few glitches recently with my blog’s feed. From time to time, the latest 20 items would re-appear as new, unread items in Google Reader.</p>
+
+<p>It annoyed me, annoyed a few of my readers – some contacted personally, and eventually this happened:</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/windows-live-writer/0275cb9374b2_140fd/feed-problems-facebook-post_thumb_1.png" alt="feed-problems-facebook-post" /></p>
+
+<p>I first suspected that the Updated or Created timestamp fields might be wrong, but looking at both the feed generated by the blog, and the feed as it is being served by feedburner showed me that these fields did not magically change.</p>
+
+<p>I did however find the problem.</p>
+
+<p>My feed is in ATOM 1.0 format, and each entry has an <id> field.</id></p>
+
+<p>The id I am putting there is the permalink to the post, and here comes the interesting part – I was taking the domain part of the permalink from the current request’s url. I was doing that because I was, how to put it, short sighted.</p>
+
+<p>Anyway as soon as the blog engine moved from my own, fully controlled VM hosted somewhere, to more dynamic environments (AppHarbor at first, now Azure WebRole), behind request routers, load balancers and such, the request that actually got to the blog engine had its domain name changed, and apparently not in a 100% consistent way. The custom cname that was used was changing every now and then (every few or more weeks) and then Google Reader would pick up the changed <id> and even though the title, timestamps and content of the posts remained, the changed <id> made it believe it is a new post.</id></id></p>
+
+<p>I now hardcoded the domain part, and all is (hopefully) well.</p>
+
+<p>If not – you can always bash me on facebook :)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/10/07/reblog">Re-blog</a></h2>
+    <div class="meta">
+        <time>on October 7, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/asp-net-mvc" rel="tag">asp-net-mvc</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>My blog has moved to AppHarbor, and while doing that I also changed the engine for a completely custom thing (running on custom-y stuff like WebOnDiet and NTemplate), to a wee bit more conventional codebase based on MVC3 and Razor, with lots of nuget packages replacing custom code that I wrote myself.</p>
+
+<p>The packages file now contains AntiXSS, AttributeRouting, Castle.Core (for my good pal DictionaryAdapterFactory), elmah, MarkdownSharp, mongocsharpdriver, XmlRpcMvc and XmlRpcMvc.MetaWeblog (awesome!)</p>
+
+<p>BTW, expect a post on using the DictionaryAdapterFactory to make handling Controller=&gt;View data transport truly awesome.</p>
+
+<p>What’s missing here? IoC !</p>
+
+<p>yeah I did not bother with that now. I have my tiny 15LOC thing and this blog does not need anything of this sort.</p>
+
+<p>Some things might still break. Files I used to host for downloading would probably won’t work now. I will fix that soon I hope, time permitting.</p>
+
+<p>note to self – reshuffle the tags here on the blog. I need to re-tag may entries. Maybe I’ll let site visitors suggest tags?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/02/28/google-reader-bug-leading-to-a-glitch-in-my-feed">Google Reader bug leading to a glitch in my feed</a></h2>
+    <div class="meta">
+        <time>on February 28, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I have recently change the blog engine, and as part of that move, the permalinks for posts changed a bit (removed the .aspx suffix, and also got rid of the www. prefix)</p>
+
+<p>So, the atom feed now lists a different <id> tag for each entry (post). </id></p>
+
+<p>Google Reader cache data on posts based on the id tag, therefore subscribers to my blog who are using Google Reader will probably see 20 new messages.</p>
+
+<p>The real glitch though is a bug in Google Reader. As far as reader is concerned, the <updated> and <created> tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.</created></updated></p>
+
+<p>So, I can understand why all my last 20 entries re-appear with the same date.</p>
+
+<p>The annoying part is that Reader chooses a weird way to sort them. It could have at least use the publish date as a secondary sort order.</p>
+
+<p>So, sorry for the glitch, and for those of you coming to my site, sorry for the poor UI design - a full redesign is in the make and will be pushed as soon as I can.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/06/please-update-your-feed-source">Please update your feed source</a></h2>
+    <div class="meta">
+        <time>on November 6, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>If you’re reading my blog through a feed, please update your link to <a href="http://feeds.feedburner.com/kenegozi">http://feeds.feedburner.com/kenegozi</a>if you hadn’t yet, theweb server would appreciate it.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/06/new-look">New Look</a></h2>
+    <div class="meta">
+        <time>on November 6, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>sneak peek (for those who read this through a feed reader):</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/NewLook_BE1B/e5c08435-d66b-41e9-937a-05dcdb514d24.png" alt="Sneak peek" /></p>
+
+<p>cool huh?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/06/comments-are-back">Comments Are Back</a></h2>
+    <div class="meta">
+        <time>on November 6, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So you can tell me what you think on the new design, or any other thing (like what you think on the new changes to AspView, how you like working with the Castle stack,how great AspView is, how good looking I am, and any other kind of constructive criticism).</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/10/23/comments-are-temporarily-off">Comments are temporarily off</a></h2>
+    <div class="meta">
+        <time>on October 23, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Sorry.</p>
+
+<p>I need to do that, at least for a few days.</p>
+
+<p>If you want to leave a message, mail me:</p>
+
+<p>blogat the-domain-name-of-this-blog (without the www part, of course …)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/10/01/horrible-spam">Horrible spam</a></h2>
+    <div class="meta">
+        <time>on October 1, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I haven’t monitored the blog’s comments for only a week, and now I’ve had to delete 988 spam messages.</p>
+
+<p>I guess I’m going to re-do the comment mechanism really soon.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/08/19/feeds-should-be-back-on-now">Feeds Should Be Back On Now</a></h2>
+    <div class="meta">
+        <time>on August 19, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>It is possible though that your reader might want to update last 20 posts.</p>
+
+<p>Next step - some look’n’feel improvements.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/08/18/upgrading-blogs-engine-there-be-dragons">Upgrading Blog's Engine - There Be Dragons</a></h2>
+    <div class="meta">
+        <time>on August 18, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m upgrading the blog now, so it might be a bit quirky for a bit. Please be patient.</p>
+
+<p>Also,if you are a I-comment-on-the-blog-and-tick-remember-me kind of guy, then pleasecheck your details next time you comment, and then re-tick the remember-me thing, as there was a bug in the cookie storing method.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/08/18/ive-ruined-the-syndication">I've Ruined the Syndication</a></h2>
+    <div class="meta">
+        <time>on August 18, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Did an upgrade, did it bad, Syndication is down (no atom feed).</p>
+
+<p>fixing it soon.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/08/16/monorail-aspview-talk-in-ivcug">MonoRail / AspView Talk in IVCUG</a></h2>
+    <div class="meta">
+        <time>on August 16, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I did that MonoRail / AspView talk yesterday at August’s IVCUG (that’s Israeli Visual C#/++ User Group) at Microsoft offices in Raanana, Israel.</p>
+
+<p>I was a great experience for me, and I thank all of you who came in, asked questions, left some change in my hat (damn, I forgot the hat), and (hopefully) had a great time.</p>
+
+<p>The presentation will be uploaded here soon, so will the demo code, and the promised zip with AspView executables for castle build 472 (revision 4016) + stub web.config. It’s just that I need to actually WORK today since the last days was more “prepare to presentation” that “work for a living” kinda days.</p>
+
+<p>So, tune in. It would be by here this weekend.</p>
+
+<p>Meanwhile you can go over aspview source code (there’s AspViewTestSite that demonstrate many of MonoRail and AspView features. It’s quite old and when I wrote it I was quite a MonoRail newbie, so stuff there are not necessarily best-practice quality, but you can grasp how to use subviews, viewcomponents, viewfilters, etc very easily).</p>
+
+<p><a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/</a></p>
+
+<p>You can also look over my blog engine’s sources that I have presented yesterday. It’s at:</p>
+
+<p><a href="http://kenegozi-weblog.googlecode.com/svn/">http://kenegozi-weblog.googlecode.com/svn/</a></p>
+
+<p>The code shown was from going-ddd branch.</p>
+
+<p>bad name btw, as the model is too simple for DDD, and I also violate it from time to time … (Repository<comment> ...)</comment></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/28/redirecting-syndication-link-from-dasblogs-one-to-the-new-one">Redirecting syndication link from dasBlog's one to the new one</a></h2>
+    <div class="meta">
+        <time>on June 28, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>TodayI was informed by <a href="http://blogs.microsoft.co.il/blogs/drorengel/">Dror</a> that although I managed to redirect all requests to html/aspx url’s on my blog (the ones that dagBlog was using) to the new pemalink format, I forgot to do the same for the old syndication link.</p>
+
+<p>So that link was <a href="http://kenegozi.com/blog/SyndicationService.asmx/GetRss">http://kenegozi.com/blog/SyndicationService.asmx/GetRss</a>and now it’s <a href="http://kenegozi.com/Blog/Syndication/Atom.aspx">http://kenegozi.com/Blog/Syndication/Atom.aspx</a></p>
+
+<p>I could’ve used the monorai redirection module that is already in use on my blog, but I chose to do it differently, with a dedicated handler, just to show how easy it is do to such stuff, even without a full blown redirection engine.</p>
+
+<p>So, I’ve added this:</p>
+
+<p>```
+publicclassSyndicationRedirectionHandler : IHttpHandler 
+{
+    #region IHttpHandler Members
+    publicbool IsReusable
+    {
+        get { returntrue;}
+    }</p>
+
+<pre><code>publicvoid ProcessRequest(HttpContext context)
+{
+    context.Response.StatusCode = 301;
+    context.Response.Redirect("http://kenegozi.com/Blog/Syndication/Atom.aspx");
+}
+
+#endregion } ```
+</code></pre>
+
+<p>and that line into web.config:</p>
+
+<p>&lt;addverb=”*“path=”SyndicationService.asmx”type=”KenEgozi.Com.Weblog.SyndicationRedirectionHandler, KenEgozi.Com.Weblog”/&gt;</p>
+
+<p>Voila.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/11/default-value-for-value-type-parameter-in-aspview-does-not-work">Default value for value type parameter in AspView does not work</a></h2>
+    <div class="meta">
+        <time>on June 11, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today we tried to have this in a view’s parameters section:</p>
+
+<p>&lt;%</p>
+
+<p>int id = default(int);</p>
+
+<p>%&gt;</p>
+
+<p>It won’t work. </p>
+
+<p>Internally, AspView looks for a parameter (in the PropertyBag, Flash, Form, QueryString etc.) with the name “id”.</p>
+
+<p>Now if it is not found, it should set to “default(int)”. The problem is duw to a bug in AspViewBase (which is the base class for all views) that sets a null value if the property is not found, thus failing the cast to value type (you cannot (int)null).</p>
+
+<p>I’ll add a test, fix the bug, and commit it, hopefully by this weekend.</p>
+
+<p>Meanwhile, we “solved” the problem by using:</p>
+
+<p>&lt;%</p>
+
+<p>object id = default(int);</p>
+
+<p>%&gt;</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/06/full-blog-comments-feed">Full blog comments feed</a></h2>
+    <div class="meta">
+        <time>on June 6, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The newest addition to the blog engine.</p>
+
+<p>From the subversion commit comment:</p>
+
+<p>Some refactoring to avoid code duplicationAdded support for CommentsAtom - a feed with all of the comments in a blog, used for tracking purposes by the blog writer  </p>
+
+<p>Now you can access <a href="http://the_blog_url/Syndication/CommentsAtom.aspx">http://the_blog_url/Syndication/CommentsAtom.aspx</a> and get a feed of all the comments.  </p>
+
+<p>Useful as a tool for the blog writer, as it enables tracking of comments all overthe blog  </p>
+
+<p>as usual - sources are <a href="https://kenegozi-weblog.googlecode.com/svn/trunk">here</a>.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/27/new-feature-to-the-blog-a-blogroll">New feature to the blog - a blogroll</a></h2>
+    <div class="meta">
+        <time>on May 27, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>just added a blogroll.</p>
+
+<p>To the DB, to the Domain, to the controller and to the view.</p>
+
+<p>Took me (all in all) 30 minutes, including all the coding, CSS-ing, uploading to the webserver, setting up the DB table on the hosted server, adding a few entries, clearing the browser’s cache, and viewing it.</p>
+
+<p>ah, and committing changes to Google code.</p>
+
+<p>All of that was made in the Budapest Airport cafeteria, while waiting for my flight home (was a great trip. Photos, though not many of them, will be posted later on).</p>
+
+<p>Rest assure that the DB access code is tested, and that the calls to the DB and to the cached data from the Controller and View are all typed.</p>
+
+<p>I’d like to thank NHibernate, Castle and AspView (hey - that’s me !), who made this possible.</p>
+
+<p>I bet Ayende would have done it in 20 …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/26/a-new-feature-on-my-blog-comments-feed">A new feature on my blog: Comments feed</a></h2>
+    <div class="meta">
+        <time>on May 26, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Just added.</p>
+
+<p>Commited to the repository, too (<a href="http://code.google.com/p/kenegozi-weblog/">hosted at google code</a>).</p>
+
+<p>Look for the link on each post’s footer.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/25/things-my-blog-is-missing">Things my blog is missing</a></h2>
+    <div class="meta">
+        <time>on May 25, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Since this blog is running on an engine that I wrote (available on Google code site, <a href="http://code.google.com/p/kenegozi-weblog/">here</a>), it lack some features that more mature blog engines already have. (the other engines lacks the combined power of ActiveRecord/MonoRail/AspView …)</p>
+
+<p>So, that’s currently my list:</p>
+
+<ol>
+  <li>
+    <p>Blogroll, for obvious reasons.</p>
+  </li>
+  <li>
+    <p>Email alert for me when anyone posts a comment for one of my posts.</p>
+  </li>
+  <li>
+    <p>Comments feed (via ATOM).</p>
+  </li>
+</ol>
+
+<p>UPDATE - Done</p>
+
+<ol>
+  <li>
+    <p>Email subscriptions for new posts, or new comments on specific posts.</p>
+  </li>
+  <li>
+    <p>I have a problem with the font. I should fix the CSS but the Internet connection here (I’m at a Budapest hotel) is quite poor. Will be fixed next week.</p>
+  </li>
+</ol>
+
+<p>UPDATE - Done</p>
+
+<p>Any other suggestions?</p>
+
+<p>note that I do not intent on implementing Pingbacks and Trackbacks, since those were littering my blog in the past.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/05/16/my-blog-is-running-on-activerecordmonorailaspview">My blog is running on ActiveRecord-MonoRail-AspView</a></h2>
+    <div class="meta">
+        <time>on May 16, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So long dasBlog. It was great to have you, but it’s time to move on.</p>
+
+<p>After a lot of work, I am proud to announce that my blog is running on MonoRail, using AspView for the views, and ActiveRecord to do DB stuff.</p>
+
+<p>Not too fancy codewise, since I have very little spare time.</p>
+
+<p>Most of the time spent on the blog upgrade process was on:</p>
+
+<ol>
+  <li>
+    <p>Exporting the data from the “old” blog, and</p>
+  </li>
+  <li>
+    <p>making a decent markup and design for the new one.</p>
+  </li>
+</ol>
+
+<p>oh. and 3. letting WindowsLiveWriter do the edits, since I wasn’t in the mood to create a backoffice.</p>
+
+<p>I’ll blog more about the process, and I’ll make the source available.</p>
+
+<p>Please leave your comments here about the overall look’n’feel. There must be tons of bugs and I want your feedback.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+</body>
+</html>

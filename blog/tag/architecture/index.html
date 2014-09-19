@@ -1,0 +1,4181 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Ken Egozi | Web builder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="Ken Egozi">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='Ken Egozi | Web builder' property='og:title'>
+	
+	<link rel="canonical" href="http://kenegozi.com/blog/tag/architecture/index.html" />
+
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	<!-- IE 9 Fallback-->
+	<!--[if IE 9]>
+		<link href="/assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements and IE Fallback-->
+	<!--[if lt IE 9]>
+	  <script src="/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
+<body id="top" class="">
+	
+	<!-- NAVBAR -->
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- END NAVBAR -->
+<section class="container content tags">
+  <h1 class="post_title">Posts Tagged &ldquo;architecture&rdquo;</h1>
+  <div class="post-sidebar">
+	<h5>Follow</h5>
+	<p>
+		<a href="http://feeds2.feedburner.com/kenegozi">
+			<img src="http://feeds.feedburner.com/~fc/kenegozi?bg=000033&amp;fg=00FF00&amp;anim=1" height="26" width="88" style="border:0" alt="">
+		</a>
+	</p>
+	<hr/>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2012/07/14/a-little-mongodb-stability-anecdote">A little MongoDB stability anecdote</a></h2>
+    <div class="meta">
+        <time>on July 14, 2012</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <h2 id="once-upon-a-time">Once upon a time</h2>
+
+<p>So a while back I set up a system for a customer. They are not a tech company, but rather a more traditional business constructed around “buy stuff for cheap and sell for more”.</p>
+
+<p>The system (which some aspect and the history and evolution of it are material for a few other blob posts) is automating a lot of the pre-processing for incoming buy and sell requests, filtering a real noisy stream of incoming data into relevant pieces of information that is handled to the sales persons quickly, making the business far more productive and competitive than without.</p>
+
+<p>Given the importance, the system needs to be pretty robust. Given the amount of moving parts, it is not a very trivial task.</p>
+
+<h2 id="show-me-the-money">Show me the money</h2>
+
+<p>The backend storage for the system’s internal state (it also coordinates with several other data sources) was MongoDB. </p>
+
+<p>The setup – a single Mongod process, running version 1.8.something (the latest at the time) with journaling on, and all write ops from the client require full ack and flush-to-disk (fsync) to complete. It also is running on a machine that already runs many other things, and is not a very beefy machine to begin with.</p>
+
+<p>Oh yeah, and nobody is watching over it (not a tech company – did I mention that?).</p>
+
+<h2 id="what">What?</h2>
+
+<p>Single instance you say? but sir this is completely and utterly stupid!Sharing the machine you say? but it would eat up all memory and kill everything!No db admin? do IT person who know anything about it? it’s doomed!</p>
+
+<h2 id="the-not-that-bad">The (not that) bad</h2>
+
+<p>In over a year, the system and it only suffered one-time breakdown, which is only attributed to my stupidity – I installed a 32bit version and once the system needed to allocate &gt;2gb file it broke down. </p>
+
+<h2 id="the-good">The good</h2>
+
+<p>The fix was very simple and super fast – downloaded the 64bit package, replaced the binaries, restarted the service.no data loss, the system picked up jobs from the queue and quickly restored full capacity.</p>
+
+<h2 id="state-of-affairs">State of affairs</h2>
+
+<p>The system have been running for well over a year now, completely unattended, and the only melt-down was avoidable, yet solved quickly and easily. MongoDB proved to be a robust piece of the puzzle. It also is showing a rather small memory footprint (most queries and updates are on the newest data, insertions are usually to the end of collections, so most of the files are kept paged to disk). </p>
+
+<p>So yeah it is not a “web-scale” system in terms of request/sec or data size, but it proved to be a fairly good solution for an internal system that is in charge of <em>tons</em> of money.</p>
+
+<h2 id="so-whats-my-point">So what’s my point</h2>
+
+<p>Given the design I did for the system (another time, another post), I was not very afraid of possible problems with the data store, knowing that given a problem, once I solve it the system can quickly get back to work. Then I needed a solution that was cheap (low resources, run on existing hardware and OS), flexible to develop with, and with super easy install and upgrade story (xcopy deployment ftw). MongoDB was a perfect fit. </p>
+
+<h2 id="bottom-line---is-mongodb-stable">Bottom line - is MongoDB stable?</h2>
+
+<p>I’ve seen in my consulting years quite a few systems being very fragile, although they were relying on “proven stable” systems such as top-of-the-line RDBMS. Solid architecture and good design are <em>far</em> more crucial to system’s stability than specific tech choices. The question you need to ask yourself when you need to build a complex system (be it on the amount-of-moving parts front, dataset volume, system stress, data sensitivity or a mix of the above), is not “Is tech X stable enough or good enough”, but rather “Do I (or my people) know enough about building complex systems to build a stable one”. If you lack the experience, bring a person in who can help.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/06/28/agile-architecture-talk-by-johanna-rothman">Agile Architecture talk by Johanna Rothman</a></h2>
+    <div class="meta">
+        <time>on June 28, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Last week I went to IASA Israel meeting, where we got to listen to <a href="http://www.jrothman.com">Johanna Rothman</a> of the Pragmatic Programmer fame, talking about the role of architects in the Agile projects world.</p>
+
+<p>I’ve been taking notes during. Consider them a transcript + stream-of-thoughts.</p>
+
+<p>here we begin:</p>
+
+<p>so, is an architect role on an agile team should be considered as an
+Oxymoron?
+A common mistake is to think that architecture is about doing frameworks and designs up-front !</p>
+
+<p>Some people think that the fact that in agile-style managed projects the architecture evolves with time, means that there is no place for an architect on such projects.</p>
+
+<p>This will cause the evolvement to be scattered, and a guiding hand is needed to make all of the small changes drive the overall design towards a meaningful direction which will support the growth of business value.</p>
+
+<p>Feature-itis
+Pushing more and more features in expense of sparing time for determining long-term architecture goals will lead to a hole filled with technical and architectural debt, causing future features and adjustments be more complicated than needed, and hurdling the project in the long term. </p>
+
+<p>My observation – feature-itis is even worse because of it usually comes with the lack of proper user-testing. A feature imo is a hypothesis, that has to be proved, so a proper ground (a/b testing, explicit and auditable metrics etc.) has to be in place, and developed alongside the features being cranked out .
+Concurrent projects
+A product (and at a higher level – a program) is often made out of a few projects, each lead by a different person/division/etc. A project is made of many features and feature-sets. Just like in software, you need to lower coupling between projects, and make feature-sets cohesive. This needs to happen both on the product level (the Principal PM’s responsibility), but also on technology level, which is the architect’s responsibility. Developers usually concentrate on a feature, sometimes on a feature-set. Testers have broader sight, but they would usually be working too details, thus not seeing the overall picture also. It is the responsibility of the architect(s) to see that the project is making sense technically across the whole product .</p>
+
+<p>Some Scrum Master observations:- Scrum is not the only agile FW<br />
+- A Scrum Master is not a project manager<br />
+- He does not manage technical risks<br />
+- He is not the architect</p>
+
+<p>Communication Paths
+equals (N*N-N)/2</p>
+
+<p>hence with 10 people there are 45 communication paths!</p>
+
+<p>Architect on an agile team?
+So what does the architect has to do, which no one else on a Scrum team usually do?
+- Wayfinding (what is waiting ahead), roadmap exploration<br />
+- Scouting (potential risks and paths)<br />
+- Architectual spike / vertical prototype – with bigger scopes than a ‘traditional’ XP design spike, and would not fit in the regular sprint/release cycles</p>
+
+<p>Timing
+Often managers ask: “what is the latest responsible moment for making architectural decisions”?</p>
+
+<p>Johanna’s view is that the correct question is : “what is the <strong><em>most</em></strong> responsible moment for making architectural decisions”?</p>
+
+<p>You should not try to postpone important decisions, but instead make them at the most critical times.</p>
+
+<p>My observation – for any project of non-trivial scope, the proper time for architectural decisions is always. That is, there should always be at least one person who stops and think about larger picture, about future paths, etc. (the things listed a few paragraphs back) and it has to happen all the time as the project evolves, not at some predefined spots.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/08/04/defaultvalue-attribute-for-monorail">DefaultValue attribute for MonoRail</a></h2>
+    <div class="meta">
+        <time>on August 4, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Another gem from <a href="http://www.tigraine.at/">Daniel Hölbling</a>.</p>
+
+<p> </p>
+
+<p>In short – it will allow you to write code like:</p>
+
+<p>```</p>
+
+<p>public void Browse([DefaultValue("beer")] string category, [DefaultValue(1)] int page)  {  </p>
+
+<p>…
+}</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>grab it <a href="http://www.tigraine.at/2009/08/04/defaultvalue-attribute-for-castle-monorail/">here</a></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p>The cool thing is that because MonoRail is so extremely flexible, one can really easily add this type of functionality without touching the code-base, but rather implementing a straightforward interface. That’s what I call <a href="http://en.wikipedia.org/wiki/Extensibility">extensibility</a>.</p>
+
+<p>One more super kudos to <a href="http://blogs.msdn.com/hammett/">Hammett</a> for the overall architecture of MonoRail.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/03/30/haalp-ndash-in-need-of-good-soa-books">HAALP &ndash; In need of good SOA books</a></h2>
+    <div class="meta">
+        <time>on March 30, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>hi guys and gals.    I’m in need of a good SOA book, especially in relation with highly scaleable web applications.     </p>
+
+<p>What it should  <em>not</em> contain:  - HowTo use a specific technology/vendor tool/etc     </p>
+
+<p>What it <em>should</em> contain    - detailed stuff about best practices, pitfalls, etc.     </p>
+
+<p> </p>
+
+<p>please drop a comment of send me an email</p>
+
+<p> </p>
+
+<p>10x,    K</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/03/30/and-if-wersquore-at-it-ndash-rsbmtnsb">And if we&rsquo;re at it &ndash; RSB/MT/NSB</a></h2>
+    <div class="meta">
+        <time>on March 30, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Has anyone did a detailed comparison of MassTransit/RSB/NSB and is willing to share?   </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/15/single-and-looking">Single and looking</a></h2>
+    <div class="meta">
+        <time>on October 15, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/css" rel="tag">css</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>explanation (before the wife kills me): I have some free time in the coming months, so I’m looking for interesting consulting gigs.</p>
+
+<p>So, if you’re in a company / dev team, and looking for some help with Castle (Windsor, MonoRail), NHibernate, or general information system design and architecture advices or training, setting up build and test environments, or any other of the things I rant about in this blog, then I’m your guy. </p>
+
+<p>I also do web-client ninja work, dancing the crazy css/html/javascript tango (jQuery: yes, Ms-Ajax: no) </p>
+
+<p>I currently live in Israel, but I’m fine with going abroad for short terms if you’re an off-shore client. </p>
+
+<p>you can contact me at “ken@kenegozi.com”</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/09/22/ioc-dot-net-smackdown">IoC.NET Smackdown</a></h2>
+    <div class="meta">
+        <time>on September 22, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve just came across a comparison on IoC containers in the .NET world:</p>
+
+<ul>
+  <li><a href="http://blog.ashmind.com/index.php/2008/08/19/comparing-net-di-ioc-frameworks-part-1/">http://blog.ashmind.com/index.php/2008/08/19/comparing-net-di-ioc-frameworks-part-1/</a></li>
+  <li><a href="http://blog.ashmind.com/index.php/2008/09/08/comparing-net-di-ioc-frameworks-part-2/">http://blog.ashmind.com/index.php/2008/09/08/comparing-net-di-ioc-frameworks-part-2/</a></li>
+</ul>
+
+<p>Haven’t read it yet cuz Im actually off-computer right now (the lappy is attached to the living room TV, and the break in the movie is almost over), but MAN is has COLOUR charts, so you can <a href="http://www.imdb.com/title/tt0309356/">bet your arse</a> I’m gonna read it later.</p>
+
+<p>Not that I’m excited. I’m pretty sure that (INSERT WINNER HERE LATER) will prove to be the best IoC ever.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/09/11/context-aware-service-overrides-customising-behaviour">Context aware service overrides - customising behaviour</a></h2>
+    <div class="meta">
+        <time>on September 11, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Assume you are building some kind of an information system. Say it’s an issue tracker (yeah I know, I have a blank spot in the creative-part of my brain).</p>
+
+<p>Now say you want some visual customisation based on the current context - like a different look’n’feel for each customer on a multi-tenant application, or a slightly different menu for an Admin.</p>
+
+<p>Kinda easy - right? you’d stick some overriding CSS rules for the former (say on CUSTOMER_ID.css), and some kind of a simple view logic for the latter (say &lt;% if (isAdmin) { %&gt; … &lt;%}%&gt;, or some type of CodeBehind crap if you’re a WebForms lover).</p>
+
+<p>But - what if you want to customise the behaviour according to context? say that for some actions, for a given customer, an email should be sent, or a webservice be called, or some default data should be set for a given form.</p>
+
+<p>The first option would be to create an interface ICustomerActions, and a DefaultCustomerActions which will be in charge of the, well, default behaviour. then for each customer you’d derive from DefaultCustomerActions (or directly from the interface if it’s completely different).</p>
+
+<p>Then you’d use some kind of a Factory (or your container) to resolve the needed ICustomerActions instance according to the context (say a customerId in the Session).</p>
+
+<p>There are two problems in this approach
+- A possible and probable break of SRP. The ICustomerActions interface will grow to be in charge of lots of things, on different parts of the logic, some that belongs in view rendering, and you end up with a huge Mega-Class. That’s bad.
+- The inheritance will start to be annoying. Cuz a new customer#3 will behave like customer#2 in some of the situations, and like customer #1 in others, like the default on some cases, and have a specific implementation for ICustomerActions.SomeTypeOfThing. So you will probably end up with a bunch of template methods lying around, and logic scattered around the inheritance tree.</p>
+
+<p>So how do you think I solved this problem? How would you do that?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/08/23/lockers-dictionary">Lockers dictionary</a></h2>
+    <div class="meta">
+        <time>on August 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Situation:
+- Your application aggregates data from external sources (say XML data returned via Http)<br />
+- You want to cache such data locally, say up to an hour<br />
+- You have some processing mechanism going over the cached data, using multiple threads</p>
+
+<p>Problem:
+A thread looking for an item in the cache to find that it’s not there, would issue the http request to fill the cache. A second thread might want to initiate another call if it needs the data before the first thread has updated the cache.</p>
+
+<p>Solution 1:
+use locks on the cache object.</p>
+
+<p>problem with that: you lock the whole cache, so other threads looking for a different type of data will be blocked, even though it’s okay for them to get data from the cache, and even to insert data with a different key into the cache.</p>
+
+<p>Solution 2:
+Keep a key per requested entry. Now you only lock what needs locking.</p>
+
+<p>You’d keep a dictionary of lockers ( new object() ), then the action of obtaining a locker will cause a full cache lock, however the lock duration will be short (the time it takes to retrieve an object from a Hashtable, or to new an object and put it in the Hashtable), and then the long out-of-process operation of loading the object will be with a lock on the specific key, while the rest of the Cache is accessible for reads and writes by other threads.</p>
+
+<p>Note - this is notepad (or rather WindowsLiveWriter) code. You’d need to fix syntax errors, and inspect the usage. License is MIT - Use at your own risk, and don’t forget to attribute it to the writer</p>
+
+<p>```</p>
+
+<p>class KeyLevelSafeCache</p>
+
+<p>{</p>
+
+<p>IDictionary lockers = new Hashtable();</p>
+
+<p>IDictionary cache = new Hashtable();</p>
+
+<p>object ObtainLockerFor(string key)</p>
+
+<p>{</p>
+
+<pre><code>  return thread-safely-get-an-object-from-lockers-hashtable()
+</code></pre>
+
+<p>}   </p>
+
+<p>public T Get<t>(string key, Func<t> load())</t></t></p>
+
+<p>{</p>
+
+<pre><code>  var locker = ObtainLockerFor(key);
+
+  //now retrieve the object from the cache using 'locker'
+</code></pre>
+
+<p>}</p>
+
+<p>}</p>
+
+<p>```</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/07/24/quotbut-its-using-reflection-so-it-must-be-slowquot">&quot;But it's using reflection, so it must be slow&quot;</a></h2>
+    <div class="meta">
+        <time>on July 24, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Well, <a href="http://darioquintana.com.ar/blogging/?p=43">not <em>that</em> slow apparently</a>. </p>
+
+<p>The lesson:</p>
+
+<p>Don’t be afraid of powerful tools. </p>
+
+<p>You can use reflection right, gain the power, while not losing too much performance.</p>
+
+<p>Quoting from nhusers mailing list:</p>
+
+<p>How much you be scare about the use of reflection in NH if 1.000.000 of access to get &amp; set to a field mean 0.2seconds ?– Fabio Maulo</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/23/fabio-and-ayende-on-caching">Fabio and Ayende On Caching</a></h2>
+    <div class="meta">
+        <time>on June 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>A quick ripoff from NHibernate’s users group:</p>
+
+<p>Fabio Maulo:</p>
+
+<p>The base concepts to understand are (my opinion):- <em>The Cache is not the panacea of performance.</em>- Don’t use the Cache like the base of your app; add the management of Cache at the end of your development process to increase the performance only where you really need do it.- Implementing a method named GetAll is, in most cases, a bad idea; an acceptable mediation is PaginateAll(pageSize).- InMemoryFilter can have less performance than filter trough RDBMS (especially when you intent to do it trough Cache with a large amount of entities).- Take care on what happen to the memory usage of your app when you are using Cache.</p>
+
+<p>Ayende:</p>
+
+<p>The cache is not magic, and should not be treated in such a fashion. I refuse to use the 2nd level cache in my applications until I have a perf problem that can’t be solved by creating smarter queries.Think about the cache as band aid, and good design as avoiding the need for that.</p>
+
+<p>And I say Hallelujahs </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/17/naming-interfaces">Naming Interfaces</a></h2>
+    <div class="meta">
+        <time>on June 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>An innocent question <a href="http://ayende.com/Blog/archive/2008/06/16/I-understand-that-naming-matters-so.aspx">raised by Ayende</a> has started an interesting debate on the comments.</p>
+
+<p>In short (read it all there - don’t be lazy)</p>
+
+<p>Which interface name is better?</p>
+
+<p>a. IRecognizeFilesThatNeedToBeIgnored</p>
+
+<p>b. IIgnoreFilesSpecification</p>
+
+<p>with a single method: ShouldBeIgnored(string file);</p>
+
+<p>Some were in favour of a, some in favour of b. </p>
+
+<p>The interesting thing is that many has offered a third option:</p>
+
+<p>c. IFileFilter</p>
+
+<p>Let’s group these things:
+- Options a. and b. =&gt; Narrow and very specific interfaces. You can guess exactly what a class implementing them can do.
+- Option c. =&gt; a general-purpose interface. You’d know that a class that implement this type of interface is doing stuff with files, but it’s kinda vague. Can it filter a file out of a list of files? can it filter the content of a file? can it do other kinds of filtering on some kinds of files?</p>
+
+<p>Personally I couldn’t care less which one of the first type will be used. I slightly in favour of b., as I think funny names are good. The compiler cares nothing about names, but the human mind would remember the purpose well, and a newcomer would pick it up quickly.</p>
+
+<p>The second group (IFileFilter) is not good. It might get filled with a lot of methods that do file filtering.and if it’s not, I think it should reflect the intention of the implementing class.Since multiple interfaces per class are allowed, it’s ok to have specialised ones. </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/05/14/monorail-talk-at-the-developers-group">MonoRail talk at The Developers Group</a></h2>
+    <div class="meta">
+        <time>on May 14, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Have just came back from my talk, given for <a href="http://www.richplum.co.uk/">The Developers Group</a> in Microsoft’s Victoria offices, London UK.</p>
+
+<p>Took me a bit to find the place, as the building does not say “Microsoft” on the outside (as opposed to the offices in Israel).</p>
+
+<p>The presentation went pretty much ok, considering it was my first time actually presenting in English, in front of an English crowd, and considering I had a PC malfunction that has forced me to recreate the Demo project, on the train today … Just finished it up 5 seconds before connection the laptop to the projector.</p>
+
+<p>I didn’t manage to squeeze in some of the parts that I wanted to, like JSONReturnBinder and Windsor integration, and like Unit-Testing controllers and views, but I do hope that I managed to do justice with this wonderful stack, within the limited time and my horrible English …</p>
+
+<p>Unfortunately, I missed the post-meeting-pub-thing as I just happened to leave the place last and didn’t see where everyone did go, so if you were there and has some questions, please do not hesitate to leave them here as comments.</p>
+
+<p>Anyway, as promised, here are <a href="http://kenegozi.com/blog/files/download.aspx?filename=monorail-demo.zip">the slides and the demo project</a>.</p>
+
+<p>If you are using <a href="http://git.or.cz/">git</a>, and have a <a href="http://github.com/">git-hub</a> account, then you would be able to follow the demo project’s source at <a href="http://github.com/kenegozi/monorail-aspview-demo/tree/master">http://github.com/kenegozi/monorail-aspview-demo/tree/master</a></p>
+
+<p>Have fun.</p>
+
+<p>P.S</p>
+
+<p>I’d like to thank Jason from The Developers Group, and Nina from Microsoft, who have helped with the administration part of things. Everything went smooth despite my late arrival. I’d also like to thank the attendees for their patience and listening. I hope you’ve enjoyed it, I definitely have :) </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/02/27/generating-xml-do-we-really-another-api">Generating XML - Do We Really Another API?</a></h2>
+    <div class="meta">
+        <time>on February 27, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><a href="http://codebetter.com/blogs/glenn.block/archive/2008/02/26/xml-and-fluent-interfaces.aspx">There appear to be yet another XML API</a>.</p>
+
+<p>So, when you want to generate:</p>
+
+<p>```
+<?xml version="1.0" encoding="utf-8"?></p>
+<root>
+    <result type="boolean">true</result>
+</root>
+<p>```</p>
+
+<p>instead of (using System.XML):</p>
+
+<p>```
+XmlDocument xd = new XmlDocument();
+xd.AppendChild(xd.CreateXmlDeclaration(“1.0”, “utf-8”, “”));</p>
+
+<p>XmlNode root = xd.CreateElement(“root”);
+xd.AppendChild(root);</p>
+
+<p>XmlNode result = xd.CreateElement(“result”);
+result.InnerText = “true”;</p>
+
+<p>XmlAttribute type = xd.CreateAttribute(“type”);
+type.Value = “boolean”;</p>
+
+<p>result.Attributes.Append(type);
+root.AppendChild(result);
+```</p>
+
+<p>one can (using the new API):</p>
+
+<p><code>
+XmlOutput xo = new XmlOutput()
+    .XmlDeclaration()
+    .Node("root").Within()
+        .Node("result").Attribute("type", "boolean").InnerText("true");
+</code></p>
+
+<p>Exciting.</p>
+
+<p>Or is it?</p>
+
+<p>Why not just (using your template-engine of choice):</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+
+    <result type="&lt;%=view.Type%&gt;">&lt;%=view.Value%&gt;</result>
+
+</root>
+
+<p>```</p>
+
+<p>works great for the “complex” scenarios on <a href="http://www.improve.dk/about">Mark S. Rasmussen</a>’s blog:</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <numbers>
+
+        &lt;% foreach (Number number in view.Numbers) { %&gt;
+        <number value="&lt;%=number%&gt;">This is the number: &lt;%=number%&gt;</number>
+
+
+        &lt;% } %&gt;
+    </numbers>
+</root>
+
+<p>```</p>
+
+<p>and:</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <user>
+        <username>&lt;%=view.User.Username%&gt;</username>
+        <realname>&lt;%=view.User.RealName%&gt;</realname>
+        <description>&lt;%#view.User.Username%&gt;</description>
+
+        <articles>
+
+            &lt;% foreach (Article article in view.User.Articles) { %&gt;
+            <article id="&lt;%=article.Id%&gt;">&lt;%#article.Title%&gt;</article>
+
+            &lt;% } %&gt;
+        </articles>
+        <hobbies>
+            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
+
+            <hobby>&lt;%#hobby.Name%&gt;</hobby>
+
+            &lt;% } %&gt; 
+
+        </hobbies>
+    </user>
+</root>
+
+<p>```</p>
+
+<p>is Hobby and Article more complex? no probs. break it down to sub-views:</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <user>
+        <username>&lt;%=view.User.Username%&gt;</username>
+        <realname>&lt;%=view.User.RealName%&gt;</realname>
+        <description>&lt;%#view.User.Username%&gt;</description>
+
+        <articles>
+
+            &lt;% foreach (Article article in view.User.Articles) { %&gt;
+
+            <subview:article article="&lt;%=article%&gt;"></subview:article>
+
+
+            &lt;% } %&gt;
+        </articles>
+        <hobbies>
+            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
+
+            <subview:hobby hobby="&lt;%=hobby%&gt;"></subview:hobby> 
+
+            &lt;% } %&gt; 
+
+        </hobbies>
+    </user>
+</root>
+
+<p>```</p>
+
+<p>Can you get more expressive that that?</p>
+
+<p>Look how easy it is to visualize what we’re rendering, and how easy it is to change.</p>
+
+<p>I consider all those XML API (including ATOM/RSS writers) as a leaky and unneeded abstractions, just like WebForms. Do you?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/02/22/abstractbaseclass-vs-dot--interfaces">AbstractBaseClass vs. Interfaces</a></h2>
+    <div class="meta">
+        <time>on February 22, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Reading <a href="http://haacked.com/archive/2008/02/21/versioning-issues-with-abstract-base-classes-and-interfaces.aspx">this post from Phil Haack</a> made me jump a little. Oh no, I said, Please don’t let the clean IMvcFramework become clumsy.</p>
+
+<p><a href="http://www.ayende.com/Blog/archive/2008/02/21/Re-Versioning-Issues-With-Abstract-Base-Classes-and-Interfaces.aspx">Ayende has ranted about it better than I would</a>.</p>
+
+<p>Now I see that <a href="http://haacked.com/archive/2008/02/21/abstract-base-classes-have-versioning-problems-too.aspx">Phil has issues with ABC as well</a>.</p>
+
+<p>The answers for the ABC problems he shows there are cumbersome. In order to gain “flexibility”, you end up polluting your API with “CanSupportCrap” methods, etc.</p>
+
+<p>So, to recap:
+- Phil, (probably inspired by Framework Design Guidelines) claim that using ABC over Interfaces is better as it won’t cause breaking changes.
+- Ayende points out that the breaking change won’t be to the end user (as in - developers who uses the framework) but rather to the framework maintainer (who works hard anyway and should know his way around), and to framework extenders (again, should not whine about those ‘breaking changes’). As an aside, Ayende also brings up the sealed/internal/non-virtual rant.
+- Phil admits to the weaknesses of ABC, just by showing an even weaker way of overcoming them.
+- I recap all that.</p>
+
+<p>Please Please Please keep IHttpContext in place …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/02/05/how-would-you-test-that">How would you test that?</a></h2>
+    <div class="meta">
+        <time>on February 5, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/testing" rel="tag">testing</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/altnetuk" rel="tag">altnetuk</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Given the following code:</p>
+
+<p><code>
+public void UpdatePerson(int id, string name){ Person p = peopleRepository.Get(id); p.name = name; peopleRepository.Update(p);}
+</code></p>
+
+<p>One answer would be (using a pseudo mocking framework):</p>
+
+<p><code>
+Person p = new Person();
+Expect.Call(peopleRepository.Get(0)) .Returns(p);
+Expect.Call(peopleRepository.Update(p)); 
+... 
+service.UpdatePerson(0, "MyName");
+</code></p>
+
+<p>Other approach would be (using pseudo coding again):</p>
+
+<p><code>
+Person p = CreateAndInsertToDB();service.UpdatePerson(p.id, "New Name");FlushAndRecreateTheSession();Person updated = GetFromDB(p.Id);Assert.Equal("New Name", updated.Name);
+</code></p>
+
+<p>What would you do, and why?</p>
+
+<p>(I’m tagging that also under altnetuk as it has been inspired by a session around test-granularity, mocking frameworks, etc.)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/17/yagni-my-tiny-ioc-feels-lonely">YAGNI - My Tiny IoC Feels Lonely</a></h2>
+    <div class="meta">
+        <time>on January 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>It’s funny. At the end of the day, I didn’t use <a href="http://kenegozi.com/Blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx">the tiny IoC</a> in the StaticSiteMap for the testing.</p>
+
+<p>It was fun however.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines">It's My Turn To Build An IoC Container In 15 Minutes and 33 Lines</a></h2>
+    <div class="meta">
+        <time>on January 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Last night I’ve built a nice new tool called StaticMapGenerator which is used to generate a typed static resources site-map for ASP.NET sites (works for MonoRail, ASP.NET MVC and even WebForms).</p>
+
+<p>I’ll blog about it on a separate post in details.</p>
+
+<p>Since I didn’t want any dependency (but .NET 2.0 runtime) for the generator and the generated code, I couldn’t use Windsor to IoC. That calls for a hand rolled simple IoC implementation</p>
+
+<p><a href="http://www.ayende.com/Blog/archive/2007/10/20/Building-an-IoC-container-in-15-lines-of-code.aspx">Ayende has already done it in 15 lines</a>, but I wanted also to automagically set dependencies and have a simpler registration model.</p>
+
+<p>so I’ve quickly hacked together a configurable DI resolver (a.k.a. IoC container) in 15 Minutes and 33 Lines Of Code. Call me a sloppy-coder, call me whadever-ya-like. It just works.</p>
+
+<p><code>
+static class IoC {  static readonly IDictionary&lt;Type, Type&gt; types = new Dictionary&lt;Type, Type&gt;();   public static void Register&lt;TContract, TImplementation&gt;()  { types[typeof(TContract)] = typeof(TImplementation);  }  public static T Resolve&lt;T&gt;()  { return (T)Resolve(typeof(T)); }  public static object Resolve(Type contract) { Type implementation = types[contract];  ConstructorInfo constructor = implementation.GetConstructors()[0];  ParameterInfo[] constructorParameters = constructor.GetParameters();   if (constructorParameters.Length == 0) return Activator.CreateInstance(implementation);  List&lt;object&gt; parameters = new List&lt;object&gt;(constructorParameters.Length);   foreach (ParameterInfo parameterInfo in constructorParameters)  parameters.Add(Resolve(parameterInfo.ParameterType));  return constructor.Invoke(parameters.ToArray()); }}
+</code></p>
+
+<p>Ok, I’ve cheated. You’d need using statements too, but you can see that I was generous enough with newlines …</p>
+
+<p>Usage:</p>
+
+<p>Given those:
+<code>
+public interface IFileSystemAdapter { }public class FileSystemAdapter : IFileSystemAdapter { }public interface IBuildDirectoryStructureService { }public class BuildDirectoryStructureService : IBuildDirectoryStructureService{ IFileSystemAdapter fileSystemAdapter; public BuildDirectoryStructureService(IFileSystemAdapter fileSystemAdapter) { this.fileSystemAdapter = fileSystemAdapter; }
+}
+</code></p>
+
+<p>You can do that:</p>
+
+<p><code>
+IoC.Register&lt;IFileSystemAdapter, FileSystemAdapter&gt;();IoC.Register&lt;IBuildDirectoryStructureService, BuildDirectoryStructureService&gt;(); IBuildDirectoryStructureService service = IoC.Resolve&lt;IBuildDirectoryStructureService&gt;();
+</code>
+You need not worry about supplying the BuildDirectoryStructureService with an implementation for the service it depends on, but only to register an implementation for that service.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/12/21/xss-httpencode-aspview-and-being-secure-by-default">XSS, HttpEncode, AspView and being Secure By Default</a></h2>
+    <div class="meta">
+        <time>on December 21, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>If you know not what XSS is or how easily you can expose your application to XSS, take a short read at the next posts:</p>
+
+<ul>
+  <li><a href="http://damieng.com/blog/2007/12/10/how-dangerous-is-html-injection">http://damieng.com/blog/2007/12/10/how-dangerous-is-html-injection</a></li>
+  <li><a href="http://damieng.com/blog/2007/12/18/5-signs-your-aspnet-application-may-be-vulnerable-to-html-injection">http://damieng.com/blog/2007/12/18/5-signs-your-aspnet-application-may-be-vulnerable-to-html-injection</a></li>
+  <li><a href="http://blog.wekeroad.com/2007/12/19/in-which-we-discuss-html-encoding/">http://blog.wekeroad.com/2007/12/19/in-which-we-discuss-html-encoding/</a></li>
+</ul>
+
+<p>AspView was written by me, for my (and my employer at the time) use. Therefore, I did not make it ‘secure by default’ in terms of HttpEncode.</p>
+
+<p>However, seeing now that the convention lean toward outputing HtmlEncode-ed by default, I’m adapting AspView to that.</p>
+
+<p>The usage would be similar to the one suggested for Asp.NET MVC at <a href="http://blog.codeville.net/2007/12/19/aspnet-mvc-prevent-xss-with-automatic-html-encoding/">http://blog.codeville.net/2007/12/19/aspnet-mvc-prevent-xss-with-automatic-html-encoding/</a></p>
+
+<p>So, </p>
+
+<p><code>
+&lt;%="&lt;tag&gt;" %&gt; 
+</code></p>
+
+<p>would output </p>
+
+<p><code>
+&amp;amp;lt;tag&amp;amp;gt;
+</code></p>
+
+<p>While</p>
+
+<p><code>
+&lt;%=RawHtml("&lt;tag&gt;") %&gt;
+</code></p>
+
+<p>would output </p>
+
+<p>```</p>
+<tag>
+```
+
+
+
+The only exception here is ViewContents on layouts. since the view contents is 99% of the times made of markup, so in the layout would still write:
+
+```
+&lt;%=ViewContents %&gt; 
+```
+
+
+
+All of that stuff is being implemented with AspView trunk (versions 1.0.4.x) that works with Castle trunk.
+
+If anyone wishes me to bubble it down to the 1.0.3.x branch (for Castle RC3), please leave your comments here. Unless I'll see that people actually want that I would probably not make the effort.
+
+
+
+</tag>
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/12/19/over-engineering-and-hammer-factories">Over Engineering and Hammer Factories</a></h2>
+    <div class="meta">
+        <time>on December 19, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I really do not know how I missed this thread.</p>
+
+<p>So funny, so true.</p>
+
+<p><a href="http://discuss.joelonsoftware.com/default.asp?joel.3.219431.12">http://discuss.joelonsoftware.com/default.asp?joel.3.219431.12</a></p>
+
+<p>If ever you need to convince someone to KISS, that’s the source.</p>
+
+<p>And if that’s not enough, you have a shorter version at <a href="http://ayende.com/Blog/archive/2007/12/18/Choices.aspx">http://ayende.com/Blog/archive/2007/12/18/Choices.aspx</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/05/building-application-using-castle-rc2">Building Application using Castle RC2</a></h2>
+    <div class="meta">
+        <time>on November 5, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Ayende has recently posted a walkthrough for building Web Apps using the Castle Project’s libraries.</p>
+
+<p>He covers ActiveRecord and MonoRail basics, showing off some of the shiny and new abilities (AR scaffolding, ARSmartDispatchers, Generics integration and so on).</p>
+
+<p>The only thing missing is IoC-ing using Winsdor or even Binsdor. Maybe to hook some BL layer or something.</p>
+
+<p>So it concludes (as of now) a <a href="http://www.ayende.com/Blog/BuildingApplicationsUsingCastleRC2PartI.aspx">Part I</a>, <a href="http://www.ayende.com/Blog/BuildingApplicationsUsingCastleRC2PartII.aspx">Part II</a> , and <a href="http://www.ayende.com/Blog/DemoCodeForCastleForumsDemoApp.aspx">source-code</a>.</p>
+
+<p>If you wanna see a decent web development framework at action - tune up to those posts.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/01/duck-type-in-net">Duck Type in .NET</a></h2>
+    <div class="meta">
+        <time>on November 1, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>There is a <a href="http://www.codeproject.com/cs/library/nduck.asp">great article</a> on CodeProject, by Guenter Prossliner.</p>
+
+<p>A simple class in presented there, that makes Duck Typing possible for Generics enabledCLS languages (VB.NET 8 and C#2.0 for instance).</p>
+
+<p>I’ll present it here in short form:</p>
+
+<p>let’s say we have two classes:</p>
+
+<p><code>
+   1:  class Foo1   2:  {   3:  publicstring Bar() { }   4:  }   5:  class Foo2   6:  {   7:  publicstring Bar() { }   8:  }
+</code></p>
+
+<p>Now you have a method that can work with instances of eiether one, and invoke Bar on it:</p>
+
+<p><code>
+   1:  void SimpleMethodOnFoo1(Foo1 foo)   2:  {   3:      foo.Bar();   4:  }   5:  void SimpleMethodOnFoo2(Foo2 foo)   6:  {   7:      foo.Bar();   8:  }
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/10/09/framework-design-guidelines-a-presentation-by-brad-abrams">Framework Design Guidelines - a presentation by Brad Abrams</a></h2>
+    <div class="meta">
+        <time>on October 9, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><a href="http://blogs.msdn.com/brada">Brad Abrams</a> has <a href="http://blogs.msdn.com/brada/archive/2006/10/09/Design-Guidelines-and-Patterns-and-Practices-Summit-.aspx">published on his blog</a> a short presentation about 5 rules for good framework design, a presentation he is giving at the <a href="http://www.pnpsummit.com/default.aspx">Pattern and Practices Summit event</a>. </p>
+
+<p>The stuff there is taken the “Framework Design Guidelines” book, written by Brad and <a href="http://blogs.msdn.com/kcwalina/">Krzysztof Cwalina</a>. I’d recommend to people who develop frameworks for the use of other developers, to get acquainted with the ideas, and also read the book (from constructor to destructor), possiblyleaving it on their shelf for future reference.</p>
+
+<p>The presentation itself is very good in it’s design - large and readable text (though slide 4 is of balance - maybe he’s relying on a non-standard font). the pictures and examples are funny and to-the-point, and it has meaningful colors (as if Do Not needs a red X nearby …). The story on slides 12 to 26 is cute, and you get the message simply enough.</p>
+
+<p>I’d add to the StopWatch example from slide 7, the method .Restart(), if I’d want the user to have even a simpler way to reuse the object.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/09/20/my-presentation-layer-of-choice-brail-over-castles-monorail">My presentation layer of choice: Brail over Castle's MonoRail</a></h2>
+    <div class="meta">
+        <time>on September 20, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve evaluated some methods to rail and to MVC in the .NET world, without using webforms.</p>
+
+<p>The first method I tried was to treat aspx’s kind’a like old ASP, no server controls, allowing multiple forms, no __VIEWSTATE __EVANTVALIDATION __UGLYHIDDENFIELD in the generated markup, and calling actions on the server, implemented as Controllers over ashx’s, or directly linking to a new .aspx view (if no operation is required).It allowed me to create super clean html, but it has it’s limits, since I’ve had to implement a mechanism for MasterPages and UserControls, and that suck.There is <a href="http://www.boo-lang.org/BooWebbness/Home/Index.ashx">BooWebness</a>. Seams like a great effort, and I like the natural .ashx approach, but I am not very into its whole framework there.</p>
+
+<p>Then I’ve went after <a href="http://www.castleproject.org/index.php/MonoRail">MonoRail</a>.Cool.Has a lot out-of-the-box, including MasterPages(Layouts), UserControls(ViewComponents), Markup Helpers, AjaxHelpers, and a large community. Being part of Castle is a Big Bonus. I believe in Castle. I’ve been using Castle’s ActiveRecord for a while and I find it almost too good to be true. So MonoRail fits well in Castle’s world, so I’m into it. </p>
+
+<p>Now I needed to choose a view engine.<a href="http://www.castleproject.org/index.php/MonoRail:NVelocity">NVelovity</a> was disqualified for its discontinuesness, and the need to learn something new and narrow. Not to mention the fact that it’s interpreted.The WebForms hybrid just doesn’t look too good.<a href="http://www.ayende.com/projects/brail.aspx">Brail</a> from <a href="http://www.ayende.com/">Ayende</a> is very nice. Learning Boo isn’t like learning a new thing, since I’ve had a little taste of it in the past, and since it’s .NET, and since it has a very readable syntax that any C#/VB.NET/Python/Perl/java/you-name-it developer can learn in minutes. Brail is a lovely name, and I can count on Ayende to keep developing it as much as it’s needed.</p>
+
+<p>So Brail over MonoRail it is.</p>
+
+<p>Posts about the matter will come shortly.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/08/26/activerecordbase-vs-activerecordmediator">ActiveRecordBase vs ActiveRecordMediator</a></h2>
+    <div class="meta">
+        <time>on August 26, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So after a lot of talking about the matter, I’m starting a little (but real) project with <a href="http://www.castleproject.org/index.php/ActiveRecord">Castle’s ActiveRecord</a> as an ORM service.</p>
+
+<p>What I’m still not sure about, is weather I should inherit everything from <a href="http://castleproject.org/API/Castle.ActiveRecord.ActiveRecordBase.html">ActiveRecordBase</a>, or have my own base class and use <a href="http://castleproject.org/API/Castle.ActiveRecord.ActiveRecordMediator.html">ActiveRecordMediator</a>?</p>
+
+<p>Sure, I can derive my base class from ActiveRecordBase and have common behaviour for my model, but I am still not sure that I’m fully into the ActiveRecord pattern as a whole. It’s tempting to exploit Castle’s implementation but to keep the methods in a seperate class rather than in the model itself.</p>
+
+<p>I also have some problem with the need to do FindAll, Find, etc. on each class so to expose the static methods in a typed way.</p>
+
+<p>Well, I take back the last paragraph, since Icould use ActiveRecordBase&lt;&gt; and it solves this problem.</p>
+
+<p>To conclude: I tend to go with subclassing ActiveRecordBase&lt;&gt; as a base class for my model, and I’m starting to code (and test) that way,but I could still use the knowledge gained by people with real experience withthis implementation…</p>
+
+<p>I’ve looked for insights on the matter on the web, and have found nothing.If anyone reading this has an insight about the matter, please comment here, so people who do their first steps in Castle’s ActiveRecord implementation would have a better kick start regarding this issue.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/07/08/the-impendence-mismatch-and-adonet-vnext-a-presentation">The Impendence Mismatch And ADO.NET vNext - a Presentation</a></h2>
+    <div class="meta">
+        <time>on July 8, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/linq" rel="tag">linq</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Last Tuesday (06/07/2006) I gave a presentation with <a href="http://www.lnbogen.com/">Oren</a> at our company, for the company’s .NET forum.The forum is made of all the employees from all the branches of the company, who are dealing with Microsoft’s development tools, at any level.Oren talked about our in-house architecture and presented our code generating tool - Code-Agent, that incorporates our architecture to generate a full blown n-tier application from a mere SQL Server database, in just a few clicks.Afterwards, I talked about the problems (as I see ‘em) in the data querying world today, ran a quick overview of some methods and tools that help developers to solve them, and showed a bit of the way that ADO.NET vNext (ADO.NET Entities, or ADO.NET 3.0) and LINQ, come to the rescue.After the presentations, we’ve talked with some of the attendees. It was delighted to meet very capable, experienced and sharp minded people, and we encouraged them to take more active part in future meeting of the forum. I hope that this forum will evolve to be a great place to share knowledge.The presentation that accompanied my lecture can be found <a href="http://kenegozi.com/Presentations/ImpendenceMismatchAndADONETvNext/ImpendenceMismatchAndADONETvNext.htm">here</a> (or <a href="http://kenegozi.com/Presentations/ImpendenceMismatchAndADONETvNext/Presentation.aspx">here</a> if your browser cannot handle it), and if you have any questions or ideas about the subjects discussed, you are more than welcome to send them to me.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/05/21/using-external-controllers-to-emulate-multiinheritance-in-the-presentation-layer">Using external controllers to emulate multi-inheritance in the presentation layer</a></h2>
+    <div class="meta">
+        <time>on May 21, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The web application that we’re working on now, uses ASP.NET 2.0’s ObjectDataSource model, to bind to GridView and FormView in the front-end.Starting off, I’ve made a hierarchy of base classes to manage the data-binding and visual behaviors for Entity Pages (used to view, edit or insert a single entity) and Master-Details Pages (used to manage Master-Details scenarios).The base classes looked like:</p>
+
+<p><code>
+class BasePage : Page { /* ... */ }class BaseEntityPage&lt;T&gt; : BasePagewhere T: Entity{public BaseEntityPage(){/// hook ObjectDataSource and FromView databind events}//... }class BaseMasterDetailsPage&lt;T&gt; : BaseEntityPage&lt;T&gt;where T: Entity{public BaseMasterDetailsPage() : base(){/// hook GridView databind events}//... }
+</code></p>
+
+<p>Somewhere along the road, we’ve decided to change the first module being developed, to use ascx controls in a single page, instead of multiple pages in a master page (due to the fact that it became a nested master page, and vs2005 doesn’t like it).So, a developer working on the change from Pages to UserControls, changed the base class to something like that:</p>
+
+<p><code>
+class BaseUserControl : UserControl { /*...*/ }class BaseEntityUserControl&lt;T&gt; : BaseUserControlwhere T: Entity{public BaseEntityUserControl(){/// hook ObjectDataSource and FromView databind events}//... }class BaseMasterDetailsUserControl&lt;T&gt; : BaseEntityUserControl&lt;T&gt;where T: Entity{public BaseMasterDetailsUserControl() : base(){/// hook GridView databind events}//... }
+</code></p>
+
+<p>Later on, we needed some standalone pages (not “mastered”) to have data capabilities.We already had the databinding for UserControls, but now we would need to create empty “dummy” pages and host UserControls in them, which means that instead of aspx + aspx.cs files per page, we’ll have aspx + aspx.cs + ascx + ascx.cs files !!!We could always keep the BasePage hierarchy next to the BaseControl hierarchy, but it will create an ugly duplication.If Multi-Inheritance was possible, we would have used something like:</p>
+
+<p><code>
+class EntityController { /* ... */ }class BaseEntityPage&lt;T&gt; : BasePage, EntityController { /* ... */ }class BaseEntityUserControl&lt;T&gt; : BaseUserControl, EntityController { /* ... */ }
+</code></p>
+
+<p>The solution is to use an external controller, we’ll call the Manager, to do all the recurrent login that applies to both the Pages an the UserControls.We’ll use an EntityManager that will manage both BaseEntityPages and BaseEntitycontrols, and a MasterDetailsManager that will manage BaseMasterDetailsPages and BaseMasterDetailsControls. Each and every page and UserControl will register itself with a manager.Now the base class look like that:</p>
+
+<p><code>
+class EntityManager&lt;T&gt; {}class MasterDetailsManager&lt;T&gt; : EntityManager&lt;T&gt; { }class BaseEntityPage&lt;T&gt; : BasePagewhere T: Entity{private EntityManager&lt;T&gt; manager;public BaseEntityPage(){manager =new EntityManager&lt;T&gt;(this);}//... }class BaseMasterDetailsPage&lt;T&gt; : BaseEntityPage&lt;T&gt;where T: Entity{public BaseMasterDetailsPage() // not calling base() cuz we need a different manager{manager =new MasterDetailsManager&lt;T&gt;(this);}//... }class BaseEntityUserControl&lt;T&gt; : BaseUserControlwhere T: Entity{private EntityManager manager;public BaseEntityUserControl (){manager =new EntityManager&lt;T&gt;(this);}//... }class BaseMasterDetailsUserControl&lt;T&gt; : BaseEntityUserControl&lt;T&gt;where T: Entity{public BaseMasterDetailsUserControl () // not calling base() cuz we need a different manager{manager =new MasterDetailsManager&lt;T&gt;(this);}//... }
+</code></p>
+
+<p>All the databinding logic and visual behavior control, is now placed in the managers classes, and the page or control itself, is only dealing with the things that are specifically needed by it.The developers on the team, when creating a new page or UserControl, only need to register their page or control to the appropriate manager, and not to mind all the databinding and behavior stuff.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/05/18/code-templating-advanced-use-of-delegates-and-generics-in-c-20-a-lecture-by-oren-ellenbogen">Code Templating: Advanced use of Delegates and Generics in c# 2.0 - A lecture by Oren Ellenbogen</a></h2>
+    <div class="meta">
+        <time>on May 18, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve been yesterday to a lecture, given by my colleague Oren Ellenbogen, on the subject: “Code Templating – Advanced use of Delegates and Generics in c# 2.0”.The lecture took place at Raanana’s Microsoft offices, as part of the C++/C# User Group.He presented us with a way to refactor our recurring code blocks, by “separating the recurrent from the unique”. This technique gives us the ability to have the recurrent logic (let’s say, open a db connection, apply logging and transaction management, etc.) only on one place, aka – the code template, and then apply unique logic (actual select clause, or population of a Business Object from the database, etc.) where you need, using the template as a wrapper.The technique can be achieved using Interfaces, but thanks to the anonymous delegates and methods presented by C# 2.0, the process can be more “code viewer friendly”.All that (and a more technical explanation) would probably be published on Oren’s <a href="http://www.lnbogen.com/">blog</a>, during the next few days, so I’d advise on keeping an eye (or rss reader) on that one.One note about the lecturing technique he took – well, he did let the audience ask question anytime during the lecture, and actually answered their questions immedietly. This caused some flaws in the flow of the lecture, so I’d advice to be firm with the audience and postpone any question to a predetermined point (or points) in the lecture. The accompanying powerpoint presentation was lovely made, with large and readable fonts, nice images to emphasize important points, and the Visual Studio demos where pre-written, well documented, and presented well, using some nice add-ons ,such as “demo font” and Windows Magnifier.I hope too, that I’ll be able to give a lecture to the group during the next months, if I’ll have time to compose one …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/02/02/packing-custom-controls-the-right-way-single-or-multiple-assemblies">Packing custom controls the right way - single or multiple assemblies?</a></h2>
+    <div class="meta">
+        <time>on February 2, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>We’re developing a new web application at our department with rich client interface,and as part of the process we need to develop a few UI custom controls, that can and will be reusable in future projects.</p>
+
+<p>I am indecision about two approaches:1. Packing all the UI web controls into a single assembly (let’s say SQLink.Web.UI), as MS did with their System.Web (which include all the UI namespaces, and all other web namespaces, too), and also with the Microsoft.Web.UI.WebControls.dll2. Pack every single control into adifferent assembly.</p>
+
+<p>Why 1? it’s somewhat easier to maintain (a single project on VSS), it’s following the path of MS (this isn’t <strong>always</strong> the best thing to do, but it often is), and it’s easier to deploy.</p>
+
+<p>Why 2? (a)It’s easier for two developers to work on different controls without “fighting” over source control privileges, and (b) if the assembly holds valuable controls not needed to a specific application, and the application is handed to a client who isn’t licensed to use those controls, he still can lay his hands on it if we had packed all our controls into a single dll.</p>
+
+<p>After consultation with my colleague <a href="http://www.lnbogen.com">Oren Ellenbogen</a>, we came to conclusion that approach 1 is better, and that the downsides of it can be solved by (a) working properly (by means of not allowing the developers to keep project wide objects checked-out), and (b) relying on the legal discipline of our clients, not to use our application dlls in their or in third party solutions, without our explicit permission.</p>
+
+<p>back to coding …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+</body>
+</html>

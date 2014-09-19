@@ -1,0 +1,6356 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Ken Egozi | Web builder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="Ken Egozi">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='Ken Egozi | Web builder' property='og:title'>
+	
+	<link rel="canonical" href="http://kenegozi.com/blog/tag/c-sharp/index.html" />
+
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	<!-- IE 9 Fallback-->
+	<!--[if IE 9]>
+		<link href="/assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements and IE Fallback-->
+	<!--[if lt IE 9]>
+	  <script src="/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
+<body id="top" class="">
+	
+	<!-- NAVBAR -->
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- END NAVBAR -->
+<section class="container content tags">
+  <h1 class="post_title">Posts Tagged &ldquo;c-sharp&rdquo;</h1>
+  <div class="post-sidebar">
+	<h5>Follow</h5>
+	<p>
+		<a href="http://feeds2.feedburner.com/kenegozi">
+			<img src="http://feeds.feedburner.com/~fc/kenegozi?bg=000033&amp;fg=00FF00&amp;anim=1" height="26" width="88" style="border:0" alt="">
+		</a>
+	</p>
+	<hr/>
+</div>
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2013/09/04/my-datetime-serialization-practices">My DateTime serialization practices</a></h2>
+    <div class="meta">
+        <time>on September 4, 2013</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <h2 id="show-me-your-date">Show me your date</h2>
+<p>When sending DateTimes as string across the wire, it is quite useful to use ISO 8601 date formatting. For one, it holds all required info (including timezone offset specified), it is easy to infer the Kind of the DateTime (UTC, Local or Unspecified), it is widely and commonly used across most (if not all) platforms, and if omitting milliseconds, is lexicographically ordered, which makes it useful for indexed storage as well (for example on the filesystem, or as keys in a string based Key Value stores such as Azure Table Storage)</p>
+
+<p>During the many times I had to deal with serialization implementations, while working on one of the many web frameworks I’ve been involved with, or with serialization libraries, I keep getting back to be needing to remember what I did last time, so this post is to serve as a future reminder to self on how I want it to be done.</p>
+
+<h2 id="serializing-a-datetime-to-a-string">Serializing a DateTime to a string:</h2>
+<pre><code>string Serialize(DateTime value) {
+    const string ISO8601Format = "o"; // this is a terrific little gem!
+    return value.ToString(ISO8601Format);
+}</code></pre>
+
+<p>Did you notice the “o” format specifier? This is a much better than typing “yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK”, which I’ve been doing until recently.</p>
+
+<p>For lexicographically ordered version, we would only go so far to the seconds, and be sure to force the input datetime kind to UTC (otherwise order is difficult to maintain…):</p>
+
+<p><code>
+string SerializeOrdered(DateTime value) {    const string OrderedUniversalFormat = "u";    return value.ToUniversalTime().ToString(OrderedUniversalFormat);}
+</code></p>
+
+<h2 id="whats-the-deal-with-kind-and-timezone-offset">What’s the deal with Kind and Timezone offset?</h2>
+
+<p>The ‘K’ specifier will render the following:
+- If the input datetime is of UTC kind, it will render the letter Z </p>
+
+<ul>
+  <li>
+    <p>If the input datetime is of Unspecified kind, it will render … nothing </p>
+  </li>
+  <li>
+    <p>If the input datetime is of Local kind, it will render + (or –) the offset</p>
+  </li>
+</ul>
+
+<p>The interesting bit here is that there is a difference between 2013-09-03T10:00:00-00:00 and 2013-09-03T10:00:00Z. They refer to the same point in time, however the former refer to the Local time where the offset is 0 (e.g. London, UK at winter time – a lovely picture), while the latter refer to the UTC time. This knowledge allow us to infer the actual datetime kind when parsing the result. How do we do that you may rightfully ask?</p>
+
+<h2 id="deserializing-datetimes-from-a-string">Deserializing DateTimes from a string:</h2>
+
+<p><code>
+DateTime DeserializeDateTime(string value) {    return DateTime.Parse(value, null, DateTimeStyles.RoundtripKind);}
+</code></p>
+
+<p>That’s it. The trick is in the DateTimeStyles.RoundtripKind bit. I keep forgetting that, and this (and the “o” specifier) is the reason for this post.</p>
+
+<p>When Deserializing ordered DateTimes, the former deserialization code would end up with a DateTime of Unspeficied kind, so it would be better to do that:</p>
+
+<p><code>
+DateTime DeserializeOrderedDateTime(string value) {    return DateTime.Parse(value, null, DateTimeStyles.AssumeUniversal).ToUniversalTime();}
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/03/15/fetching-from-many-urls-concurrently-the-right-way">Fetching from many urls concurrently - the right way</a></h2>
+    <div class="meta">
+        <time>on March 15, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve recently bumped into a post describing how to access a bunch of urls. The post was describing usage of Parallel.ForEach as a mean to parallelize such code.</p>
+
+<p>It goes down to describe the the improvement over the iterative, single threaded version, was bounded to the number of cores.</p>
+
+<p>Multithreading is definitely a way to increase performance of long running, independent jobs. However, there is a major difference between jobs that are CPU bound (such a complex computations) and jobs that are IO bounds (file-system, web services, DB calls, whatnot). First, there is no reason to keep all those threads waiting for the IO call to complete, and second - the number of available threads is limited, so the improvement is bound to the number of cores.</p>
+
+<p>The way to achieve a better improvement for the said scenario and similar others, is to use non-blocking calls that are using IO-completion ports instead of threads.</p>
+
+<p>I’ve ran three versions of the code - serial, parallel, and Async IO based. The results are stunning. For 300 files, the serial one took ~3.5 minutes, the parallel to ~30 seconds, and the Async IO base took just under a second!</p>
+
+<p>Notice the ServicePointManager.DefaultConnectionLimit = 1000; part, which tells the application how many concurrent outgoing connections are allowed. A modern windows host allow up to ~64k file descriptors (the stuff that amongst other things allow this behaviour) so a 1000 is not a problem.</p>
+
+<p>I also like CountdownEvent very much. Easier than ManualResetEvent with a counter and Interlocked.Decrement calls.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2011/01/11/excerpt-from-the-upcoming-c-sharp--in-depth-second-edition-book-optional-parameters-and-named-arguments">Excerpt from the upcoming C# in depth Second Edition book - optional parameters and named arguments</a></h2>
+    <div class="meta">
+        <time>on January 11, 2011</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>see the announcement here:   <a href="http://codebetter.com/2011/01/11/c-in-depth-optional-parameters-and-named-arguments-2/">http://codebetter.com/2011/01/11/c-in-depth-optional-parameters-and-named-arguments-2/</a></p>
+
+<p> </p>
+
+<p>Named arguments can easily make your code (on some occasions) more readable. One of c#4 features I miss when I work on a c#3 codebase</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/10/16/official-c-sharp--driver-for-mongodb-from-10gen">Official c# driver for MongoDB from 10gen</a></h2>
+    <div class="meta">
+        <time>on October 16, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The announcement is on the users list - <a href="http://groups.google.com/group/mongodb-user/browse_thread/thread/62b071549a95dd4a?hl=en">http://groups.google.com/group/mongodb-user/browse_thread/thread/62b071549a95dd4a?hl=en</a></p>
+
+<p> </p>
+
+<p>Until now the two offerings were <a href="http://github.com/atheken/NoRM">Norm</a> and <a href="http://github.com/samus/mongodb-csharp">mongo-csharp</a>, both are excellent OSS projects with lots of contributions and very nice velocity. My concern there was always that although there is definitely a place for more than one flavour, as usage patterns and even personal taste differ and pleasing everyone in a single product is impossible (see on rubyland for e.g., – there are <a href="http://github.com/jnunemaker/mongomapper/tree/master">MongoMapper</a>, and <a href="http://mongoid.org/">Mongoid</a>, and there are even some more, less-widespread ones). The major difference is that since the core of the ruby driver is maintained in a single location (and backed by paid-developers thx to <a href="http://www.10gen.com/index">10gen</a>), the things that are the same across (mainly BSON, client-server setup, connection management) are not duplicated, so we get a fully featured, very robust, tested by many core, and it gets out very fast. </p>
+
+<p>On the c# side of things, the implementation of replica-sets in the client took some time to emerge after the official support on the server side was out. </p>
+
+<p> </p>
+
+<p>So, it is an exciting announcement for the .NET community. I hope that the current drivers will know to adapt the drivers to use the official core.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/16/fixing-text-files-to-dos-style-line-endings-crlf">fixing text files to DOS style line endings - CRLF</a></h2>
+    <div class="meta">
+        <time>on September 16, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Today I ran into a project that had mixed line-ending styles between files in the project. There were even a few files that had different type of line endings within the same file (bulk of lines with UNIX style, and other bulks with DOS style)</p>
+
+<p> </p>
+
+<p>I ended up running the following c# “script” to fix that, and set all files to UTF-8 while I was at it.</p>
+
+<p>The trick is to simply load the file with File.ReadAllLines which is indifferent when it comes to the line-ending type, and then write that back using WriteAllLines which will use the currently set Environment.NewLine value (which is CRLF when on windows)</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>The code is listed here; you can simply <a href="http://gist.github.com/582193">download a zip</a>, open it to the folder of your choice and dbl-click it.</p>
+
+<p>the only prerequisite is .NET 4.0 (I wanted the recursive and lazy Directory.EnumerateFiles)</p>
+
+<p> </p>
+
+<p>The is listed here. It is generated by a javascript snippet so if you cannot see this in your offline feed reader, just go to the <a href="http://gist.github.com/582193">gist page</a></p>
+
+<p> </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/09/09/javascript-and--dot-net-ndash-meet-jint">JavaScript and .NET &ndash; meet jint</a></h2>
+    <div class="meta">
+        <time>on September 9, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve been looking for JavaScript scripting possibilities for .NET for quite some time. I always know I could hack an IKVM (java-to-csharp compiler) over Rhino (Java implementation of JavaScript), but it always felt a bit too complex.</p>
+
+<p>I had my hopes on Microsoft to implement a JavaScript over the DLR but the news on the subject where vague at best, and with the latest moves on shutting down support of IronPython and IronRuby, I’d think that IronJS won’t really happen anytime soon. There is a project named IronJS over at github, but it is quite incomplete. (for e.g., the test suite include a single mostly-commented-out file).</p>
+
+<p> </p>
+
+<p>Reading one more <a href="http://www.codeproject.com/KB/cs/EmbeddingJSCS.aspx">Rhino/IKVM article on CodeProject</a> this week, I stumbled on a comment pointing to a new JS interpreter implementation for .NET.  yup – that’s right. Interpreter. Not a compiler, nor a VM. The project is at <a href="http://jint.codeplex.com/">http://jint.codeplex.com/</a>.</p>
+
+<p> </p>
+
+<p>I Hg cloned the repo, ran MsBuild.exe on the Jint.sln file, and referenced output binaries (only two dll files - jint’s and antlr’s), and voila.</p>
+
+<p> </p>
+
+<p>the following stupid code, showing executing JS code (see the regex syntax in script1), executing .NET code from JS script (the DateTime class), and passing a .NET object as parameter to the script:</p>
+
+<p> </p>
+
+<p>```</p>
+
+<p>class Person
+{
+    public string Name;
+}
+static void Main(string[] args)
+{
+    var script1 = @"return ‘hello’.replace(/l{2}/gi, ‘LL’);";
+    var script2 = @"var d = new System.DateTime(2010,3,1);
+                    return d.Day;";
+    var script3 = @"return ‘hello ‘ + p.Name;";</p>
+
+<pre><code>var jint = new Jint.JintEngine();
+
+var result1 = jint.Run(script1);
+Console.WriteLine(result1);
+
+var result2 = jint.Run(script2);
+Console.WriteLine(result2);
+
+var p = new Person { Name = &amp;quot;Ken&amp;quot; };
+jint.SetParameter(&amp;quot;p&amp;quot;, p);
+var result3 = jint.Run(script3);
+Console.WriteLine(result3);
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>The output is:</p>
+
+<p><code>
+heLLo
+1
+hello Ken
+</code></p>
+
+<p> </p>
+
+<p> </p>
+
+<p>so what the whole fuss is about?</p>
+
+<p> </p>
+
+<p>think about a view engine that can execute in the Server for generating initial http response, and then executing the same templates on the client-side. Not only that, it should be possible to share templates between Java and .NET servers in a heterogeneous environment</p>
+
+<p> </p>
+
+<p>I know that Spark view engine support both server and client side execution, but I remember hearing from the leaders of Spark that it was never a goal, and I also do not like the syntax of Spark anyway (brings back bad memories from nant)</p>
+
+<p> </p>
+
+<p>It also has a few more appealing features. For one, it does <em>not</em> generate bytecode, so you can hot-swap scripts without leaking memory.</p>
+
+<p> </p>
+
+<p>I’ll be playing with this some more should time allow.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/08/15/readerwriterlockslim-vs-lock">ReaderWriterLockSlim vs lock</a></h2>
+    <div class="meta">
+        <time>on August 15, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/d9" rel="tag">d9</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So you’ve got this boring old lock keyword, with its “only one at a time” semantics, and you think “hey, lets use the ReaderWriterLock, since its cooler, and it now has a Slim version so it MUST be great !”</p>
+
+<p> </p>
+
+<p>That is wrong on many levels.</p>
+
+<p> </p>
+
+<p>Lets start with exploring what the RWLS is about, in contrast to the lock keyword (which is a syntactic sugar for Monitor).</p>
+
+<p>Both are used to synchronise access to a shared resource that might get read and written by different threads at the same time.</p>
+
+<p>the general pattern is (pseudo-code, please do not Copy And Paste to your favourite IDE :) ):</p>
+
+<p>```</p>
+
+<p>variable aResource</p>
+
+<p>lock aLock</p>
+
+<p> </p>
+
+<p>// when reading from the shared resource</p>
+
+<p>lock_for_read(aLock):</p>
+
+<p>foo = aResource.get_value</p>
+
+<p>do_something_with foo</p>
+
+<p> </p>
+
+<p>// when writing to the shared resource</p>
+
+<p>lock_for_write(aLock):</p>
+
+<p>aResource.set_value something</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>The Monitor construct only allow a single thread to access the synchronised block at a time, whether it is for reading or writing, so actually the isn’t a distinction between lock_for_read and lock_for_write, instead there is a single <code>lock</code> keyword.</p>
+
+<p> </p>
+
+<p>The meaning is that if you have many threads coming in and trying to read from the shared resource, they would have to queue and enter the block one by one.</p>
+
+<p> </p>
+
+<p>The ReaderWriterLock allow multiple threads to access a read block at the same time, so they will only need to wait once a thread is asking for a write lock. Then the writing thread will wait for all other threads within synchronised blocks to complete, then do its thing.</p>
+
+<p> </p>
+
+<p>Sounds great, isn’t it?</p>
+
+<p> </p>
+
+<p>Well, actually the benefit of a ReaderWriterLock will only be in place when these two conditions are in place:
+- There is a low write contention – i.e. most of the times when a thread asks for a lock, it is for a read access only 
+- The synchronised read block is not very quick anyway </p>
+
+<p>why? because if the block executes very fast, then the waiting read threads will not need to actually queue up.</p>
+
+<p>And if writes are not very sparse, an exclusive lock (because of the writes) will be taken many times, causing reading threads to queue anyway.</p>
+
+<p> </p>
+
+<p>Adhering to the “no free gifts” rule, the usage of a ReaderWriterLock has more overhead than that of a Monitor, thus it would not be advisable to consider using the ReaderWriterLock unless you know for sure that the two aforementioned conditions will take place in the scenario.</p>
+
+<p> </p>
+
+<p>And even then, you one should beware of a problem that might happen since there isn’t a syntactic sugar for the ReaderWriterLock. Since you have to release the lock yourself, the common usage pattern is:</p>
+
+<p>```</p>
+
+<p>ReaderWriterLockSlim locker = new ReaderWriterLockSlim();
+…
+// read block
+locker.EnterReadLock();
+try
+{     //readAction
+}
+finally
+{     locker.ExitReadLock();
+}</p>
+
+<p>// write block
+locker.EnterWriteLock();
+try
+{     //write Action
+}
+finally
+{     locker.ExitWriteLock();
+}</p>
+
+<p>```</p>
+
+<p> </p>
+
+<p>Since I know that the usage is not 100% trivial, and that I might forget to exit the lock in a finally block (I’ve seen code examples around the interweb that forget to do so), I am usually looking up previous code of mine, and then copy-and-paste it.</p>
+
+<p>Since like many other developers I tend to be lazy and sloppy when copy-pasting boring pieces of code around, I end up doing some mistakes such as entering a read lock, however exiting a write lock. I then get weird runtime exceptions that it takes a good few minutes to figure out. annoying.</p>
+
+<p>This is without taking UpgradeableReadLock into account, which (imo) does not have a trivial API.  I will put a separate post explaining UpgradeableReadLock btw.</p>
+
+<p> </p>
+
+<p>Summary:
+- The good old simple lock construct is always more readable and maintainable, than ReaderWriterLock. Sometimes most of the times it even performs better.
+- When the two conditions are met (low write contention, non-trivial read block), it is wise to consider a ReaderWriterLock
+- When using ReaderWriterLock, one should beware (more than the usual) from blind copy-and-paste operations.</p>
+
+<p> </p>
+
+<p>Now since I found myself needing to use a ReaderWriterLock more than once lately, and since I did repeat the stupid copy-and-paste mistakes more than once, I created a little helper for that, included in my old-ish D9.Commons project, which is where I through reusable pieces of code at. Which reminds me that I need to move it to github some when soon.</p>
+
+<p>Meanwhile it is at <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Locks/Lock.cs">http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Locks/Lock.cs</a>, and it contains shortcut methods for executing code within Read, Write and UpgradeableRead blocks.</p>
+
+<p>I’ll run a different post with a couple of usage snippets later. </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/06/06/hashset-dot-unionwith-documentation-fail-ndash-trust-your-instinct">HashSet.UnionWith documentation FAIL &ndash; trust your instinct</a></h2>
+    <div class="meta">
+        <time>on June 6, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>From the method’s doc:</p>
+
+<p>Modifies the current <a href="#">HashSet&lt;T&gt;</a> object to contain all elements that are present in both itself <strong>and</strong> in the specified collection.</p>
+
+<p> </p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Has.UnionWithdocumentationFAILtrustyouri_14163/78672664-0773-411c-bc95-6513e613af5e.png" alt="image" /></p>
+
+<p> </p>
+
+<p>Now I know my way around (at least the basics of) set theory, and I <em>know</em> what union means. nonetheless I read the doc of the method and for some reason I thought that I’d get the intersection. </p>
+
+<p> </p>
+
+<p>For those unsure about what Union means (or what it actually does), the following code:</p>
+
+<p>{% highlight c# %}
+var set = new HashSet<int>(new[] {1, 2});
+var other = new[] {2, 3};
+set.UnionWith(other);
+Console.WriteLine(Serialize(set));{% endhighlight %}</int></p>
+
+<p> </p>
+
+<p>So, I ended up bumping my head on the wall keyboard for a couple of minutes trying to understand why a perfectly good test fail with no reason, until I figured it out. It is true that I wasn’t showing a huge amount of smartness here, and it could be that my English skills are poor, but I believe replacing “and” with “or” will serve the method’s doc better.</p>
+
+<p> </p>
+
+<p>If the BCL was open source I would have sent a patch with the doc fix …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/17/autostubber-to-ease-stub-based-unit-tests">AutoStubber to ease stub based unit tests</a></h2>
+    <div class="meta">
+        <time>on January 17, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/testing" rel="tag">testing</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Tired of setting up stubs for your class under test?</p>
+
+<p>Tired of compile errors when you add one more dependency to a class?</p>
+
+<p>The AutoStubber to the rescue.</p>
+
+<p>Given</p>
+
+<p>```
+interface IServiceA
+{
+	string GetThis(long param);
+}
+interface IServiceB
+{
+	Do DoThat(string s);
+}</p>
+
+<p>class MyService
+{
+	public MyService(IServiceA a, IServiceB b) { … }
+	…
+}</p>
+
+<p>…
+```</p>
+
+<p>you can write;</p>
+
+<p>```
+var service = new AutoStubber.Create();
+// Arrange
+var theString = "whatever";
+service.Stubs().Get.Stub(x=&gt;x.GetThis(0).IgnoreArguments().Return(theString);</p>
+
+<p>// Act
+service.Execute();</p>
+
+<p>// Assert
+service.Stubs().Get.AssertWasCalled(x=&gt;x.DoThat(theString);
+```</p>
+
+<p> </p>
+
+<p>The code for AutoStubber:</p>
+
+<ul>
+  <li>Mind you – it’s not the prettiest, but it gets the job done</li>
+</ul>
+
+<p>```
+public class AutoStubber<t> where T : class
+{
+	static readonly Type TypeofT;
+	static readonly ConstructorInfo Constructor;
+	static readonly Type[] ParameterTypes;
+	static readonly Dictionary&lt;object, AutoStubber<t>&gt; Instances = new Dictionary&lt;object, AutoStubber<t>&gt;();
+	static AutoStubber()
+	{
+		TypeofT = typeof(T);
+		Constructor = TypeofT.GetConstructors().OrderByDescending(ci =&gt; ci.GetParameters().Length).First();
+		ParameterTypes = Constructor.GetParameters().Select(pi =&gt; pi.ParameterType).ToArray();
+	}</t></t></t></p>
+
+<pre><code>public static AutoStubber&lt;T&gt; GetStubberFor(T obj)
+{
+	return Instances[obj];
+}
+
+bool _created;
+public T Create()
+{
+	if (_created)
+		throw new InvalidOperationException(&amp;quot;Create can only be called once per AutoStubber&amp;quot;);
+	_created = true;
+	return Instance;
+}
+
+readonly Dictionary&lt;Type, object&gt; _dependencies = new Dictionary&lt;Type, object&gt;();
+private T Instance { get; set; }
+public AutoStubber()
+{
+	var parameters = new List&lt;object&gt;(ParameterTypes.Length);
+	foreach (var parameterType in ParameterTypes)
+	{
+		var parameter = MockRepository.GenerateStub(parameterType);
+		parameters.Add(parameter);
+		_dependencies[parameterType] = parameter;
+	}
+	Instance = (T)Constructor.Invoke(parameters.ToArray());
+	Instances[Instance] = this;
+}
+public TDependency Get&lt;TDependency&gt;()
+{
+	return (TDependency)_dependencies[typeof(TDependency)];
+} } public static class AutoStubberExtensions {
+public static AutoStubber&lt;T&gt; Stubs&lt;T&gt;(this T obj)
+	where T : class
+{
+	return AutoStubber&lt;T&gt;.GetStubberFor(obj);
+} } ```
+</code></pre>
+
+<p> </p>
+
+<p>I know there is the AutoMockingContainer, and various other stuff out there, but this thing just was very natural to me, it uses a very simple API (do not need to keep reference to the Container), and took me less than an hour to knock off.</p>
+
+<p>An enhancement I consider would be to allow setting pre-created values to some of the parameters. But meanwhile I did not happen to need it.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2010/01/01/interlocked-dot-increment-vs-dot--lock-ndash-surprise-surprise">Interlocked.Increment vs. lock &ndash; surprise surprise !</a></h2>
+    <div class="meta">
+        <time>on January 1, 2010</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p> </p>
+
+<p>Problem at hand: an ID generator.</p>
+
+<p> </p>
+
+<p>Like many other things, developers can be categorized into three types : *
+- Does not know anything about concurrency issues. Might try to put lock(this) on a couple of code blocks, and hope it will help. 
+- Will throw lock(locker) statements where ever needed. Probably even use a ReaderWriteLock, or the Slim-er brother of his 
+- Will use lock-free constructs. </p>
+
+<p>Now I am definitely not a concurrency guru like <a href="http://www.lnbogen.com/">my</a><a href="http://ripper234.com/">teammates</a>, however when I looked at a code for an ID generator that had</p>
+
+<p><code>
+public int GetNextId() {
+	lock(locker)
+		return nextId++;
+}
+</code></p>
+
+<p>I immediately ran a git-checkout, changed that offending piece of code to</p>
+
+<p><code>
+public int GetNextId() {
+	return Interlocked.Increment(ref nextId) – 1;
+}
+</code></p>
+
+<p>And created a patch to send to the innocent owner of the code.</p>
+
+<p> </p>
+
+<p>Smart heh? **</p>
+
+<p> </p>
+
+<p>Then I thought that it won’t hurt to throw in a little proof for this amazing improvement.</p>
+
+<p>Running 1000 calls to a GetNextId that was using a lock, took longer than calling the method using Interlocked !  Ah Ha – who’s the man?</p>
+
+<p> </p>
+
+<p>Then I realised that a better test will be to run these 100 calls <strong>in parallel</strong>. That is after all the whole idea of a shared generator. Many threads might need to call it on the same time !</p>
+
+<p> </p>
+
+<p>To my surprise, when asking for IDs in parallel, the interlocked construct was almost always slower, taking about 150% of the time the lock construct took on most runs (I tried this again and again, every time averaging 100 repeats).</p>
+
+<p> </p>
+
+<p>Here’s a screenshot of the test run</p>
+
+<p><img src="http://kenegozi.com/blog/uploaded/WindowsLiveWriter/Interlocked.Increme.locksurprisesurprise_2D4/d163d725-f254-4820-8b6f-4ce0eaf37697.png" alt="interlocked vs lock" /></p>
+
+<p> </p>
+
+<p>Code is here: <a href="https://gist.github.com/24b9012a49392c4e458b">https://gist.github.com/24b9012a49392c4e458b</a></p>
+
+<p> </p>
+
+<p>After thinking about this a little, I think that I have an idea why this is happening, assuming my SpawnAndWait call is not entirely stupid (is it?)</p>
+
+<p> </p>
+
+<p>So I call you my dear readers (most of which are way smarter than I am): what is your take on that? why did that happen? and would <strong>you</strong> have chosen lock or interlocked for an ID generator?</p>
+
+<p> </p>
+
+<p> </p>
+
+<ul>
+  <li>apparently there’s at least one more type – smartass, and I’m there</li>
+</ul>
+
+<p>** probably not</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/10/01/linq-cast-extension-method-and-invalidcastexception">Linq Cast extension method and InvalidCastException</a></h2>
+    <div class="meta">
+        <time>on October 1, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>For times when one wants the average of a collection of numbers, Linq’s Average() extension method is an easy win.</p>
+
+<p>The problem is that it won’t work on a collection of byte elements.</p>
+
+<p>The initial attempt would be:</p>
+
+<p><code>
+var numbers = new byte[] {1, 2, 3, 4};
+var avg = numbers.Cast&lt;int&gt;().Average();
+Console.WriteLine(avg);
+</code></p>
+
+<p> </p>
+
+<p>However this will fail with </p>
+
+<p><code>
+Unhandled Exception: System.InvalidCastException: Specified cast is not valid.
+   at System.Linq.Enumerable.d__aa`1.MoveNext()
+   at System.Linq.Enumerable.Average(IEnumerable`1 source)
+</code></p>
+
+<p> </p>
+
+<p>The workaround is to cast using the Select operator, and manually cast to int:</p>
+
+<p><code>
+var numbers = new byte[] {1, 2, 3, 4};
+var avg = numbers.Select(b=&gt;(int)b).Average();
+Console.WriteLine(avg);
+</code></p>
+
+<p> </p>
+
+<p> </p>
+
+<p>The author of the best explanation that will be posted as a comment to this post will get a huge prize (in other words – might get a mention in a follow up post …)</p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> 
+This was a short reminder-post. I do have some more interesting things awaiting in the pipe, and I promise to re-attend my blog now that the pressure of the new baby and of setting up the IDCC conference is out of the way. Good things comes to those who wait blah blah blah.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/05/03/system-dot-datetime-dot-date-or-why-a-code-review-is-definitely-a-good-thing">System.DateTime.Date, or why a code review is definitely a good thing</a></h2>
+    <div class="meta">
+        <time>on May 3, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So today a new dev has joined the team. Not too soon after he got his hands on one of our solutions I got an IM from him with the following snippet:</p>
+
+<p><code>
+public static DateTime GetDateOnly(this DateTime dateTime)
+{
+   return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+}
+</code></p>
+
+<p>My code. My blame.</p>
+
+<p>It apparently skipped the <a href="http://msdn.microsoft.com/en-us/library/system.datetime.date.aspx">DateTime.Date</a> property of System.DateTime. After over 5 years in C# world.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/03/08/debug-driven-development">Debug Driven Development</a></h2>
+    <div class="meta">
+        <time>on March 8, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/debugging" rel="tag">debugging</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Imagine you have something weird going on in an application.</p>
+
+<p>Something is not behaving they way it should be, yet no exception is being thrown.</p>
+
+<p> </p>
+
+<p>Then drilling down you find this piece of magic:</p>
+
+<p><code>
+try
+{
+    DoSomething();
+}
+catch (Exception exception)
+{
+    exception.ToString();
+}
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2009/01/12/beware-of-static-session">Beware of static session</a></h2>
+    <div class="meta">
+        <time>on January 12, 2009</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The bug:
+Weird behaviours regarding session management</p>
+
+<p> 
+The blame:
+(within session access wrapper static class):</p>
+
+<p><code>
+private static IDictionary session;
+...
+if (session == null)&amp;#160;&amp;#160; session = new SessionAdapter(HttpContext.Current.Session);
+...
+</code></p>
+
+<p>so the first time the last line is called, the then-current-session is stored in a static variable, thus the first session is always referenced even for newer sessions.</p>
+
+<p> </p>
+
+<p>The reason for the above code being present in the first place is that:</p>
+
+<p><code>
+public static void SetSessionTo(IDictionary newSession)
+{
+    session = newSession;
+}
+</code></p>
+
+<p>So that tests that a stubbed ‘session’ could have been injected into the session-wrapper-static-class thingie.</p>
+
+<p>Clearly, the implementation was wrong.</p>
+
+<p> 
+The fix:
+now the code looks like this:</p>
+
+<p>```
+private static IDictionary stubbedSession;</p>
+
+<p>static IDictionary Session
+{
+    get { return stubbedSession ?? MonoRailHttpHandler.CurrentContext.Session; }
+}
+```</p>
+
+<p>And these were 60 seconds on careless coding.</p>
+
+<p> </p>
+
+<p>Ken, the careless coder</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/30/serving-a-file-from-a-wcf-service">Serving a file from a WCF service</a></h2>
+    <div class="meta">
+        <time>on October 30, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following my <a href="http://kenegozi.com/Blog/2008/10/23/mini-web-server-using-wcf.aspx">post on mini-web server with WCF</a>, I’ve been asked about how to serve static files (images, stylesheets, scripts).</p>
+
+<p>WCF services can return a Stream, so it’s just a matter of calling File.OpenRead to get a the stream</p>
+
+<p>```</p>
+
+<p>publicStreamGetFile(stringfile)
+        {</p>
+
+<pre><code>        // We forbid access to directories outside of the site root 
+</code></pre>
+
+<p>if (file.Contains(“..”))
+                thrownewSecurityException();</p>
+
+<pre><code>        varext=Path.GetExtension(file).ToLower().TrimStart('.');
+
+ 
+
+        // Just a helper that will 
+
+        //set WebOperationContext.Current.OutgoingResponse.ContentType 
+
+
+
+        SetContentType(ContentInfo.For(ext));
+
+        varfilePath=Path.Combine(this.siteRoot, file);
+        returnFile.OpenRead(GetActualFilePath(filePath));
+    }
+</code></pre>
+
+<p>```</p>
+
+<p>ContentInfo.For() is a helper for mapping an extension to a mimetype, with a two-stage lookup:</p>
+
+<p>```
+///&lt;summary&gt;
+/// Represents info on a given file
+///&lt;/summary&gt;
+publicstaticclassContentInfo
+    {
+        staticreadonlyKeyValuePair&lt;MimeTypes, string&gt;[] contentInfoFor=new[]
+        {
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Js, “text/javascript”),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Css, “text/css”),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Html, “text/html”),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Plain, “text/plain”),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Gif, “image/gif”),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Jpeg, “image/jpeg”),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Tiff, “image/tiff”),
+        };</p>
+
+<pre><code>    ///&lt;summary&gt; /// Gets the mime type for a given &lt;see cref="MimeTypes"/&gt; ///&lt;/summary&gt; ///&lt;param name="mimeType"&gt;The file's &lt;see cref="MimeTypes"/&gt;&lt;/param&gt; ///&lt;returns&gt;The file's mime type&lt;/returns&gt; publicstaticstringFor(MimeTypesmimeType)
+    {
+        return (frompincontentInfoFor wherep.Key==mimeType selectp.Value)
+               .First();
+    }
+
+    ///&lt;summary&gt; /// Gets the mime type for a given extension ///&lt;/summary&gt; ///&lt;param name="extension"&gt;The file's extension&lt;/param&gt; ///&lt;returns&gt;The file's mime type&lt;/returns&gt; publicstaticstringFor(stringextension)
+    {
+        returnFor(MimeType.For(extension));
+    }
+} ```
+</code></pre>
+
+<p>and </p>
+
+<p>```
+///&lt;summary&gt;
+/// Helpers for <see cref="MimeTypes"></see>///&lt;/summary&gt;
+publicclassMimeType
+    {
+        staticreadonlyKeyValuePair&lt;string, MimeTypes&gt;[] mimeTypeForExtension=new[]
+            {
+                newKeyValuePair&lt;string, MimeTypes&gt;(“js”, MimeTypes.Js),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“css”, MimeTypes.Css),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“htm”, MimeTypes.Html),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“html”, MimeTypes.Html),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“txt”, MimeTypes.Plain),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“gif”, MimeTypes.Gif),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“jpg”, MimeTypes.Jpeg),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“jpeg”, MimeTypes.Jpeg),
+                newKeyValuePair&lt;string, MimeTypes&gt;(“tiff”, MimeTypes.Tiff),
+            };</p>
+
+<pre><code>    ///&lt;summary&gt; /// Selects a &lt;see cref="MimeTypes"/&gt; for a given file extension  ///&lt;/summary&gt; ///&lt;param name="extension"&gt;The file's extension&lt;/param&gt; ///&lt;returns&gt;The file's mime type&lt;/returns&gt; publicstaticMimeTypesFor(stringextension)
+    {
+        extension=extension.TrimStart('.');
+
+        return (frompinmimeTypeForExtension wherep.Key==extension selectp.Value)
+            .First();
+
+    }
+} ```
+</code></pre>
+
+<p>When MimeTypes are:</p>
+
+<p><code>
+publicenumMimeTypes
+    {
+        Js, Css, Html, Gif, Jpeg, Tiff, Plain
+    }
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/23/mini-web-server-using-wcf">Mini web server using WCF</a></h2>
+    <div class="meta">
+        <time>on October 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve written a simple application for a friend that monitors the fax machine in his office.</p>
+
+<p>The machine saves incoming messages in the files server, and he needed a way to manipulate the files in various ways. </p>
+
+<p>One of the things he wanted was the ability to present data and allow actions to run over the web. Also </p>
+
+<p>As he’s thinking of deploying this on multiple different sites, and would like to be able to set this up easily without configuring web servers etc., and as there’s hardly any server-side logic to the UI anyway (the front is JSON consuming jQuery site), and there’s a windows service in there anyway for running some recurring tasks, I decided to set up the UI as a WCF service with WebHttpBinding, hosted within the Windows Service.</p>
+
+<p>Here’s the code for the “Web Server”:</p>
+
+<p>```
+///&lt;summary&gt;
+/// Serving HTTP for the UI
+///&lt;/summary&gt;
+publicclassWebServer 
+    {
+        ///&lt;summary&gt;
+/// Access to the current instance of <see cref="WebServer"></see>
+///&lt;/summary&gt;
+publicstaticWebServerCurrent { get; privateset; }</p>
+
+<pre><code>    ///&lt;summary&gt; /// The current settings ///&lt;/summary&gt; publicISettingsSettings { get; privateset; }
+
+    privateWebServiceHosthost;
+    privatereadonlyILoggerlogger;
+
+    ///&lt;summary&gt; /// New WebServer ///&lt;/summary&gt; ///&lt;param name="logger"&gt;&lt;see cref="ILogger"/&gt;&lt;/param&gt; ///&lt;param name="settings"&gt;Settings&lt;/param&gt; publicWebServer(ILoggerlogger, ISettingssettings)
+    {
+        this.logger=logger;
+        Settings=settings;
+        Current=this;
+    }
+
+    ///&lt;summary&gt; /// Start a new server ///&lt;/summary&gt; publicvoidStart()
+    {
+        logger.Info("Initialising the web server");
+        host=newWebServiceHost(typeof(FaxManagerService), newUri("http://localhost:"+Settings.WebServerPort+"/"));
+        varbindings=newWebHttpBinding();
+
+        host.AddServiceEndpoint(typeof(IFaxManagerService), bindings, "");
+        host.Description.Behaviors.Add(newSessionAwareAttribute());
+
+        varsdb=host.Description.Behaviors.Find&lt;ServiceDebugBehavior&gt;();
+        sdb.HttpHelpPageEnabled=false;
+        
+        logger.Info("Starting the web server");
+        host.Open();
+        logger.Info("The web server was started successfully on port "+Settings.WebServerPort);
+    }
+
+    ///&lt;summary&gt; /// Restart the server (effectively creating a new service host) ///&lt;/summary&gt; publicvoidRestart()
+    {
+        Stop();
+        Start();
+    }
+
+    ///&lt;summary&gt; /// Stop the server ///&lt;/summary&gt; publicvoidStop()
+    {
+        host.Close();
+        host=null;
+    }
+} ```
+</code></pre>
+
+<p>the “Web Application” is a WCF ServiceContract named IFaxManaderService.</p>
+
+<p>I’ll post about it, and about interesting related stuff later on</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/17/using-generic-classes-and-avoid-locks">Using generic classes and avoid locks</a></h2>
+    <div class="meta">
+        <time>on October 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/d9" rel="tag">d9</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>In D9.Commons, there’s a class responsible for mapping from enum values to their respective description, and vice versa - <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Internal/DescribedEnumHandler.cs">DescribedEnumHandler.cs</a></p>
+
+<p>The initial API I had in mind was</p>
+
+<p>```</p>
+
+<p>var enumValue = Enums.From<myenum>("The description");</myenum></p>
+
+<p>var enumDescription = Enums.ToDescription(MyEnum.Something);</p>
+
+<p>```</p>
+
+<p>The Enums class would hold an IDictionary to map from the given Enum type, to it’s <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Internal/DescribedEnumHandler.cs">DescribedEnumHandler</a></p>
+
+<p>Then came the question: when should I initialise that map, and how should I allow access to it?</p>
+
+<p>Solution 1:
+Synchronise access to the map.</p>
+
+<p>Cons: every access to the Enums methods will require synchronisation code.</p>
+
+<p>Solution 2:
+Allow only one point of initialisation, through a static Initialise(…) method, accepting enum types, or assemblies with enums. This method will be called when the application loads, and after all of the enums are initialised, all the following usages will be lock free.</p>
+
+<p>Cons:</p>
+
+<p>a. It’s ugly.</p>
+
+<p>b. You end up creating way too many handlers, even if you won’t use most or even any of them.</p>
+
+<p>c. It really is ugly. You don’t believe me? look <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Enums.cs?r=3">here</a>.</p>
+
+<p>Solution 3:
+Instead of using Generic methods (From<t> and ToDescription<t>), I changed the Enums class to a generic Enum<t> class.</t></t></t></p>
+
+<p>within the class, there’s a <strong>single</strong> static member, <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Internal/DescribedEnumHandler.cs">DescribedEnumHandler</a> of T.</p>
+
+<p>Every call to Enum<t> for a new T will instantiate the needed handler, Just In Time. </t></p>
+
+<p>That’s because with generic types, every concrete type is a new type, so List<int> and List<long> are two separate types, without any inheritance relationship between them, so their static members are not shared.</long></int></p>
+
+<p>That’s the class I ended up with: <a href="http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Enum.cs?r=25">Enums.cs</a></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/16/generic-types-vs-dot--generic-methods-can-you-tell-the-difference">Generic types vs. Generic methods - can you tell the difference?</a></h2>
+    <div class="meta">
+        <time>on October 16, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>```</p>
+
+<p>classWrapper
+{
+    publicstaticintCounter{ get; privateset;}
+    staticWrapper()
+    {
+        Counter=0;
+    }
+    publicTGet<t>()
+    {
+        ++Counter;
+        returndefault(T);
+    }
+}</t></p>
+
+<p>classWrapper<t>
+{
+    publicstaticintCounter{ get; privateset;}
+    staticWrapper()
+    {
+        Counter=0;
+    }
+    publicTGet()
+    {
+        ++Counter;returndefault(T); </t></p>
+
+<pre><code>}
+</code></pre>
+
+<p>}   }</p>
+
+<p>```</p>
+
+<p>“The first uses generic methods while the second is a generic class” is true, but is not what I’m looking for here …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/15/single-and-looking">Single and looking</a></h2>
+    <div class="meta">
+        <time>on October 15, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/css" rel="tag">css</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/html" rel="tag">html</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/personal" rel="tag">personal</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/javascript" rel="tag">javascript</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/open-source-software" rel="tag">open-source-software</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>explanation (before the wife kills me): I have some free time in the coming months, so I’m looking for interesting consulting gigs.</p>
+
+<p>So, if you’re in a company / dev team, and looking for some help with Castle (Windsor, MonoRail), NHibernate, or general information system design and architecture advices or training, setting up build and test environments, or any other of the things I rant about in this blog, then I’m your guy. </p>
+
+<p>I also do web-client ninja work, dancing the crazy css/html/javascript tango (jQuery: yes, Ms-Ajax: no) </p>
+
+<p>I currently live in Israel, but I’m fine with going abroad for short terms if you’re an off-shore client. </p>
+
+<p>you can contact me at “ken@kenegozi.com”</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/12/described-enums-in-nhibernate">Described Enums in NHibernate</a></h2>
+    <div class="meta">
+        <time>on October 12, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/d9" rel="tag">d9</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>First feature in D9.NHibernate: DescribedEnumStringType</p>
+
+<p>That’s a generic IUserType for mapping enum columns using the descriptions of values instead of their names.</p>
+
+<p>It depends on D9.Commons which contains the Described Enum helpers <a href="http://kenegozi.com/Blog/2008/10/10/described-enums-2-dot-0.aspx">described in an early post</a></p>
+
+<p>Usage:</p>
+
+<p>given the following enum:</p>
+
+<p>```
+usingSystem.ComponentModel;</p>
+
+<p>namespaceOpenUni.Domain.Modules
+{
+    publicenumModuleTypes
+    {
+        [Description(“ר”)]
+        Standard,</p>
+
+<pre><code>    [Description("מ")]
+    Advanced,
+
+    [Description("מס")]
+    AdvancedSeminar,
+
+    [Description("תש")]
+    Masters
+} } ```
+</code></pre>
+
+<p>mapping a field of type ModuleTypes will look like that:</p>
+
+<p><code>
+&lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
+              D9.NHibernate" /&gt;
+</code></p>
+
+<p>or if you use Castle ActiveRecord attributes for mapping:</p>
+
+<p><code>
+[Property(ColumnType = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], D9.NHibernate")]
+public virtual ModuleTypes ModuleType {get; set;}
+</code></p>
+
+<p>Code is here:</p>
+
+<p><a href="http://code.google.com/p/d-9/source/browse/#svn/trunk">http://code.google.com/p/d-9/source/browse/#svn/trunk</a></p>
+
+<p>I’ll build and upload binaries once I get some time for that. meanwhile you should be able to just svn-co the code, then nant from the root. (assuming nant 0.86b2 and .net 3.5 on the machine) </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/10/described-enums-2-dot-0">Described Enums 2.0</a></h2>
+    <div class="meta">
+        <time>on October 10, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>As part of my university seminar, I found myself writing this little enum: </p>
+
+<p>```
+usingSystem.ComponentModel;</p>
+
+<p>namespaceOpenUni.Domain.Modules
+{
+    publicenumModuleTypes
+    {
+        [Description(“ר”)]
+        Standard,</p>
+
+<pre><code>    [Description("מ")]
+    Advanced,
+
+    [Description("מס")]
+    AdvancedSeminar,
+
+    [Description("תש")]
+    Masters
+} } ```
+</code></pre>
+
+<p>If you can’t read Hebrew then for the sake of this post, the following is applicable:</p>
+
+<p>```
+usingSystem.ComponentModel;</p>
+
+<p>namespaceOpenUni.Domain.Modules
+{
+    publicenumModuleTypes
+    {
+        [Description(“A standard module”)]
+        Standard,</p>
+
+<pre><code>    [Description("An advanced module")]
+    Advanced,
+
+    [Description("An advanced seminar")]
+    AdvancedSeminar,
+
+    [Description("Module in a Masters course")]
+    Masters
+} } ```
+</code></pre>
+
+<p>You want the description of a given value, or to parse a given description string (say from the DB) to get the value it represents.</p>
+
+<p>Many code bases I’ve seen contains an EnumHelper class or a variation of one, which allow just the same. Many of these use un-cached reflection to achieve that. As in my scenario this mapping will happen many (I mean <em>many</em>) times, I thought about making it a bit more agile.</p>
+
+<p>Here’s what I got:</p>
+
+<p>```</p>
+
+<p>usingSystem;
+usingSystem.Collections;
+usingSystem.Collections.Specialized;
+usingSystem.Collections.Generic;
+usingSystem.ComponentModel;
+usingSystem.Linq;
+usingSystem.Reflection;</p>
+
+<p>namespace NHibernate.Type</p>
+
+<p>{
+    ///&lt;summary&gt;
+/// Allow access to enum values with 
+///<see cref="DescriptionAttribute">DescriptionAttribute</see>
+/// set on them
+///&lt;/summary&gt;
+publicstaticclassDescribedEnumHandlers
+    {
+        privatestaticreadonlyIDictionaryhandlers=newListDictionary();</p>
+
+<pre><code>    ///&lt;summary&gt; /// Initialises enum types to be used with the &lt;see cref="DescribedEnumHandlers"&gt;&lt;/see&gt; ///&lt;/summary&gt; ///&lt;param name="assemblies"&gt;The assemblies to grab described enums from&lt;/param&gt; publicstaticvoidInitialise(paramsAssembly[] assemblies)
+    {
+        Initialise((IEnumerable&lt;Assembly&gt;)assemblies);
+    }
+
+    ///&lt;summary&gt; /// Initialises enum types to be used with the &lt;see cref="DescribedEnumHandlers"&gt;&lt;/see&gt; ///&lt;/summary&gt; ///&lt;param name="assemblies"&gt;The assemblies to grab described enums from&lt;/param&gt; publicstaticvoidInitialise(IEnumerable&lt;Assembly&gt;assemblies)
+    {
+        vartitledEnums=fromassemblyinassemblies selectassembly intoa fromtypeina.GetTypes()
+
+                              wheretype.IsEnum&amp;amp;&amp;amp;
+                                    (fromfintype.GetFields()
+                                     wheref.GetCustomAttributes(typeof (DescriptionAttribute), false).Length==1 selectf
+                                    ).Count() &gt;0 orderbytype.FullName selecttype;
+
+        foreach (vartypeintitledEnums)
+        {
+            handlers.Add(type, newDescribedEnumHandler(type));
+        }
+    }
+
+    ///&lt;summary&gt; /// Extract the description for a given enum value ///&lt;/summary&gt; ///&lt;param name="value"&gt;An enum value&lt;/param&gt; ///&lt;returns&gt;It's description, or it's name if there's no registered description for the given value&lt;/returns&gt; publicstaticstringEnumToDescription(objectvalue)
+    {
+        varhandler=handlers[value.GetType()] asDescribedEnumHandler;
+        
+        returnhandler!=null?handler.GetDescriptionFrom((Enum)value) 
+            : value.ToString();
+    }
+
+    ///&lt;summary&gt; /// Gets the enum value for a given description or value ///&lt;/summary&gt; ///&lt;typeparam name="T"&gt;The enum type&lt;/typeparam&gt; ///&lt;param name="stringValue"&gt;The enum value or description&lt;/param&gt; ///&lt;returns&gt;An enum value matching the given string value, as description (using &lt;see cref="DescriptionAttribute"&gt;DescriptionAttribute&lt;/see&gt;) or as value&lt;/returns&gt; publicstaticEnumToEnumValue&lt;T&gt;(thisstringstringValue)
+        whereT :struct
+    {
+        vartype=typeof (T);
+        varhandler=handlers[type] asDescribedEnumHandler;
+
+        returnhandler!=null ?handler.GetValueFrom(stringValue)
+            : (Enum)Enum.Parse(type, stringValue, false);
+    }
+    
+    ///&lt;summary&gt; /// Used to cache enum values descriptions mapper ///&lt;/summary&gt; privateclassDescribedEnumHandler
+    {
+        privatereadonlyIDictionary&lt;Enum, string&gt;toDescription=newDictionary&lt;Enum, string&gt;();
+        privatereadonlyIDictionary&lt;string, Enum&gt;fromDescription=newDictionary&lt;string, Enum&gt;();
+        publicDescribedEnumHandler(Typetype)
+        {
+            varenumEntrys=fromfintype.GetFields()
+                             letattributes=f.GetCustomAttributes(typeof(DescriptionAttribute), false)
+                             whereattributes.Length==1 letattribute= (DescriptionAttribute)attributes[0]
+                             selectnew
+                             {
+                                 Value= (Enum)Enum.Parse(type, f.Name),
+                                 attribute.Description
+                             };
+
+            foreach (varenumEntryinenumEntrys)
+            {
+                toDescription[enumEntry.Value] =enumEntry.Description;
+                fromDescription[enumEntry.Description] =enumEntry.Value;
+            }
+        }
+
+        publicstringGetDescriptionFrom(Enumvalue)
+        {
+            returntoDescription[value];
+        }
+
+        publicEnumGetValueFrom(stringtitle)
+        {
+            returnfromDescription[title];
+        }
+
+    }
+
+} }
+</code></pre>
+
+<p>```</p>
+
+<p>Usage:</p>
+
+<p>```
+DescribedEnumHandlers.Initialise(typeof(ModuleTypes).Assembly);</p>
+
+<p>Console.WriteLine(DescribedEnumHandlers.EnumToDescription(ModuleTypes.Standard));
+Console.WriteLine(“ר”.ToEnumValue<moduletypes>());
+```</moduletypes></p>
+
+<p>Next time I’ll show you how I made it play nicely with NHibernate</p>
+
+<ul>
+  <li>code is licensed as BSD if you wish to use it</li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/10/05/thats-a-better-demo-code">That's a better demo code</a></h2>
+    <div class="meta">
+        <time>on October 5, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Lately <a href="http://kenegozi.com/Blog/2008/09/23/msdn-killed-my-using-directive.aspx">I ranted a bit</a> about the responsibility of community leaders, to not present totally crappy code, at least not without a disclaimer.</p>
+
+<p><a href="http://mikehadlow.blogspot.com/2008/10/using-google-maps-geocode-service-to.html">This is a better way of doing that</a>. Another great post from Mike.</p>
+
+<p>I might have also try-catch-ed the </p>
+
+<p><code>
+(HttpWebRequest)WebRequest.Create(url)
+</code>
+bit, but anyway that’s good code for people to copy&amp;paste into their project without leaving HttpWebResponses and other Streams in danger of hanging loose.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/09/23/msdn-killed-my-using-directive">MSDN Killed my using directive</a></h2>
+    <div class="meta">
+        <time>on September 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m now sitting in a certain lecture by a well known MS speaker.</p>
+
+<p>The title is “ASP.NET Hidden Gems”, but that’s not the point.</p>
+
+<p>During the presentation the dude is showing nice things like Custom Build Providers, Custom Expression Builders, Virtual Path Provider (that’s a nice one), Session State Partitioning (nice), and other stuff.</p>
+
+<p>This is all great and cool and nice and blah blah blah.</p>
+
+<p>However, now he’s just showed how he’s using a CustomBuildProvider to “make data access more efficient”, by setting a custom build provider for data-set xsd files, creating cleaner Data objects instead of TypedDataSets.</p>
+
+<p>That’s a very nice thing.</p>
+
+<p>However, his demo code, splashed over two 100” mega screens, included a use of SqlConnection and DataReaders, without using “using”.</p>
+
+<p>heck, he didn’t even dispose the objects on “finally”.</p>
+
+<p>I mean - WTF?</p>
+
+<p>That’s the reason I hate DEMO codes. People in the crowd is looking at that, and then they go ahead and write the same code in their day job. And then I get called in to fix it.</p>
+
+<p>Was it so difficult for the guy to write better code? heck, the “using” keyword would have eliminated at least 4 lines from the demo, so it would even be more presentable.</p>
+
+<p>I simply don’t get it.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/08/24/keylevel-locked-cache-real-life-implementation">Key-level locked cache - real life implementation</a></h2>
+    <div class="meta">
+        <time>on August 24, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following <a href="http://kenegozi.com/Blog/2008/08/23/lockers-dictionary.aspx">my post on key-level locked cache</a>, I got the following piece of code from my friend Moran Benisty, implementing the same idea over XmlDocuments which is being loaded over the Internet, and ASP.NET’s Cache.</p>
+
+<p>This is a real life code. He’s using it on a very large-scale website in production.</p>
+
+<p>As usual - use at your own risk, and be kind enough to share thoughts and improvement ideas here for his use.</p>
+
+<p>```
+public static class XmlService
+{
+    private static Dictionary _locks = new Dictionary();</p>
+
+<pre><code>public static XmlDocument GetXml(string url)
+{
+    return GetXml(url, new TimeSpan(1, 0, 0), false);
+}
+
+public static XmlDocument GetXml(string url, TimeSpan timeToHold, bool autoRefresh)
+{
+    if (HttpRuntime.Cache[url] as string == "Failed")
+        return null;
+
+    XmlDocument xml = HttpRuntime.Cache[url] as XmlDocument;
+    if (xml != null)
+        return xml;
+
+    if (!_locks.ContainsKey(url))
+        lock (_locks)
+            if (!_locks.ContainsKey(url))
+                _locks.Add(url, new object());
+
+    if (HttpRuntime.Cache[url] == null)
+        lock (_locks[url])
+            if (HttpRuntime.Cache[url] == null)
+            {
+                xml = LoadXml(url);
+                if (xml != null)
+                    HttpRuntime.Cache.Insert(url, xml, null,
+                        DateTime.Now.Add(timeToHold),
+                        System.Web.Caching.Cache.NoSlidingExpiration,
+                        System.Web.Caching.CacheItemPriority.NotRemovable,
+                        delegate(string dataKey, object value, CacheItemRemovedReason reason)
+                        {
+                            if (autoRefresh)
+                                GetXml(url, timeToHold, autoRefresh);
+                        }
+                );
+                else
+                    HttpRuntime.Cache.Insert(url, "Failed", null, DateTime.Now.AddMinutes(5), System.Web.Caching.Cache.NoSlidingExpiration);
+            }
+
+    xml = HttpRuntime.Cache[url] as XmlDocument;
+    return xml;
+}
+
+private static readonly ILog _errorlog = LogManager.GetLogger("ErrorLogger");
+private static XmlDocument LoadXml(string url)
+{
+    try
+    {
+        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+        request.Timeout = 3000;
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        XmlDocument xml = new XmlDocument();
+        xml.Load(response.GetResponseStream());
+        return xml;
+    }
+    catch (Exception ex)
+    {
+        _errorlog.Error(ex.Message, ex);
+        return null;
+    }
+} } ```
+</code></pre>
+
+<p>I’d have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func<t>, then have a separate XmlService use KeyLevelCacheService internally.</t></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/08/23/lockers-dictionary">Lockers dictionary</a></h2>
+    <div class="meta">
+        <time>on August 23, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Situation:
+- Your application aggregates data from external sources (say XML data returned via Http)<br />
+- You want to cache such data locally, say up to an hour<br />
+- You have some processing mechanism going over the cached data, using multiple threads</p>
+
+<p>Problem:
+A thread looking for an item in the cache to find that it’s not there, would issue the http request to fill the cache. A second thread might want to initiate another call if it needs the data before the first thread has updated the cache.</p>
+
+<p>Solution 1:
+use locks on the cache object.</p>
+
+<p>problem with that: you lock the whole cache, so other threads looking for a different type of data will be blocked, even though it’s okay for them to get data from the cache, and even to insert data with a different key into the cache.</p>
+
+<p>Solution 2:
+Keep a key per requested entry. Now you only lock what needs locking.</p>
+
+<p>You’d keep a dictionary of lockers ( new object() ), then the action of obtaining a locker will cause a full cache lock, however the lock duration will be short (the time it takes to retrieve an object from a Hashtable, or to new an object and put it in the Hashtable), and then the long out-of-process operation of loading the object will be with a lock on the specific key, while the rest of the Cache is accessible for reads and writes by other threads.</p>
+
+<p>Note - this is notepad (or rather WindowsLiveWriter) code. You’d need to fix syntax errors, and inspect the usage. License is MIT - Use at your own risk, and don’t forget to attribute it to the writer</p>
+
+<p>```</p>
+
+<p>class KeyLevelSafeCache</p>
+
+<p>{</p>
+
+<p>IDictionary lockers = new Hashtable();</p>
+
+<p>IDictionary cache = new Hashtable();</p>
+
+<p>object ObtainLockerFor(string key)</p>
+
+<p>{</p>
+
+<pre><code>  return thread-safely-get-an-object-from-lockers-hashtable()
+</code></pre>
+
+<p>}   </p>
+
+<p>public T Get<t>(string key, Func<t> load())</t></t></p>
+
+<p>{</p>
+
+<pre><code>  var locker = ObtainLockerFor(key);
+
+  //now retrieve the object from the cache using 'locker'
+</code></pre>
+
+<p>}</p>
+
+<p>}</p>
+
+<p>```</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/07/31/stt-extra-comma-in-collection-initialisers-and-enums">STT - Extra comma in collection initialisers and enums</a></h2>
+    <div class="meta">
+        <time>on July 31, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>You all know what STL is (ok, not all of you, some have skipped C++ altogether and some have only created a few Carnivore/Herbivore classes for Uni).</p>
+
+<p>But you don’t know what STT is.</p>
+
+<p>Well I’ll tell you, just sit nicely and listen.</p>
+
+<p>STT is “Silly Tip &amp; Trick”.</p>
+
+<p>This is one:</p>
+
+<p>The Extra comma STT
+You probably already know of the collection initialiser syntax introduced into C# 3.0:</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/1a6d2ba2-b96c-44ed-92fb-2e005b609e85.png" alt="stt_comma 1" /></p>
+
+<p>At times, you’d have a long list of items in the initialiser, and you find yourself doing copy&amp;pastes to add lines, or removing lines from the list. There’s this little extra step you need to do, that is making sure that you have a comma between any two adjacent lines.</p>
+
+<p>That makes the copy&amp;paste a bit annoying.</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/595074d9-dc9c-4331-beba-cf1968fba699.png" alt="stt_comma 2" /></p>
+
+<p>However, it appear that csc.exe would accept an extra trailing comma at the end of the list, so this code is 100% valid:</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/5a800ad3-bbc0-4d9c-8f43-b46784fb8032.png" alt="stt_comma 3" /></p>
+
+<p>Now it’s easier to text-manipulate the list.</p>
+
+<p>It also works for Enum declarations:</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/650d3009-08f2-4014-a360-2901883245d6.png" alt="stt_comma 4" /></p>
+
+<p>So, even though having three cats in the house is busy enough, as far as c# is concerned I can easily add more of these. Not sure what the existing cats would think of that.</p>
+
+<p>Just to make sure it actually works:</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/STTExtracommaincollectioninitialisersand_9A73/196e049d-f643-4587-b765-a85d4b21549a.png" alt="stt_comma 5" /></p>
+
+<p>curiosities:
+- Envy code R rock.<br />
+- I use red background for my elevated CMD window<br />
+- For the Visual Studio only dudes: csc.exe is the c# compiler bundled as part of the .NET runtime install.<br />
+- yes, I sometimes use edit.exe<br />
+- Envy code R rock.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/28/ftp-upload-in--dot-net-you-aint-need-no-libraries">FTP Upload in .NET - You ain't need no libraries</a></h2>
+    <div class="meta">
+        <time>on June 28, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Lately I’ve been asked about doing FTP related stuff in .NET .</p>
+
+<p>There appear to be many “Ftp Clients” out there on CodeProject and other sites.</p>
+
+<p>I really don’t get ‘em.</p>
+
+<p>They are simple a leaky abstraction on top of straightforward BCL classes.</p>
+
+<p>So what my solution is?
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+{% highlight c# %}
+   1:  publicvoid Upload(string server, int port, string targetFolder, string fileName, string username, string password, bool isActive)   2:  {   3:  var url = string.Format(   4:  “ftp://{0}:{1}{2}/{3}”, server, port, targetFolder, fileName)   5:  using (var ftp = (FtpWebRequest)WebRequest.Create(url))   6:      {   7:          ftp.Credentials = new NetworkCredential(username, password);   8:          ftp.KeepAlive = false;   9:          ftp.UseBinary = true;  10:          ftp.Method = WebRequestMethods.Ftp.UploadFile;  11:  if (isActive)  12:              ftp.UsePassive = false;  13:    14:  using (var writer = new BinaryWriter(ftp.GetRequestStream()))  15:              writer.Write(File.ReadAllBytes(fileName));  16:      }  17:  }{% endhighlight %}</p>
+
+<p>This basic notepad code covers most of the functionality in FtpWebRequest. You can easily set Binary/ASCII, Active/Passive, Credentials and whatnot. </p>
+
+<p>Alternatively, in some cases you can just spawn a ftp.exe process with a simple ftp script. Anyway you can rid yourself from unneeded leaky abstractions.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/28/filebinderattribute-to-ease-fileupload-in-monorail">FileBinderAttribute to ease FileUpload in MonoRail</a></h2>
+    <div class="meta">
+        <time>on June 28, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following <a href="http://www.hanselman.com/blog/ABackToBasicsCaseStudyImplementingHTTPFileUploadWithASPNETMVCIncludingTestsAndMocks.aspx">Scott Hanselman’s post</a> on FileUpload in ASP.NET MVC, I’ll add here a few bits on doing that in MonoRail.</p>
+
+<p>First, as MonoRail is an extension on top of plain ol’ ASP.NET, just as ASP.NET MVC is, you can do the exact same thing - i.e iterate over Request.Files, and use a mocked Files collection for test or something.</p>
+
+<p>But as the action parameters binder is very smart, and easily extensible, it’s even nicer to just bind the posted data to a HttpPostedFile, using a FileBinder:</p>
+
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<p>{% highlight c# %}
+   1:  [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]   2:  publicclass FileBinderAttribute: Attribute, <strong>IParameterBinder</strong>   3:  {   4:  publicint CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)   5:      {   6:  var key = parameterInfo.Name;   7:  return context.Request.Files[key] != null ? 10 : 0;   8:      }   9:    10:  publicobject Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)  11:      {  12:  var key = parameterInfo.Name;  13:  return context.Request.Files[key] as HttpPostedFile;  14:      }  15:  }{% endhighlight %}</p>
+
+<p>So a custom binder is an attribute, that implements IParameterBinder, a two methods interface:
+- CalculateParamPoints() - is for helping the framework correctly guess the best candidate of the action overloads. If the file exists in the request then it makes an action with a HttpPostedFile parameter with the name of the file upload name, a better candidate than an overload with a String parameter with the same name. </p>
+
+<ul>
+  <li>Bind() - well, kinda’ self explanatory.</li>
+</ul>
+
+<p>so now you’re action can look like this:</p>
+
+<p>{% highlight c# %}
+   1:  publicvoid Save([FileBinder] HttpPostedFile myfile)   2:  {   3:  if (myFile != null)   4:      {   5:  // do stuff with the file   6:      }   7:  }{% endhighlight %}</p>
+
+<p>Cool? well actually what really is cool is that binding to HttpPostedFile is baked into MonoRail to begin with - so you don’t even need this FileBinderAttribute at all ! you can simply</p>
+
+<p>{% highlight c# %}
+   1:  publicvoid Save(HttpPostedFile myfile)   2:  {   3:  if (myFile != null)   4:      {   5:  // do stuff with the file   6:      }   7:  }{% endhighlight %}</p>
+
+<p>So why did I show you that?</p>
+
+<p>Testablility.</p>
+
+<p>Since HttpPostedFile is not easily mockable* (cuz it’s bloody sealed and not new-able), you should do what you always do when in need to bypass one of these un-testable hard-to-test* sealed classes: Adapter pattern. Introduce IHttpPostedFile, and supply your own HttpPostedFile encapsulating the built in one.</p>
+
+<p>so:</p>
+
+<p>{% highlight c# %}</p>
+
+<p>1:  [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]   2:  publicclass FileBinderAttribute: Attribute, <strong>IParameterBinder</strong>   3:  {   4:  publicint CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)   5:      {   6:  var key = parameterInfo.Name;   7:  return context.Request.Files[key] != null ? 10 : 0;   8:      }   9:    10:  publicobject Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)  11:      {  12:  var key = parameterInfo.Name;</p>
+
+<p>13:          var file = context.Request.Files[key] as HttpPostedFile;    14:  return file == null ? null : HttpPostedFileAdapter(file);  15:      }  16:  }
+{% endhighlight %}</p>
+
+<p>and</p>
+
+<p>{% highlight c# %}
+   1:  publicvoid Save([FileBinder] IHttpPostedFile myfile)   2:  {   3:  if (myFile != null)   4:      {   5:  // do stuff with the file   6:      }   7:  }{% endhighlight %}</p>
+
+<ul>
+  <li>Yes Roy, I know you can throw some TypeMock magic at it</li>
+</ul>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/26/can-you-spot-the-bug">Can you spot the bug?</a></h2>
+    <div class="meta">
+        <time>on June 26, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>DISCLAIMER:</p>
+
+<p>If you are a potential client of mine, or rather a current one, please stop reading NOW, as it’s one of these embarrassing “I am sometimes too stupid” posts.</p>
+
+<p>Oh my.</p>
+
+<p>That’s how my 3am code can look like:</p>
+
+<p>{% highlight c# %}
+   1:  var page = filter.Page.GetValueOrDefault(1);   2:  var pageSize = filter.PageSize.GetValueOrDefault(30);   3:  var firstResult = (page - 1) + pageSize;{% endhighlight %}</p>
+
+<p>It’s for NHibernate style paging (i.e. firstResult is for a 0 based index)</p>
+
+<p>Spotted (thanks to DbAwareIntegrationTests) and fixed at 6pm</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/22/simple-string-hashing-in--dot-net">Simple String Hashing in .NET</a></h2>
+    <div class="meta">
+        <time>on June 22, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve been asked about it several times lately, so I’ll just put here an oldie that I’ve been using for a few years now untouched:</p>
+
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<p>{% highlight c# %}
+   1:  // MIT license   2:  // Copyright 2005-2008 Ken Egozi   3:  //    4:  // Permission is hereby granted, free of charge, to any person obtaining a copy   5:  // of this software and associated documentation files (the “Software”), to deal   6:  // in the Software without restriction, including without limitation the rights   7:  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell   8:  // copies of the Software, and to permit persons to whom the Software is   9:  // furnished to do so, subject to the following conditions:  10:  //   11:  // The above copyright notice and this permission notice shall be included in  12:  // all copies or substantial portions of the Software.  13:  //   14:  // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  15:  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  16:  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  17:  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  18:  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  19:  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  20:  // THE SOFTWARE.  21:    22:  using System;  23:  using System.Collections.Generic;  24:  using System.Text;  25:  using System.Security.Cryptography;  26:  using System.Collections;  27:    28:  namespace KenEgozi.CryptographicServices  29:  {  30:  publicstaticclass Hashing  31:      {  32:  privatestatic Hashtable hashAlgorithms = Hashtable.Synchronized(new Hashtable());  33:    34:  /// &lt;summary&gt;  35:  /// Hashing a given string with SHA2.  36:  /// &lt;/summary&gt;  37:  /// <param name="data" />Data to hash&lt;/param&gt;  38:  /// <returns>Hashed data</returns>  39:  publicstaticstring HashData(string data)  40:          {  41:  return HashData(data, HashType.SHA256);  42:          }  43:    44:  /// &lt;summary&gt;  45:  /// Hashing a given string with any of the supported hash algorithms.  46:  /// &lt;/summary&gt;  47:  /// <param name="data" />Data to hash&lt;/param&gt;  48:  /// <param name="hashType" />Hashing algorithm to use&lt;/param&gt;  49:  /// <returns>Hashed data</returns>  50:  publicstaticstring HashData(string data, HashType hashType)  51:          {  52:              HashAlgorithm hash = GetHash(hashType);  53:  byte[] bytes = (new UnicodeEncoding()).GetBytes(data);  54:  byte[] hashed = hash.ComputeHash(bytes);  55:              StringBuilder sb = new StringBuilder(64);  56:  foreach (byte b in hashed)  57:                  sb.AppendFormat(“{0:x2}”, b);  58:  return sb.ToString();  59:          }  60:    61:  privatestatic HashAlgorithm GetHash(HashType hashType)  62:          {  63:  if (!hashAlgorithms.ContainsKey(hashType))  64:                  hashAlgorithms.Add(hashType, CreateaHashAlgorithm(hashType));  65:  return hashAlgorithms[hashType] as HashAlgorithm;  66:          }  67:    68:  privatestatic HashAlgorithm CreateaHashAlgorithm(HashType hashType)  69:          {  70:  switch (hashType)  71:              {  72:  case HashType.MD5:  73:  returnnew MD5CryptoServiceProvider();  74:  case HashType.SHA1:  75:  returnnew SHA1Managed();  76:  case HashType.SHA256:  77:  returnnew SHA256Managed();  78:  case HashType.SHA384:  79:  returnnew SHA384Managed();  80:  case HashType.SHA512:  81:  returnnew SHA512Managed();  82:  default:  83:  thrownew NotImplementedException();  84:              }  85:          }  86:      }  87:    88:  publicenum HashType  89:      {  90:          MD5,  91:          SHA1,  92:          SHA256,  93:          SHA384,  94:          SHA512  95:      }  96:  }{% endhighlight %}</p>
+
+<p>Not beautiful, however useful.</p>
+
+<p>You can download this file from <a href="http://kenegozi.com/blog/uploaded/hashing.cs.txt">here</a> (just remove the .txt - the server doesn’t serve .cs files directly) </p>
+
+<p>btw, the colouring of the source was made with the help of <a href="http://www.manoli.net/csharpformat/">http://www.manoli.net/csharpformat/</a>, even though I had to do some manual tweaking to make it work with this blog. If colours of reserved words, comments etc. do not appear, then please refresh your browser’s cache to get the updated css</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/06/17/naming-interfaces">Naming Interfaces</a></h2>
+    <div class="meta">
+        <time>on June 17, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>An innocent question <a href="http://ayende.com/Blog/archive/2008/06/16/I-understand-that-naming-matters-so.aspx">raised by Ayende</a> has started an interesting debate on the comments.</p>
+
+<p>In short (read it all there - don’t be lazy)</p>
+
+<p>Which interface name is better?</p>
+
+<p>a. IRecognizeFilesThatNeedToBeIgnored</p>
+
+<p>b. IIgnoreFilesSpecification</p>
+
+<p>with a single method: ShouldBeIgnored(string file);</p>
+
+<p>Some were in favour of a, some in favour of b. </p>
+
+<p>The interesting thing is that many has offered a third option:</p>
+
+<p>c. IFileFilter</p>
+
+<p>Let’s group these things:
+- Options a. and b. =&gt; Narrow and very specific interfaces. You can guess exactly what a class implementing them can do.
+- Option c. =&gt; a general-purpose interface. You’d know that a class that implement this type of interface is doing stuff with files, but it’s kinda vague. Can it filter a file out of a list of files? can it filter the content of a file? can it do other kinds of filtering on some kinds of files?</p>
+
+<p>Personally I couldn’t care less which one of the first type will be used. I slightly in favour of b., as I think funny names are good. The compiler cares nothing about names, but the human mind would remember the purpose well, and a newcomer would pick it up quickly.</p>
+
+<p>The second group (IFileFilter) is not good. It might get filled with a lot of methods that do file filtering.and if it’s not, I think it should reflect the intention of the implementing class.Since multiple interfaces per class are allowed, it’s ok to have specialised ones. </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/04/29/aspview-and-c-sharp-3-dot-0">AspView and C#3.0</a></h2>
+    <div class="meta">
+        <time>on April 29, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>MonoRail runs on .NET 2.0. AspView is no different, and is compiled for .NET 2.0, so people who cannot run 3.5 (shared hosting, other limitations) can still enjoy every shining new feature.</p>
+
+<p>However, if you DO want to use c#3 stuff in view templates (like extension methods), then you can. Thanks to Felix Gartsman, the AspView compiler would try to load the c# compiler based on the codedom section of the application .config file.</p>
+
+<p>So, if you’re using autorecompilation=true, the add this to your web.config:</p>
+
+<p>```</p>
+<system.codedom> <compilers> <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CSharp.CSharpCodeProvider,System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" warninglevel="4"> <provideroption value="v3.5" name="CompilerVersion" /> <provideroption value="false" name="WarnAsError" /> </compiler> </compilers>
+</system.codedom>
+
+<p>```</p>
+
+<p>If you want to precompile your views, then add the same to vcompile’s app.config.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/03/09/agentsmith-resharper-plugin">AgentSmith - Resharper plugin</a></h2>
+    <div class="meta">
+        <time>on March 9, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>From the website:</p>
+
+<p>Current version includes following features: </p>
+
+<ul>
+  <li>
+    <p>Naming convention validation.</p>
+  </li>
+  <li>
+    <p>XML comment validation.</p>
+  </li>
+  <li>
+    <p>XML comment, string literals, identifiers and resources (.resx files) spell checking </p>
+  </li>
+  <li></li>
+</ul>
+
+<p>Smart paste.</p>
+
+<p>The coolest thing is the ability to spell check identifiers. I’d love it.</p>
+
+<p>It’s at <a href="http://www.agentsmithplugin.com/">http://www.agentsmithplugin.com/</a> and I found out about it on Castle’s dev list (thx Victor)</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/02/27/generating-xml-do-we-really-another-api">Generating XML - Do We Really Another API?</a></h2>
+    <div class="meta">
+        <time>on February 27, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p><a href="http://codebetter.com/blogs/glenn.block/archive/2008/02/26/xml-and-fluent-interfaces.aspx">There appear to be yet another XML API</a>.</p>
+
+<p>So, when you want to generate:</p>
+
+<p>```
+<?xml version="1.0" encoding="utf-8"?></p>
+<root>
+    <result type="boolean">true</result>
+</root>
+<p>```</p>
+
+<p>instead of (using System.XML):</p>
+
+<p>```
+XmlDocument xd = new XmlDocument();
+xd.AppendChild(xd.CreateXmlDeclaration(“1.0”, “utf-8”, “”));</p>
+
+<p>XmlNode root = xd.CreateElement(“root”);
+xd.AppendChild(root);</p>
+
+<p>XmlNode result = xd.CreateElement(“result”);
+result.InnerText = “true”;</p>
+
+<p>XmlAttribute type = xd.CreateAttribute(“type”);
+type.Value = “boolean”;</p>
+
+<p>result.Attributes.Append(type);
+root.AppendChild(result);
+```</p>
+
+<p>one can (using the new API):</p>
+
+<p><code>
+XmlOutput xo = new XmlOutput()
+    .XmlDeclaration()
+    .Node("root").Within()
+        .Node("result").Attribute("type", "boolean").InnerText("true");
+</code></p>
+
+<p>Exciting.</p>
+
+<p>Or is it?</p>
+
+<p>Why not just (using your template-engine of choice):</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+
+    <result type="&lt;%=view.Type%&gt;">&lt;%=view.Value%&gt;</result>
+
+</root>
+
+<p>```</p>
+
+<p>works great for the “complex” scenarios on <a href="http://www.improve.dk/about">Mark S. Rasmussen</a>’s blog:</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <numbers>
+
+        &lt;% foreach (Number number in view.Numbers) { %&gt;
+        <number value="&lt;%=number%&gt;">This is the number: &lt;%=number%&gt;</number>
+
+
+        &lt;% } %&gt;
+    </numbers>
+</root>
+
+<p>```</p>
+
+<p>and:</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <user>
+        <username>&lt;%=view.User.Username%&gt;</username>
+        <realname>&lt;%=view.User.RealName%&gt;</realname>
+        <description>&lt;%#view.User.Username%&gt;</description>
+
+        <articles>
+
+            &lt;% foreach (Article article in view.User.Articles) { %&gt;
+            <article id="&lt;%=article.Id%&gt;">&lt;%#article.Title%&gt;</article>
+
+            &lt;% } %&gt;
+        </articles>
+        <hobbies>
+            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
+
+            <hobby>&lt;%#hobby.Name%&gt;</hobby>
+
+            &lt;% } %&gt; 
+
+        </hobbies>
+    </user>
+</root>
+
+<p>```</p>
+
+<p>is Hobby and Article more complex? no probs. break it down to sub-views:</p>
+
+<p>```</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <user>
+        <username>&lt;%=view.User.Username%&gt;</username>
+        <realname>&lt;%=view.User.RealName%&gt;</realname>
+        <description>&lt;%#view.User.Username%&gt;</description>
+
+        <articles>
+
+            &lt;% foreach (Article article in view.User.Articles) { %&gt;
+
+            <subview:article article="&lt;%=article%&gt;"></subview:article>
+
+
+            &lt;% } %&gt;
+        </articles>
+        <hobbies>
+            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
+
+            <subview:hobby hobby="&lt;%=hobby%&gt;"></subview:hobby> 
+
+            &lt;% } %&gt; 
+
+        </hobbies>
+    </user>
+</root>
+
+<p>```</p>
+
+<p>Can you get more expressive that that?</p>
+
+<p>Look how easy it is to visualize what we’re rendering, and how easy it is to change.</p>
+
+<p>I consider all those XML API (including ATOM/RSS writers) as a leaky and unneeded abstractions, just like WebForms. Do you?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2008/02/04/equals">Equals != ==</a></h2>
+    <div class="meta">
+        <time>on February 4, 2008</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Yep, I’ve made yet another noob mistake.</p>
+
+<p>I needed to compare two enum values, on a method that was accepting objects.</p>
+
+<p><code>
+public string Whatever(object currentOption, object selectedOption){ return currentOption == selectedOption ? "class='active' " : string.Empty;}
+</code></p>
+
+<p>Didn’t work.</p>
+
+<p>However, </p>
+
+<p><code>
+public string Whatever(object currentOption, object selectedOption){ return currentOption.Equals(selectedOption) ? "class='active' " : string.Empty;}
+</code></p>
+
+<p>Did work.</p>
+
+<p>so, it appear that == isn’t polymorphic so it did the object.Equals method which apparently looks for reference equality, rather than the enum Equals.</p>
+
+<p>And that has been yet another future-reference-post …</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/12/04/cool-vs-uncool-in-programming-languages">Cool vs Uncool in programming languages</a></h2>
+    <div class="meta">
+        <time>on December 4, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Have just read <a href="http://ayende.com/Blog/archive/2007/12/04/If-it-is-not-dynamic-vs.-static--what-is.aspx">Ayende’s post about C#/Java vs Boo/Ruby</a>. </p>
+
+<p>Tried to comment, but then I decided it’s worth a post. </p>
+
+<p>I’d say that the difference is MAF - Management Acceptance Factor<br />
+- Java and C# has the Big Names behind them, so managers are comfortable. Ruby and Boo does not, hence … 
+- Java is v6, c# is v3, while Ruby and Boo are v0.x - another Management Scary. </p>
+
+<p>Boo is also a way too cool/strange/creepy name for a distinguished suit to grasp.  </p>
+
+<p>It’s like when you’re a collage girl, and you want to introduce your new boyfriend to your mama. It doesn’t matter that he has a BSc and MBA plus 3 castles in the Swiss alps. If he’d first show up to the family on his <a href="http://www.kawasaki.com/Products/detail.aspx?id=269&amp;content=photos">way-too-cool motorcycle</a>, then you’re going to be grounded. </p>
+
+<p>When I approached my last manager about MonoRail, and told him that the views will be written in ‘Boo’, he got all scared. Then I wrote AspView, views to be written in c#, and he gave consent to go MonoRail.Even though, at least at that time, Brail was way more mature than AspView.The ‘cooler’ languages needs to be marketed to management. </p>
+
+<p>Ruby works in Eclipse. I wonder who is going to start an OSS effort to create a decent Boo plugin for VS2008 (based on the VS2008 shell). </p>
+
+<p>Make it demoable, make it look ‘official’, and MAF would go way higher.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/11/18/activerecord-dot-linq-naive-but-working">ActiveRecord.Linq - naive but Working</a></h2>
+    <div class="meta">
+        <time>on November 18, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/linq" rel="tag">linq</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/nhibernate" rel="tag">nhibernate</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’ve spent some times lately with Linq To SQL and have played a bit with the Mapping namespace.</p>
+
+<p>Why I do not like it very much is a matter for a different post. The matter at hand is that I want the power of Linq, and I want the power of NHibernate, and I want the easy road of ActiveRecord.</p>
+
+<p>What do I mean by that? I’d like:
+- query language == Linq<br />
+- persistence engine == NHibernate<br />
+- Mapping == ActiveRecord attributes </p>
+
+<p>the needed prequisites:
+- Linq (framework =&gt; framework.Version &gt;= 3.5)<br />
+- <a href="http://www.hookedonlinq.com/LINQToNHibernate.ashx">NHibernate.Linq</a> (source =&gt; source.getFrom(Rhino-Tools) )<br />
+- Linq for ActiveRecord - Keep on Reading </p>
+
+<p>So, <a href="http://www.ayende.com">Ayende</a> has kick-started it, and with some help from <a href="http://blogs.magiconsoftware.com/blogs/bdiaz/">Bobby Diaz</a>, we have a prototype level NHibernate provider for Linq.</p>
+
+<p>To make it work with ActiveRecord, all you need is to add:</p>
+
+<p><code>
+using System;using Castle.ActiveRecord;using Castle.ActiveRecord.Framework;using NHibernate;namespace NHibernate.Linq{    public class ActiveRecordContext : NHibernateContext { public ActiveRecordContext() : base(null) { session = GetSession(); }  private ISession GetSession() { ISessionScope scope = SessionScope.Current; if (scope == null) throw new InvalidOperationException("You should be in a SessionScope()"); ISessionFactoryHolder holder = ActiveRecordMediator.GetSessionFactoryHolder(); return holder.CreateSession(typeof(ActiveRecordBase)); } }}
+</code></p>
+
+<p>and now you can do stuff like:</p>
+
+<p><code>
+using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&lt;Category&gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
+</code></p>
+
+<p>Assuming Category has [ActiveRecord] mapping.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/10/17/typed-view-properties-in-monorail-and-aspview">Typed View Properties in MonoRail and AspView</a></h2>
+    <div class="meta">
+        <time>on October 17, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Following my last post on the DictionaryAdapter, I’ll demonstrate here how you can get typed access to your views’ properties.</p>
+
+<p>What it requires from you:</p>
+
+<ol>
+  <li>
+    <p>Declare an interface for each of your views. That is a Good Thing anyway, as designing to a contract is a good best practice, and it allows for easy testing.</p>
+  </li>
+  <li>
+    <p>Have a base class for your controller that would define TypedFlash and TypedPropertyBag. Not mandatory, but very convenient.</p>
+  </li>
+  <li>
+    <p>Use the newest build of AspView. Again - not mandatory, but helpful.</p>
+  </li>
+</ol>
+
+<p>Now for the showtime.</p>
+
+<p>First we would create a base class for our controllers, with a TypedPropertyBag and TypedFlash properties:</p>
+
+<p><code>
+public abstract class Controller&lt;IView&gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
+</code></p>
+
+<p>tip:</p>
+
+<p>You can look at a <a href="http://using.castleproject.org/display/Contrib/Castle.Tools.CodeGenerator">more complete version of that base-class</a>, written by Lee Henson (who have made some improvements to the original DictionaryAdapter, and also have introduced me to <a href="http://www.peroniitaly.com/">Peroni Beer</a>).The base controller also declares a type parameter for a Session DictionaryAdapter, hooks into the Castle.Tools.CodeGenerator, and uses IoC for DI.Talking about those issues is a separate subject, for other posts.</p>
+
+<p>Now let’s create the view contract. A rather stupid example would be:</p>
+
+<p><code>
+public interface IStupidView{ Guid Id { get; set; }    string Name { get; set; }}
+</code></p>
+
+<p>controller:</p>
+
+<p><code>
+public class StupidController : Controller&lt;IStupidView&gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
+</code></p>
+
+<p>view (Index.aspx):</p>
+
+<p><code>
+&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;&lt;p&gt;&lt;%=view.Message %&gt;&lt;/p&gt;&lt;form action="DoStuff.rails"&gt;Name: &lt;input type="text" name="name" value="&lt;%= view.Name %&gt;" /&gt; &lt;br /&gt;password: &lt;input type="password" name="password" /&gt; &lt;br /&gt;&lt;input type="submit" /&gt;&lt;/form&gt;
+</code></p>
+
+<p>view (DoStuff.aspx):</p>
+
+<p><code>
+&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime&lt;IStupidView&gt;" %&gt;&lt;%%&gt;The data was: &lt;br /&gt;Id: &lt;%= view.Id %&gt;, Name: &lt;%= view.Name %&gt;
+</code></p>
+
+<p>Look at the intellisense (and at my ultra-cool black color scheme):</p>
+
+<p><img src="http://kenegozi.com/Blog/uploaded/WindowsLiveWriter/TypedViewPropertiesinMonoRailandAspView_11288/8d0b77d0-63d6-4e46-b355-c87ae31e5ca4.png" alt="TypedView intellisense" /></p>
+
+<p>Things to notice:</p>
+
+<ol>
+  <li>Do not forget to reference the Assembly that has the view interface declaration. On the test site within aspview’s source repository the interface is declared in the Web project (AspViewTestSite), so the web.config has this:</li>
+</ol>
+
+<p>view (Index.aspx):</p>
+
+<p><code>
+&lt;aspview ... &gt;... &lt;reference assembly="AspViewTestSite.dll"/&gt;...&lt;/aspview&gt;
+</code></p>
+
+<ol>
+  <li>you can use the DictionaryAdapter directly, on older versions of AspView (and on WebForms aspx/ascx files) by simply grabbing an adapter manually. sample:</li>
+</ol>
+
+<p><code>
+...&lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter&lt;IMyViewContract&gt;(Properties); %&gt;...blah blah &lt;%=view.UsefulProperty %&gt;...
+</code></p>
+
+<p>Ok, cut the crap. where can I get it?</p>
+
+<p>here (<a href="http://kenegozi.com/Blog/Files/download.aspx?filename=AspView_1.0.3.324_Release.zip">release</a>, <a href="http://kenegozi.com/Blog/Files/download.aspx?filename=AspView_1.0.3.324_Debug.zip">debug</a>, <a href="http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/">source</a>)</p>
+
+<p>UPDATE:</p>
+
+<p>The DictionaryAdapter was initially written by the guys from Eleutian as part of Castle.Tools.CodeGenerator. </p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/10/03/forget-about-reflectoring-the-bcl-the-real-deal-is-here">Forget about Reflector-ing the BCL - the real deal is here</a></h2>
+    <div class="meta">
+        <time>on October 3, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio-2005" rel="tag">visual-studio-2005</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/winfx" rel="tag">winfx</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Another nice <a href="http://weblogs.asp.net/scottgu/archive/2007/10/03/releasing-the-source-code-for-the-net-framework-libraries.aspx">news from Scott Guthrie</a>:</p>
+
+<p>a small excerpt:</p>
+
+<p>Today I’m excited to announce that we’ll be providing this with the .NET 3.5 and VS 2008 release later this year.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/09/01/dictionary-of-actions-instead-of-a-switch">Dictionary of Actions instead of a Switch</a></h2>
+    <div class="meta">
+        <time>on September 1, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I hate switch statements. They just looks bad.</p>
+
+<p>So take a look ata nice example <a href="http://blogs.msdn.com/lucabol/archive/2007/08/31/instead-of-a-simple-switch-statement.aspx">I’ve read at Luca Bolognese’s</a>, for switching from a switch based code to a cleaner one.</p>
+
+<p>The syntax in pre-c#3 would be less nice (delegate() instead of lambda, and parseFuncs.Add instead of the initializer) but it’s doable.</p>
+
+<p>Heck, it reminds me of some old university-level Ansi-C code I’ve once wrote for a matrix-calculator program:</p>
+
+<p>```
+typedef struct { char * name; char * (*func)(char *); char * description;} cmd_class; </p>
+
+<p>// matrix functions.// pre: parameter string. post: answer is printed or stored in matrixchar * read_mat(char * parm_string);char * print_mat(char * parm_string);char * add_mat(char * parm_string);char * sub_mat(char * parm_string);char * mul_mat(char * parm_string);char * mul_scalar(char * parm_string);char * trans_mat(char * parm_string); 
+cmd_class cmd[] = { {“read_mat”, read_mat, “parameters: matrix,val1[,val2,…,val16]”},  {“print_mat”, print_mat, “parameters: matrix”},  {“add_mat”, add_mat, “parameters: matrix_A,matrix_B[,target_matrix]”},  {“sub_mat”, sub_mat, “parameters: matrix_A,matrix_B[,target_matrix]”},  {“mul_mat”, mul_mat, “parameters: matrix_A,matrix_B[,target_matrix]”},  {“mul_scalar”, mul_scalar, “parameters: matrix,scalar[,target_matrix]”},  {“trans_mat”, trans_mat, “parameters: matrix[,target_matrix]”},  {“stop”, stop, “exit program”}, {“menu”, print_menu, “print this menu”}, {“not_valid”, NULL, “NULL”}};</p>
+
+<p>```</p>
+
+<p>It allowed me to avoid switch by looping over the cmd[] array in a helper method, thus able to do</p>
+
+<p><code>
+command(commandName).func(params);
+</code></p>
+
+<p>Not exactly a typical jet-fighter-realtime-c-code, but it gave me a better looking code, and a 100/100 grade.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/06/28/redirecting-syndication-link-from-dasblogs-one-to-the-new-one">Redirecting syndication link from dasBlog's one to the new one</a></h2>
+    <div class="meta">
+        <time>on June 28, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/blog-engine" rel="tag">blog-engine</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>TodayI was informed by <a href="http://blogs.microsoft.co.il/blogs/drorengel/">Dror</a> that although I managed to redirect all requests to html/aspx url’s on my blog (the ones that dagBlog was using) to the new pemalink format, I forgot to do the same for the old syndication link.</p>
+
+<p>So that link was <a href="http://kenegozi.com/blog/SyndicationService.asmx/GetRss">http://kenegozi.com/blog/SyndicationService.asmx/GetRss</a>and now it’s <a href="http://kenegozi.com/Blog/Syndication/Atom.aspx">http://kenegozi.com/Blog/Syndication/Atom.aspx</a></p>
+
+<p>I could’ve used the monorai redirection module that is already in use on my blog, but I chose to do it differently, with a dedicated handler, just to show how easy it is do to such stuff, even without a full blown redirection engine.</p>
+
+<p>So, I’ve added this:</p>
+
+<p>```
+publicclassSyndicationRedirectionHandler : IHttpHandler 
+{
+    #region IHttpHandler Members
+    publicbool IsReusable
+    {
+        get { returntrue;}
+    }</p>
+
+<pre><code>publicvoid ProcessRequest(HttpContext context)
+{
+    context.Response.StatusCode = 301;
+    context.Response.Redirect("http://kenegozi.com/Blog/Syndication/Atom.aspx");
+}
+
+#endregion } ```
+</code></pre>
+
+<p>and that line into web.config:</p>
+
+<p>&lt;addverb=”*“path=”SyndicationService.asmx”type=”KenEgozi.Com.Weblog.SyndicationRedirectionHandler, KenEgozi.Com.Weblog”/&gt;</p>
+
+<p>Voila.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/04/15/is-xaml-and-wpf-are-really-that-cool">Is XAML and WPF are really that cool?</a></h2>
+    <div class="meta">
+        <time>on April 15, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/client-side" rel="tag">client-side</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I am considering WPF-ing a new component for one of are in-house projects. So I’ve done some reading, and to be sincere, I am not too excited.</p>
+
+<p>Let’s refine the last statement. I am very excited with the technology. However, I find the examples out there very annoying.</p>
+
+<p>It all seams to be “Hey it’s so cool !! I can do stuff IN THE MARKUP - woosh, god save XAML”.</p>
+
+<p>So I came across <a href="http://joshsmithonwpf.wordpress.com/2007/04/13/bindsdirectlytosource/">this post</a>.</p>
+
+<p>It is just great!! it shows how I can easily use only 13 lines of XML to showa grind ONLY if the source is not null.</p>
+
+<p>Sure a lot more expressive and easy than, say:</p>
+
+<p>if (source != null) mySuperCoolGrid.DataBind();</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2007/02/22/reflector-5-is-out">Reflector 5 is out</a></h2>
+    <div class="meta">
+        <time>on February 22, 2007</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The best tool ever is even better now, and you can find it <a href="http://www.aisto.com/roeder/dotnet/">here</a>.</p>
+
+<p>Thanks to <a href="http://blogs.microsoft.co.il/blogs/yosit/archive/2007/02/20/_D705DD05_-_DE05D405EA05E005D505E805_-_2D00_-Reflector-5.aspx">Yosi</a> for the reference.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/27/aspview-rev-38-is-out">AspView rev 38 is out</a></h2>
+    <div class="meta">
+        <time>on November 27, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio-2005" rel="tag">visual-studio-2005</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>What we have:</p>
+
+<ol>
+  <li>
+    <p>Default Helpers are now declared in the AspViewBase. It means that you can use &lt;%=FormHelper.LabelFor(…) %&gt; without the need to declare the helper at the begining of the view.</p>
+  </li>
+  <li>
+    <p>the compiler was refactored to allow for better testing, and for implementation of further view languages. vurrently I’ve started with VB.NET but it is not working yet, since I have no time to make sure the VB syntax is correct. The tests of the compiler are missing due to some stupidity on my side, of not commiting the TestCase …</p>
+  </li>
+</ol>
+
+<p>I’ve wanted to let svn access but I have some trouble with that. I’ve started a sourceforge project but I cannot upload the repo to the site. I did all they’ve asked on the site but the import process reporting failure no matter what I do. I guess that the best way will be if the Castle team would allow AspView into it’s codebase, maybe on the Contrib repo to begin with …</p>
+
+<p>So meanwhile you can download the current bits from <a href="http://kenegozi.com/blog/GetFile.ashx?FileName=AspView_rev38.zip">here</a>.</p>
+
+<p>Keep me posted,</p>
+
+<p>Ken.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/16/aspview-first-release">AspView - first release</a></h2>
+    <div class="meta">
+        <time>on November 16, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio-2005" rel="tag">visual-studio-2005</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>So I’m releasing <a href="http://kenegozi.com/blog/2006/11/14/AspViewYetAnotherMonoRailViewEngine.aspx">AspView</a>.</p>
+
+<p>You can download the source from <a href="http://kenegozi.com/blog/GetFile.ashx?FileName=AspView_rev20.zip">here</a>.</p>
+
+<p>It was written against the Castle 1.1 from the trunk, build no. 152.</p>
+
+<p>Please note that in order to run the TestCases you’d have to make sure that the latest Castle.MonoRail.TestSupport is in the GAC.</p>
+
+<p>The documentation is poor since I have a little time now. I am working on a website for my employer (that utilizes AspView and AR) and until the first beta release I won’t have time to do anything but major bugfixes. This project isn’t open sourced so I won’t be able to share it’s sources, however since this will be a public site, it would serve as a Proof Of Concept to the MonoRail and AspView.</p>
+
+<p>The views MUST have the following structure: a. Page header - Must be present for intellisense to work:</p>
+
+<p><code>
+   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;
+</code></p>
+
+<p>b. Directives - Not mandatory:</p>
+
+<p><code>
+   1:  &lt;%@ Import Namespace="System.Text"%&gt;   2:  &lt;%@ Import Namespace="System.Drawing"%&gt;
+</code></p>
+
+<p>c. Properties decleration - Currently it’s mandatory. If you have no properties you mast have an empty block:</p>
+
+<p><code>
+   1:  &lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&gt;
+</code></p>
+
+<p>or just</p>
+
+<p><code>
+   1:  &lt;%   2:  %&gt;
+</code></p>
+
+<p>d. View body</p>
+
+<p>In a layout view you place the inner view using the ViewContents property, like this:</p>
+
+<p><code>
+   1:  blah   2:  blah   3:  &lt;%=ViewContents%&gt;   4:  blah   5:  blah
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/14/aspview-yet-another-monorail-viewengine">AspView - Yet another MonoRail ViewEngine</a></h2>
+    <div class="meta">
+        <time>on November 14, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/asp-net-2-0" rel="tag">asp-net-2-0</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio" rel="tag">visual-studio</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/visual-studio-2005" rel="tag">visual-studio-2005</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/monorail" rel="tag">monorail</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/aspview" rel="tag">aspview</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>.hlt { background-color:yellow;}<br />
+So what is AspView?</p>
+
+<p>It is a Visual Studio 2005 friendly ViewEngine implementation.</p>
+
+<p>The scripting is done using VisualStudio languages (c# and VB.NET). The views are precompiled, (or can be compiled on-demand, but anyway not interpreted).</p>
+
+<p>The project was inspired by the <a href="http://www.castleproject.org/monorail/documentation/trunk/viewengines/brail/index.html">Brail ViewEngine</a>, but since it doesn’t use <a href="http://boo.codehaus.org/">Boo</a> it is more Management-Friendly, since they need not worry about getting out of the “safe” microsoft world.</p>
+
+<p>I tend to like Boo as a language very much, and <a href="http://kenegozi.com/blog/2006/09/20/MyPresentationLayerOfChoiceBrailOverCastlesMonoRail.aspx">I like Brail</a> a lot, too (since it allows for less code in the view thanks to the Boo magic) but I lack the tight Visual Studio integration (opening .boo files in #Develop messes up my desktop), and the intellisense is quite important, at least for the developers I worl with.</p>
+
+<p>So I will post in the next few days about it, and I’ll make it available to be downloaded (source and binary) as soon as I’ll test it a little more. I hope to have a public svn repository soon.</p>
+
+<p>A little demo view:</p>
+
+<p><code>
+   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;   2:  &lt;%   3:  string[] strings;   4:  %&gt;   5:     6:     7:  hello from index&lt;br /&gt;   8:  This are the strings:&lt;br /&gt;   9:  &lt;%foreach (string s in strings) { %&gt;  10:  &lt;%=s %&gt;&lt;br /&gt;  11:  &lt;%  } %&gt;  12:    13:  &lt;br /&gt;  14:  End of normal view  15:  &lt;br /&gt;  16:  &lt;% OutputSubView("Home/SubViewSample"); %&gt;
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/11/01/duck-type-in-net">Duck Type in .NET</a></h2>
+    <div class="meta">
+        <time>on November 1, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/architecture" rel="tag">architecture</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/tools" rel="tag">tools</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>There is a <a href="http://www.codeproject.com/cs/library/nduck.asp">great article</a> on CodeProject, by Guenter Prossliner.</p>
+
+<p>A simple class in presented there, that makes Duck Typing possible for Generics enabledCLS languages (VB.NET 8 and C#2.0 for instance).</p>
+
+<p>I’ll present it here in short form:</p>
+
+<p>let’s say we have two classes:</p>
+
+<p><code>
+   1:  class Foo1   2:  {   3:  publicstring Bar() { }   4:  }   5:  class Foo2   6:  {   7:  publicstring Bar() { }   8:  }
+</code></p>
+
+<p>Now you have a method that can work with instances of eiether one, and invoke Bar on it:</p>
+
+<p><code>
+   1:  void SimpleMethodOnFoo1(Foo1 foo)   2:  {   3:      foo.Bar();   4:  }   5:  void SimpleMethodOnFoo2(Foo2 foo)   6:  {   7:      foo.Bar();   8:  }
+</code></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/10/10/a-generic-execute-callback-for-activerecord-executelttgt">A Generic Execute Callback for ActiveRecord - Execute&lt;T&gt;</a></h2>
+    <div class="meta">
+        <time>on October 10, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I am working with AR for a few month now, ignorantly ignoring the <a href="http://wiki.castleproject.org">Castle Project’s wiki</a>.</p>
+
+<p>Stupid I am. I could have learned a lot and save a bunch of wandering around the net and the intellisense to learn obvious stuff.</p>
+
+<p>Thanks to <a href="http://hammett.castleproject.org/">hammett</a> who <a href="http://kenegozi.com/blog/CommentView,guid,BCCBB3BE-CB4B-4859-A675-0C4918C0900D.aspx">pointed me there</a>.</p>
+
+<p>Anyway - now I read it from &lt;html&gt; to &lt;/html&gt;, and I saw the part <a href="http://wiki.castleproject.org/activerecord/documentation/trunk/usersguide/hql.html#ExecCallback">about running HQL using the Execute Callback</a></p>
+
+<p>There are examples, each one with two flavors: “not using generics”, and “using generics”. Well, the one about the Execute Callback is misleading. It should have been “not using anonymous method” and “using anonymous methods”, since the second one does not use generics.</p>
+
+<p>So I thought - let’s make the API simpler.</p>
+
+<p>We would have like to allow the user execute her hql like that:</p>
+
+<p><code>
+   1:  publicstatic Post[] GetPostsByAuthorName(string authorName)
+</code></p>
+
+<p><code>
+   2:  {
+</code></p>
+
+<p><code>
+   3:  return (Post[])Execute(typeof(Post), "from Post p where p.Author = ?", authorName);
+</code></p>
+
+<p><code>
+   4:  }
+</code></p>
+
+<p>Or even better, by using generics (this time for real):</p>
+
+<p><code>
+   1:  publicstatic Post[] GetPostsByAuthorName(string authorName)
+</code></p>
+
+<p><code>
+   2:  {
+</code></p>
+
+<p><code>
+   3:  return Execute&lt;Post&gt;("from Post p where p.Author = ?", authorName);
+</code></p>
+
+<p><code>
+   4:  }
+</code></p>
+
+<p>Here is the magic:</p>
+
+<p><code>
+   1:  publicstatic T[] Execute&lt;T&gt;(string hql, paramsobject[] parameters)
+</code></p>
+
+<p><code>
+   2:  {
+</code></p>
+
+<p><code>
+   3:      IList untypedResults = (IList)Execute(delegate(ISession session, object data)
+</code></p>
+
+<p><code>
+   4:      {
+</code></p>
+
+<p><code>
+   5:  object[] queryParams = (object[])data;
+</code></p>
+
+<p><code>
+   6:          IQuery query = session.CreateQuery(hql);
+</code></p>
+
+<p><code>
+   7:  for (int position = 0; position &lt; queryParams.Length; ++position)
+</code></p>
+
+<p><code>
+   8:              query.SetParameter(position, queryParams[position]);
+</code></p>
+
+<p><code>
+   9:  return query.List();
+</code></p>
+
+<p><code>
+  10:      }, parameters);
+</code></p>
+
+<p><code>
+  11:      T[] results = new T[untypedResults.Count];
+</code></p>
+
+<p><code>
+  12:      untypedResults.CopyTo(results, 0);
+</code></p>
+
+<p><code>
+  13:  return results;
+</code></p>
+
+<p><code>
+  14:  }
+</code></p>
+
+<p>I’ll add an overload that will accept named parameters. I am not sure about the right way to do that, though.</p>
+
+<p>My options are:</p>
+
+<p><code>
+   1:  Execute&lt;T&gt;(string hql, 
+</code></p>
+
+<p><code>
+   2:  string[] paramNames, 
+</code></p>
+
+<p><code>
+   3:      Type[] paramTypes, 
+</code></p>
+
+<p><code>
+   4:  object[] parameters)
+</code></p>
+
+<p>Or:</p>
+
+<p><code>
+   1:  Execute&lt;T&gt;(string hql, IParameter[] parameters)
+</code></p>
+
+<p>where IParameter definition is something like:</p>
+
+<p><code>
+   1:  publicinterface IParameter&lt;T&gt;
+</code></p>
+
+<p><code>
+   2:  where T: Type
+</code></p>
+
+<p><code>
+   3:  {
+</code></p>
+
+<p><code>
+   4:  publicstring Name { get; set;}
+</code></p>
+
+<p><code>
+   5:  public T Value { get; set;}
+</code></p>
+
+<p><code>
+   6:  }
+</code></p>
+
+<p>Maybe both?</p>
+
+<p>And maybe I haven’t read the wiki thoroughly enough and there are already implementations for all that?</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/09/07/inheritence-in-castles-activerecord">Inheritence in Castle's ActiveRecord</a></h2>
+    <div class="meta">
+        <time>on September 7, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/castle" rel="tag">castle</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/activerecord" rel="tag">activerecord</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>The reference I’ve used whilelearning to use Castl’e ActiveRecord implementation is the Blog/Post demos that can be found on Castle’s site.</p>
+
+<p>Let’s look at the Type Hierarchy example, that can be found here.</p>
+
+<p>It shows an implementation of a class diagram that look a little bit like this:<img src="http://kenegozi.com/blog/uploaded/Company_Entity_Person_Class_Diagram.GIF" alt="Class Diagram" /></p>
+
+<p>Let’s look at the code :
+[ActiveRecord(“entity”), JoinedBase]publicclassEntity : ActiveRecordBase{privateint _id;[PrimaryKey]publicint Id{get { return id; }set { id = value; }}}[ActiveRecord(“entitycompany”)]publicclassCompanyEntity : Entity{privateint comp_id;[JoinedKey(“comp_id”)]publicint CompId{get { return comp_id; }set { comp_id = value; }}}[ActiveRecord(“entityperson”)]publicclassPersonEntity : Entity{privateint person_id;[JoinedKey(“person_id”)]publicint PersonId{get { return person_id; }set { person_id = value; }}}
+But look what happens. since the Id property on entity is public and inherited to the subclasses, you get something like this:<img src="http://kenegozi.com/blog/uploaded/IdOrPersonId.GIF" alt="Should I use .Id or .PersonId?" /></p>
+
+<p>So there is a duplicate field here !!!. and it’s not only a getter-setter thingie. It also have different private members.</p>
+
+<p>My solution for this is to virtualize the base Id, and protectedize (hehe) the _id member, like this:</p>
+
+<p>[ActiveRecord(“entity”), JoinedBase]publicclassEntity : ActiveRecordBase{protectedint _id;[PrimaryKey]publicvirtualint Id{get { return id; }set { id = value; }}}[ActiveRecord(“entitycompany”)]publicclassCompanyEntity : Entity{[JoinedKey(“comp_id”)]publicoverrideint Id{get { return _id; }set { _id = value; }}}[ActiveRecord(“entityperson”)]publicclassPersonEntity : Entity{[JoinedKey(“person_id”)]publicoverrideint Id{get { return _id; }set { _id = value; }}}
+Now it makes more sence:<img src="http://kenegozi.com/blog/uploaded/NowOnlyId.GIF" alt="I should use .Id" /></p>
+
+<p>And before you hit me with a big stick - I do know of ActiveRecordBase<t> . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich</t></p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/08/20/systemnetmailmailmessagealternateview-strange-documentation">System.Net.Mail.MailMessage.AlternateView - strange documentation</a></h2>
+    <div class="meta">
+        <time>on August 20, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/miscellanea" rel="tag">miscellanea</a>
+            ,&nbsp;
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Check this out.</p>
+
+<p>I’ve wanted to send emails, and have messages with both plain text and html views. A quick look at MSDN have braught <a href="http://msdn2.microsoft.com/en-us/library/system.net.mail.mailmessage.alternateviews.aspx">this</a> up, and it looked good. Waydago MSFT - good work.</p>
+
+<p>However, a strange exception occured in runtime, and after a little check it was obvious that the constructor used in MSDN’s doc is just NOT THERE.</p>
+
+<p><a href="http://blogs.geekdojo.net/ryan/archive/2006/01/03/systemnetmail_doc_error.aspx">This</a> guy also had the same problem, and someone there pointer out the solution. There is a static method to create an instance of a AlternateView from a string that represents a message’s body. It’s called CreateAlternateViewFromStringand It’s nice to have it.</p>
+
+<p>Mistakes in docs are exceptable, however, the guy braught it up last January, and MSFT didn’t fix the doc until now.</p>
+
+<p>Strange it is.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/08/10/ways-to-run-a-method-in-a-new-thread">Ways to run a method in a new Thread</a></h2>
+    <div class="meta">
+        <time>on August 10, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m going to explore a few ways to spawn new threads in c# 2.0.Let’s say that we want to do a time consuming process, and that we do not need that the main program will wait for it to end.For the sake of the examples here, I’ll assume that the long run process is sending an e-mail to “you”, from “me” and the message’s body is “the body of the message”. the email will be processed by a thread-safe(1) static method, called SendMail(string, string, string) that resides in the Utilities class. How convenient.(1) A thread-safe method is an enchanted, voodoo-enabled method that behaves well under multithreading (2) environment.(2) Multithreading is a cool name for the ability to knit long sleeved shirts(3)(3) Disregard the last three comments. Really, you should.The non-multithreading code looked like this:{…Utilities.SendMail(“from”, “to”, “body”);…}In the good old .NET 1.1 way, Thread wasn’t really able to run a method with arguments, so you should have built a wrapper for that. Something like:class Program{publicstaticvoid Main(){SendMailHelper sendMail =new SendMailHelper(“from”, “to”, “body”);}}class SendMailHelper{public SendMailHelper(string from, string to, string body){_from = from;_to = to;_body = body;Thread t =new Thread(Run);t.Start();}publicvoid Run(){Utilities.SendMail(_from, _to, _body);}}.NET 2.0 offers an overload for Thread’s constructor: Thread(ParametrizedThreadStart), that should help with that.ParametrizedThreadStart is a delegate that accepts an object as it’s argument. So the naive thing to do is to wrap the method in a method that accepts an object, and call the target method from within, unpacking the object during the process:class Program{publicstaticvoid Main(){Thread t =new Thread(RunSendMail);object[] parametersArray =newobject[] {“from”, “to”, “body” };t.Start(parametersArray);}void RunSendMail(object parameters){object[] parametersArray = (object[])parameters;Utilities.SendMail((string)parametersArray[0], (string)parametersArray[1], (string)parametersArray[2]);}}</p>
+
+<p>Ugly.Luckily, .NET 2.0 comes with anonymous delegates, that simplifies things a lot:class Program{publicstaticvoid Main(){Thread t =new Thread(delegate() {Utilities.SendMail(“from”, “to”, “body”);});t.Start();}}But what if you want to be notified when the method completes? Well, you could try this:class Program{publicstaticvoid Main(){Thread t =new Thread(delegate() {SendMail(“from”, “to”, “body”, SendMailEnded);});t.Start();}publicdelegatevoid Callback();publicstaticvoid SendMailEnded(){Console.WriteLine(“Do That ended”);}publicstaticvoid SendMail(string from, string to, string body, Callback callback){Utilities.SendMail(from, to, body);if (callback !=null)callback();}}but, of course, now the code is less clean than before, because we have to declare the delegate Callback.</p>
+
+<p>In the next few days I’ll introduce a helper class (well, I think it helps) that encapsulate the things you need to do to spawn a new thread, pass parameters to it, and be notified on it’s lifecycle.sources, etc. will be here soon, too</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/06/07/c-20-nulleable-types-and-gettype">C# 2.0 Nulleable Types and GetType()</a></h2>
+    <div class="meta">
+        <time>on June 7, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m developing some Two-Way Databound ASP.NET Server Controls lately, and I use some reflection in order to do the actual binding and unbinding.</p>
+
+<p>During my work, I found out something strange.</p>
+
+<p>Let’s consider the next code segment:</p>
+
+<p>bool? myNullableBool =true;Type t = myNullableBool.GetType();</p>
+
+<p>You’d think that t == typeof(bool?),</p>
+
+<p>but actually, t == typeof(bool)!!!</p>
+
+<p>So it seams that the Nullable&lt;&gt; types in c# 2.0 aren’t “real”, in the sense that instances of those types, actually are of the corresponded “regular” type, but has some kind of an overload on the = operator, that allow null as a input value.</p>
+
+<p>It’s not the behavior that I’ve expected, and so it caused my a lot of headaches during the development of my binding/unbinding methods.</p>
+
+<p>I guess it is documented on MSDN, but I got to excited about the nullable types feature, that I’ve started using it without fully understanding it. </p>
+
+<p>So my lesson for today is: study well, and stay out of hell.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/05/28/oring-type-constraints-on-generic-declerations-in-c">OR-ing type constraints on generic declerations in C#</a></h2>
+    <div class="meta">
+        <time>on May 28, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>Consider the next scenario:</p>
+
+<p>You want to have a generic class, to handle different types of primitive data, but also strings.</p>
+
+<p>So you’d like to have something like this:</p>
+
+<p><code>
+publicclass Manager&lt;T&gt;where T: struct OR string{...}
+</code></p>
+
+<p>or maybe you’d like to handle objects and strings:</p>
+
+<p><code>
+where T: (ISomeInterface, new()) OR struct
+</code></p>
+
+<p>or even specify some specific available types:</p>
+
+<p><code>
+where T: long OR int
+</code></p>
+
+<p>or two possible base classes:</p>
+
+<p><code>
+where T: MyGreatUserControlBase OR MyGreatWebControlBase 
+</code></p>
+
+<p>et cetera.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>I’d like to hear comments about that (and suggestions to the OR sign -</td>
+      <td>,</td>
+      <td> </td>
+      <td>, ; or whatever). If the feedback will be positive, I might suggests it to MS guys as a ladybug or such, and we might see it as part of C# 3.0, or maybe 4.0?</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+    
+
+    <section class="container content post">
+    <h2><a href="/blog/2006/05/27/winfx-may-ctps-are-out">WinFX May CTPs are out</a></h2>
+    <div class="meta">
+        <time>on May 27, 2006</time>&nbsp;&nbsp;
+        <span class="tags">
+            
+            <a href="/blog/tag/c-sharp" rel="tag">c-sharp</a>
+            
+            
+        </span>
+        
+    </div>
+    
+     <p>I’m downloading the whole package, letting Roee play with the WPF and Oren with WWF, leaving the WCF stuff to myself.I hope to have some insights on the subject, soon.The Linq preview is already installed, and I’m working on some minor project as part of my Bachelor’s degree seminar, dealing with the impendency mismatch, between the software OO world and the database E-R world, using DLinq to demonstrate this kind of O/R mapping solution.</p>
+
+
+    </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+</body>
+</html>
