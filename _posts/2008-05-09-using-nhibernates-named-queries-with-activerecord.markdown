@@ -49,9 +49,9 @@ So, for an example, on this blog's source code, within PostRepository.cs you'd s
 
 
 
- public ICollection<Post> FindInArchive(int year, int month) { 
+ public ICollection&lt;Post&gt; FindInArchive(int year, int month) { 
 
- return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter("year", year) .SetParameter("month", month) .List<Post>(); }
+ return session .GetNamedQuery(Queries.FindPostsInArchive) .SetParameter("year", year) .SetParameter("month", month) .List&lt;Post&gt;(); }
 
 ...
 

@@ -50,12 +50,12 @@ Now I'm testing CodeFormat from [ThinkStar.de](http://deedee.brainstream.net/Cod
    6:  }
 ```
 
-A lot better. I've added some stuff to my theme's style.css file, like removing padding and marging from <pre> tags, and applying all of Code class attributes to the generated CodeFormatContainer class. I like the line numbering option, too.
+A lot better. I've added some stuff to my theme's style.css file, like removing padding and marging from &lt;pre&gt; tags, and applying all of Code class attributes to the generated CodeFormatContainer class. I like the line numbering option, too.
 
 Trying some aspx stuff:
 
 ```
-   1:  <asp:TextBox runat="Server"></asp:TextBox>
+   1:  &lt;asp:TextBox runat="Server"&gt;&lt;/asp:TextBox&gt;
 ```
 
 less cool, but still works.

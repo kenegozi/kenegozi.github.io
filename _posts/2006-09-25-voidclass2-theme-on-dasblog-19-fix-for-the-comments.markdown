@@ -15,7 +15,7 @@ The reason: The theme uses css positioning instead of table positioning, and the
 The solution:
 
 Edit the CommentViewBox.ascx file (on the blog's root):1. Fixing the "add comment" area width - note the new width value (highlighted):
-<TABLEclass="commentViewTableStyle"  id="commentViewTable"  cellSpacing="1"  cellPadding="1" border="0"  runat="server"  width="70%">2. Adding a class to the comment area's div - the new stuff is highlighted: <div runat="server" id="commentViewContent" class="commentViewContent">
+&lt;TABLEclass="commentViewTableStyle"  id="commentViewTable"  cellSpacing="1"  cellPadding="1" border="0"  runat="server"  width="70%"&gt;2. Adding a class to the comment area's div - the new stuff is highlighted: &lt;div runat="server" id="commentViewContent" class="commentViewContent"&gt;
 
 
 Edit the style.css file from the theme's folder, and add the following text:

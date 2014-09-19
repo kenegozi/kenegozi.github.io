@@ -17,8 +17,8 @@ However, if you DO want to use c#3 stuff in view templates (like extension metho
 So, if you're using autorecompilation=true, the add this to your web.config:
 
 ```
-<system.codedom> <compilers> <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CSharp.CSharpCodeProvider,System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" warningLevel="4"> <provideroption value="v3.5" name="CompilerVersion" /> <provideroption value="false" name="WarnAsError" /> </compiler> </compilers>
-</system.codedom>
+&lt;system.codedom&gt; &lt;compilers&gt; &lt;compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CSharp.CSharpCodeProvider,System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" warningLevel="4"&gt; &lt;provideroption value="v3.5" name="CompilerVersion" /&gt; &lt;provideroption value="false" name="WarnAsError" /&gt; &lt;/compiler&gt; &lt;/compilers&gt;
+&lt;/system.codedom&gt;
 
 ```
 

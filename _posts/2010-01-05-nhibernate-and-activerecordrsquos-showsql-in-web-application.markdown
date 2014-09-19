@@ -81,9 +81,9 @@ within DoSomethingWith you can do whatever you like with the queries string coll
 
 &#160;
 
-The more complete solution that I use, is taking advantage of a feature in Monorail's AspView called [ViewFilter](http://kenegozi.com/blog/2007/11/13/viewfilter-take-2.aspx) (you can do this with ASP.NET's output filter; look up HttpFilter. it's not as clean, but workable). I create a filter that wrap the stuff that's on the Application_EndRequest, turn the queries collection into a bunch of <pre> elements, and stick it within the view-engine's output by simple string.Replace call, injecting these <pre> elements into a marker location in the markup.
+The more complete solution that I use, is taking advantage of a feature in Monorail's AspView called [ViewFilter](http://kenegozi.com/blog/2007/11/13/viewfilter-take-2.aspx) (you can do this with ASP.NET's output filter; look up HttpFilter. it's not as clean, but workable). I create a filter that wrap the stuff that's on the Application_EndRequest, turn the queries collection into a bunch of &lt;pre&gt; elements, and stick it within the view-engine's output by simple string.Replace call, injecting these &lt;pre&gt; elements into a marker location in the markup.
 
-I'd then use jQuery to make these <pre> elements visible when clicking somewhere secret on the screen.
+I'd then use jQuery to make these &lt;pre&gt; elements visible when clicking somewhere secret on the screen.
 
 &#160;
 
@@ -108,10 +108,10 @@ public class SqlLogFilter : IViewFilter
 				.Split(new[] {&quot;NHibernate:&quot;}, StringSplitOptions.RemoveEmptyEntries)
 				.Select(q => q.Trim());
 			log = queries
-				.Select(q => &quot;<pre>&quot; + q + &quot;</pre>&quot;)
+				.Select(q => &quot;&lt;pre&gt;&quot; + q + &quot;&lt;/pre&gt;&quot;)
 				.Aggregate(&quot;&quot;, (q1, q2) => q1 + q2);
 			var count = queries.Count();
-			log = &quot;<p>Queries: &quot; + count + &quot;</p>&quot; + log;
+			log = &quot;&lt;p&gt;Queries: &quot; + count + &quot;&lt;/p&gt;&quot; + log;
 		}
 		return input.Replace(SQL_LOG_PLACEHOLDER, log);
 	}

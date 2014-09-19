@@ -49,7 +49,7 @@ public interface ISession{    string Username { get; set; }    Preferences Prefe
 And use it like that:
 
 ```
-...    ISession TypedSession = new DictionaryAdapterFactory().GetAdapter<ISession>(Session);...    if (TypedSession.Preferences.Color == Color.Red)        helloLabel.Text = "Hello " + TypedSession.Username;...
+...    ISession TypedSession = new DictionaryAdapterFactory().GetAdapter&lt;ISession&gt;(Session);...    if (TypedSession.Preferences.Color == Color.Red)        helloLabel.Text = "Hello " + TypedSession.Username;...
 ```
 
 

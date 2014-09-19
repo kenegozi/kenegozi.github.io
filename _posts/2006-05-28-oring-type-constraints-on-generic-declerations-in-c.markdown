@@ -13,7 +13,7 @@ You want to have a generic class, to handle different types of primitive data, b
 So you'd like to have something like this:
 
 ```
-publicclass Manager<T>where T: struct OR string{...}
+publicclass Manager&lt;T&gt;where T: struct OR string{...}
 ```
 
 or maybe you'd like to handle objects and strings:

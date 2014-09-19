@@ -12,7 +12,7 @@ Assume you are building some kind of an information system. Say it's an issue tr
 
 Now say you want some visual customisation based on the current context - like a different look'n'feel for each customer on a multi-tenant application, or a slightly different menu for an Admin.
 
-Kinda easy - right? you'd stick some overriding CSS rules for the former (say on CUSTOMER_ID.css), and some kind of a simple view logic for the latter (say <% if (isAdmin) { %> ... <%}%>, or some type of CodeBehind crap if you're a WebForms lover).
+Kinda easy - right? you'd stick some overriding CSS rules for the former (say on CUSTOMER_ID.css), and some kind of a simple view logic for the latter (say &lt;% if (isAdmin) { %&gt; ... &lt;%}%&gt;, or some type of CodeBehind crap if you're a WebForms lover).
 
 
 

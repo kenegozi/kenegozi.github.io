@@ -28,16 +28,16 @@ customErrors section is set to off, as it used to work in IIS6 just fine
 What I missed out
 IIS7 introduced the httpErrors section (under system.webServer of course), which is used to tell it what to do with custom errors.
 
-The sub-key I was looking for was <errorMode> with the value set to Detailed.
+The sub-key I was looking for was &lt;errorMode&gt; with the value set to Detailed.
 
 So, adding
 
 ```
-<system.webserver>
+&lt;system.webserver&gt;
    ...
-   <httperrors errormode=&quot;Detailed&quot; />
+   &lt;httperrors errormode=&quot;Detailed&quot; /&gt;
    ...
-</system.webserver>
+&lt;/system.webserver&gt;
 ```
 
 made my problem go away.

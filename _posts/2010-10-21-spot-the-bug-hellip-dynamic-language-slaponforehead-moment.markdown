@@ -12,14 +12,14 @@ This is a view template rendering html. When running it, it caused the page to f
 
 ```
 
-<h3>Services</h3>
+&lt;h3&gt;Services&lt;/h3&gt;
 
-<% for (var ix=0; ix < view.services.length; ++i) { %>
+&lt;% for (var ix=0; ix < view.services.length; ++i) { %&gt;
 
-   <% var service = view.services[ix]; %>
+   &lt;% var service = view.services[ix]; %&gt;
 
-   <p> <%=service.name %> </p>
-<% } %>	
+   &lt;p&gt; &lt;%=service.name %&gt; &lt;/p&gt;
+&lt;% } %&gt;	
 
 ```
 

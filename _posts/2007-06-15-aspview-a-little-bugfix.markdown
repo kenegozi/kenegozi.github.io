@@ -15,8 +15,8 @@ If you setup a nullable-value-type parameter with a default value other than nul
 example:
 
 ```
-<%
- int? someInt = default(int);%>
+&lt;%
+ int? someInt = default(int);%&gt;
 ```
 
 ```
@@ -24,7 +24,7 @@ some markup
 ```
 
 ```
-<% if (someInt == default(int)) DoSomething();%>
+&lt;% if (someInt == default(int)) DoSomething();%&gt;
 ```
 
 

@@ -17,16 +17,16 @@ What's new?
 you can use 
 
 ```
-   1:  <subView:MyMenu item="menuItem"></subView:MyMenu>
+   1:  &lt;subView:MyMenu item="menuItem"&gt;&lt;/subView:MyMenu&gt;
 ```
 
 instead of 
 
 ```
-   1:  <% OutputSubView("MyMenu", Helper.Dict("item", "menuItem")); %>
+   1:  &lt;% OutputSubView("MyMenu", Helper.Dict("item", "menuItem")); %&gt;
 ```
 
-take note the <subView:Blah /> is not currently allowed. I'll fix it shortly.
+take note the &lt;subView:Blah /&gt; is not currently allowed. I'll fix it shortly.
 
 the link is [here](http://kenegozi.com/blog/GetFile.ashx?FileName=AspView_rev47.zip)
 

@@ -52,7 +52,7 @@ YAHOO.ColorPicker = {};
 
     // dialog markup: CP.dialog.setHeader('Pick a color:');
 
-    // placeholder for the color picker CP.dialog.setBody('<div id="yui-picker" class="yui-picker"></div>'); CP.dialog.render(document.body); $(CP.dialog.element).addClassName('yui-picker-panel'); 
+    // placeholder for the color picker CP.dialog.setBody('&lt;div id="yui-picker" class="yui-picker"&gt;&lt;/div&gt;'); CP.dialog.render(document.body); $(CP.dialog.element).addClassName('yui-picker-panel'); 
 
 
 

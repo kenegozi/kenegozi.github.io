@@ -21,12 +21,12 @@ It is even misspelled.
 The funniestsaddest thing is the source of this page:
 
 ```
-<script language=&quot;JavaScript&quot;> 
+&lt;script language=&quot;JavaScript&quot;&gt; 
 if (document.all) {
  document.writeln(...);}
 else {
- document.writeln(&quot;<p><font color=\&quot;#999999\&quot;><b>Error ! The current browser is either too old or too modern (usind DOM document structure).</b></font></p>&quot;);}
-</script> 
+ document.writeln(&quot;&lt;p&gt;&lt;font color=\&quot;#999999\&quot;&gt;&lt;b&gt;Error ! The current browser is either too old or too modern (usind DOM document structure).&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&quot;);}
+&lt;/script&gt; 
 ```
 
 &#160;

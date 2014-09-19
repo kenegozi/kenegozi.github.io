@@ -32,7 +32,7 @@ At times, you would need to get a logger in a different way, either because you'
 
 &#160;
 
-The naive approach would be to ask the container for an ILogger, however if you'd try this, you'll discover that Container.Resolve<ILogger>() will not fit your needs. So what will you do?
+The naive approach would be to ask the container for an ILogger, however if you'd try this, you'll discover that Container.Resolve&lt;ILogger&gt;() will not fit your needs. So what will you do?
 
 &#160;
 

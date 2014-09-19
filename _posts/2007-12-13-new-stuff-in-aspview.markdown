@@ -24,7 +24,7 @@ For example: let's say that you have created a supercool helper. You'd probably 
 You can, ofcourse declare it on every view:
 
 ```
-<aspview:parameters><%SuperCoolHelper SuperCoolHelper;%></aspview:parameters><%=MyCoolHelper.CoolStuff() %>
+&lt;aspview:parameters&gt;&lt;%SuperCoolHelper SuperCoolHelper;%&gt;&lt;/aspview:parameters&gt;&lt;%=MyCoolHelper.CoolStuff() %&gt;
 ```
 
 You can also use the DictionaryAdapter and add the helper to the base view interface:
@@ -33,9 +33,9 @@ You can also use the DictionaryAdapter and add the helper to the base view inter
 
 public interface IView{ SuperCoolHelper SuperCoolHelper { get; set; }}
 
-...<% Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime<IView>" %>
+...&lt;% Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime<IView&gt;" %>
 
-...<%=view.MyCoolHelper.CoolStuff() %>
+...&lt;%=view.MyCoolHelper.CoolStuff() %&gt;
 
 ```
 
@@ -56,14 +56,14 @@ public class MyViewAtDesignTime : ViewAtDesignTime{ SuperCoolHelper SuperCoolHel
 and in the view:
 
 ```
-<% Page Language="C#" Inherits="MyViewAtDesignTime" %>...<%=MyCoolHelper.CoolStuff() %>
+&lt;% Page Language="C#" Inherits="MyViewAtDesignTime" %&gt;...&lt;%=MyCoolHelper.CoolStuff() %&gt;
 ```
 
 You can mix that with the DictionaryAdapter integration:
 
 ```
-<% Page Language="C#" Inherits="MyViewAtDesignTime<IPostView>" %>...
-<%=MyCoolHelper.CoolStuff(view.Post.Title) %>
+&lt;% Page Language="C#" Inherits="MyViewAtDesignTime<IPostView&gt;" %>...
+&lt;%=MyCoolHelper.CoolStuff(view.Post.Title) %&gt;
 
 ```
 

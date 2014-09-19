@@ -10,11 +10,11 @@ Today we tried to have this in a view's parameters section:
 
 
 
-<%
+&lt;%
 
  int id = default(int);
 
-%>
+%&gt;
 
 
 
@@ -34,9 +34,9 @@ Meanwhile, we "solved" the problem by using:
 
 
 
-<%
+&lt;%
 
 object id = default(int);
 
-%>
+%&gt;
 

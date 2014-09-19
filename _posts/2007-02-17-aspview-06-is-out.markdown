@@ -15,23 +15,23 @@ What's new?
 The syntax for the ViewComponents is xml-like: just add
 
 ```
-<component:VIEWCOMPONENTNAMEARGUMENTS><section:SECTIONNAME></section:SECTIONNAME>Some content  </component:VIEWCOMPONENTNAME>
+&lt;component:VIEWCOMPONENTNAMEARGUMENTS&gt;&lt;section:SECTIONNAME&gt;&lt;/section:SECTIONNAME&gt;Some content  &lt;/component:VIEWCOMPONENTNAME&gt;
 ```
 
-where VIEWCOMPONENTNAME is the component's class name, SECTIONNAME is the section name, for components that uses sections, and the ARGUMENTS are xml-attributes, for example: id="capturedContent" myData="<%=items %>"
+where VIEWCOMPONENTNAME is the component's class name, SECTIONNAME is the section name, for components that uses sections, and the ARGUMENTS are xml-attributes, for example: id="capturedContent" myData="&lt;%=items %&gt;"
 
 examples (from the test site):
 
 for constant arguments:
 
 ```
-<component:CaptureForid="capturedContent">   This content should be rendered in the captured-for place holder  </component:CaptureFor>
+&lt;component:CaptureForid="capturedContent"&gt;   This content should be rendered in the captured-for place holder  &lt;/component:CaptureFor&gt;
 ```
 
 for variable arguments:
 
 ```
-<component:GridComponentsource="<%=items%>">    <section:header><table><thead><th>Id</th><th>Word</th></thead></section:header><section:item><tr><td>1</td><td><%=item %> </td></tr></section:item><section:footer></table></section:footer></component:GridComponent>
+&lt;component:GridComponentsource="<%=items%&gt;">    &lt;section:header&gt;&lt;table&gt;&lt;thead&gt;&lt;th&gt;Id&lt;/th&gt;&lt;th&gt;Word&lt;/th&gt;&lt;/thead&gt;&lt;/section:header&gt;&lt;section:item&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;&lt;%=item %&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/section:item&gt;&lt;section:footer&gt;&lt;/table&gt;&lt;/section:footer&gt;&lt;/component:GridComponent&gt;
 ```
 
 As usual, source code is at [http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/](http://svn.castleproject.org:8080/svn/castlecontrib/viewengines/aspview/trunk/), 

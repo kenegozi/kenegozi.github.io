@@ -24,7 +24,7 @@ I tried Linq for SQL (on a VS C# 2008 Express Beta2). No designer. Hand coded th
 
 
 
-First problem encountered: in order to make a column lazy, I need to change the underlying type to Link<MyOriginalType>, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.
+First problem encountered: in order to make a column lazy, I need to change the underlying type to Link&lt;MyOriginalType&gt;, and then I can tell the context (using a LoadingOptions) about whether to load the lazy properties.
 
 
 

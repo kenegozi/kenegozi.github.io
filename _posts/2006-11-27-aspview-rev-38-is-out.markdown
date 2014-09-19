@@ -8,7 +8,7 @@ tags: [asp-net-2-0,visual-studio,visual-studio-2005,c-sharp,castle,monorail,aspv
 
 What we have:
 
-1. Default Helpers are now declared in the AspViewBase. It means that you can use <%=FormHelper.LabelFor(...) %> without the need to declare the helper at the begining of the view.
+1. Default Helpers are now declared in the AspViewBase. It means that you can use &lt;%=FormHelper.LabelFor(...) %&gt; without the need to declare the helper at the begining of the view.
 
 2. the compiler was refactored to allow for better testing, and for implementation of further view languages. vurrently I've started with VB.NET but it is not working yet, since I have no time to make sure the VB syntax is correct. The tests of the compiler are missing due to some stupidity on my side, of not commiting the TestCase ...
 

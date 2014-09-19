@@ -24,7 +24,7 @@ Well:
 - Since I am not at kinder garden, I do not "play" with setting up new projects. When I start a new project, it would probably last for quite some time. So the time it takes me to copy&amp;paste a minimal web.config, setup a few lines in global.asax.cs, add references and create Controllers and Views folders, costs me about 5 minutes of the global project costs.I can live with that.
 - Shame. However, I can add them to my initial web.config/global.asax.cs files that I use as templates for new projects. Again - one-time cost, and not a price-i one.
 - I do not want to use those. Didn't use them even when I was doing WebForms. I'm happy enough with ViewComponents, SubViews and ViewFilters, and I can easily use any cool 3rd party JS controllers (YUI/Dojo/jQuery/ExtJs/Moo/You-Name-It)
-- Again - I do not trust WYSIWYG generated markup. It might be good enough for the texts on my personal blog (dear Windows Live Writer - can't you <br /> instead of <br>? what's the deal). It is definitely not good enough for any production level web site.
+- Again - I do not trust WYSIWYG generated markup. It might be good enough for the texts on my personal blog (dear Windows Live Writer - can't you &lt;br /&gt; instead of &lt;br&gt;? what's the deal). It is definitely not good enough for any production level web site.
 
 So - all the downsides are taken care of.
 

@@ -25,7 +25,7 @@ public class GoogleAnalyticsComponent : ViewComponent{
 Accompanied by the AnalyticsCode view template:
 
 ```
-<%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %><script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript"> _uacct = "MY_URCHIN_CODE"; urchinTracker();</script>
+&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime" %&gt;&lt;script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt; _uacct = "MY_URCHIN_CODE"; urchinTracker();&lt;/script&gt;
 ```
 
 , that can easily be extensible to set the urchin code with a parameter.

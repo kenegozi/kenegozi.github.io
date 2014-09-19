@@ -45,13 +45,13 @@ These are my notes about the lecture (as someone who wants to use it in our proj
 
 16. We can override the "default" render of the controls via sections in the markup (define sections will override it). **(dude - It's a component, not a control;) )**
 
-17. Egozi uses prototype (pasha as well?) as ajax framework. For Ajax – call CancelLayout method and RenderView("name_of_view"). This is called SubView and we use it in the markup with <subView:name_of_view />. **(Actually I tend to use prototype as a Javascript enhancement, where needed. If only 'ajax' calls are needed, jQuery or YAHOO.connection would be a better lightweight solution)**
+17. Egozi uses prototype (pasha as well?) as ajax framework. For Ajax – call CancelLayout method and RenderView("name_of_view"). This is called SubView and we use it in the markup with &lt;subView:name_of_view /&gt;. **(Actually I tend to use prototype as a Javascript enhancement, where needed. If only 'ajax' calls are needed, jQuery or YAHOO.connection would be a better lightweight solution)**
 
 18. We can use the Cache attribute (MonoRail) over the controller method (aka "Action") in order to avoid cacheability of urls (like Response.Exired = DateTime.Now.AddDays(-1) or something like this). **(You can also use Response.Cache as before, the attribute makes our code nicer)**
 
 19. We can use Filter for authentication – read about it a little. Each action on the controller will trigger this before running (or after).  
 
-20. PropertyBag uses string, eleutian solved it with a smart code generator (pre-build). Create typed Flash and PropertyBag if implementing interfaces. Read about it (ask Egozi for link). **(it's in **[Castle.Tools.CodeGenerator on CastleContrib](http://svn.castleproject.org:8080/svn/castlecontrib/codegenerator/trunk/)**, and also look at **[their blog](http://blog.eleutian.com/)**. The tool actually is being used for typing of your site's Controllers, Actions, and Views. As a side effect, they have created [DictionaryAdapter](http://svn.castleproject.org:8080/svn/castle/trunk/Components/General/DictionaryAdapter/) than can do the IDictionary<->TypedObject thing.And yuu can also hand-type PropertyBag and Flash.)**
+20. PropertyBag uses string, eleutian solved it with a smart code generator (pre-build). Create typed Flash and PropertyBag if implementing interfaces. Read about it (ask Egozi for link). **(it's in **[Castle.Tools.CodeGenerator on CastleContrib](http://svn.castleproject.org:8080/svn/castlecontrib/codegenerator/trunk/)**, and also look at **[their blog](http://blog.eleutian.com/)**. The tool actually is being used for typing of your site's Controllers, Actions, and Views. As a side effect, they have created [DictionaryAdapter](http://svn.castleproject.org:8080/svn/castle/trunk/Components/General/DictionaryAdapter/) than can do the IDictionary&lt;-&gt;TypedObject thing.And yuu can also hand-type PropertyBag and Flash.)**
 
  
 Thanks Oren.

@@ -30,7 +30,7 @@ your view would look like:
 
 ```
 ...
-<h3>Preview:</h3><div><%=view.ContentItem.Markup %> </div><h3>Source:</h3><div><%=Helpers.Html.HtmlEncode(view.ContentItem.Markup) %> </div>...
+&lt;h3&gt;Preview:&lt;/h3&gt;&lt;div&gt;&lt;%=view.ContentItem.Markup %&gt; &lt;/div&gt;&lt;h3&gt;Source:&lt;/h3&gt;&lt;div&gt;&lt;%=Helpers.Html.HtmlEncode(view.ContentItem.Markup) %&gt; &lt;/div&gt;...
 
 ```
 
@@ -40,7 +40,7 @@ easy enough.
 
 
 
-However, what if the piece of markup that you want to show, has some view-logic, so you have a template generating the markup from an entity? For example, this blog has a view "Posts/One" that gets a Post entity, and fits it into a single post markup, putting the title in a <h4>, tags in <span> with theit title and href, etc.
+However, what if the piece of markup that you want to show, has some view-logic, so you have a template generating the markup from an entity? For example, this blog has a view "Posts/One" that gets a Post entity, and fits it into a single post markup, putting the title in a &lt;h4&gt;, tags in &lt;span&gt; with theit title and href, etc.
 
 How can you show the markup source for that?
 
@@ -61,7 +61,7 @@ public class HtmlEncodeViewFilter : IViewFilter{ public string ApplyOn(string in
 and in the view:
 
 ```
-...<% foreach (Post post in view.Posts) { %><h3>Preview:</h3><subview:.Posts.One post="<%=post %>" > </subview:.Posts.One><h3>Source:</h3><filter:HtmlEncode> <subview:.Posts.One post="<%=post %>" > </subview:.Posts.One></filter:HtmlEncode><% } %>
+...&lt;% foreach (Post post in view.Posts) { %&gt;&lt;h3&gt;Preview:&lt;/h3&gt;&lt;subview:.Posts.One post="<%=post %&gt;" > &lt;/subview:.Posts.One&gt;&lt;h3&gt;Source:&lt;/h3&gt;&lt;filter:HtmlEncode&gt; &lt;subview:.Posts.One post="<%=post %&gt;" > &lt;/subview:.Posts.One&gt;&lt;/filter:HtmlEncode&gt;&lt;% } %&gt;
 ```
 
 

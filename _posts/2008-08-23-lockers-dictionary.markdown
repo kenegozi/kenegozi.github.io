@@ -62,7 +62,7 @@ class KeyLevelSafeCache
 
 
 
-   public T Get<T>(string key, Func<T> load())
+   public T Get&lt;T&gt;(string key, Func&lt;T&gt; load())
 
    {
 

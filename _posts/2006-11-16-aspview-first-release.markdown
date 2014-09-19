@@ -19,25 +19,25 @@ The documentation is poor since I have a little time now. I am working on a webs
 The views MUST have the following structure: a. Page header - Must be present for intellisense to work:
 
 ```
-   1:  <%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%>
+   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;
 ```
 
  b. Directives - Not mandatory:
 
 ```
-   1:  <%@ Import Namespace="System.Text"%>   2:  <%@ Import Namespace="System.Drawing"%>
+   1:  &lt;%@ Import Namespace="System.Text"%&gt;   2:  &lt;%@ Import Namespace="System.Drawing"%&gt;
 ```
 
  c. Properties decleration - Currently it's mandatory. If you have no properties you mast have an empty block:
 
 ```
-   1:  <%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %>
+   1:  &lt;%   2:  string[] strings;   3:      DateTime today;   4:  int index;   5:  %&gt;
 ```
 
 or just
 
 ```
-   1:  <%   2:  %>
+   1:  &lt;%   2:  %&gt;
 ```
 
  d. View body
@@ -45,6 +45,6 @@ or just
 In a layout view you place the inner view using the ViewContents property, like this:
 
 ```
-   1:  blah   2:  blah   3:  <%=ViewContents%>   4:  blah   5:  blah
+   1:  blah   2:  blah   3:  &lt;%=ViewContents%&gt;   4:  blah   5:  blah
 ```
 

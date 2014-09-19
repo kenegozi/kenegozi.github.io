@@ -36,7 +36,7 @@ publicclassSyndicationRedirectionHandler : IHttpHandler
 and that line into web.config:
 
 
-<addverb="*"path="SyndicationService.asmx"type="KenEgozi.Com.Weblog.SyndicationRedirectionHandler, KenEgozi.Com.Weblog"/>
+&lt;addverb="*"path="SyndicationService.asmx"type="KenEgozi.Com.Weblog.SyndicationRedirectionHandler, KenEgozi.Com.Weblog"/&gt;
 
 
 Voila.

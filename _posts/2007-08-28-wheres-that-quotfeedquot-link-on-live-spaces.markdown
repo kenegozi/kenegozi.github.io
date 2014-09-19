@@ -14,10 +14,10 @@ Luckily enough I'm using FF2 and I get the tiny feed icon on the address bar, so
 
 So what should you do if you are that poor fellow?
 
-view the page's source (that's "right-click + View Source), and look for a link tag within the <head> that sais
+view the page's source (that's "right-click + View Source), and look for a link tag within the &lt;head&gt; that sais
 
 ```
-<link rel="alternate" type="application/rss+xml" title="THE SPACE'S TITLE" href="THE FEED LINK" />
+&lt;link rel="alternate" type="application/rss+xml" title="THE SPACE'S TITLE" href="THE FEED LINK" /&gt;
 ```
 
 now, if you've looked for the exact string written here you're hopeless, and should read a html book / w3schools sitebefore you start 'hacking' html. 

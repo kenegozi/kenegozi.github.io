@@ -24,8 +24,8 @@ HomepageView
   PostData[] Posts
 
 LayoutView
-  Tuple<string, int>[] Archive
-  Tuple<string, int>[] TagCloud
+  Tuple&lt;string, int&gt;[] Archive
+  Tuple&lt;string, int&gt;[] TagCloud
   string[] Similar
 ```
 

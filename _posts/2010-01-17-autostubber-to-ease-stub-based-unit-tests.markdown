@@ -55,12 +55,12 @@ The code for AutoStubber:
 * Mind you – it's not the prettiest, but it gets the job done
 
 ```
-public class AutoStubber<T> where T : class
+public class AutoStubber&lt;T&gt; where T : class
 {
 	static readonly Type TypeofT;
 	static readonly ConstructorInfo Constructor;
 	static readonly Type[] ParameterTypes;
-	static readonly Dictionary<object, AutoStubber<T>> Instances = new Dictionary<object, AutoStubber<T>>();
+	static readonly Dictionary&lt;object, AutoStubber<T&gt;> Instances = new Dictionary&lt;object, AutoStubber<T&gt;>();
 	static AutoStubber()
 	{
 		TypeofT = typeof(T);
@@ -68,7 +68,7 @@ public class AutoStubber<T> where T : class
 		ParameterTypes = Constructor.GetParameters().Select(pi => pi.ParameterType).ToArray();
 	}
 
-	public static AutoStubber<T> GetStubberFor(T obj)
+	public static AutoStubber&lt;T&gt; GetStubberFor(T obj)
 	{
 		return Instances[obj];
 	}
@@ -82,11 +82,11 @@ public class AutoStubber<T> where T : class
 		return Instance;
 	}
 
-	readonly Dictionary<Type, object> _dependencies = new Dictionary<Type, object>();
+	readonly Dictionary&lt;Type, object&gt; _dependencies = new Dictionary&lt;Type, object&gt;();
 	private T Instance { get; set; }
 	public AutoStubber()
 	{
-		var parameters = new List<object>(ParameterTypes.Length);
+		var parameters = new List&lt;object&gt;(ParameterTypes.Length);
 		foreach (var parameterType in ParameterTypes)
 		{
 			var parameter = MockRepository.GenerateStub(parameterType);
@@ -96,17 +96,17 @@ public class AutoStubber<T> where T : class
 		Instance = (T)Constructor.Invoke(parameters.ToArray());
 		Instances[Instance] = this;
 	}
-	public TDependency Get<TDependency>()
+	public TDependency Get&lt;TDependency&gt;()
 	{
 		return (TDependency)_dependencies[typeof(TDependency)];
 	}
 }
 public static class AutoStubberExtensions
 {
-	public static AutoStubber<T> Stubs<T>(this T obj)
+	public static AutoStubber&lt;T&gt; Stubs&lt;T&gt;(this T obj)
 		where T : class
 	{
-		return AutoStubber<T>.GetStubberFor(obj);
+		return AutoStubber&lt;T&gt;.GetStubberFor(obj);
 	}
 }
 ```

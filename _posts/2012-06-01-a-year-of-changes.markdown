@@ -28,7 +28,7 @@ I also need to re-prove myself. When I was employed full-time in the past I was 
 
 ## One kid vs. two
 
-Given W[n]<=>work required for n kids, and F[n]<=>fun gained from n kids, it is sad that
+Given W[n]&lt;=&gt;work required for n kids, and F[n]&lt;=&gt;fun gained from n kids, it is sad that
 
 F[n+1] = F[n] * 2, while W[n+1] = W[n] 2
 

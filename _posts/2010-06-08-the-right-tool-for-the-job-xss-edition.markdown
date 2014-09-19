@@ -15,7 +15,7 @@ There are also other cases where UGC can find its way into JavaScript blocks. Pe
 &#160;
 
 ```
-var url = '<%=viewData.returnUrl%>';
+var url = '&lt;%=viewData.returnUrl%&gt;';
 ```
 
 or
@@ -24,7 +24,7 @@ or
 
 ```
 
-var commenterName = '<%=viewData.newComment.authorName%>';
+var commenterName = '&lt;%=viewData.newComment.authorName%&gt;';
 
 ```
 

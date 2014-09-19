@@ -23,7 +23,7 @@ Now I know my way around (at least the basics of) set theory, and I *know* what 
 For those unsure about what Union means (or what it actually does), the following code:
 
 {% highlight c# %}
-var set = new HashSet<int>(new[] {1, 2});
+var set = new HashSet&lt;int&gt;(new[] {1, 2});
 var other = new[] {2, 3};
 set.UnionWith(other);
 Console.WriteLine(Serialize(set));{% endhighlight %}

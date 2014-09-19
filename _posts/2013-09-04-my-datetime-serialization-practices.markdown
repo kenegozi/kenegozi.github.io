@@ -11,10 +11,10 @@ When sending DateTimes as string across the wire, it is quite useful to use ISO 
 During the many times I had to deal with serialization implementations, while working on one of the many web frameworks I've been involved with, or with serialization libraries, I keep getting back to be needing to remember what I did last time, so this post is to serve as a future reminder to self on how I want it to be done.
 
 ## Serializing a DateTime to a string:
-<pre><code>string Serialize(DateTime value) {
+&lt;pre&gt;&lt;code&gt;string Serialize(DateTime value) {
     const string ISO8601Format = "o"; // this is a terrific little gem!
     return value.ToString(ISO8601Format);
-}</code></pre>
+}&lt;/code&gt;&lt;/pre&gt;
 
 Did you notice the “o” format specifier? This is a much better than typing "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK", which I've been doing until recently.
 

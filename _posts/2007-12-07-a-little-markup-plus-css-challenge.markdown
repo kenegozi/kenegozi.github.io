@@ -27,7 +27,7 @@ I have added another prequisite: the center content must come before the side co
 That's my simplistic answer:
 
 ```
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional-dtd"> <html xmlns="http://www.w3.org/1999/xhtml"><head> <title>Dror Engel's blog rocks</title> <style type='text/css'> div, body {padding:0, margin:0} #right-column { background-color:#FFA } 
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional-dtd"&gt; &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head&gt; &lt;title&gt;Dror Engel's blog rocks&lt;/title&gt; &lt;style type='text/css'&gt; div, body {padding:0, margin:0} #right-column { background-color:#FFA } 
 
 
  #left-column { float:left; width: 500px; background-color:#FAF } 
@@ -36,7 +36,7 @@ That's my simplistic answer:
  #center-column { float:right; width:400px; background-color:#AFF } div.break { clear:left; } 
 
 
- </style> <script type='text/javascript'> function stretchCenter() { var center = document.getElementById('center-column'); center.innerHTML += '<br /> Blah blah blah'; } </script></head><body> <div id='right-column'> <div id='left-column'> <div id='center-column'> <button onclick='stretchCenter();'>Streach Center</button> <br /> Center <br /> Center <br /> Center <br /> </div> Left </div> right <br /> <div class='break'></div> </div></body></html>
+ &lt;/style&gt; &lt;script type='text/javascript'&gt; function stretchCenter() { var center = document.getElementById('center-column'); center.innerHTML += '&lt;br /&gt; Blah blah blah'; } &lt;/script&gt;&lt;/head&gt;&lt;body&gt; &lt;div id='right-column'&gt; &lt;div id='left-column'&gt; &lt;div id='center-column'&gt; &lt;button onclick='stretchCenter();'&gt;Streach Center&lt;/button&gt; &lt;br /&gt; Center &lt;br /&gt; Center &lt;br /&gt; Center &lt;br /&gt; &lt;/div&gt; Left &lt;/div&gt; right &lt;br /&gt; &lt;div class='break'&gt;&lt;/div&gt; &lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
 
 
 

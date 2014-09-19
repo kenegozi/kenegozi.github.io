@@ -58,7 +58,7 @@ container.Kernel.AddFacility("factory.support", facility);
 - Register your factories in the facility:
 
 ```
-facility.AddFactory<ISomeContext, SomeContextFactory>("some.context", "ObtainFromFramework");
+facility.AddFactory&lt;ISomeContext, SomeContextFactory&gt;("some.context", "ObtainFromFramework");
 ```
 
 If you mix 2 and 3, it would break.

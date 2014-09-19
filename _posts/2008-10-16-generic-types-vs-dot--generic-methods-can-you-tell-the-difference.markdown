@@ -17,14 +17,14 @@ classWrapper
     {
         Counter=0;
     }
-    publicTGet<T>()
+    publicTGet&lt;T&gt;()
     {
         ++Counter;
         returndefault(T);
     }
 }
 
-classWrapper<T>
+classWrapper&lt;T&gt;
 {
     publicstaticintCounter{ get; privateset;}
     staticWrapper()

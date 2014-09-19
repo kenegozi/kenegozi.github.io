@@ -14,7 +14,7 @@ So, as Hammet said, the extension is determined on the web.config. The .aspx is 
 
 btw, helpers ARE supported, You just need to add the declaration in the place, like 
 
-<% Post[] posts;AjaxHelper AjaxHelper;AjaxHelper AjaxHelper;%>
+&lt;% Post[] posts;AjaxHelper AjaxHelper;AjaxHelper AjaxHelper;%&gt;
 
 In the trunk there is some improvements, such as refactored AspViewCompiler, so it uses a PreProcessor that has subtypes. Currently it has a working CSharpPreProcessor, and a non-working VbPreProcessor. I intend to try adding a BrailPreProcessor ... I hope to be able to mix view languages in the same site. each language group will be compiled to a module, and linked to the CompiledViews.dll assembly. 
 

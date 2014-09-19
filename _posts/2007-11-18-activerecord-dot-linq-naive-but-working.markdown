@@ -37,7 +37,7 @@ using System;using Castle.ActiveRecord;using Castle.ActiveRecord.Framework;using
 and now you can do stuff like:
 
 ```
-using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq<Category>() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
+using (new SessionScope()){ ActiveRecordContext context = new ActiveRecordContext(); var q =  from c in context.Session.Linq&lt;Category&gt;() select c;  foreach (Category c in q) Console.WriteLine(c.Name); }
 ```
 
 Assuming Category has [ActiveRecord] mapping.

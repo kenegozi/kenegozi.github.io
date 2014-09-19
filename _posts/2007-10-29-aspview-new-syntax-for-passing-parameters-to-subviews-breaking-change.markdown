@@ -13,7 +13,7 @@ The old syntax for passing parameters to subviews was:
 View sources files used to look like this:
 
 ```
-<%Page Language= ... %>... blah blah ...<subview:whatever name="value"></subview:whatever>
+&lt;%Page Language= ... %&gt;... blah blah ...&lt;subview:whatever name="value"&gt;&lt;/subview:whatever&gt;
 ```
 
 
@@ -21,7 +21,7 @@ View sources files used to look like this:
 The problem was thatyou could only have passed variables (byname), so if you needed to pass a string literal you had to declare a string object with the literal:
 
 ```
-<%Page Language= ... %>... blah blah ...<%string value="literal";  %><subview:whatever name="value"></subview:whatever>
+&lt;%Page Language= ... %&gt;... blah blah ...&lt;%string value="literal";  %&gt;&lt;subview:whatever name="value"&gt;&lt;/subview:whatever&gt;
 ```
 
 
@@ -31,7 +31,7 @@ The new syntax follows the syntax for view components, and also the expected scr
 so now:
 
 ```
-<%Page Language= ... %><%%><subview:whatever name="mike" age="<%=30%>" currentItem="<%=item%>"></subview:whatever>
+&lt;%Page Language= ... %&gt;&lt;%%&gt;&lt;subview:whatever name="mike" age="<%=30%&gt;" currentItem="&lt;%=item%&gt;">&lt;/subview:whatever&gt;
 ```
 
 would pass the string literal **"mike"** to **name**, the int constant **30** to **age**, and the object **item** to **currentItem**.

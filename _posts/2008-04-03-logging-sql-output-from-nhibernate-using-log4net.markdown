@@ -10,7 +10,7 @@ Following a question from NHibernate's users list:
 
 ```
 
-<configSections> <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" /></configSections><log4net> <appender name="rollingFile" type="log4net.Appender.RollingFileAppender,log4net" > <param name="File" value="log.txt" /> <param name="AppendToFile" value="true" /> <param name="DatePattern" value="yyyy.MM.dd" /> <layout type="log4net.Layout.PatternLayout,log4net"> <conversionPattern value="%d %p %m%n" /> </layout> </appender> <logger name="NHibernate.SQL"> <level value="ALL" />    <appender-ref ref="rollingFile" />  </logger></log4net>
+&lt;configSections&gt; &lt;section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" /&gt;&lt;/configSections&gt;&lt;log4net&gt; &lt;appender name="rollingFile" type="log4net.Appender.RollingFileAppender,log4net" &gt; &lt;param name="File" value="log.txt" /&gt; &lt;param name="AppendToFile" value="true" /&gt; &lt;param name="DatePattern" value="yyyy.MM.dd" /&gt; &lt;layout type="log4net.Layout.PatternLayout,log4net"&gt; &lt;conversionPattern value="%d %p %m%n" /&gt; &lt;/layout&gt; &lt;/appender&gt; &lt;logger name="NHibernate.SQL"&gt; &lt;level value="ALL" /&gt;    &lt;appender-ref ref="rollingFile" /&gt;  &lt;/logger&gt;&lt;/log4net&gt;
 
 ```
 

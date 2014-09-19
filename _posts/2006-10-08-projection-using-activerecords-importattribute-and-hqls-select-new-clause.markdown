@@ -50,7 +50,7 @@ In order to achieve that, we need to use the peculiar named attribute, [Import] 
 ```
    1:  [Import(typeof(CommentView), "CommentView")]
    2:  [ActiveRecord("Comments")]
-   3:  publicclass Comment : ActiveRecordBase<Comment> { /* blah blah */ }
+   3:  publicclass Comment : ActiveRecordBase&lt;Comment&gt; { /* blah blah */ }
 ```
 
 Now ActiveRecord (assuming Comment class was initialized using ActiveRecordStarter) knows that CommentView refers to a projection of the Comment ActiveRecord, using the class CommentView.
@@ -81,7 +81,7 @@ like:
 
 ```
    1:  [Projects(typeof(CommentProjectionOrWhatever))] 
-   2:  publicclass Comment : ActiveRecordBase<Comment> { /* blah blah*/ }
+   2:  publicclass Comment : ActiveRecordBase&lt;Comment&gt; { /* blah blah*/ }
 ```
 
 or even better yet: 

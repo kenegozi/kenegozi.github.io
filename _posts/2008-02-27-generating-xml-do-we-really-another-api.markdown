@@ -11,10 +11,10 @@ tags: [architecture,c-sharp,aspview]
 So, when you want to generate:
 
 ```
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <result type="boolean">true</result>
-</root>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+    &lt;result type="boolean"&gt;true&lt;/result&gt;
+&lt;/root&gt;
 ```
 
 
@@ -61,13 +61,13 @@ Why not just (using your template-engine of choice):
 
 ```
 
-<?xml version="1.0" encoding="utf-8"?>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
 
-<root>
+&lt;root&gt;
 
-    <result type="<%=view.Type%>"><%=view.Value%></result>
+    &lt;result type="<%=view.Type%&gt;">&lt;%=view.Value%&gt;&lt;/result&gt;
 
-</root>
+&lt;/root&gt;
 
 ```
 
@@ -77,17 +77,17 @@ works great for the "complex" scenarios on [Mark S. Rasmussen](http://www.improv
 
 ```
 
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <numbers>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+    &lt;numbers&gt;
 
-        <% foreach (Number number in view.Numbers) { %>
-        <number value="<%=number%>">This is the number: <%=number%></number>
+        &lt;% foreach (Number number in view.Numbers) { %&gt;
+        &lt;number value="<%=number%&gt;">This is the number: &lt;%=number%&gt;&lt;/number&gt;
 
 
-        <% } %>
-    </numbers>
-</root>
+        &lt;% } %&gt;
+    &lt;/numbers&gt;
+&lt;/root&gt;
 
 ```
 
@@ -97,30 +97,30 @@ and:
 
 ```
 
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <user>
-        <username><%=view.User.Username%></username>
-        <realname><%=view.User.RealName%></realname>
-        <description><%#view.User.Username%></description>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+    &lt;user&gt;
+        &lt;username&gt;&lt;%=view.User.Username%&gt;&lt;/username&gt;
+        &lt;realname&gt;&lt;%=view.User.RealName%&gt;&lt;/realname&gt;
+        &lt;description&gt;&lt;%#view.User.Username%&gt;&lt;/description&gt;
 
-        <articles>
+        &lt;articles&gt;
 
-            <% foreach (Article article in view.User.Articles) { %>
-            <article id="<%=article.Id%>"><%#article.Title%></article>
+            &lt;% foreach (Article article in view.User.Articles) { %&gt;
+            &lt;article id="<%=article.Id%&gt;">&lt;%#article.Title%&gt;&lt;/article&gt;
 
-            <% } %>
-        </articles>
-        <hobbies>
-            <% foreach (Hobby hobby in view.User.Hobbies) { %> 
+            &lt;% } %&gt;
+        &lt;/articles&gt;
+        &lt;hobbies&gt;
+            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
 
-            <hobby><%#hobby.Name%></hobby>
+            &lt;hobby&gt;&lt;%#hobby.Name%&gt;&lt;/hobby&gt;
 
-            <% } %> 
+            &lt;% } %&gt; 
 
-        </hobbies>
-    </user>
-</root>
+        &lt;/hobbies&gt;
+    &lt;/user&gt;
+&lt;/root&gt;
 
 ```
 
@@ -130,32 +130,32 @@ is Hobby and Article more complex? no probs. break it down to sub-views:
 
 ```
 
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-    <user>
-        <username><%=view.User.Username%></username>
-        <realname><%=view.User.RealName%></realname>
-        <description><%#view.User.Username%></description>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+    &lt;user&gt;
+        &lt;username&gt;&lt;%=view.User.Username%&gt;&lt;/username&gt;
+        &lt;realname&gt;&lt;%=view.User.RealName%&gt;&lt;/realname&gt;
+        &lt;description&gt;&lt;%#view.User.Username%&gt;&lt;/description&gt;
 
-        <articles>
+        &lt;articles&gt;
 
-            <% foreach (Article article in view.User.Articles) { %>
+            &lt;% foreach (Article article in view.User.Articles) { %&gt;
 
-            <subview:Article article="<%=article%>"></subview:Article>
+            &lt;subview:Article article="<%=article%&gt;">&lt;/subview:Article&gt;
 
 
-            <% } %>
-        </articles>
-        <hobbies>
-            <% foreach (Hobby hobby in view.User.Hobbies) { %> 
+            &lt;% } %&gt;
+        &lt;/articles&gt;
+        &lt;hobbies&gt;
+            &lt;% foreach (Hobby hobby in view.User.Hobbies) { %&gt; 
 
-            <subview:Hobby hobby="<%=hobby%>"></subview:Hobby> 
+            &lt;subview:Hobby hobby="<%=hobby%&gt;">&lt;/subview:Hobby&gt; 
 
-            <% } %> 
+            &lt;% } %&gt; 
 
-        </hobbies>
-    </user>
-</root>
+        &lt;/hobbies&gt;
+    &lt;/user&gt;
+&lt;/root&gt;
 
 ```
 

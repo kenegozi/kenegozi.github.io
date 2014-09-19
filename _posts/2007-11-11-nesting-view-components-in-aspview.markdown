@@ -17,7 +17,7 @@ scenarion: you are using CaptureFor to inject markup from a view to a layout, an
 in the layout:
 
 ```
-...<%=CapturedContent %>...
+...&lt;%=CapturedContent %&gt;...
 ```
 
 
@@ -25,7 +25,7 @@ in the layout:
 in the view:
 
 ```
-...<component:CaptureFor id="CapturedContent"> Some markup <component:SomeFancyStuff>Fancy component content</component:SomeFancyStuff></component:CaptureFor>
+...&lt;component:CaptureFor id="CapturedContent"&gt; Some markup &lt;component:SomeFancyStuff&gt;Fancy component content&lt;/component:SomeFancyStuff&gt;&lt;/component:CaptureFor&gt;
 ```
 
 
@@ -35,7 +35,7 @@ While working on that, I found out yet another problem. nested components of sam
 so:
 
 ```
-<component:Bold><component:Bold>stuff</component:Bold></component:Bold>
+&lt;component:Bold&gt;&lt;component:Bold&gt;stuff&lt;/component:Bold&gt;&lt;/component:Bold&gt;
 ```
 
 would brake.

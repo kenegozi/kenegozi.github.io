@@ -16,7 +16,7 @@ Your projects in Visual Studio 2005 are behaving strangely, sometimes not buildi
 
 you diff your *proj file against a previous version and find this entry:
 
-<Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+&lt;Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" /&gt;
 
 
 

@@ -23,7 +23,7 @@ it generates a file called Static.Site.Generated.cs within the site's root folde
 No I can do stuff like:
 
 ```
-<script type="text/javascript" src="<%= Static.Site.Include.Scripts.myscript_js %>"> </script><link rel="stylesheet" href="<%= Static.Site.Include.CSS.master_css %>" /><img alt="Ken Egozi" title="My Logo" src="<%= Static.Site.Include.Images.Logos.my_logo_png" />
+&lt;script type="text/javascript" src="<%= Static.Site.Include.Scripts.myscript_js %&gt;"> &lt;/script&gt;&lt;link rel="stylesheet" href="<%= Static.Site.Include.CSS.master_css %&gt;" />&lt;img alt="Ken Egozi" title="My Logo" src="<%= Static.Site.Include.Images.Logos.my_logo_png" /&gt;
 ```
 
 

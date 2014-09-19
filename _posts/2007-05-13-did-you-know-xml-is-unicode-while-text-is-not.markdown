@@ -20,9 +20,9 @@ So we tried to manipulate the server response, adding and removing headers and p
 
 Only after a lot of googeling, Ofir found out that it's a known limitation in the way XMLHttpRequest is treating the response in Yahoo Widgets. The responseText property is failing in UTF-8 if the response is just a normal text.
 
-However, if the respone is well formatted xml (with the <?xml version='1.0' encoding='utf-8' ?> thing), it works as expected.
+However, if the respone is well formatted xml (with the &lt;?xml version='1.0' encoding='utf-8' ?&gt; thing), it works as expected.
 
-So now the server responses "<?xml ve... ?><xml>comma-demilitarized-text</xml>" and the client is reading the responseText, trimming the <?xml ?> and <xml> and </xml> and continues with the parsing and displaying the response.
+So now the server responses "&lt;?xml ve... ?&gt;&lt;xml&gt;comma-demilitarized-text&lt;/xml&gt;" and the client is reading the responseText, trimming the &lt;?xml ?&gt; and &lt;xml&gt; and &lt;/xml&gt; and continues with the parsing and displaying the response.
 
 Bizarre, don't you think?
 

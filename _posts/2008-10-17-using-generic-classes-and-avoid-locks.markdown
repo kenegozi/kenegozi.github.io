@@ -14,7 +14,7 @@ The initial API I had in mind was
 
 ```
 
-var enumValue = Enums.From<MyEnum>("The description");
+var enumValue = Enums.From&lt;MyEnum&gt;("The description");
 
 var enumDescription = Enums.ToDescription(MyEnum.Something);
 
@@ -46,13 +46,13 @@ c. It really is ugly. You don't believe me? look [here](http://code.google.com/p
 
 
 Solution 3:
-Instead of using Generic methods (From<T> and ToDescription<T>), I changed the Enums class to a generic Enum<T> class.
+Instead of using Generic methods (From&lt;T&gt; and ToDescription&lt;T&gt;), I changed the Enums class to a generic Enum&lt;T&gt; class.
 
 within the class, there's a **single** static member, [DescribedEnumHandler](http://code.google.com/p/d-9/source/browse/trunk/src/D9.Commons/D9.Commons/Internal/DescribedEnumHandler.cs) of T.
 
-Every call to Enum<T> for a new T will instantiate the needed handler, Just In Time. 
+Every call to Enum&lt;T&gt; for a new T will instantiate the needed handler, Just In Time. 
 
-That's because with generic types, every concrete type is a new type, so List<int> and List<long> are two separate types, without any inheritance relationship between them, so their static members are not shared.
+That's because with generic types, every concrete type is a new type, so List&lt;int&gt; and List&lt;long&gt; are two separate types, without any inheritance relationship between them, so their static members are not shared.
 
 
 

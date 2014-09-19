@@ -17,7 +17,6 @@ First, as MonoRail is an extension on top of plain ol' ASP.NET, just as ASP.NET 
 But as the action parameters binder is very smart, and easily extensible, it's even nicer to just bind the posted data to a HttpPostedFile, using a FileBinder:
 
 
-<!-- code formatted by http://manoli.net/csharpformat/ -->
 {% highlight c# %}
    1:  [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]   2:  publicclass FileBinderAttribute: Attribute, **IParameterBinder**   3:  {   4:  publicint CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)   5:      {   6:  var key = parameterInfo.Name;   7:  return context.Request.Files[key] != null ? 10 : 0;   8:      }   9:    10:  publicobject Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo)  11:      {  12:  var key = parameterInfo.Name;  13:  return context.Request.Files[key] as HttpPostedFile;  14:      }  15:  }{% endhighlight %}
 

@@ -49,8 +49,8 @@ namespaceOpenUni.Domain.Modules
 mapping a field of type ModuleTypes will look like that:
 
 ```
-<propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
-              D9.NHibernate" />
+&lt;propertyname    = "ModuleType"column  = "ModuleType"type    = "D9.NHibernate.UserTypes.DescribedEnumStringType`1[[OpenUni.Domain.Modules.ModuleTypes, OpenUni.Domain]], 
+              D9.NHibernate" /&gt;
 ```
 
 

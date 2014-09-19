@@ -12,7 +12,7 @@ Stupid I am. I could have learned a lot and save a bunch of wandering around the
 
 Thanks to [hammett](http://hammett.castleproject.org/) who [pointed me there](http://kenegozi.com/blog/CommentView,guid,BCCBB3BE-CB4B-4859-A675-0C4918C0900D.aspx).
 
-Anyway - now I read it from <html> to </html>, and I saw the part [about running HQL using the Execute Callback](http://wiki.castleproject.org/activerecord/documentation/trunk/usersguide/hql.html#ExecCallback)
+Anyway - now I read it from &lt;html&gt; to &lt;/html&gt;, and I saw the part [about running HQL using the Execute Callback](http://wiki.castleproject.org/activerecord/documentation/trunk/usersguide/hql.html#ExecCallback)
 
 There are examples, each one with two flavors: "not using generics", and "using generics". Well, the one about the Execute Callback is misleading. It should have been "not using anonymous method" and "using anonymous methods", since the second one does not use generics.
 
@@ -47,7 +47,7 @@ Or even better, by using generics (this time for real):
 ```
 
 ```
-   3:  return Execute<Post>("from Post p where p.Author = ?", authorName);
+   3:  return Execute&lt;Post&gt;("from Post p where p.Author = ?", authorName);
 ```
 
 ```
@@ -57,7 +57,7 @@ Or even better, by using generics (this time for real):
 Here is the magic:
 
 ```
-   1:  publicstatic T[] Execute<T>(string hql, paramsobject[] parameters)
+   1:  publicstatic T[] Execute&lt;T&gt;(string hql, paramsobject[] parameters)
 ```
 
 ```
@@ -81,7 +81,7 @@ Here is the magic:
 ```
 
 ```
-   7:  for (int position = 0; position < queryParams.Length; ++position)
+   7:  for (int position = 0; position &lt; queryParams.Length; ++position)
 ```
 
 ```
@@ -117,7 +117,7 @@ I'll add an overload that will accept named parameters. I am not sure about the 
 My options are:
 
 ```
-   1:  Execute<T>(string hql, 
+   1:  Execute<T&gt;(string hql, 
 ```
 
 ```
@@ -135,13 +135,13 @@ My options are:
 Or:
 
 ```
-   1:  Execute<T>(string hql, IParameter[] parameters)
+   1:  Execute&lt;T&gt;(string hql, IParameter[] parameters)
 ```
 
 where IParameter definition is something like:
 
 ```
-   1:  publicinterface IParameter<T>
+   1:  publicinterface IParameter&lt;T&gt;
 ```
 
 ```

@@ -55,27 +55,27 @@ if (file.Contains(".."))
 ContentInfo.For() is a helper for mapping an extension to a mimetype, with a two-stage lookup:
 
 ```
-///<summary>
+///&lt;summary&gt;
 /// Represents info on a given file
-///</summary>
+///&lt;/summary&gt;
 publicstaticclassContentInfo
     {
-        staticreadonlyKeyValuePair<MimeTypes, string>[] contentInfoFor=new[]
+        staticreadonlyKeyValuePair&lt;MimeTypes, string&gt;[] contentInfoFor=new[]
         {
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Js, "text/javascript"),
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Css, "text/css"),
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Html, "text/html"),
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Plain, "text/plain"),
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Gif, "image/gif"),
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Jpeg, "image/jpeg"),
-            newKeyValuePair<MimeTypes, string>(MimeTypes.Tiff, "image/tiff"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Js, "text/javascript"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Css, "text/css"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Html, "text/html"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Plain, "text/plain"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Gif, "image/gif"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Jpeg, "image/jpeg"),
+            newKeyValuePair&lt;MimeTypes, string&gt;(MimeTypes.Tiff, "image/tiff"),
         };
 
-        ///<summary>
-/// Gets the mime type for a given <see cref="MimeTypes"/>
-///</summary>
-///<param name="mimeType">The file's <see cref="MimeTypes"/></param>
-///<returns>The file's mime type</returns>
+        ///&lt;summary&gt;
+/// Gets the mime type for a given &lt;see cref="MimeTypes"/&gt;
+///&lt;/summary&gt;
+///&lt;param name="mimeType"&gt;The file's &lt;see cref="MimeTypes"/&gt;&lt;/param&gt;
+///&lt;returns&gt;The file's mime type&lt;/returns&gt;
 publicstaticstringFor(MimeTypesmimeType)
         {
             return (frompincontentInfoFor
@@ -84,11 +84,11 @@ selectp.Value)
                    .First();
         }
 
-        ///<summary>
+        ///&lt;summary&gt;
 /// Gets the mime type for a given extension
-///</summary>
-///<param name="extension">The file's extension</param>
-///<returns>The file's mime type</returns>
+///&lt;/summary&gt;
+///&lt;param name="extension"&gt;The file's extension&lt;/param&gt;
+///&lt;returns&gt;The file's mime type&lt;/returns&gt;
 publicstaticstringFor(stringextension)
         {
             returnFor(MimeType.For(extension));
@@ -101,28 +101,28 @@ publicstaticstringFor(stringextension)
 and 
 
 ```
-///<summary>
-/// Helpers for <see cref="MimeTypes"/>///</summary>
+///&lt;summary&gt;
+/// Helpers for &lt;see cref="MimeTypes"/&gt;///&lt;/summary&gt;
 publicclassMimeType
     {
-        staticreadonlyKeyValuePair<string, MimeTypes>[] mimeTypeForExtension=new[]
+        staticreadonlyKeyValuePair&lt;string, MimeTypes&gt;[] mimeTypeForExtension=new[]
             {
-                newKeyValuePair<string, MimeTypes>("js", MimeTypes.Js),
-                newKeyValuePair<string, MimeTypes>("css", MimeTypes.Css),
-                newKeyValuePair<string, MimeTypes>("htm", MimeTypes.Html),
-                newKeyValuePair<string, MimeTypes>("html", MimeTypes.Html),
-                newKeyValuePair<string, MimeTypes>("txt", MimeTypes.Plain),
-                newKeyValuePair<string, MimeTypes>("gif", MimeTypes.Gif),
-                newKeyValuePair<string, MimeTypes>("jpg", MimeTypes.Jpeg),
-                newKeyValuePair<string, MimeTypes>("jpeg", MimeTypes.Jpeg),
-                newKeyValuePair<string, MimeTypes>("tiff", MimeTypes.Tiff),
+                newKeyValuePair&lt;string, MimeTypes&gt;("js", MimeTypes.Js),
+                newKeyValuePair&lt;string, MimeTypes&gt;("css", MimeTypes.Css),
+                newKeyValuePair&lt;string, MimeTypes&gt;("htm", MimeTypes.Html),
+                newKeyValuePair&lt;string, MimeTypes&gt;("html", MimeTypes.Html),
+                newKeyValuePair&lt;string, MimeTypes&gt;("txt", MimeTypes.Plain),
+                newKeyValuePair&lt;string, MimeTypes&gt;("gif", MimeTypes.Gif),
+                newKeyValuePair&lt;string, MimeTypes&gt;("jpg", MimeTypes.Jpeg),
+                newKeyValuePair&lt;string, MimeTypes&gt;("jpeg", MimeTypes.Jpeg),
+                newKeyValuePair&lt;string, MimeTypes&gt;("tiff", MimeTypes.Tiff),
             };
 
-        ///<summary>
-/// Selects a <see cref="MimeTypes"/> for a given file extension 
-///</summary>
-///<param name="extension">The file's extension</param>
-///<returns>The file's mime type</returns>
+        ///&lt;summary&gt;
+/// Selects a &lt;see cref="MimeTypes"/&gt; for a given file extension 
+///&lt;/summary&gt;
+///&lt;param name="extension"&gt;The file's extension&lt;/param&gt;
+///&lt;returns&gt;The file's mime type&lt;/returns&gt;
 publicstaticMimeTypesFor(stringextension)
         {
             extension=extension.TrimStart('.');

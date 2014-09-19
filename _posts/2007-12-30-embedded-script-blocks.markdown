@@ -25,7 +25,7 @@ But what if it's simple enough (so you won't need a unit-test) and it's not supp
 Now you can put it directly in your view template, and this is how:
 
 ```
-<script runat="server">public string DoubleId(string s){ return s + s;}</script>Regular view code<%=DoubleIt(view.Name) %>
+&lt;script runat="server"&gt;public string DoubleId(string s){ return s + s;}&lt;/script&gt;Regular view code&lt;%=DoubleIt(view.Name) %&gt;
 ```
 
 

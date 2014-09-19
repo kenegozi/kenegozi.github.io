@@ -13,7 +13,7 @@ When we talked about eager fetching, I said that doing it for more than one coll
 Why? If we have a type Entity, that looks a bit like that:
 
 ```
-class Entity{ ... [HasMany ...] public IList<Item> Items ... [HasMany ...] public IList<AnotherItem> AnotherItems ... ...}
+class Entity{ ... [HasMany ...] public IList&lt;Item&gt; Items ... [HasMany ...] public IList&lt;AnotherItem&gt; AnotherItems ... ...}
 ```
 
 An eager fetch will do:

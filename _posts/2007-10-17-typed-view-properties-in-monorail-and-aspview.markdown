@@ -25,7 +25,7 @@ Now for the showtime.
 First we would create a base class for our controllers, with a TypedPropertyBag and TypedFlash properties:
 
 ```
-public abstract class Controller<IView> : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter<IView>(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter<IView>(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
+public abstract class Controller&lt;IView&gt; : SmartDispatcherControllerController    where IView : class{    IDictionaryAdapterFactory dictionaryAdapterFactory; IView typedPropertyBag; IView typedFlash; protected IView TypedPropertyBag { get         {             if (typedPropertyBag == null)         typedPropertyBag = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(PropertyBag);            return typedPropertyBag;         } }  protected IView TypedFlash { get         {             if (typedFlash == null)         typedFlash = dictionaryAdapterFactory.GetAdapter&lt;IView&gt;(Flash);            return typedFlash;         } }  protected override void Initialize() { base.Initialize();        IDictionaryAdapterFactory dictionaryAdapterFactory = new DictionaryAdapterFactory(); }}
 ```
 
 
@@ -47,7 +47,7 @@ public interface IStupidView{ Guid Id { get; set; }    string Name { get; set; }
 controller:
 
 ```
-public class StupidController : Controller<IStupidView>{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
+public class StupidController : Controller&lt;IStupidView&gt;{    public void Index()    {    }    public void DoStuff(string name, string password)    {        if (password != "AspView Rocks")        {            TypedFlash.Name = name;            TypedFlash.Message = "Wrong Password";            RedirectToAction("Index");            return;        }        TypedPropertyBag.Id = Guid.NewGuid();        TypedPropertyBag.Name = name;    }}
 ```
 
 
@@ -55,7 +55,7 @@ public class StupidController : Controller<IStupidView>{    public void Index() 
 view (Index.aspx):
 
 ```
-<%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime<IStupidView>" %><%%><p><%=view.Message %></p><form action="DoStuff.rails">Name: <input type="text" name="name" value="<%= view.Name %>" /> <br />password: <input type="password" name="password" /> <br /><input type="submit" /></form>
+&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime<IStupidView&gt;" %>&lt;%%&gt;&lt;p&gt;&lt;%=view.Message %&gt;&lt;/p&gt;&lt;form action="DoStuff.rails"&gt;Name: &lt;input type="text" name="name" value="<%= view.Name %&gt;" /> &lt;br /&gt;password: &lt;input type="password" name="password" /&gt; &lt;br /&gt;&lt;input type="submit" /&gt;&lt;/form&gt;
 ```
 
 
@@ -63,7 +63,7 @@ view (Index.aspx):
 view (DoStuff.aspx):
 
 ```
-<%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime<IStupidView>" %><%%>The data was: <br />Id: <%= view.Id %>, Name: <%= view.Name %>
+&lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime<IStupidView&gt;" %>&lt;%%&gt;The data was: &lt;br /&gt;Id: &lt;%= view.Id %&gt;, Name: &lt;%= view.Name %&gt;
 ```
 
 
@@ -83,7 +83,7 @@ Things to notice:
 view (Index.aspx):
 
 ```
-<aspview ... >... <reference assembly="AspViewTestSite.dll"/>...</aspview>
+&lt;aspview ... &gt;... &lt;reference assembly="AspViewTestSite.dll"/&gt;...&lt;/aspview&gt;
 ```
 
 
@@ -91,7 +91,7 @@ view (Index.aspx):
 2. you can use the DictionaryAdapter directly, on older versions of AspView (and on WebForms aspx/ascx files) by simply grabbing an adapter manually. sample:
 
 ```
-...<% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter<IMyViewContract>(Properties); %>...blah blah <%=view.UsefulProperty %>...
+...&lt;% IMyViewContract view = new Castle.Components.DictionaryAdapter.DictionaryAdapterFactory()       .GetAdapter<IMyViewContract&gt;(Properties); %>...blah blah &lt;%=view.UsefulProperty %&gt;...
 ```
 
 Ok, cut the crap. where can I get it?

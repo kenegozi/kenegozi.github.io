@@ -30,7 +30,7 @@ There's CriteriaTransformer class, which holds a few useful static methods, amon
 
 ```
 
-DetachedCriteria spec = DetachedCriteria.For<Whadever>() ...; <= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    ...; <= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    ...; <= setup the pagingICollection<Whadever> stuff = whadeverRepository.FindAll(pagedCriteria);
+DetachedCriteria spec = DetachedCriteria.For&lt;Whadever&gt;() ...; &lt;= setup criterionsDetachedCriteria countCriteria = CriteriaTransformer.Clone(spec)    ...; <= setup the count projectionDetachedCriteria pagedCriteria = CriteriaTransformer.Clone(spec)    ...; <= setup the pagingICollection<Whadever&gt; stuff = whadeverRepository.FindAll(pagedCriteria);
 int total = whadeverRepository.Count(countCriteria);
 ```
 

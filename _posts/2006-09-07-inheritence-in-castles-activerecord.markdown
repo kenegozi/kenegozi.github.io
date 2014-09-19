@@ -26,5 +26,5 @@ Now it makes more sence:![I should use .Id](http://kenegozi.com/blog/uploaded/no
 
 
 
-And before you hit me with a big stick - I do know of ActiveRecordBase<T> . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich
+And before you hit me with a big stick - I do know of ActiveRecordBase&lt;T&gt; . :) the above code is for demonstration purposes only, not to be Copy&amp;Pasted to your Brand-New-Best-Erp-Ever-Made-And-Will-Make-You-Rich
 

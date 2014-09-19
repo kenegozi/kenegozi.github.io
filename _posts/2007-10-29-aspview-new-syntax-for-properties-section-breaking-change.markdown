@@ -13,7 +13,7 @@ So, what is Properties Section?
 View sources files used to look like this:
 
 ```
-<%Page Language= ... %><% int someProperty;%>... rest of view ...
+&lt;%Page Language= ... %&gt;&lt;% int someProperty;%&gt;... rest of view ...
 ```
 
 
@@ -21,7 +21,7 @@ View sources files used to look like this:
 The problem was that if you had no properties (or have used the DictionaryAdpater option [described here](http://kenegozi.com/Blog/2007/10/17/typed-view-properties-in-monorail-and-aspview.aspx)) then you had to have an empty section, like:
 
 ```
-<%Page Language= ... %><%%>... rest of view ...
+&lt;%Page Language= ... %&gt;&lt;%%&gt;... rest of view ...
 ```
 
 
@@ -35,7 +35,7 @@ So, following Lee Henson's suggestion,the properties section should now be wrapp
 The new syntax (new stuff in **Bold Italic Font**):
 
 ```
-<%Page Language= ... %>**<aspView:properties>**<% int someProperty;%>**</aspView:properties>**... rest of view ...
+&lt;%Page Language= ... %&gt;**&lt;aspView:properties&gt;**&lt;% int someProperty;%&gt;**&lt;/aspView:properties&gt;**... rest of view ...
 ```
 
 

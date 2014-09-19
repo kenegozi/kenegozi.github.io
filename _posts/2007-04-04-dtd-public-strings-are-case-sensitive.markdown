@@ -10,7 +10,7 @@ I have just tried to do a xhtml validation on a site I'm working on (@ [http://v
 
 So the right DTD for XHTML 1.1 is:
 ```
-<!--    Code highlighting produced by Actipro CodeHighlighter (freeware)  http://www.CodeHighlighter.com/    --><!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/tr/xhtml11/Dtd/xhtml11.dtd&quot;>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/tr/xhtml11/Dtd/xhtml11.dtd&quot;&gt;
 ```
 
 

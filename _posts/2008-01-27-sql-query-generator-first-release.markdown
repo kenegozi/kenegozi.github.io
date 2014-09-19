@@ -64,7 +64,7 @@ SELECT [Message].[Id], [Message].[ParentId], [Message].[Content]FROM [dbo].[Foru
 Need parameters?
 
 ```
-Parameter<int> blogId = new Parameter<int>("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
+Parameter&lt;int&gt; blogId = new Parameter&lt;int&gt;("BlogId"); SQLQuery q = SQLQuery .Select(SQL.Blogs.Id, SQL.Blogs.Name) .From(SQL.Blogs) .Where(SQL.Blogs.Id == blogId);Console.WriteLine(q);
 ```
 
 would echo

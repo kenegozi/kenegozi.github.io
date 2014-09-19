@@ -16,7 +16,7 @@ The initial attempt would be:
 
 ```
 var numbers = new byte[] {1, 2, 3, 4};
-var avg = numbers.Cast<int>().Average();
+var avg = numbers.Cast&lt;int&gt;().Average();
 Console.WriteLine(avg);
 ```
 

@@ -49,33 +49,33 @@ Luckily for us, MonoRail was built with extensibility in mind (and whenever a us
 IParameterBinder:
 
 ```
-/// <summary>
+/// &lt;summary&gt;
 /// Implemented by attributes that wants to perform 
 /// some conversion to populate a smart dispatcher 
 /// action argument.
-/// </summary>
+/// &lt;/summary&gt;
 public interface IParameterBinder
 {
-    /// <summary>
+    /// &lt;summary&gt;
     /// Calculates the param points. Implementers should return value equals or greater than
     /// zero indicating whether the parameter can be bound successfully. The greater the value (points)
     /// the more successful the implementation indicates to the framework
-    /// </summary>
-    /// <param name="context">The context.</param>
-    /// <param name="controller">The controller.</param>
-    /// <param name="controllerContext">The controller context.</param>
-    /// <param name="parameterInfo">The parameter info.</param>
-    /// <returns></returns>
+    /// &lt;/summary&gt;
+    /// &lt;param name="context"&gt;The context.&lt;/param&gt;
+    /// &lt;param name="controller"&gt;The controller.&lt;/param&gt;
+    /// &lt;param name="controllerContext"&gt;The controller context.&lt;/param&gt;
+    /// &lt;param name="parameterInfo"&gt;The parameter info.&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
     int CalculateParamPoints(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo);
 
-    /// <summary>
+    /// &lt;summary&gt;
     /// Binds the specified parameters for the action.
-    /// </summary>
-    /// <param name="context">The context.</param>
-    /// <param name="controller">The controller.</param>
-    /// <param name="controllerContext">The controller context.</param>
-    /// <param name="parameterInfo">The parameter info.</param>
-    /// <returns></returns>
+    /// &lt;/summary&gt;
+    /// &lt;param name="context"&gt;The context.&lt;/param&gt;
+    /// &lt;param name="controller"&gt;The controller.&lt;/param&gt;
+    /// &lt;param name="controllerContext"&gt;The controller context.&lt;/param&gt;
+    /// &lt;param name="parameterInfo"&gt;The parameter info.&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
     object Bind(IEngineContext context, IController controller, IControllerContext controllerContext, ParameterInfo parameterInfo);
 }
 ```

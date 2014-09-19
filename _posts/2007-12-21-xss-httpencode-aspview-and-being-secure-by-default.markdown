@@ -30,7 +30,7 @@ The usage would be similar to the one suggested for Asp.NET MVC at [http://blog.
 So, 
 
 ```
-<%="<tag>" %> 
+&lt;%="<tag&gt;" %> 
 ```
 
 would output 
@@ -44,13 +44,13 @@ would output
 While
 
 ```
-<%=RawHtml("<tag>") %>
+&lt;%=RawHtml("<tag&gt;") %>
 ```
 
 would output 
 
 ```
-<tag>
+&lt;tag&gt;
 ```
 
 
@@ -58,7 +58,7 @@ would output
 The only exception here is ViewContents on layouts. since the view contents is 99% of the times made of markup, so in the layout would still write:
 
 ```
-<%=ViewContents %> 
+&lt;%=ViewContents %&gt; 
 ```
 
 

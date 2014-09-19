@@ -21,29 +21,29 @@ Here's the code for the "Web Server":
 
 
 ```
-///<summary>
+///&lt;summary&gt;
 /// Serving HTTP for the UI
-///</summary>
+///&lt;/summary&gt;
 publicclassWebServer 
     {
-        ///<summary>
-/// Access to the current instance of <see cref="WebServer"/>
-///</summary>
+        ///&lt;summary&gt;
+/// Access to the current instance of &lt;see cref="WebServer"/&gt;
+///&lt;/summary&gt;
 publicstaticWebServerCurrent { get; privateset; }
 
-        ///<summary>
+        ///&lt;summary&gt;
 /// The current settings
-///</summary>
+///&lt;/summary&gt;
 publicISettingsSettings { get; privateset; }
 
         privateWebServiceHosthost;
         privatereadonlyILoggerlogger;
 
-        ///<summary>
+        ///&lt;summary&gt;
 /// New WebServer
-///</summary>
-///<param name="logger"><see cref="ILogger"/></param>
-///<param name="settings">Settings</param>
+///&lt;/summary&gt;
+///&lt;param name="logger"&gt;&lt;see cref="ILogger"/&gt;&lt;/param&gt;
+///&lt;param name="settings"&gt;Settings&lt;/param&gt;
 publicWebServer(ILoggerlogger, ISettingssettings)
         {
             this.logger=logger;
@@ -51,9 +51,9 @@ publicWebServer(ILoggerlogger, ISettingssettings)
             Current=this;
         }
 
-        ///<summary>
+        ///&lt;summary&gt;
 /// Start a new server
-///</summary>
+///&lt;/summary&gt;
 publicvoidStart()
         {
             logger.Info("Initialising the web server");
@@ -63,7 +63,7 @@ publicvoidStart()
             host.AddServiceEndpoint(typeof(IFaxManagerService), bindings, "");
             host.Description.Behaviors.Add(newSessionAwareAttribute());
 
-            varsdb=host.Description.Behaviors.Find<ServiceDebugBehavior>();
+            varsdb=host.Description.Behaviors.Find&lt;ServiceDebugBehavior&gt;();
             sdb.HttpHelpPageEnabled=false;
             
             logger.Info("Starting the web server");
@@ -71,18 +71,18 @@ publicvoidStart()
             logger.Info("The web server was started successfully on port "+Settings.WebServerPort);
         }
 
-        ///<summary>
+        ///&lt;summary&gt;
 /// Restart the server (effectively creating a new service host)
-///</summary>
+///&lt;/summary&gt;
 publicvoidRestart()
         {
             Stop();
             Start();
         }
 
-        ///<summary>
+        ///&lt;summary&gt;
 /// Stop the server
-///</summary>
+///&lt;/summary&gt;
 publicvoidStop()
         {
             host.Close();

@@ -9,13 +9,13 @@ tags: [castle,monorail,aspview]
 I found out that on many occasions I use stuff like:
 
 ```
-<aspview:properties>string message = "";</aspview:properties>
+&lt;aspview:properties&gt;string message = "";&lt;/aspview:properties&gt;
 ```
 
 To avoid the need of:
 
 ```
-<% = message ?? "" %>
+&lt;% = message ?? "" %&gt;
 ```
 
 
@@ -28,5 +28,5 @@ From now on, null values would just be ignored.
 
 Notice that it won't help you on
 
-<%=post.Blog.Title %> if post.Blog is null ...
+&lt;%=post.Blog.Title %&gt; if post.Blog is null ...
 

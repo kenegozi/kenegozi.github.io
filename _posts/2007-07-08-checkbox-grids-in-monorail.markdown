@@ -36,46 +36,46 @@ publicclassGourmetController : SmartDispatcherController
 The View:
 
 ```
-<%@PageLanguage="C#"%>
-<%@ImportNamespace="Gourmet"%>
-<%
+&lt;%@PageLanguage="C#"%&gt;
+&lt;%@ImportNamespace="Gourmet"%&gt;
+&lt;%
     FoodAndWineMatch[] matches;
-%>
-<%
+%&gt;
+&lt;%
     IDictionary @checked = DictHelper.CreateDict("checked='checked'");
-%>
-<formaction="Update.aspx"method="post">
-<table>
-<tr>
-<th>Food Name</th>
-<th>Cabarnet</th>
-<th>Zinfandel</th>
-<th>Pinot</th>
-</tr>
-<%int i = 0; %>
-<%foreach (FoodAndWineMatch match in matches)  { %>
-<tr>
-<td>
-<span><%=match.FoodName%></span>
-<inputtype="hidden"name="matches[<%=i%>].FoodName"value="<%=matches[i].FoodName%>"/>
-</td>
-<td>
-<%=FormHelper.CheckboxField("matches[" + i + "].MatchesCabarnet", matches[i].MatchesCabarnet?@checked:null)%>
-</td>
-<td>
-<%=FormHelper.CheckboxField("matches[" + i + "].MatchesZinfandel", matches[i].MatchesZinfandel?@checked:null)%>
-</td>
-<td>
-<%=FormHelper.CheckboxField("matches[" + i + "].MatchesPinot", matches[i].MatchesPinot?@checked:null)%>
-</td>
-</tr><%++i; } %>
-<tr>
-<tdcolspan="4">
-<inputtype="submit"value="Save"/>
-</td>
-</tr>
-</table>
-</form>
+%&gt;
+&lt;formaction="Update.aspx"method="post"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;Food Name&lt;/th&gt;
+&lt;th&gt;Cabarnet&lt;/th&gt;
+&lt;th&gt;Zinfandel&lt;/th&gt;
+&lt;th&gt;Pinot&lt;/th&gt;
+&lt;/tr&gt;
+&lt;%int i = 0; %&gt;
+&lt;%foreach (FoodAndWineMatch match in matches)  { %&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;span&gt;&lt;%=match.FoodName%&gt;&lt;/span&gt;
+&lt;inputtype="hidden"name="matches[<%=i%&gt;].FoodName"value="&lt;%=matches[i].FoodName%&gt;"/>
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesCabarnet", matches[i].MatchesCabarnet?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesZinfandel", matches[i].MatchesZinfandel?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;%=FormHelper.CheckboxField("matches[" + i + "].MatchesPinot", matches[i].MatchesPinot?@checked:null)%&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;%++i; } %&gt;
+&lt;tr&gt;
+&lt;tdcolspan="4"&gt;
+&lt;inputtype="submit"value="Save"/&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
 
 ```
 

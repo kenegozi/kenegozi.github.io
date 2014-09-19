@@ -22,7 +22,7 @@ function validateMaxLength(elmId) {
 	var elementContent = element.value;
 	var elementContentLength = elementContent.length;
 	
-	return elementContentLength <= N;
+	return elementContentLength &lt;= N;
 }
 ```
 
@@ -47,7 +47,7 @@ how would you count newlines? would you count two characters per newline (for \r
 
 &#160;
 
-When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to <br/> tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. 
+When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to <br/&gt; tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. 
 
 Now the client side JS matched the server criteria. 
 

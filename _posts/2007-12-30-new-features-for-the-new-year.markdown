@@ -15,7 +15,7 @@ So, what's all the fuss about?
 - New syntax for html encoded output [http://kenegozi.com/Blog/2007/12/30/html-encoded-output-in-view-templates.aspx](http://kenegozi.com/Blog/2007/12/30/html-encoded-output-in-view-templates.aspx)
 - Embedded script blocks inside a view[http://kenegozi.com/Blog/2007/12/30/embedded-script-blocks.aspx](http://kenegozi.com/Blog/2007/12/30/embedded-script-blocks.aspx)
 - Layouts from custom locations[http://kenegozi.com/Blog/2007/12/30/using-layout-from-a-custom-location.aspx](http://kenegozi.com/Blog/2007/12/30/using-layout-from-a-custom-location.aspx)
-- Not throwing on null-ref in <%= %> blocks[http://kenegozi.com/Blog/2007/12/30/no-more-null-ref-(almost).aspx](http://kenegozi.com/Blog/2007/12/30/no-more-null-ref-(almost).aspx)
+- Not throwing on null-ref in &lt;%= %&gt; blocks[http://kenegozi.com/Blog/2007/12/30/no-more-null-ref-(almost).aspx](http://kenegozi.com/Blog/2007/12/30/no-more-null-ref-(almost).aspx)
 
 
 

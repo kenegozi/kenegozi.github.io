@@ -10,13 +10,13 @@ I have recently change the blog engine, and as part of that move, the permalinks
 
 
 
-So, the atom feed now lists a different <id> tag for each entry (post). 
+So, the atom feed now lists a different &lt;id&gt; tag for each entry (post). 
 
 Google Reader cache data on posts based on the id tag, therefore subscribers to my blog who are using Google Reader will probably see 20 new messages.
 
 
 
-The real glitch though is a bug in Google Reader. As far as reader is concerned, the <updated> and <created> tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.
+The real glitch though is a bug in Google Reader. As far as reader is concerned, the &lt;updated&gt; and &lt;created&gt; tags does not mean a lot. It uses the time at which it discovered the entry as its date, for display (and sorting). This is arguable, and their argue is solid - since feeds are (at least historically) primarily made for news, they wanted to disallow publishers to twist scoop times.
 
 
 

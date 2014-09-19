@@ -67,11 +67,11 @@ I have also added an [Import] attribute on the Post. The actual querying is done
 ```
 
 ```
-   3:      SimpleQuery<PostProjection> q =
+   3:      SimpleQuery&lt;PostProjection&gt; q =
 ```
 
 ```
-   4:  new SimpleQuery<PostProjection>(typeof(Post), @"
+   4:  new SimpleQuery&lt;PostProjection&gt;(typeof(Post), @"
 ```
 
 ```

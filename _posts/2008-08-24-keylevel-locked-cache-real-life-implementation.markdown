@@ -91,5 +91,5 @@ public static class XmlService
 
 
 
-I'd have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func<T>, then have a separate XmlService use KeyLevelCacheService internally.
+I'd have switched XmlService with KeyLevelCacheService, XmlDocument with T, and LoadXml with Func&lt;T&gt;, then have a separate XmlService use KeyLevelCacheService internally.
 

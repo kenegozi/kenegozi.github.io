@@ -21,6 +21,6 @@ So I will post in the next few days about it, and I'll make it available to be d
 A little demo view:
 
 ```
-   1:  <%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%>   2:  <%   3:  string[] strings;   4:  %>   5:     6:     7:  hello from index<br />   8:  This are the strings:<br />   9:  <%foreach (string s in strings) { %>  10:  <%=s %><br />  11:  <%  } %>  12:    13:  <br />  14:  End of normal view  15:  <br />  16:  <% OutputSubView("Home/SubViewSample"); %>
+   1:  &lt;%@ Page Language="C#" Inherits="Castle.MonoRail.Views.AspView.ViewAtDesignTime"%&gt;   2:  &lt;%   3:  string[] strings;   4:  %&gt;   5:     6:     7:  hello from index&lt;br /&gt;   8:  This are the strings:&lt;br /&gt;   9:  &lt;%foreach (string s in strings) { %&gt;  10:  &lt;%=s %&gt;&lt;br /&gt;  11:  &lt;%  } %&gt;  12:    13:  &lt;br /&gt;  14:  End of normal view  15:  &lt;br /&gt;  16:  &lt;% OutputSubView("Home/SubViewSample"); %&gt;
 ```
 

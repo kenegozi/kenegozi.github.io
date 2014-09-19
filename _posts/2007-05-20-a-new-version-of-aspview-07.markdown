@@ -19,7 +19,7 @@ You enable the feature by adding the next attribure to the aspview config sectio
 
 
 ```
-<aspview .... autoRecompilation="true" ... > ...</aspview>
+&lt;aspview .... autoRecompilation="true" ... &gt; ...&lt;/aspview&gt;
 ```
 
 
@@ -29,7 +29,7 @@ Breaking change:
 If you happen to reference an assembly from the GAC (using the aspview configuration in the web.config) you need to add a hint for the engine, like this:
 
 ```
-<reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" />
+&lt;reference assembly="MyAssemblyFromGAC.dll" isFromGac="true" /&gt;
 ```
 
 

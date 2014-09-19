@@ -30,5 +30,5 @@ You can also look over my blog engine's sources that I have presented yesterday.
 
 The code shown was from going-ddd branch.
 
-bad name btw, as the model is too simple for DDD, and I also violate it from time to time ... (Repository<Comment> ...)
+bad name btw, as the model is too simple for DDD, and I also violate it from time to time ... (Repository&lt;Comment&gt; ...)
 
