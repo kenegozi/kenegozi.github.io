@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ""
+title:  "VS 2005 adding web project's pdb files to vss, why is that and how to fix it"
 comments: true
 tags: [asp-net-2-0,visual-studio,scm]
 ---

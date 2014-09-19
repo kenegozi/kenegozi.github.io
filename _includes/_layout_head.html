@@ -1,13 +1,18 @@
+{% if page.title %}
+	{% capture title %}{{page.title}} - {{site.title}}{% endcapture %}
+{% else %}
+	{% assign title=site.title %}
+{% endif %}
 <head>
 	<meta charset="utf-8">
-	<title>Ken Egozi | Web builder</title>
+	<title>{{ title }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="Ken Egozi's homepage">
 	<meta name="author" content="{{ site.author }}">
 	<meta content="Ken Egozi's homepage" property='og:description'>
 	<meta content='summary' name='twitter:card'>
 	<meta content='@kenegozi' name='twitter:site'>
-	<meta content='{{ site.title }}' property='og:title'>
+	<meta content='{{ title  | replace:"'","\\'" }}' property='og:title'>
 	{% capture __ %}
 	{% if page.canonical %}
 		{% assign canonical_path = page.canonical %}
