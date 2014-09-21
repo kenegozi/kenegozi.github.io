@@ -515,7 +515,7 @@ section.post .edit-button {
 #tag-cloud .li a {
   font-size: inherit;
 }
-#tag-cloud ul {
+#tag-cloud {
   list-style-type: none;
   padding: 0;
 }
