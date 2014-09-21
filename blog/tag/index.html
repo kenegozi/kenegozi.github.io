@@ -1,25 +1,6 @@
 ---
 title: tags
 layout: site
+canonical: "/blog/tags"
 ---
-
-{% assign max_value=200 %}
-{% assign min_value=100 %}
-{% assign delta=max_value-min_value %}
-{% assign max=0 %}
-{% for tag in site.tags %}
-  {% if tag[1].size > max %}
-    {% assign max=tag[1].size %}
-  {% endif %}
-{% endfor %}
-
-<section class="container">
-  <h1>The things I write about:</h1>
-  <ul id="tag-cloud" class=inline">
-  {% assign ordered_tags = (site.tags | sort: 0) %}
-  {% for tag in ordered_tags %}
-    {% assign size=(tag[1].size / max * delta + min_value) %}
-    <li data-size="{{tag[1].size}}"><a href="/blog/tag/{{ tag[0] }}">{{ tag[0] }} <span>({{ tag[1].size }})</span></a></li>
-  {% endfor %}
-  </ul>
-</section>
+{% include tags_cloud.html %}
