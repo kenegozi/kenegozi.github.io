@@ -35,3 +35,22 @@ $(function() {
 	});
 	$.localScroll({hash:true});    
 });
+
+$(function() {
+  var items = $('#tag-cloud li');
+  if (items.length === 0){
+  	return;
+  }
+  var sizes = items.map(function(ix,i){return parseInt($(i).data('size'))});
+  var maxSize = Math.max.apply(null, sizes);
+  var minSize = Math.min.apply(null, sizes);
+  var maxValue=200;
+  var minValue=120;
+  items.each(function(ix,i) {
+    var item = $(i);
+    var itemSize = item.data('size');
+    var calculated = (itemSize / maxSize * (maxValue - minValue) + minValue);
+    var roundedCalculated = Math.round(calculated);
+    item.css('font-size', '' + roundedCalculated + '%');
+  });
+});

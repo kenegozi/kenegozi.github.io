@@ -509,3 +509,18 @@ section.post .edit-button {
     font-size: 11px;
   }
 }
+#tag-cloud {
+  font-size: 11px;
+}
+#tag-cloud .li a {
+  font-size: inherit;
+}
+#tag-cloud ul {
+  list-style-type: none;
+  padding: 0;
+}
+#tag-cloud li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
