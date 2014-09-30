@@ -1,12 +1,12 @@
 ---
 title: Blog Archives
-layout: post
+layout: site
 ---
-<div class="archives" itemscope itemtype="http://schema.org/Blog">
+<section class="container archives">
+  <h1>Blog archives</h1>
 {% for post in site.posts reverse %}
 {% if post.layout == 'post' %}
 	{% include archive_post.html %}
 {% endif %}
 {% endfor %}
-  </ul>
-</div>
+</section>
