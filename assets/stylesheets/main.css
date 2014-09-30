@@ -524,3 +524,6 @@ section.post .edit-button {
   margin-right: 20px;
   margin-bottom: 15px;
 }
+#share > * {
+  vertical-align: top;
+}
