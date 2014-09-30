@@ -1,9 +1,107 @@
 ---
 ---
-{% include _layout_doctype.html %}
-{% include _layout_head.html %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" class="no-js"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+{% capture __ %}
+{% if page.title %}
+	{% capture title %}{{page.title}} - {{site.title}}{% endcapture %}
+{% else %}
+	{% assign title=site.title %}
+{% endif %}{% endcapture %}
+<head>
+	<meta charset="utf-8">
+	<title>{{ title }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Ken Egozi's homepage">
+	<meta name="author" content="{{ site.author }}">
+	<meta content="Ken Egozi's homepage" property='og:description'>
+	<meta content='summary' name='twitter:card'>
+	<meta content='@kenegozi' name='twitter:site'>
+	<meta content='{{ title  | replace:"'","\\'" }}' property='og:title'>
+	{% capture __ %}
+	{% if page.canonical %}
+		{% assign canonical_path = page.canonical %}
+	{% else %}
+		{% assign canonical_path = page.url %}
+	{% endif %}
+	{% if canonical_path == '/' %}
+		{% assign canonical_path = '' %}
+	{% endif %}{% endcapture %}
+	<link rel="canonical" href="{{ site.url }}{{ canonical_path | remove:'/index.html' }}/" />
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
+
+	{%comment%}<!-- FONTS -->{%endcomment%}
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+
+	{%comment%}<!-- ICONS -->{%endcomment%}
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+</head>
 <body id="top" class="{{page.special_body_class}}">
-{% include navbar.html %}
+	{%comment%}<!-- NAVBAR -->{%endcomment%}
+	{% assign is_hp = page.canonical == '/' %}
+	<div class="navbar navbar-fixed-top navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Menu</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="navbar-collapse collapse" id="main-nav" role="navigation">
+				<ul class="nav navbar-nav navbar-right{% if is_hp %} nav-text-light{% endif %}">
+					{% if is_hp %} {% assign home_anchor="#top" %} {% endif %}
+					<li{% if is_hp %} class="active"{% endif %}><a href="/{{ home_anchor }}">home</a></li>
+					<li><a href="/#about">about</a></li>
+					<li><a href="/#blog">blog</a></li>
+					<li><a href="/#contact">contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	{%comment%}<!-- CONTENT -->{%endcomment%}
 {{ content }}
-{% include _layout_footer.html %}
-{% include _layout_end_of_body.html %}
+	{%comment%}<!-- FOOTER -->{%endcomment%}
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">
+				&copy; 2014. Ken Egozi. All Rights Reserved.
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+				</a>
+				</p>
+		</div>
+	</footer>
+	<div class="back-to-top">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+	<script src="/assets/javascripts/jquery-2.1.0.min.js"></script>
+	<script src="/assets/javascripts/jquery.localScroll.min.js"></script>
+	<script src="/assets/javascripts/looper.min.js"></script>
+	<script src="/assets/javascripts/bootstrap.min.js"></script>
+	<script src="/assets/javascripts/site.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-431307-1']);
+		_gaq.push(['_setDomainName', '.kenegozi.com']);
+		_gaq.push(['_trackPageview']);
+
+		$(function () {
+			var src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			$.getScript(src);
+		});
+	</script>
+</body>
+</html>
