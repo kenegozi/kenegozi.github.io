@@ -11,22 +11,19 @@ When sending DateTimes as string across the wire, it is quite useful to use ISO 
 During the many times I had to deal with serialization implementations, while working on one of the many web frameworks I've been involved with, or with serialization libraries, I keep getting back to be needing to remember what I did last time, so this post is to serve as a future reminder to self on how I want it to be done.
 
 ## Serializing a DateTime to a string:
-<pre><code>string Serialize(DateTime value) {
+<pre>string Serialize(DateTime value) {
     const string ISO8601Format = "o"; // this is a terrific little gem!
     return value.ToString(ISO8601Format);
-}
-</code></pre>
+}</pre>
 
 Did you notice the “o” format specifier? This is a much better than typing "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK", which I've been doing until recently.
 
 For lexicographically ordered version, we would only go so far to the seconds, and be sure to force the input datetime kind to UTC (otherwise order is difficult to maintain…):
 
-```
-string SerializeOrdered(DateTime value) {
+<pre>string SerializeOrdered(DateTime value) {
     const string OrderedUniversalFormat = "u";
     return value.ToUniversalTime().ToString(OrderedUniversalFormat);
-}
-```
+}</pre>
 
 
 
@@ -45,19 +42,16 @@ The interesting bit here is that there is a difference between 2013-09-03T10:00:
 
 ## Deserializing DateTimes from a string:
 
-```
-DateTime DeserializeDateTime(string value) {
+<pre>DateTime DeserializeDateTime(string value) {
     return DateTime.Parse(value, null, DateTimeStyles.RoundtripKind);
-}
-```
+}</pre>
+
 
 That's it. The trick is in the DateTimeStyles.RoundtripKind bit. I keep forgetting that, and this (and the “o” specifier) is the reason for this post.
 
 When Deserializing ordered DateTimes, the former deserialization code would end up with a DateTime of Unspeficied kind, so it would be better to do that:
 
-```
-DateTime DeserializeOrderedDateTime(string value) {
+<pre>DateTime DeserializeOrderedDateTime(string value) {
     return DateTime.Parse(value, null, DateTimeStyles.AssumeUniversal).ToUniversalTime();
-}
-```
+}</pre>
 
