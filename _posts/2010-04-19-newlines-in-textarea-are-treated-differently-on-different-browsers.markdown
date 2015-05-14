@@ -17,11 +17,11 @@ Now you have a limit of N characters on the field, maybe enforced within a DB co
 
 ```JavaScript
 function validateMaxLength(elmId) {
-	var element = document.getElementById(elmId);
-	var elementContent = element.value;
-	var elementContentLength = elementContent.length;
-	
-	return elementContentLength &lt;= N;
+    var element = document.getElementById(elmId);
+    var elementContent = element.value;
+    var elementContentLength = elementContent.length;
+
+    return elementContentLength <= N;
 }
 ```
 
