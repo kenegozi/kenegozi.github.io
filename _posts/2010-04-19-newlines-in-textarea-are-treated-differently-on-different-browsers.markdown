@@ -20,7 +20,7 @@ function validateMaxLength(elmId) {
     var element = document.getElementById(elmId);
     var elementContent = element.value;
     var elementContentLength = elementContent.length;
-
+    
     return elementContentLength <= N;
 }
 ```
