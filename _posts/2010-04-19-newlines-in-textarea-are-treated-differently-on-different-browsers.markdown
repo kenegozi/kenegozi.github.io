@@ -15,14 +15,14 @@ Now you have a limit of N characters on the field, maybe enforced within a DB co
 
 ### First attempt:
 
-```JavaScript
+{% highlight javascript %}
 function validateMaxLength(elmId) {
     var element = document.getElementById(elmId);
     var elementContent = element.value;
     var elementContentLength = elementContent.length;
     return elementContentLength <= N;
 }
-```
+{% endhighlight %}
 
 or something like that.
 
@@ -39,7 +39,7 @@ one newline
 
 how would you count newlines? would you count two characters per newline (for \r\n)? or only one?
 
-When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to <br/&gt; tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. 
+When I faced that problem I checked how the browser is counting the newlines. I ran a quick test as saw that it counts newlines as a single character. Since the content was needed to be presented within a web element anyway, and newlines were to be changed to &lt;br/&gt; tags at render time anyway, I decided to have the server code make sure that incoming strings will use only \n for newlines, then validate the length, then store in the DB. 
 
 Now the client side JS matched the server criteria. 
 
@@ -60,9 +60,9 @@ On IE, newlines are \r\n, so it reports too many characters, and the validation 
 ### Solution
 Good old string.replace
 
-```JavaScript
+{% highlight javascript %}
 elementContent = elementContent.replace('\r\n','\n');
-```
+{% endhighlight %}
 
 
 
