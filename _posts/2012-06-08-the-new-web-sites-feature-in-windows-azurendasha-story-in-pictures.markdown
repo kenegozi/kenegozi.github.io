@@ -28,13 +28,13 @@ tags: [azure]
 
 ## Setup git (I'll spare you the username/password)
 
-[![websites-portal-git-repo-is-ready](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-git-repo-is-ready_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-git-repo-is-ready.png)
+[![websites-portal-git-repo-is-ready](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-git-repo-is-ready_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-git-repo-is-ready.png){:target="_blank"}
 
 
 
 ## The best ide ever – echo
 
-[![websites-echo-awesome](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_thumb_1.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome.png)
+[![websites-echo-awesome](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_thumb_1.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_1.png)
 
 
 
