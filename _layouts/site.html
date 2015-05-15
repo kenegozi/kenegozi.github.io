@@ -33,7 +33,6 @@
 	<link rel="canonical" href="{{ site.url }}{{ canonical_path | remove:'/index.html' }}/" />
 	<link rel="stylesheet" href="/assets/stylesheets/bootstrap.css" />
 	<link rel="stylesheet" href="/assets/stylesheets/main.css" />
-
 	{%comment%}<!-- FONTS -->{%endcomment%}
 	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
@@ -46,6 +45,9 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="/assets/img/favicon.ico">
+	<script>
+		window.POSTFUNCS = [];
+	</script>
 </head>
 <body id="top" class="{{page.special_body_class}}">
 	{%comment%}<!-- NAVBAR -->{%endcomment%}
@@ -92,6 +94,13 @@
 	<script src="/assets/javascripts/looper.min.js"></script>
 	<script src="/assets/javascripts/bootstrap.min.js"></script>
 	<script src="/assets/javascripts/site.js"></script>
+	<script>
+		$(function(){
+			for (var x=0; x < window.POSTFUNCS.length; ++x){
+				window.POSTFUNCS[x]($);
+			}
+		})
+	</script>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-431307-1']);
