@@ -24,8 +24,6 @@ With the ability to replace a method in runtime, a developer in Ruby/Javascript/
 
 The concept of AOP is not unfamiliar to c# developers. While some solutions use compile-time code weaving (a-la [postsharp](http:///)) and other techniques, the more common one (which is in use with most IoC containers, as NHiberate and other frameworks) is to use a DynamicProxy. Meaning that in runtime, user code will ask a factory (or IoC) for an object of type X, and will get and object of type Y, where Y is subtype of X, and was dynamically generated in runtime to override X's public methods, and apply the aspect there. Not unlike any other Wrapper / Decorator class, except for the fact that no-one needs to manually writing code for the wrappers, but instead write the aspect once, and apply it for many types/methods
 
-## 
-
 ## Examples
 
 NHibernate, to allow lazy loading of properties, uses a dynamic proxy when creating instances of objects that were read from the DB, decorating public virtual mapped getters with a “Load the content when first accessed” concern. this is totally transparent to the user. The fact the NH uses (at least by default) runtime dynamic proxies, and that (at least by default) it works with class-based pocos for entities (and not interfaces) is why the docs tell you to use virtual properties if you want Lazy Loading.
