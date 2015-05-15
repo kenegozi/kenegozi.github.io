@@ -8,22 +8,22 @@ tags: [azure]
 
 ## Hello portal:
 
-[![websites-portal-no-websites](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-no-websites_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-no-websites.png)
+[![websites-portal-no-websites](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-no-websites_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-no-websites.png){:target="_blank"}
 
 ## Create new site:
-[![websites-portal-create-new](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-create-new_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-create-new.png)
+[![websites-portal-create-new](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-create-new_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-create-new.png){:target="_blank"}
 
 
 ## Hi there!
-[![websites-portal-running](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-running_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-running.png)
+[![websites-portal-running](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-running_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-running.png){:target="_blank"}
 
 
 ## Can do some stuff, maybe later
-[![websites-portal-actions](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-actions_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-actions.png)
+[![websites-portal-actions](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-actions_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-actions.png){:target="_blank"}
 
 
 ## What's inside? first-time wizard
-[![websites-portal-first-time-wizard](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-first-time-wizard_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-first-time-wizard.png)
+[![websites-portal-first-time-wizard](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-first-time-wizard_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-first-time-wizard.png){:target="_blank"}
 
 
 ## Setup git (I'll spare you the username/password)
@@ -34,29 +34,29 @@ tags: [azure]
 
 ## The best ide ever – echo
 
-[![websites-echo-awesome](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_thumb_1.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_1.png)
+[![websites-echo-awesome](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_thumb_1.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-echo-awesome_1.png){:target="_blank"}
 
 
 
 ## git it
 
-[![websites-gitit](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-gitit_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-gitit.png)
+[![websites-gitit](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-gitit_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-gitit.png){:target="_blank"}
 
 
 
 ## browse it
-[![websites-awesome](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-awesome_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-awesome.png)
+[![websites-awesome](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-awesome_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-awesome.png){:target="_blank"}
 
 
 ## monitor it
 
-[![websites-portal-monitor-it](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-monitor-it_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-monitor-it.png)
+[![websites-portal-monitor-it](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-monitor-it_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-monitor-it.png){:target="_blank"}
 
 
 
 ## scale it
 
-[![websites-portal-scale-it](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-scale-it_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-scale-it.png)
+[![websites-portal-scale-it](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-scale-it_thumb.png)](http://kenegozi.com/blog/uploaded/windows-live-writer/the-new-web-sites-feature-in-windows-azu_f8e5/websites-portal-scale-it.png){:target="_blank"}
 
 
 
