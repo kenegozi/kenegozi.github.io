@@ -61,7 +61,7 @@ On IE, newlines are \r\n, so it reports too many characters, and the validation 
 Good old string.replace
 
 {% highlight javascript %}
-elementContent = elementContent.replace('\r\n','\n');
+elementContent = elementContent.replace(/\r\n/g,'\n');
 {% endhighlight %}
 
 
