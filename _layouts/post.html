@@ -4,6 +4,61 @@ layout: site
 {% include post.html standalone=true post=page %}
 <hr/>
 <div id="share" class="container">
+  <label for="pygments_stylesheet" style="font-size:12px;">Code snippets schema:&nbsp;</label>
+  <select id="pygments_stylesheet">
+    <option>autumn</option>
+    <option>fruity</option>
+    <option>github</option>
+    <option>monokai</option>
+    <option>native</option>
+    <option>pastie</option>
+    <option>tango</option>
+    <option>vim</option>
+    <option>zenburn</option>
+  </select>
+  <script>
+    (function() {
+      var stylesheetId = "pygments_stylesheet_link_element"; 
+      var selectedStyleParameterName = "selectedStylesheet";
+
+      function setHighlightStyle(head, selectedStyle) {
+        var stylesheetPath = "/assets/stylesheets/pygments/" + selectedStyle + ".css";
+        var linkElement = document.createElement("link");
+        linkElement.setAttribute("rel", "stylesheet");
+        linkElement.setAttribute("type", "text/css");
+        linkElement.setAttribute("href", stylesheetPath);
+        linkElement.setAttribute("id", stylesheetId);
+        linkElement.id = stylesheetId;
+        linkElement.rel = "stylesheet";
+        linkElement.href = stylesheetPath;
+        existing = document.getElementById(stylesheetId);
+        if (existing !== null){
+          head.replaceChild(linkElement, existing)
+        } else {
+          head.appendChild(linkElement)
+        }
+      }
+
+      window.POSTFUNCS.push(function($){
+        var stylesheetSelect = $('#pygments_stylesheet');
+        var head = document.getElementsByTagName("head")[0];
+        var selectedStyle = localStorage.getItem(selectedStyleParameterName);
+        if (selectedStyle === null) {
+          selectedStyle = "vim";
+        }
+
+        stylesheetSelect.val(selectedStyle);
+        setHighlightStyle(head, selectedStyle);
+
+        stylesheetSelect.change(function(){
+          var selectedStyle = this.value;
+          localStorage.setItem(selectedStyleParameterName, selectedStyle);
+          setHighlightStyle(head, selectedStyle);
+        });
+      });
+    })();
+  </script>
+  &nbsp;&nbsp;&nbsp;&nbsp;
 <a class="twitter-share-button" 
   href="https://twitter.com/share?via=kenegozi&title=Great%20read">
 Tweet
