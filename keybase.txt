@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/kenegozi
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://kenegozi.com
+  * I am kenegozi (https://keybase.io/kenegozi) on keybase.
+  * I have a public key with fingerprint 4233 DAB9 6173 B1E4 E3D0  6263 B290 B45A ABB9 35CD
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "4233dab96173b1e4e3d06263b290b45aabb935cd",
+            "host": "keybase.io",
+            "key_id": "b290b45aabb935cd",
+            "kid": "0101444e6690f4223d17f5a8d353ddfcb49fb56c80cac5fd4d22b503d4e9ab0a8b240a",
+            "uid": "10938148e8354e8337f76e681e498019",
+            "username": "kenegozi"
+        },
+        "service": {
+            "hostname": "kenegozi.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1432751076,
+    "expire_in": 157680000,
+    "prev": "76c279111f7efac838ff8953c260713fc09591048ee1aaeb58a7756db22f7027",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMIbAnicbZJbSBVBGMePZYmWXUgIraTWii4HmdmZvR0iI4MQOmI3KJFsZnf2uNnZ
+Pe1Zj5kJERRpVBDUQ3C6IKbVsacoioyU7hZKl6fQUuwlukFkmZXNSr1E8zDDfN//
+/5vv+5g72RMDWWlrCrYtqi4ZLUrr7lxVE9hsThmqF6hj1AmheqGajR+mZUeYG3Mt
+2xNCAhYRMgjVZKggChlmyACyKCMqaoBiiRBKNSTphhAUqpy47+AYSuKs0HJ4jF8q
+LYNH/6OvHk8ACCDGmMmyBkwsisiAiikR1UASMgxTp1gzqSTrKtCJLpkGNkSRSgAZ
+mGmEAqJSEQPCcTXjOAg0pEKsMhVJmG9IMRWZySovXVMB1HxhnLk2ibLxWm0WcfZY
+QkNQ4NGEpTN/BH4n/ygKdSfKvTHX8Rzd2ckzVZ4XC/lGry7mK2sZrfzDqKSWbfAx
+ckOCuXHLsYUQ5Erds3woxEhUJAgUOSiw3THLZZWWr5AUWQV8+c+wBEcqsi4qGoTQ
+VJhJdBWppqlqEtJFGSgQmTrQJA0C3i2DhDAqqURRJNmgomgqQFQEv6tdtiOEMC+T
+RDgybkVs4tW4TGjoul2RHkjLCkyeNMH/CIGszBl/v0epmPEzt2zql4Fg5t7U2ITk
+wx9fUfNoDl6xam/vrR3PXz+69vlD68HXakp+C/dtb542u2mkhIbToye3dB5dtil7
+87X23uTg0u7i/tTqLHfoxPz0jMLSjIzlO6/sry/ufure817ezL3c1xvtaXvf9tF7
+kD98duKSXDsvecDuurrhcO6dY5G3R1pfBVtaFl7unxTe8qz3/hm3oOx0zrnki1nh
+GwW/yvuk2rMOGW7KftQxWDV9/cj+SLhGHn31uGdu17e7Hc7t7zmfipOnkrtLrq9d
+vTiWlphT0dMxt64xMRzFb+rZxouXHjYUDTSODSxeOS8vNfYkmD9TuBEuX7fg/PHQ
+hdp3Xe+2Hmr/DeCnKOU=
+=YDOz
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kenegozi
+
+==================================================================
