@@ -20,7 +20,7 @@ Here are the links:
 
 Related stuff:
 
-- [A post about using the DictionaryAdapter in ASP.NET](http://kenegozi.com/Blog/2007/10/16/typed-session-using-castle-components-dictionaryadapter.aspx)
-- [A post about using the Typed Views option in AspView](http://kenegozi.com/Blog/2007/10/17/typed-view-properties-in-monorail-and-aspview.aspx)
+- [A post about using the DictionaryAdapter in ASP.NET](http://kenegozi.com/blog/2007/10/16/typed-session-using-castle-components-dictionaryadapter)
+- [A post about using the Typed Views option in AspView](http://kenegozi.com/blog/2007/10/17/typed-view-properties-in-monorail-and-aspview)
 
 
