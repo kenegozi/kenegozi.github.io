@@ -24,15 +24,27 @@ You might keep the current username and a user preferences object in the session
 
 Somewhere along your application, you'd probably have a pieces of code like that:
 
-```
-public static class TypedSession{    private static HttpSessionState session = HttpContext.Current.Session;    public static string Username     {         get { return (string)session["Username"]; }     }    public static Preferences Preferences     {         get { return (Preferences)session["Preferences"]; }     }}
-```
+{% highlight csharp %}
+public static class TypedSession {
+  private static HttpSessionState session = HttpContext.Current.Session;
+  public static string Username {
+    get { return (string)session["Username"]; }
+  }
+  public static Preferences Preferences {
+    get { return (Preferences)session["Preferences"]; }
+  }
+}
+{% endhighlight %}
 
 and in your code you'd be able to do:
 
-```
-...    if (TypedSession.Preferences.Color == Color.Red)        helloLabel.Text = "Hello " + TypedSession.Username;...
-```
+{% highlight csharp %}
+...
+if (TypedSession.Preferences.Color == Color.Red) {
+  helloLabel.Text = "Hello " + TypedSession.Username;
+}
+...
+{% endhighlight %}
 
 
 
@@ -40,17 +52,26 @@ Now, I won't get into those arguments, but generally speaking it would be great 
 
 So:
 
-```
-public interface ISession{    string Username { get; set; }    Preferences Preferences { get; set; }}
-```
+{% highlight csharp %}
+public interface ISession {
+  string Username { get; set; }
+  Preferences Preferences { get; set; }
+}
+{% endhighlight %}
 
 
 
 And use it like that:
 
-```
-...    ISession TypedSession = new DictionaryAdapterFactory().GetAdapter&lt;ISession&gt;(Session);...    if (TypedSession.Preferences.Color == Color.Red)        helloLabel.Text = "Hello " + TypedSession.Username;...
-```
+{% highlight csharp %}
+...
+ISession TypedSession = new DictionaryAdapterFactory().GetAdapter<ISession>(Session);
+...
+if (TypedSession.Preferences.Color == Color.Red) {
+  helloLabel.Text = "Hello " + TypedSession.Username;
+}
+...
+{% endhighlight %}
 
 
 
