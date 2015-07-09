@@ -6,3 +6,5 @@ github_repo_url: https://github.com/kenegozi/kenegozi.github.io
 title: 'Ken Egozi | Web builder'
 author: 'Ken Egozi'
 email: mail@kenegozi.com
+gems:
+  - jekyll-redirect-from

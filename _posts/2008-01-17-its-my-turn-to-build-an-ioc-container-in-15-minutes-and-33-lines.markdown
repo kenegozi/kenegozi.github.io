@@ -3,6 +3,7 @@ layout: post
 title:  "It's My Turn To Build An IoC Container In 15 Minutes and 33 Lines"
 comments: true
 tags: [architecture,tools,castle]
+redirect_from: ["/blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx","/Blog/2008/01/17/its-my-turn-to-build-an-ioc-container-in-15-minutes-and-33-lines.aspx"]
 ---
 
 
