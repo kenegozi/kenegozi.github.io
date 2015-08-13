@@ -26,7 +26,7 @@ Ain't pretty, but it serves both the need to test my code, and the need to re-le
 
 
 
-```
+{% highlight %}
 run_tests :- 
   dynamic([ tests_passed/1, failing_tests/1, total_tests_passed/1, total_failing_tests/1 ]), 
   assert(tests_passed(0)), 
@@ -110,7 +110,7 @@ run_test(Test) :-
 assert_all_members_equal_to([], _).
 assert_all_members_equal_to([H|T], H) :- 
   assert_all_members_equal_to(T, H). 
-```
+{% endhighlight %}
 
 
 
