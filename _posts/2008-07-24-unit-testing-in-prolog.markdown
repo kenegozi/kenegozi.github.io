@@ -26,7 +26,7 @@ Ain't pretty, but it serves both the need to test my code, and the need to re-le
 
 
 
-{% highlight %}
+{% highlight prolog%}
 run_tests :- 
   dynamic([ tests_passed/1, failing_tests/1, total_tests_passed/1, total_failing_tests/1 ]), 
   assert(tests_passed(0)), 
