@@ -26,7 +26,7 @@ Ain't pretty, but it serves both the need to test my code, and the need to re-le
 
 
 
-{% highlight prolog%}
+{% highlight prolog %}
 run_tests :- 
   dynamic([ tests_passed/1, failing_tests/1, total_tests_passed/1, total_failing_tests/1 ]), 
   assert(tests_passed(0)), 
@@ -116,7 +116,7 @@ assert_all_members_equal_to([H|T], H) :-
 
 this code is allowing me to define my tests like the following:
 
-```
+{% highlight prolog %}
 tests(moves/change_list, [ 
   change_list__add_first__works, 
   change_list__add_middle__works, 
@@ -136,21 +136,21 @@ change_list__add_middle__works :-
   L1 = [1,2,1].
 ...
 
-```
+{% endhighlight %}
 
 
 
 invoking the tests is as simple as the predicate:
 
-```
+{% highlight prolog %}
 :- run_tests.
-```
+{% endhighlight %}
 
 
 
 and the current output from my project is:
 
-```
+{% highlight prolog%}
 module: utils predicate: in_range ... Passed: 4 Failed: 0
 module: utils predicate: create_list ... Passed: 2 Failed: 0
 module: moves predicate: change_list ... Passed: 6 Failed: 0
@@ -160,7 +160,7 @@ summary:Passed: 14 Failed: 1
 step__when_ends_within_same_player_pits__works failed
 
 yes
-```
+{% endhighlight %}
 
 
 
