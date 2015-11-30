@@ -527,3 +527,10 @@ section.post .edit-button {
 #share > * {
   vertical-align: top;
 }
+.social-icon {
+  text-align: center;
+}
+.social-icon li > a,  .social-icon li > iframe {
+  display: inline;
+  vertical-align: middle;
+}
