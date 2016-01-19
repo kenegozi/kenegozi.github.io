@@ -15,26 +15,66 @@ Since I didn't want any dependency (but .NET 2.0 runtime) for the generator and 
 
 [Ayende has already done it in 15 lines](http://www.ayende.com/Blog/archive/2007/10/20/Building-an-IoC-container-in-15-lines-of-code.aspx), but I wanted also to automagically set dependencies and have a simpler registration model.
 
-so I've quickly hacked together a configurable DI resolver (a.k.a. IoC container) in 15 Minutes and 33 Lines Of Code. Call me a sloppy-coder, call me whadever-ya-like. It just works.
+so I've quickly hacked together a configurable DI resolver (a.k.a. IoC container) in 15 Minutes and 22 Lines Of Code. Call me a sloppy-coder, call me whadever-ya-like. It just works.
 
-```
-static class IoC {  static readonly IDictionary&lt;Type, Type&gt; types = new Dictionary&lt;Type, Type&gt;();   public static void Register&lt;TContract, TImplementation&gt;()  { types[typeof(TContract)] = typeof(TImplementation);  }  public static T Resolve&lt;T&gt;()  { return (T)Resolve(typeof(T)); }  public static object Resolve(Type contract) { Type implementation = types[contract];  ConstructorInfo constructor = implementation.GetConstructors()[0];  ParameterInfo[] constructorParameters = constructor.GetParameters();   if (constructorParameters.Length == 0) return Activator.CreateInstance(implementation);  List&lt;object&gt; parameters = new List&lt;object&gt;(constructorParameters.Length);   foreach (ParameterInfo parameterInfo in constructorParameters)  parameters.Add(Resolve(parameterInfo.ParameterType));  return constructor.Invoke(parameters.ToArray()); }}
-```
+{% highlight csharp %}
+static class IoC {
+  static readonly IDictionary<Type, Type> types = new Dictionary<Type, Type>();
+
+  public static void Register<TContract, TImplementation>()  { 
+    types[typeof(TContract)] = typeof(TImplementation);
+  }
+
+  public static T Resolve<T>()  {
+    return (T)Resolve(typeof(T));
+  }
+
+  public static object Resolve(Type contract) {
+    Type implementation = types[contract];
+    ConstructorInfo constructor = implementation.GetConstructors()[0];
+    ParameterInfo[] constructorParameters = constructor.GetParameters();
+    if (constructorParameters.Length == 1) { 
+      return Activator.CreateInstance(implementation);  
+    }
+    
+    List<object> parameters = new List<object>(constructorParameters.Length);
+    foreach (ParameterInfo parameterInfo in constructorParameters) {  
+      parameters.Add(Resolve(parameterInfo.ParameterType));
+    }
+
+    return constructor.Invoke(parameters.ToArray()); 
+  }
+}
+{% endhighlight %}
 
 Ok, I've cheated. You'd need using statements too, but you can see that I was generous enough with newlines ...
 
 Usage:
 
 Given those:
-```
-public interface IFileSystemAdapter { }public class FileSystemAdapter : IFileSystemAdapter { }public interface IBuildDirectoryStructureService { }public class BuildDirectoryStructureService : IBuildDirectoryStructureService{ IFileSystemAdapter fileSystemAdapter; public BuildDirectoryStructureService(IFileSystemAdapter fileSystemAdapter) { this.fileSystemAdapter = fileSystemAdapter; }
+{% highlight csharp %}
+public interface IFileSystemAdapter { }
+
+public class FileSystemAdapter : IFileSystemAdapter { }
+
+public interface IBuildDirectoryStructureService { }
+
+public class BuildDirectoryStructureService : IBuildDirectoryStructureService{ 
+  IFileSystemAdapter fileSystemAdapter; 
+
+  public BuildDirectoryStructureService(IFileSystemAdapter fileSystemAdapter) { 
+    this.fileSystemAdapter = fileSystemAdapter; 
+  }
 }
-```
+{% endhighlight %}
 
 
 You can do that:
 
-```
-IoC.Register&lt;IFileSystemAdapter, FileSystemAdapter&gt;();IoC.Register&lt;IBuildDirectoryStructureService, BuildDirectoryStructureService&gt;(); IBuildDirectoryStructureService service = IoC.Resolve&lt;IBuildDirectoryStructureService&gt;();
-```
+{% highlight csharp %}
+IoC.Register<IFileSystemAdapter, FileSystemAdapter>();
+IoC.Register<IBuildDirectoryStructureService, BuildDirectoryStructureService>(); 
+IBuildDirectoryStructureService service = IoC.Resolve<IBuildDirectoryStructureService>();
+{% endhighlight %}
+
 You need not worry about supplying the BuildDirectoryStructureService with an implementation for the service it depends on, but only to register an implementation for that service.
