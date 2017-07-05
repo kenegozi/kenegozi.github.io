@@ -33,7 +33,7 @@ static class IoC {
     Type implementation = types[contract];
     ConstructorInfo constructor = implementation.GetConstructors()[0];
     ParameterInfo[] constructorParameters = constructor.GetParameters();
-    if (constructorParameters.Length == 1) { 
+    if (constructorParameters.Length == 0) { 
       return Activator.CreateInstance(implementation);  
     }
     
