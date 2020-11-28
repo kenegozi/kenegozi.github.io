@@ -10,21 +10,21 @@ Things to keep in mind:
 
 
 
-Through my life as a software developer, usually my clients did not possess the same technical skills that I did.
+Through my life as a software developer, usually my clients did not possess the same technical skills that I had.
 
 They did not take "Systems Analysis and Design" course in collage, and they could make very little sense out of UML diagrams. 
 
-Blueprints and such are waaaaay to abstract for them.
+Blueprints and such were waaaaay to abstract for them.
 
 
 
-And guess what? I also lack their knowledge. At best I had a vague idea about their field, and about the domain of their problem which the project I was working on should have addressed.
+And guess what? I also lacked their knowledge. At best I had a vague idea about their field, and about the domain of their problem which the project I was working on should have addressed.
 
 
 
 
 
-we speak different languages.
+We spoke different languages.
 
 
 
@@ -38,7 +38,7 @@ See the "[How many points](http://gojko.net/2008/08/29/how-many-points-are-there
 
 
 
-So if a developer (or a software company, whatever) provide a client with a thick "project analysis" paper, loaded with, ehm, blueprints, UML diagrams and such, then after wasting a lot of time on arguments, the client will sign on a spec he did not comprehend fully, and does not correlate with his needs and whishes. 
+So if a developer (or a software company, whatever) provides a client with a thick "project analysis" paper, loaded with, ehm, blueprints, UML diagrams and such, then after wasting a lot of time on arguments, the client will sign on a spec they did not fully comprehend, and does not correlate with their needs and whishes. 
 
 At the end of the development phase you'll get a product that do not incorporate the domain knowledge, and give a partial solution to the client's pain. The client's satisfaction will be "arrr, that's O.K." at best. Even it will have super-duper-shiny-ajax-powered-SOA-2.0-3D-effects-with-silverlight/wpf/air/flash-thingy
 
